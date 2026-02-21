@@ -122,10 +122,10 @@ PAGE TEMPLATE STRUCTURE:
   - Map embed (Google Maps for service area)
   - JSON-LD: LocalBusiness schema with areaServed
 
-DATA FILE: src/data/cities.ts
+DATA FILE: src/data/cities.ts  ✅ CREATED (16 cities, 12 Riyadh neighborhoods)
   Export array of { slug, nameAr, nameEn, neighborhoods[], climate notes }
 
-TOTAL CITY PAGES: ~64
+TOTAL CITY PAGES: ~64  ✅ GENERATED
 
 ────────────────────────────────────────────────────────────────────────────────
 2B. CAR BRAND PAGES  (Targets: A4, B4 — Vehicle Brand Keywords)
@@ -167,10 +167,10 @@ PAGE TEMPLATE STRUCTURE:
   - CTA: WhatsApp with brand pre-filled
   - JSON-LD: Service schema with brand in serviceType
 
-DATA FILE: src/data/car-brands.ts
+DATA FILE: src/data/car-brands.ts  ✅ CREATED (30 brands, 34 models)
   Export array of { slug, nameAr, nameEn, logo, models[], commonIssues[] }
 
-TOTAL BRAND PAGES: ~160
+TOTAL BRAND PAGES: ~160  ✅ GENERATED (60 brand + 68 model = 128 pages)
 
 ────────────────────────────────────────────────────────────────────────────────
 2C. SYMPTOM/PROBLEM PAGES  (Targets: A2, B2 — Symptom Keywords)
@@ -217,11 +217,11 @@ PAGE TEMPLATE STRUCTURE:
   - CTA: "Experiencing this? Book a diagnosis"
   - JSON-LD: FAQPage schema
 
-DATA FILE: src/data/symptoms.ts
+DATA FILE: src/data/symptoms.ts  ✅ CREATED (20 symptoms with causes)
   Export array of { slug, titleAr, titleEn, descriptionAr, descriptionEn,
                     causes[], diagnosticSteps[], costRange, relatedSymptoms[] }
 
-TOTAL SYMPTOM PAGES: ~40
+TOTAL SYMPTOM PAGES: ~40  ✅ GENERATED
 
 ────────────────────────────────────────────────────────────────────────────────
 2D. AC COMPONENT/PARTS PAGES  (Targets: A8, B8 — Spare Parts Keywords)
@@ -247,11 +247,11 @@ PAGE TEMPLATE STRUCTURE:
   - CTA: "Need this part replaced? Get a quote"
   - JSON-LD: Product schema (for parts) + Service schema
 
-DATA FILE: src/data/components.ts
+DATA FILE: src/data/components.ts  ✅ CREATED (15 components)
   Export array of { slug, nameAr, nameEn, description, signs[],
                     priceRange, brands[], image }
 
-TOTAL PARTS PAGES: ~30
+TOTAL PARTS PAGES: ~30  ✅ GENERATED
 
 ────────────────────────────────────────────────────────────────────────────────
 2E. SERVICE TYPE PAGES  (Targets: A1, B1 — Core Service Keywords)
@@ -279,9 +279,9 @@ PAGE TEMPLATE STRUCTURE:
   - CTA: Book this service
   - JSON-LD: Service schema
 
-DATA FILE: src/data/services.ts
+DATA FILE: src/data/services.ts  ✅ CREATED (10 services)
 
-TOTAL SERVICE PAGES: ~20
+TOTAL SERVICE PAGES: ~20  ✅ GENERATED
 
 ────────────────────────────────────────────────────────────────────────────────
 2F. CROSS-DIMENSIONAL PAGES (CITY × SERVICE)
@@ -303,22 +303,25 @@ PAGE TEMPLATE:
   Unique H1: "تعبئة فريون مكيف السيارة في الرياض"
   Inherits FAQ from both city and service data.
 
-TOTAL CITY×SERVICE PAGES: ~50
+TOTAL CITY×SERVICE PAGES: ~50  ✅ GENERATED (top 5 cities × top 5 services)
 
 
-PROGRAMMATIC SEO SUMMARY:
-┌────────────────────────────────┬──────────┐
-│ Page Type                      │ Est Pages│
-├────────────────────────────────┼──────────┤
-│ City landing pages             │ 64       │
-│ Car brand pages                │ 160      │
-│ Symptom/problem pages          │ 40       │
-│ AC component pages             │ 30       │
-│ Service type pages             │ 20       │
-│ City × Service pages           │ 50       │
-├────────────────────────────────┼──────────┤
-│ TOTAL PROGRAMMATIC             │ ~364     │
-└────────────────────────────────┴──────────┘
+PROGRAMMATIC SEO SUMMARY:                            ✅ ALL GENERATED
+┌────────────────────────────────┬──────────┬──────────┐
+│ Page Type                      │ Est Pages│ Status   │
+├────────────────────────────────┼──────────┼──────────┤
+│ City landing pages             │ 32       │ ✅ DONE  │
+│ Riyadh neighborhood pages      │ 24       │ ✅ DONE  │
+│ Car brand pages                │ 60       │ ✅ DONE  │
+│ Car model pages                │ 68       │ ✅ DONE  │
+│ Symptom/problem pages          │ 40       │ ✅ DONE  │
+│ AC component pages             │ 30       │ ✅ DONE  │
+│ Service type pages             │ 20       │ ✅ DONE  │
+│ City × Service pages           │ 50       │ ✅ DONE  │
+├────────────────────────────────┼──────────┼──────────┤
+│ TOTAL PROGRAMMATIC             │ 324      │ ✅ DONE  │
+└────────────────────────────────┴──────────┴──────────┘
+Note: 358 total pages including existing static pages (home, about, blog, etc.)
 
 
 ================================================================================
@@ -673,51 +676,52 @@ ARABIZI INTEGRATION (Section C):
 │ PHASE 1: FOUNDATION (Weeks 1-2)                                             │
 │ Priority: HIGH                                                               │
 │                                                                              │
-│ □ Create data files:                                                         │
-│   - src/data/cities.ts (20 cities with metadata)                             │
-│   - src/data/car-brands.ts (30 brands with models)                           │
-│   - src/data/symptoms.ts (20 symptoms with causes)                           │
-│   - src/data/components.ts (15 AC components)                                │
-│   - src/data/services.ts (10 core services)                                  │
+│ ✅ Create data files:                                                        │
+│   - ✅ src/data/cities.ts (16 cities with metadata)                          │
+│   - ✅ src/data/car-brands.ts (30 brands with models)                        │
+│   - ✅ src/data/symptoms.ts (20 symptoms with causes)                        │
+│   - ✅ src/data/components.ts (15 AC components)                             │
+│   - ✅ src/data/services.ts (10 core services)                               │
 │                                                                              │
-│ □ Create page templates:                                                     │
-│   - src/pages/services/[city].astro                                          │
-│   - src/pages/car-ac/[brand].astro                                           │
-│   - src/pages/symptoms/[symptom].astro                                       │
-│   - src/pages/parts/[component].astro                                        │
-│   - src/pages/services/[service].astro (non-city)                            │
-│   - Duplicate for /en/ routes                                                │
+│ ✅ Create page templates:                                                    │
+│   - ✅ src/pages/services/[slug].astro (cities + services)                   │
+│   - ✅ src/pages/car-ac/[brand].astro                                        │
+│   - ✅ src/pages/symptoms/[symptom].astro                                    │
+│   - ✅ src/pages/parts/[component].astro                                     │
+│   - ✅ src/pages/car-ac/[brand]/[model].astro                                │
+│   - ✅ Duplicate for /en/ routes                                             │
 │                                                                              │
-│ □ Create shared components:                                                  │
-│   - ProgrammaticHero.astro                                                   │
-│   - ServiceList.astro                                                        │
-│   - FAQSection.astro (with JSON-LD)                                          │
-│   - CTAWhatsApp.astro                                                        │
-│   - BreadcrumbNav.astro                                                      │
-│   - PriceTable.astro                                                         │
+│ ✅ Create shared components:                                                 │
+│   - ✅ ProgrammaticHero.astro                                                │
+│   - ✅ ServiceList.astro                                                     │
+│   - ✅ FAQSection.astro (with JSON-LD)                                       │
+│   - ✅ CTAWhatsApp.astro                                                     │
+│   - ✅ BreadcrumbNav.astro                                                   │
+│   - ✅ PriceTable.astro                                                      │
+│   - ✅ RelatedLinks.astro                                                    │
 │                                                                              │
-│ □ Implement JSON-LD schemas                                                  │
-│ □ Set up hreflang tags                                                       │
-│ □ Update sitemap generation                                                  │
+│ ✅ Implement JSON-LD schemas (BreadcrumbList, FAQPage, Product, Service)     │
+│ ✅ Set up hreflang tags (via SEO.astro component)                            │
+│ ✅ Update sitemap generation (@astrojs/sitemap with i18n)                    │
 │                                                                              │
-│ Deliverable: ~160 programmatic pages live (cities + brands basic)            │
+│ Deliverable: ✅ 358 pages built successfully                                 │
 └──────────────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────────────────┐
 │ PHASE 2: CONTENT EXPANSION (Weeks 3-4)                                       │
 │ Priority: HIGH                                                               │
 │                                                                              │
-│ □ Generate all city landing pages (incl. Riyadh neighborhoods)               │
-│ □ Generate all car brand + model pages                                       │
-│ □ Generate symptom pages                                                     │
-│ □ Generate AC component/parts pages                                          │
-│ □ Generate service type pages                                                │
-│ □ Generate city × service cross-dimensional pages                            │
+│ ✅ Generate all city landing pages (incl. Riyadh neighborhoods)              │
+│ ✅ Generate all car brand + model pages                                      │
+│ ✅ Generate symptom pages                                                    │
+│ ✅ Generate AC component/parts pages                                         │
+│ ✅ Generate service type pages                                               │
+│ ✅ Generate city × service cross-dimensional pages                           │
 │ □ Write & publish blog posts 2-8                                             │
 │ □ Create pricing page (manual)                                               │
 │ □ Create knowledge hub page (manual)                                         │
 │                                                                              │
-│ Deliverable: ~364 programmatic + 8 blog posts live                           │
+│ Deliverable: ✅ 358 programmatic pages live | □ blog + manual remaining      │
 └──────────────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────────────────┐
@@ -1046,34 +1050,34 @@ END OF CONTENT IMPLEMENTATION PLAN
 ================================================================================
 
 QUICK REFERENCE — FILE CREATION CHECKLIST:
-  □ src/data/cities.ts
-  □ src/data/car-brands.ts
-  □ src/data/symptoms.ts
-  □ src/data/components.ts
-  □ src/data/services.ts
-  □ src/pages/services/[city].astro
-  □ src/pages/services/[city]/[service].astro
-  □ src/pages/services/[city]/[neighborhood].astro
-  □ src/pages/car-ac/[brand].astro
-  □ src/pages/car-ac/[brand]/[model].astro
-  □ src/pages/symptoms/[symptom].astro
-  □ src/pages/parts/[component].astro
-  □ src/pages/en/services/[city].astro
-  □ src/pages/en/services/[city]/[service].astro
-  □ src/pages/en/car-ac/[brand].astro
-  □ src/pages/en/car-ac/[brand]/[model].astro
-  □ src/pages/en/symptoms/[symptom].astro
-  □ src/pages/en/parts/[component].astro
-  □ src/layouts/CityTemplate.astro
-  □ src/layouts/BrandTemplate.astro
-  □ src/layouts/SymptomTemplate.astro
-  □ src/layouts/ComponentTemplate.astro
-  □ src/layouts/ServiceTemplate.astro
-  □ src/components/programmatic/ProgrammaticHero.astro
-  □ src/components/programmatic/FAQSection.astro
-  □ src/components/programmatic/CTAWhatsApp.astro
-  □ src/components/programmatic/BreadcrumbNav.astro
-  □ src/components/programmatic/RelatedLinks.astro
-  □ src/components/programmatic/PriceTable.astro
-  □ src/lib/internal-links.ts
+  ✅ src/data/cities.ts
+  ✅ src/data/car-brands.ts
+  ✅ src/data/symptoms.ts
+  ✅ src/data/components.ts
+  ✅ src/data/services.ts
+  ✅ src/pages/services/[slug].astro (cities + services combined)
+  ✅ src/pages/services/[city]/[slug].astro (neighborhoods + city×service)
+  ✅ src/pages/car-ac/[brand].astro
+  ✅ src/pages/car-ac/[brand]/[model].astro
+  ✅ src/pages/symptoms/[symptom].astro
+  ✅ src/pages/parts/[component].astro
+  ✅ src/pages/en/services/[slug].astro
+  ✅ src/pages/en/services/[city]/[slug].astro
+  ✅ src/pages/en/car-ac/[brand].astro
+  ✅ src/pages/en/car-ac/[brand]/[model].astro
+  ✅ src/pages/en/symptoms/[symptom].astro
+  ✅ src/pages/en/parts/[component].astro
+  ✅ src/layouts/CityTemplate.astro
+  ✅ src/layouts/BrandTemplate.astro
+  ✅ src/layouts/SymptomTemplate.astro
+  ✅ src/layouts/ComponentTemplate.astro
+  ✅ src/layouts/ServiceTemplate.astro
+  ✅ src/components/programmatic/ProgrammaticHero.astro
+  ✅ src/components/programmatic/FAQSection.astro
+  ✅ src/components/programmatic/CTAWhatsApp.astro
+  ✅ src/components/programmatic/BreadcrumbNav.astro
+  ✅ src/components/programmatic/RelatedLinks.astro
+  ✅ src/components/programmatic/PriceTable.astro
+  ✅ src/components/programmatic/ServiceList.astro
+  ✅ src/lib/internal-links.ts
   □ 30 blog posts in src/lib/blog-data.ts + blog-data-ar.ts

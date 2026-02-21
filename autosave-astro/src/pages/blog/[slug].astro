@@ -1,9 +1,12 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import BlogPostContent from '../../components/blog/BlogPostContent.astro';
+import BlogPostSchema from '../../components/blog/BlogPostSchema.astro';
+import BlogSidebar from '../../components/blog/BlogSidebar.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
 import { getContentByLanguage } from '../../lib/content';
 import { getLocalizedPath } from '../../lib/i18n';
 import { blogPosts, getBlogPost, getRelatedPosts } from '../../lib/blog-data';
-import ComingSoonLink from '../../components/ComingSoonLink.astro';
 
 const lang = 'ar' as const;
 const content = getContentByLanguage(lang);
@@ -23,48 +26,13 @@ if (!post) {
 }
 
 const relatedPosts = getRelatedPosts(slug, 3, lang);
+const canonicalUrl = Astro.url.href;
 
-// Format date
 const formattedDate = new Date(post.date).toLocaleDateString('ar-SA', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
 });
-
-// Parse markdown-like content into sections
-const contentLines = post.content
-  .split('\n')
-  .filter((line: string) => line.trim())
-  .map((line: string) => line.trim());
-
-// Parse a line into structured data for rendering
-function parseLine(line: string) {
-  if (line.startsWith('## ')) return { type: 'h2', text: line.replace('## ', '') };
-  if (line.startsWith('### ')) return { type: 'h3', text: line.replace('### ', '') };
-  if (line.startsWith('**') && line.endsWith('**')) return { type: 'bold-block', text: line.replace(/\*\*/g, '') };
-  if (line.startsWith('- **') || line.startsWith('- ')) {
-    const boldMatch = line.match(/^- \*\*(.+?)\*\*(.*)$/);
-    if (boldMatch) return { type: 'bullet-bold', boldText: boldMatch[1], rest: boldMatch[2] };
-    return { type: 'bullet', text: line.replace(/^- /, '') };
-  }
-  if (line.match(/^\d+\.\s\*\*/)) {
-    const match = line.match(/^\d+\.\s\*\*(.+?)\*\*\s*[—-]?\s*(.*)$/);
-    const num = line.match(/^(\d+)/)?.[1];
-    if (match) return { type: 'numbered', num, boldText: match[1], rest: match[2] };
-  }
-  if (line.startsWith('| ')) return { type: 'table', text: '' };
-  if (line.startsWith('**') && line.includes(':**')) {
-    const match = line.match(/^\*\*(.+?):\*\*\s*(.*)$/);
-    if (match) return { type: 'key-value', key: match[1], value: match[2] };
-  }
-  if (line.startsWith('**') && !line.endsWith('**')) {
-    const match = line.match(/^\*\*(.+?)\*\*\s*(.*)$/);
-    if (match) return { type: 'inline-bold', boldText: match[1], rest: match[2] };
-  }
-  return { type: 'paragraph', text: line };
-}
-
-const parsedLines = contentLines.map(parseLine);
 ---
 
 <PageLayout
@@ -74,176 +42,78 @@ const parsedLines = contentLines.map(parseLine);
   keywords={post.tags}
   ogType="article"
 >
-  {/* Article Header */}
-  <section class="relative overflow-hidden hero-gradient text-[#f0ebe0]">
-    <div class="hero-pattern"></div>
-    <div class="relative z-10 mx-auto max-w-4xl px-4 py-16 lg:py-24">
-      <a
-        href={getLocalizedPath('/blog', lang)}
-        class="hero-animate inline-flex items-center gap-1 text-sm text-[#f0ebe0]/60 hover:text-primary transition mb-6"
-      >
-        ← {blogContent.backToBlog}
-      </a>
-      <div class="hero-animate hero-animate-delay-1 flex items-center gap-3 mb-4">
-        <span class="rounded-full gold-gradient px-3 py-1 text-xs font-semibold text-white">{post.category}</span>
-        <span class="flex items-center gap-1.5 text-sm text-[#f0ebe0]/60">
-          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" /></svg>
-          {formattedDate}
-        </span>
-        <span class="flex items-center gap-1.5 text-sm text-[#f0ebe0]/60">
-          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          {post.readTime}
-        </span>
+  {/* BlogPosting JSON-LD schema */}
+  <BlogPostSchema post={post} lang={lang} canonicalUrl={canonicalUrl} />
+
+  {/* Article wrapper */}
+  <article>
+    {/* Article Header */}
+    <header class="relative overflow-hidden hero-gradient text-[#f0ebe0]">
+      <div class="hero-pattern"></div>
+      <div class="relative z-10 mx-auto max-w-4xl px-4 py-16 lg:py-24">
+        <a
+          href={getLocalizedPath('/blog', lang)}
+          class="hero-animate inline-flex items-center gap-1 text-sm text-[#f0ebe0]/60 hover:text-primary transition mb-6"
+          aria-label={blogContent.backToBlog}
+        >
+          <svg class="h-4 w-4 rtl:-scale-x-100 rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          {blogContent.backToBlog}
+        </a>
+        <div class="hero-animate hero-animate-delay-1 flex flex-wrap items-center gap-3 mb-4">
+          <span class="rounded-full gold-gradient px-3 py-1 text-xs font-semibold text-white">{post.category}</span>
+          <span class="flex items-center gap-1.5 text-sm text-[#f0ebe0]/60">
+            <svg class="h-3.5 w-3.5" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" /></svg>
+            <time datetime={post.date}>{formattedDate}</time>
+          </span>
+          <span class="flex items-center gap-1.5 text-sm text-[#f0ebe0]/60">
+            <svg class="h-3.5 w-3.5" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            {post.readTime}
+          </span>
+        </div>
+        <h1 class="hero-animate hero-animate-delay-1 text-3xl font-bold tracking-tight font-display sm:text-4xl lg:text-5xl">{post.title}</h1>
+        <p class="hero-animate hero-animate-delay-2 mt-4 text-lg text-[#f0ebe0]/65">{post.excerpt}</p>
       </div>
-      <h1 class="hero-animate hero-animate-delay-1 text-3xl font-bold tracking-tight font-display sm:text-4xl lg:text-5xl">{post.title}</h1>
-      <p class="hero-animate hero-animate-delay-2 mt-4 text-lg text-[#f0ebe0]/65">{post.excerpt}</p>
+    </header>
+
+    {/* Featured Image */}
+    <div class="relative -mt-1 aspect-[21/9] w-full overflow-hidden bg-[#1a1612]">
+      <img
+        src={post.image}
+        alt={post.imageAlt}
+        class="h-full w-full object-cover"
+        width="1200"
+        height="514"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-background)]/20 to-transparent"></div>
     </div>
-  </section>
 
-  {/* Featured Image */}
-  <div class="relative -mt-1 aspect-[21/9] w-full overflow-hidden bg-[#1a1612]">
-    <img
-      src={post.image}
-      alt={post.imageAlt}
-      class="h-full w-full object-cover"
-      width="1200"
-      height="514"
-      loading="eager"
-    />
-    <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-background)]/20 to-transparent"></div>
-  </div>
+    {/* Article Content + Sidebar */}
+    <section class="py-14 lg:py-20">
+      <div class="mx-auto max-w-4xl px-4">
+        <div class="grid gap-12 lg:grid-cols-[1fr_280px]">
+          {/* Main content */}
+          <div class="prose prose-lg max-w-none" data-animate="fade-in-up">
+            <BlogPostContent content={post.content} />
 
-  {/* Article Content */}
-  <section class="py-14 lg:py-20">
-    <div class="mx-auto max-w-4xl px-4">
-      <div class="grid gap-12 lg:grid-cols-[1fr_280px]">
-        {/* Main content */}
-        <article class="prose prose-lg max-w-none" data-animate="fade-in-up">
-          {parsedLines.map((item) => {
-            if (item.type === 'h2') return <h2 class="text-2xl font-bold font-display mt-8 mb-4">{item.text}</h2>;
-            if (item.type === 'h3') return <h3 class="text-xl font-semibold mt-6 mb-3">{item.text}</h3>;
-            if (item.type === 'bold-block') return <p class="font-semibold mt-4">{item.text}</p>;
-            if (item.type === 'bullet-bold') return (
-              <div class="mt-2 flex gap-3 text-muted-foreground">
-                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"></span>
-                <p class="leading-relaxed"><strong class="text-[var(--color-foreground)]">{item.boldText}</strong>{item.rest}</p>
+            {/* Tags */}
+            <footer class="mt-16 border-t border-border pt-8">
+              <div class="flex flex-wrap items-center gap-2" role="list" aria-label={lang === 'ar' ? 'الوسوم' : 'Tags'}>
+                <svg class="h-4 w-4 text-muted-foreground" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" /><path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" /></svg>
+                {post.tags.map((tag) => (
+                  <span class="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground" role="listitem">{tag}</span>
+                ))}
               </div>
-            );
-            if (item.type === 'bullet') return (
-              <div class="mt-2 flex gap-3 text-muted-foreground">
-                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"></span>
-                <p class="leading-relaxed">{item.text}</p>
-              </div>
-            );
-            if (item.type === 'numbered') return (
-              <div class="mt-3 flex gap-3 text-muted-foreground">
-                <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">{item.num}</span>
-                <p class="leading-relaxed"><strong class="text-[var(--color-foreground)]">{item.boldText}</strong>{item.rest ? ` — ${item.rest}` : ''}</p>
-              </div>
-            );
-            if (item.type === 'table') return null;
-            if (item.type === 'key-value') return (
-              <p class="mt-3 leading-relaxed text-muted-foreground"><strong class="text-[var(--color-foreground)]">{item.key}:</strong> {item.value}</p>
-            );
-            if (item.type === 'inline-bold') return (
-              <p class="mt-3 leading-relaxed text-muted-foreground"><strong class="text-[var(--color-foreground)]">{item.boldText}</strong> {item.rest}</p>
-            );
-            return <p class="text-muted-foreground leading-relaxed mb-4">{item.text}</p>;
-          })}
-
-          {/* Tags */}
-          <div class="mt-16 border-t border-border pt-8">
-            <div class="flex flex-wrap items-center gap-2">
-              <svg class="h-4 w-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" /><path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" /></svg>
-              {post.tags.map((tag) => (
-                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">{tag}</span>
-              ))}
-            </div>
-          </div>
-        </article>
-
-        {/* Sidebar */}
-        <aside class="hidden lg:block space-y-8" data-animate="fade-in-up" data-animate-delay="200">
-          {/* CTA */}
-          <div class="rounded-xl border border-border bg-card p-6 shadow-sm sticky top-24">
-            <h3 class="text-lg font-semibold mb-2 font-display">{blogContent.needRepairTitle}</h3>
-            <p class="text-sm text-muted-foreground mb-4">{blogContent.needRepairText}</p>
-            <ComingSoonLink
-              href={getLocalizedPath('/contact', lang)}
-              lang={lang}
-              class="block w-full rounded-lg gold-gradient gold-shimmer py-2.5 text-center text-sm font-semibold text-white shadow-md transition hover:shadow-lg hover:shadow-primary/20 mb-2"
-            >
-              {blogContent.requestService}
-            </ComingSoonLink>
-            <ComingSoonLink
-              href="https://wa.me/966500000000"
-              lang={lang}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block w-full rounded-lg border border-primary/30 py-2.5 text-center text-sm font-semibold text-primary transition hover:bg-primary/5"
-            >
-              {blogContent.chatWhatsApp}
-            </ComingSoonLink>
+            </footer>
           </div>
 
-          {/* Share */}
-          <div class="rounded-xl border border-border bg-card p-6 shadow-sm">
-            <h3 class="flex items-center gap-2 font-semibold">
-              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" /></svg>
-              {blogContent.shareTitle}
-            </h3>
-            <p class="mt-2 text-sm text-muted-foreground">{blogContent.shareText}</p>
-          </div>
-
-          {/* Related Posts (sidebar) */}
-          <div class="rounded-xl border border-border bg-card p-6 shadow-sm">
-            <h3 class="font-semibold">{blogContent.relatedArticles}</h3>
-            <div class="mt-4 space-y-4">
-              {relatedPosts.map((related) => (
-                <a
-                  href={getLocalizedPath(`/blog/${related.slug}`, lang)}
-                  class="group flex gap-3"
-                >
-                  <div class="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
-                    <img
-                      src={related.image}
-                      alt={related.imageAlt}
-                      class="h-full w-full object-cover"
-                      width="64"
-                      height="64"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="min-w-0 flex-1">
-                    <h4 class="text-sm font-medium leading-snug line-clamp-2 group-hover:text-primary transition-colors">{related.title}</h4>
-                    <span class="mt-1 text-xs text-muted-foreground">{related.readTime}</span>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div class="rounded-xl border border-border bg-card p-6 shadow-sm">
-            <h3 class="text-sm font-semibold mb-3 font-display">{blogContent.quickLinks}</h3>
-            <ul class="space-y-2">
-              {blogContent.quickLinkItems.map((link) => (
-                <li>
-                  <a
-                    href={getLocalizedPath(link.href, lang)}
-                    class="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition"
-                  >
-                    <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </aside>
+          {/* Sidebar */}
+          <BlogSidebar lang={lang} blogContent={blogContent} relatedPosts={relatedPosts} />
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </article>
 
   {/* Continue Reading */}
   {relatedPosts.length > 0 && (
@@ -255,28 +125,12 @@ const parsedLines = contentLines.map(parseLine);
         </div>
         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {relatedPosts.map((rp, i) => (
-            <a
-              href={getLocalizedPath(`/blog/${rp.slug}`, lang)}
-              class="group rounded-xl border border-border bg-card shadow-sm transition-all duration-300 hover:shadow-lg hover:border-primary/30 overflow-hidden card-hover-lift"
-              data-animate="fade-in-up" data-animate-delay={String(i * 100)}
-            >
-              <div class="aspect-video overflow-hidden bg-muted blog-card-image">
-                <img
-                  src={rp.image}
-                  alt={rp.imageAlt}
-                  class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                  width="400"
-                  height="225"
-                />
-              </div>
-              <div class="p-5">
-                <span class="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">{rp.category}</span>
-                <h3 class="mt-2 text-base font-semibold font-display line-clamp-2">{rp.title}</h3>
-                <p class="mt-2 text-sm text-muted-foreground line-clamp-2">{rp.excerpt}</p>
-                <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:gap-2 transition-all">{blogContent.readArticle} →</span>
-              </div>
-            </a>
+            <BlogCard
+              post={rp}
+              lang={lang}
+              readMoreLabel={blogContent.readArticle}
+              animateDelay={String(i * 100)}
+            />
           ))}
         </div>
       </div>

@@ -8,6 +8,8 @@ export interface BlogPost {
   image: string
   imageAlt: string
   date: string
+  updatedDate?: string
+  author?: string
   readTime: string
   category: string
   tags: string[]
@@ -129,7 +131,7 @@ If your car AC is not cooling, start with the basics (cabin filter, visual inspe
   },
   {
     slug: "complete-guide-car-ac-compressor",
-    title: "The Complete Guide to Car AC Compressors: Signs, Costs & Replacement",
+    title: "Car AC Compressor Guide: Signs, Costs & Fixes",
     excerpt:
       "Everything you need to know about your car's AC compressor — from understanding how it works to recognizing failure signs and knowing what a replacement should cost.",
     image: "/images/blog/ac-compressor-guide.jpeg",
@@ -305,7 +307,7 @@ Annual AC service (which includes checking refrigerant levels, testing performan
   },
   {
     slug: "car-ac-maintenance-tips-extend-system-life",
-    title: "15 Essential Car AC Maintenance Tips to Keep Your System Running Strong",
+    title: "15 Car AC Maintenance Tips for Peak Performance",
     excerpt:
       "Prevent costly car AC repairs with these proven maintenance tips. From seasonal checks to daily habits, learn how to extend the life of your vehicle's air conditioning system.",
     image: "/images/blog/ac-maintenance-tips.jpeg",
@@ -536,7 +538,7 @@ Most car AC sounds are diagnostic clues. Normal sounds include a single click wh
   },
   {
     slug: "prepare-car-ac-for-summer-heat",
-    title: "How to Prepare Your Car AC for Extreme Summer Heat: A Complete Guide",
+    title: "Prepare Your Car AC for Extreme Summer Heat",
     excerpt:
       "Summer temperatures can destroy an unprepared car AC system. Follow this step-by-step guide to get your vehicle's air conditioning ready for the hottest months of the year.",
     image: "/images/blog/summer-car-care.jpeg",
@@ -639,7 +641,7 @@ A pre-summer AC service costs $50-$150. A mid-summer emergency compressor replac
   },
   {
     slug: "how-to-detect-car-ac-refrigerant-leaks",
-    title: "How to Detect Car AC Refrigerant Leaks: Professional Methods Explained",
+    title: "Detect Car AC Refrigerant Leaks: Pro Methods",
     excerpt:
       "Refrigerant leaks are the silent killer of car AC systems. Learn the 5 professional detection methods, common leak locations, and how to prevent them from happening.",
     image: "/images/blog/ac-leak-detection.jpeg",
@@ -744,7 +746,7 @@ Early leak detection and repair saves thousands of dollars in prevented compress
   },
   {
     slug: "cabin-air-filter-replacement-guide",
-    title: "Cabin Air Filter: Why It Matters More Than You Think for Your Car AC",
+    title: "Cabin Air Filter: Why It Matters for Your Car AC",
     excerpt:
       "The cabin air filter is the most overlooked part of your car AC system. Learn why a dirty filter kills AC performance, how to check yours, and when to replace it.",
     image: "/images/blog/cabin-air-filter.jpeg",
@@ -949,7 +951,7 @@ Electric vehicle AC systems represent a significant leap forward in automotive c
   },
   {
     slug: "diy-vs-professional-car-ac-repair",
-    title: "DIY vs Professional Car AC Repair: What You Can Safely Do at Home",
+    title: "DIY vs Professional Car AC Repair: A Guide",
     excerpt:
       "Some car AC tasks are perfectly fine to DIY, while others require professional tools and expertise. Learn exactly which repairs you can handle yourself and which to leave to the pros.",
     image: "/images/blog/diy-vs-professional.jpeg",
@@ -1364,6 +1366,8 @@ function localizeBlogPost(post: BlogPost, language: Language): BlogPost {
     category: ar.category,
     tags: ar.tags,
     content: ar.content,
+    updatedDate: post.updatedDate ?? post.date,
+    author: post.author ?? (language === 'ar' ? 'اوتو سيف' : 'Auto Save KSA'),
   }
 }
 

@@ -1,0 +1,57 @@
+---
+/**
+ * BlogPostSchema — generates BlogPosting JSON-LD structured data for
+ * individual blog posts per Google's structured data guidelines.
+ *
+ * Outputs a <script type="application/ld+json"> block with:
+ *   @type: BlogPosting
+ *   headline, description, image, datePublished, dateModified,
+ *   author (Organization), publisher with logo, mainEntityOfPage
+ */
+import type { BlogPost } from '../../lib/blog-data';
+import type { Language } from '../../lib/i18n';
+
+interface Props {
+  post: BlogPost;
+  lang: Language;
+  canonicalUrl: string;
+}
+
+const { post, lang, canonicalUrl } = Astro.props;
+
+const site = Astro.site?.origin ?? 'https://autosave.sa';
+const orgName = lang === 'ar' ? 'اوتو سيف' : 'Auto Save KSA';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonicalUrl,
+  },
+  headline: post.title,
+  description: post.excerpt,
+  image: post.image.startsWith('http') ? post.image : `${site}${post.image}`,
+  datePublished: post.date,
+  dateModified: post.updatedDate ?? post.date,
+  author: {
+    '@type': 'Organization',
+    name: orgName,
+    url: site,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: orgName,
+    url: site,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${site}/favicon.svg`,
+    },
+  },
+  inLanguage: lang === 'ar' ? 'ar-SA' : 'en-US',
+  keywords: post.tags.join(', '),
+  articleSection: post.category,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

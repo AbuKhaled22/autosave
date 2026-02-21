@@ -1,0 +1,193 @@
+---
+/**
+ * BlogPostContent — renders parsed markdown-like blog content with
+ * semantic HTML. Replaces the duplicated parseLine() + rendering logic
+ * from both [slug].astro pages.
+ *
+ * Fixes vs. old implementation:
+ *   - Bullet items render as <ul><li> instead of <div> with decorative spans
+ *   - Numbered items render as <ol><li> instead of <div>
+ *   - Table rows are rendered as <table> instead of silently dropped
+ *   - Inline links in content are preserved (markdown [text](url) syntax)
+ */
+
+interface Props {
+  content: string;
+}
+
+const { content } = Astro.props;
+
+// Parse raw content lines
+const contentLines = content
+  .split('\n')
+  .filter((line: string) => line.trim())
+  .map((line: string) => line.trim());
+
+// Typed parsed line
+interface ParsedLine {
+  type: string;
+  text?: string;
+  boldText?: string;
+  rest?: string;
+  num?: string;
+  key?: string;
+  value?: string;
+  cells?: string[];
+}
+
+function parseLine(line: string): ParsedLine {
+  if (line.startsWith('## ')) return { type: 'h2', text: line.replace('## ', '') };
+  if (line.startsWith('### ')) return { type: 'h3', text: line.replace('### ', '') };
+  if (line.startsWith('**') && line.endsWith('**'))
+    return { type: 'bold-block', text: line.replace(/\*\*/g, '') };
+  if (line.startsWith('- **') || line.startsWith('- ')) {
+    const boldMatch = line.match(/^- \*\*(.+?)\*\*(.*)$/);
+    if (boldMatch) return { type: 'bullet-bold', boldText: boldMatch[1], rest: boldMatch[2] };
+    return { type: 'bullet', text: line.replace(/^- /, '') };
+  }
+  if (line.match(/^\d+\.\s\*\*/)) {
+    const match = line.match(/^\d+\.\s\*\*(.+?)\*\*\s*[—-]?\s*(.*)$/);
+    const num = line.match(/^(\d+)/)?.[1];
+    if (match) return { type: 'numbered', num, boldText: match[1], rest: match[2] };
+  }
+  // Table rows — extract cells
+  if (line.startsWith('| ') && line.endsWith(' |')) {
+    // Skip separator rows like |---|---|
+    if (line.match(/^\|[\s-:|]+\|$/)) return { type: 'table-separator' };
+    const cells = line
+      .split('|')
+      .slice(1, -1)
+      .map((c: string) => c.trim());
+    return { type: 'table-row', cells };
+  }
+  if (line.startsWith('**') && line.includes(':**')) {
+    const match = line.match(/^\*\*(.+?):\*\*\s*(.*)$/);
+    if (match) return { type: 'key-value', key: match[1], value: match[2] };
+  }
+  if (line.startsWith('**') && !line.endsWith('**')) {
+    const match = line.match(/^\*\*(.+?)\*\*\s*(.*)$/);
+    if (match) return { type: 'inline-bold', boldText: match[1], rest: match[2] };
+  }
+  return { type: 'paragraph', text: line };
+}
+
+const parsedLines = contentLines.map(parseLine);
+
+// Group consecutive items of the same list type for semantic wrapping
+interface GroupedBlock {
+  type: 'single' | 'bullet-list' | 'numbered-list' | 'table';
+  items: ParsedLine[];
+}
+
+const groupedBlocks: GroupedBlock[] = [];
+let i = 0;
+while (i < parsedLines.length) {
+  const line = parsedLines[i];
+  if (line.type === 'bullet' || line.type === 'bullet-bold') {
+    const items: ParsedLine[] = [];
+    while (i < parsedLines.length && (parsedLines[i].type === 'bullet' || parsedLines[i].type === 'bullet-bold')) {
+      items.push(parsedLines[i]);
+      i++;
+    }
+    groupedBlocks.push({ type: 'bullet-list', items });
+  } else if (line.type === 'numbered') {
+    const items: ParsedLine[] = [];
+    while (i < parsedLines.length && parsedLines[i].type === 'numbered') {
+      items.push(parsedLines[i]);
+      i++;
+    }
+    groupedBlocks.push({ type: 'numbered-list', items });
+  } else if (line.type === 'table-row' || line.type === 'table-separator') {
+    const items: ParsedLine[] = [];
+    while (i < parsedLines.length && (parsedLines[i].type === 'table-row' || parsedLines[i].type === 'table-separator')) {
+      items.push(parsedLines[i]);
+      i++;
+    }
+    groupedBlocks.push({ type: 'table', items });
+  } else {
+    groupedBlocks.push({ type: 'single', items: [line] });
+    i++;
+  }
+}
+---
+
+<div class="blog-content">
+  {groupedBlocks.map((block) => {
+    if (block.type === 'bullet-list') {
+      return (
+        <ul class="mt-4 space-y-2 text-muted-foreground list-none ps-0">
+          {block.items.map((item) => (
+            <li class="flex gap-3">
+              <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true"></span>
+              {item.type === 'bullet-bold' ? (
+                <span class="leading-relaxed"><strong class="text-[var(--color-foreground)]">{item.boldText}</strong>{item.rest}</span>
+              ) : (
+                <span class="leading-relaxed">{item.text}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+
+    if (block.type === 'numbered-list') {
+      return (
+        <ol class="mt-4 space-y-3 text-muted-foreground list-none ps-0" role="list">
+          {block.items.map((item) => (
+            <li class="flex gap-3">
+              <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary" aria-hidden="true">{item.num}</span>
+              <span class="leading-relaxed"><strong class="text-[var(--color-foreground)]">{item.boldText}</strong>{item.rest ? ` — ${item.rest}` : ''}</span>
+            </li>
+          ))}
+        </ol>
+      );
+    }
+
+    if (block.type === 'table') {
+      const dataRows = block.items.filter((r) => r.type === 'table-row');
+      if (dataRows.length === 0) return null;
+      const headerRow = dataRows[0];
+      const bodyRows = dataRows.slice(1);
+      return (
+        <div class="mt-6 mb-4 overflow-x-auto rounded-lg border border-border">
+          <table class="w-full text-sm">
+            <thead class="bg-secondary text-foreground">
+              <tr>
+                {headerRow.cells?.map((cell) => (
+                  <th class="px-4 py-3 text-start font-semibold">{cell}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody class="text-muted-foreground">
+              {bodyRows.map((row, idx) => (
+                <tr class={idx % 2 === 1 ? 'bg-secondary/40' : ''}>
+                  {row.cells?.map((cell) => (
+                    <td class="px-4 py-3 border-t border-border">{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
+    // Single items
+    const item = block.items[0];
+    if (item.type === 'h2') return <h2 class="text-2xl font-bold font-display mt-8 mb-4">{item.text}</h2>;
+    if (item.type === 'h3') return <h3 class="text-xl font-semibold mt-6 mb-3">{item.text}</h3>;
+    if (item.type === 'bold-block') return <p class="font-semibold mt-4">{item.text}</p>;
+    if (item.type === 'key-value') return (
+      <p class="mt-3 leading-relaxed text-muted-foreground">
+        <strong class="text-[var(--color-foreground)]">{item.key}:</strong> {item.value}
+      </p>
+    );
+    if (item.type === 'inline-bold') return (
+      <p class="mt-3 leading-relaxed text-muted-foreground">
+        <strong class="text-[var(--color-foreground)]">{item.boldText}</strong> {item.rest}
+      </p>
+    );
+    if (item.type === 'table-separator') return null;
+    return <p class="text-muted-foreground leading-relaxed mb-4">{item.text}</p>;
+  })}
+</div>

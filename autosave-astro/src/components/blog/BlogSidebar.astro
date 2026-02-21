@@ -1,0 +1,143 @@
+---
+/**
+ * BlogSidebar — sidebar for blog post detail pages.
+ * Includes: CTA card, share prompt, related posts, quick links.
+ *
+ * Renders a sticky desktop sidebar (lg:block) and a condensed mobile
+ * CTA strip (lg:hidden) so mobile users can still access the service CTA.
+ *
+ * Fixes vs. old implementation:
+ *   - Replaced ComingSoonLink (which blocks navigation) with real <a> tags
+ *   - Added aria-hidden to decorative SVGs
+ *   - RTL-safe arrow icons
+ *   - Mobile CTA strip (sidebar was entirely hidden on mobile before)
+ */
+import type { Language } from '../../lib/i18n';
+import { getLocalizedPath } from '../../lib/i18n';
+import type { BlogPost } from '../../lib/blog-data';
+
+interface BlogPostContent {
+  needRepairTitle: string;
+  needRepairText: string;
+  requestService: string;
+  chatWhatsApp: string;
+  shareTitle: string;
+  shareText: string;
+  relatedArticles: string;
+  quickLinks: string;
+  quickLinkItems: { name: string; href: string }[];
+}
+
+interface Props {
+  lang: Language;
+  blogContent: BlogPostContent;
+  relatedPosts: BlogPost[];
+}
+
+const { lang, blogContent, relatedPosts } = Astro.props;
+---
+
+{/* Mobile CTA strip — visible below lg breakpoint */}
+<div class="lg:hidden rounded-xl border border-border bg-card p-4 shadow-sm mb-8">
+  <div class="flex flex-col gap-2 sm:flex-row">
+    <a
+      href={getLocalizedPath('/contact', lang)}
+      class="flex-1 rounded-lg gold-gradient gold-shimmer py-2.5 text-center text-sm font-semibold text-white shadow-md transition hover:shadow-lg hover:shadow-primary/20"
+      aria-label={blogContent.requestService}
+    >
+      {blogContent.requestService}
+    </a>
+    <a
+      href="https://wa.me/966500000000"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex-1 rounded-lg border border-primary/30 py-2.5 text-center text-sm font-semibold text-primary transition hover:bg-primary/5"
+      aria-label={blogContent.chatWhatsApp}
+    >
+      {blogContent.chatWhatsApp}
+    </a>
+  </div>
+</div>
+
+{/* Desktop sidebar */}
+<aside class="hidden lg:block space-y-8" data-animate="fade-in-up" data-animate-delay="200">
+  {/* CTA */}
+  <div class="rounded-xl border border-border bg-card p-6 shadow-sm sticky top-24">
+    <h3 class="text-lg font-semibold mb-2 font-display">{blogContent.needRepairTitle}</h3>
+    <p class="text-sm text-muted-foreground mb-4">{blogContent.needRepairText}</p>
+    <a
+      href={getLocalizedPath('/contact', lang)}
+      class="block w-full rounded-lg gold-gradient gold-shimmer py-2.5 text-center text-sm font-semibold text-white shadow-md transition hover:shadow-lg hover:shadow-primary/20 mb-2"
+      aria-label={blogContent.requestService}
+    >
+      {blogContent.requestService}
+    </a>
+    <a
+      href="https://wa.me/966500000000"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="block w-full rounded-lg border border-primary/30 py-2.5 text-center text-sm font-semibold text-primary transition hover:bg-primary/5"
+      aria-label={blogContent.chatWhatsApp}
+    >
+      {blogContent.chatWhatsApp}
+    </a>
+  </div>
+
+  {/* Share */}
+  <div class="rounded-xl border border-border bg-card p-6 shadow-sm">
+    <h3 class="flex items-center gap-2 font-semibold">
+      <svg class="h-4 w-4" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" /></svg>
+      {blogContent.shareTitle}
+    </h3>
+    <p class="mt-2 text-sm text-muted-foreground">{blogContent.shareText}</p>
+  </div>
+
+  {/* Related Posts */}
+  {relatedPosts.length > 0 && (
+    <div class="rounded-xl border border-border bg-card p-6 shadow-sm">
+      <h3 class="font-semibold">{blogContent.relatedArticles}</h3>
+      <nav class="mt-4 space-y-4" aria-label={blogContent.relatedArticles}>
+        {relatedPosts.map((related) => (
+          <a
+            href={getLocalizedPath(`/blog/${related.slug}`, lang)}
+            class="group flex gap-3"
+            aria-label={related.title}
+          >
+            <div class="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
+              <img
+                src={related.image}
+                alt={related.imageAlt}
+                class="h-full w-full object-cover"
+                width="64"
+                height="64"
+                loading="lazy"
+              />
+            </div>
+            <div class="min-w-0 flex-1">
+              <h4 class="text-sm font-medium leading-snug line-clamp-2 group-hover:text-primary transition-colors">{related.title}</h4>
+              <span class="mt-1 text-xs text-muted-foreground">{related.readTime}</span>
+            </div>
+          </a>
+        ))}
+      </nav>
+    </div>
+  )}
+
+  {/* Quick Links */}
+  <nav class="rounded-xl border border-border bg-card p-6 shadow-sm" aria-label={blogContent.quickLinks}>
+    <h3 class="text-sm font-semibold mb-3 font-display">{blogContent.quickLinks}</h3>
+    <ul class="space-y-2">
+      {blogContent.quickLinkItems.map((link) => (
+        <li>
+          <a
+            href={getLocalizedPath(link.href, lang)}
+            class="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition"
+          >
+            <svg class="h-3 w-3 rtl:-scale-x-100" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            {link.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</aside>
