@@ -1,0 +1,77 @@
+---
+/**
+ * LocalBusinessSchema — JSON-LD structured data for AutoRepair local business.
+ * Injected into the <head> of every page for Google rich snippets & local map packs.
+ */
+
+interface Props {
+  lang: 'ar' | 'en';
+}
+
+const { lang } = Astro.props;
+const site = Astro.site?.origin ?? 'https://autosave.sa';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AutoRepair',
+  'name': lang === 'ar' ? 'اوتو سيف - صيانة مكيف السيارة' : 'Auto Save - Car AC Service',
+  'image': `${site}/og-image.jpg`,
+  'url': site,
+  'telephone': '+966-50-XXX-XXXX',
+  'address': {
+    '@type': 'PostalAddress',
+    'addressLocality': lang === 'ar' ? 'الرياض' : 'Riyadh',
+    'addressRegion': lang === 'ar' ? 'الرياض' : 'Riyadh',
+    'addressCountry': 'SA',
+  },
+  'geo': {
+    '@type': 'GeoCoordinates',
+    'latitude': 24.7136,
+    'longitude': 46.6753,
+  },
+  'priceRange': '$$',
+  'openingHours': 'Sa-Fr 08:00-20:00',
+  'description':
+    lang === 'ar'
+      ? 'خدمات احترافية لإصلاح مكيف السيارة وتغيير الكمبروسر وتعبئة الفريون والصيانة الدورية. ضمان أفضل سعر عبر مراكز خدمة معتمدة.'
+      : 'Professional car AC repair, compressor replacement, freon refill, and maintenance. Best price guarantee with certified service centers.',
+  'areaServed': {
+    '@type': 'City',
+    'name': lang === 'ar' ? 'الرياض' : 'Riyadh',
+  },
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': lang === 'ar' ? 'خدمات مكيف السيارة' : 'Car AC Services',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': lang === 'ar' ? 'خدمة التسليم للمركز' : 'Drop-Off Service',
+          'description':
+            lang === 'ar'
+              ? 'تسليم السيارة لأقرب مركز معتمد مع تنسيق وضمان السعر'
+              : 'Drop off at nearest certified center with coordination and price guarantee',
+        },
+        'price': '49',
+        'priceCurrency': 'SAR',
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': lang === 'ar' ? 'خدمة الاستلام والتسليم' : 'Pickup & Return Service',
+          'description':
+            lang === 'ar'
+              ? 'استلام السيارة وإصلاح المكيف وإعادتها'
+              : 'Pick up your car, repair the AC, and return it to you',
+        },
+        'price': '200',
+        'priceCurrency': 'SAR',
+      },
+    ],
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

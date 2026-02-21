@@ -1,0 +1,111 @@
+---
+import type { Language } from '../lib/i18n';
+import { getContentByLanguage } from '../lib/content';
+import { getLocalizedPath, getAlternateLang } from '../lib/i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const content = getContentByLanguage(lang);
+const altLang = getAlternateLang(lang);
+const currentPath = Astro.url.pathname;
+
+// Strip language prefix to get the base path for the toggle link
+function getBasePath(path: string): string {
+  if (path.startsWith('/en/')) return path.slice(3);
+  if (path === '/en') return '/';
+  return path;
+}
+
+const basePath = getBasePath(currentPath);
+const toggleHref = getLocalizedPath(basePath, altLang);
+const toggleLabel = altLang === 'ar' ? 'العربية' : 'English';
+---
+
+<header class="sticky top-0 z-50 w-full border-b-2 border-primary/15 bg-background/90 backdrop-blur-xl">
+  <div class="container mx-auto flex h-18 items-center justify-between px-4">
+    {/* Logo */}
+    <a href={getLocalizedPath('/', lang)} class="flex items-center gap-2.5">
+      {lang === 'ar' ? (
+        <img src="/logo-ar.svg?v=3" alt="اوتو سيف" width="130" height="36" class="h-9 w-auto" />
+      ) : (
+        <img src="/logo.svg" alt="AUTO SAVE" width="130" height="36" class="h-9 w-auto" />
+      )}
+    </a>
+
+    {/* Desktop Navigation */}
+    <nav class="hidden md:flex items-center gap-8">
+      {content.header.nav.map((item) => (
+        <a
+          href={getLocalizedPath(item.href, lang)}
+          class="nav-link-hover text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+        >
+          {item.name}
+        </a>
+      ))}
+    </nav>
+
+    {/* Actions */}
+    <div class="flex items-center gap-3">
+      {/* Language toggle */}
+      <a
+        href={toggleHref}
+        class="text-sm font-semibold text-primary hover:text-primary/80 transition-colors px-3.5 py-1.5 rounded-full border border-primary/30 hover:bg-primary/5"
+      >
+        {toggleLabel}
+      </a>
+
+      {/* CTA Button */}
+      <a
+        href={getLocalizedPath('/contact', lang)}
+        class="hidden sm:inline-flex items-center justify-center rounded-lg gold-gradient gold-shimmer px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:shadow-lg hover:shadow-primary/20"
+      >
+        {content.header.quoteButton}
+      </a>
+
+      {/* Mobile menu button */}
+      <button
+        type="button"
+        class="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-muted-foreground hover:text-foreground hover:bg-secondary"
+        aria-label={content.header.menuToggle}
+        id="mobile-menu-btn"
+      >
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  {/* Mobile Navigation */}
+  <div id="mobile-menu" class="mobile-menu-enter md:hidden">
+    <div>
+      <nav class="container mx-auto px-4 py-5 flex flex-col gap-1 border-t-2 border-primary/10 bg-background">
+        {content.header.nav.map((item) => (
+          <a
+            href={getLocalizedPath(item.href, lang)}
+            class="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary/60 py-2.5 px-3 rounded-lg transition-colors"
+          >
+            {item.name}
+          </a>
+        ))}
+        <a
+          href={getLocalizedPath('/contact', lang)}
+          class="inline-flex items-center justify-center rounded-lg gold-gradient gold-shimmer px-4 py-2.5 text-sm font-semibold text-white shadow-md mt-3"
+        >
+          {content.header.quoteButton}
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('is-open');
+  });
+</script>

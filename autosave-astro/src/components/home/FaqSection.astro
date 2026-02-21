@@ -1,0 +1,45 @@
+---
+interface Props {
+  content: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: { question: string; answer: string }[];
+  };
+}
+
+const { content } = Astro.props;
+---
+
+<section class="py-20 lg:py-28 bg-secondary/40" id="faq">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-14" data-animate="fade-in-up">
+      <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">{content.eyebrow}</span>
+      <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">{content.title}</h2>
+      <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">{content.description}</p>
+    </div>
+    <div class="max-w-3xl mx-auto space-y-4">
+      {content.items.map((item, i) => (
+        <details
+          class="group rounded-xl border border-border bg-card shadow-sm open:border-s-2 open:border-s-primary open:shadow-md transition-all"
+          data-animate="fade-in-up"
+          data-animate-delay={String((i + 1) * 100)}
+        >
+          <summary class="cursor-pointer list-none px-6 py-5 text-base font-semibold text-card-foreground flex items-center justify-between hover:bg-secondary/50 rounded-xl transition-colors">
+            <span class="font-display">{item.question}</span>
+            <svg class="h-5 w-5 shrink-0 text-muted-foreground transition-all duration-300 group-open:rotate-180 group-open:text-primary" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg>
+          </summary>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer-inner">
+              <div class="px-6 pb-5 text-sm text-muted-foreground leading-relaxed">
+                {item.answer}
+              </div>
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

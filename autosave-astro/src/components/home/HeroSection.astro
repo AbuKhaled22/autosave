@@ -1,0 +1,63 @@
+---
+import type { Language } from '../../lib/i18n';
+import { getLocalizedPath } from '../../lib/i18n';
+
+interface Props {
+  content: {
+    badge: string;
+    title: string;
+    accent: string;
+    description: string;
+    primaryCta: string;
+    secondaryCta: string;
+    stats: { value: string; label: string }[];
+  };
+  lang: Language;
+}
+
+const { content, lang } = Astro.props;
+const isArabic = lang === 'ar';
+---
+
+<section class="relative overflow-hidden hero-gradient text-[#f0ebe0]">
+  {/* Decorative geometric pattern */}
+  <div class="hero-pattern"></div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-4 py-24 lg:px-8 lg:py-36">
+    <div class="max-w-3xl">
+      <span class="hero-animate inline-block rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary mb-8">
+        {content.badge}
+      </span>
+      <h1 class="hero-animate hero-animate-delay-1 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl font-display mb-6 leading-[1.1]">
+        {content.title}
+      </h1>
+      <p class="hero-animate hero-animate-delay-2 text-lg text-[#f0ebe0]/65 leading-relaxed mb-10 max-w-2xl">
+        {content.description}
+      </p>
+      <div class="hero-animate hero-animate-delay-3 flex flex-col sm:flex-row gap-4 mb-14">
+        <a
+          href={getLocalizedPath('/contact', lang)}
+          class="inline-flex items-center justify-center rounded-lg gold-gradient gold-shimmer px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/20 transition hover:shadow-xl hover:shadow-primary/30"
+        >
+          {content.primaryCta}
+        </a>
+        <a
+          href="https://wa.me/966500000000"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-lg border border-[#f0ebe0]/15 px-7 py-3.5 text-base font-semibold text-[#f0ebe0] backdrop-blur-sm transition hover:bg-[#f0ebe0]/5 hover:border-[#f0ebe0]/25"
+        >
+          {content.secondaryCta}
+        </a>
+      </div>
+      <div class="hero-animate hero-animate-delay-4 flex gap-10">
+        {content.stats.map((stat) => (
+          <div class="border-s-2 border-primary/40 ps-5">
+            <div class="text-3xl font-bold text-primary font-display">{stat.value}</div>
+            <div class="text-sm text-[#f0ebe0]/50 mt-0.5">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

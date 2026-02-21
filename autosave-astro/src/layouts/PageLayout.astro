@@ -1,0 +1,38 @@
+---
+/**
+ * PageLayout — wraps BaseLayout with SiteHeader, SiteFooter, and WhatsAppFloat.
+ * Use this for all standard pages.
+ */
+import BaseLayout from './BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import type { Language } from '../lib/i18n';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Language;
+  ogImage?: string;
+  ogType?: string;
+  keywords?: string[];
+  noindex?: boolean;
+}
+
+const { title, description, lang, ogImage, ogType, keywords, noindex } = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  ogImage={ogImage}
+  ogType={ogType}
+  keywords={keywords}
+  noindex={noindex}
+>
+  <SiteHeader lang={lang} slot="header" />
+  <slot />
+  <SiteFooter lang={lang} slot="footer" />
+  <WhatsAppFloat lang={lang} />
+</BaseLayout>

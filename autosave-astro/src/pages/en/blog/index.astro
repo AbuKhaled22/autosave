@@ -1,0 +1,119 @@
+---
+import PageLayout from '../../../layouts/PageLayout.astro';
+import { getContentByLanguage } from '../../../lib/content';
+import { getLocalizedPath } from '../../../lib/i18n';
+import { getBlogPosts, getAllCategories } from '../../../lib/blog-data';
+
+const lang = 'en' as const;
+const content = getContentByLanguage(lang);
+const blogContent = content.blog.page;
+const posts = getBlogPosts(lang);
+const categories = getAllCategories(lang);
+const featuredPost = posts[0];
+const remainingPosts = posts.slice(1);
+---
+
+<PageLayout
+  title="Car AC Repair Blog | Tips, Guides & Expert Advice"
+  description="Expert articles on car air conditioning repair, maintenance tips, troubleshooting guides, and auto AC cost breakdowns."
+  lang={lang}
+  keywords={['car AC blog', 'auto AC repair tips', 'car air conditioning guide', 'AC maintenance articles']}
+>
+  {/* Hero */}
+  <section class="relative overflow-hidden hero-gradient text-[#f0ebe0]">
+    <div class="hero-pattern"></div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-24">
+      <span class="hero-animate eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-primary">{blogContent.heroEyebrow}</span>
+      <h1 class="hero-animate hero-animate-delay-1 mt-4 text-4xl font-bold tracking-tight font-display sm:text-5xl">{blogContent.heroTitle}</h1>
+      <p class="hero-animate hero-animate-delay-2 mt-6 text-lg text-[#f0ebe0]/65 max-w-2xl">{blogContent.heroDescription}</p>
+    </div>
+  </section>
+
+  {/* Featured Post */}
+  {featuredPost && (
+    <section class="py-14">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center gap-2 mb-6" data-animate="fade-in-up">
+          <span class="rounded-full gold-gradient px-4 py-1.5 text-xs font-semibold text-white">{blogContent.featured}</span>
+        </div>
+        <a
+          href={getLocalizedPath(`/blog/${featuredPost.slug}`, lang)}
+          class="group grid gap-8 lg:grid-cols-2 rounded-xl border border-border bg-card shadow-sm overflow-hidden hover:shadow-lg hover:border-primary/30 transition-all duration-300"
+          data-animate="fade-in-up" data-animate-delay="100"
+        >
+          <div class="aspect-video lg:aspect-auto overflow-hidden bg-muted blog-card-image">
+            <img
+              src={featuredPost.image}
+              alt={featuredPost.imageAlt}
+              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              width="600"
+              height="400"
+              loading="eager"
+            />
+          </div>
+          <div class="p-7 lg:p-9 flex flex-col justify-center">
+            <span class="text-xs font-semibold text-primary">{featuredPost.category}</span>
+            <h2 class="mt-2 text-2xl font-bold font-display">{featuredPost.title}</h2>
+            <p class="mt-3 text-muted-foreground">{featuredPost.excerpt}</p>
+            <div class="mt-4 flex items-center gap-4 text-sm text-muted-foreground">
+              <span>{featuredPost.date}</span>
+              <span>{featuredPost.readTime}</span>
+            </div>
+            <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:gap-3 transition-all">{blogContent.readFull} →</span>
+          </div>
+        </a>
+      </div>
+    </section>
+  )}
+
+  {/* All Posts */}
+  <section class="py-14 lg:py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold font-display mb-8" data-animate="fade-in-up">{blogContent.latest}</h2>
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {remainingPosts.map((post, i) => (
+          <a
+            href={getLocalizedPath(`/blog/${post.slug}`, lang)}
+            class="group rounded-xl border border-border bg-card shadow-sm transition-all duration-300 hover:shadow-lg hover:border-primary/30 overflow-hidden card-hover-lift"
+            data-animate="fade-in-up" data-animate-delay={String((i % 3) * 100)}
+          >
+            <div class="aspect-video overflow-hidden bg-muted blog-card-image">
+              <img
+                src={post.image}
+                alt={post.imageAlt}
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                width="400"
+                height="225"
+              />
+            </div>
+            <div class="p-5">
+              <span class="text-xs font-semibold text-primary">{post.category}</span>
+              <h3 class="mt-2 text-base font-semibold font-display line-clamp-2">{post.title}</h3>
+              <p class="mt-2 text-sm text-muted-foreground line-clamp-2">{post.excerpt}</p>
+              <div class="mt-3 flex items-center gap-3 text-xs text-muted-foreground">
+                <span>{post.date}</span>
+                <span>{post.readTime}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Popular Topics */}
+  <section class="py-14 lg:py-20 bg-secondary/40">
+    <div class="container mx-auto px-4 text-center" data-animate="fade-in-up">
+      <h2 class="text-2xl font-bold font-display mb-2">{blogContent.popularTopics}</h2>
+      <p class="text-muted-foreground mb-6">{blogContent.popularDescription}</p>
+      <div class="flex flex-wrap justify-center gap-2">
+        {categories.map((cat) => (
+          <span class="rounded-full bg-primary/10 border border-primary/20 px-4 py-1.5 text-sm font-medium text-primary hover:bg-primary/15 transition-colors cursor-default">
+            {cat}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>

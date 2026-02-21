@@ -1,0 +1,112 @@
+---
+import type { Language } from '../lib/i18n';
+import { getContentByLanguage } from '../lib/content';
+import { getLocalizedPath } from '../lib/i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const content = getContentByLanguage(lang);
+const footer = content.footer;
+const year = new Date().getFullYear();
+---
+
+<footer class="footer-dark text-[#f0ebe0]/90">
+  {/* Gold accent top line */}
+  <div class="h-1 gold-gradient"></div>
+
+  <div class="container mx-auto px-4 py-14 lg:py-20">
+    {/* Top section */}
+    <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      {/* Brand */}
+      <div class="space-y-5">
+        <a href={getLocalizedPath('/', lang)} class="inline-block">
+          {lang === 'ar' ? (
+            <img src="/logo-ar.svg?v=3" alt="اوتو سيف" width="130" height="36" class="h-9 w-auto brightness-0 invert opacity-90" />
+          ) : (
+            <img src="/logo.svg" alt="AUTO SAVE" width="130" height="36" class="h-9 w-auto brightness-0 invert opacity-90" />
+          )}
+        </a>
+        <p class="text-sm text-[#f0ebe0]/60 leading-relaxed">
+          {footer.description}
+        </p>
+      </div>
+
+      {/* Services */}
+      <div>
+        <h3 class="text-sm font-semibold text-primary mb-4 font-display uppercase tracking-wider">
+          {footer.groups.services.title}
+        </h3>
+        <ul class="space-y-2.5">
+          {footer.groups.services.links.map((link) => (
+            <li>
+              <a
+                href={getLocalizedPath(link.href, lang)}
+                class="text-sm text-[#f0ebe0]/60 hover:text-primary transition-colors"
+              >
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Resources */}
+      <div>
+        <h3 class="text-sm font-semibold text-primary mb-4 font-display uppercase tracking-wider">
+          {footer.groups.resources.title}
+        </h3>
+        <ul class="space-y-2.5">
+          {footer.groups.resources.links.map((link) => (
+            <li>
+              <a
+                href={getLocalizedPath(link.href, lang)}
+                class="text-sm text-[#f0ebe0]/60 hover:text-primary transition-colors"
+              >
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Company */}
+      <div>
+        <h3 class="text-sm font-semibold text-primary mb-4 font-display uppercase tracking-wider">
+          {footer.groups.company.title}
+        </h3>
+        <ul class="space-y-2.5">
+          {footer.groups.company.links.map((link) => (
+            <li>
+              <a
+                href={getLocalizedPath(link.href, lang)}
+                class="text-sm text-[#f0ebe0]/60 hover:text-primary transition-colors"
+              >
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    {/* Bottom */}
+    <div class="mt-14 border-t border-[#f0ebe0]/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p class="text-sm text-[#f0ebe0]/40">
+        &copy; {year} {footer.copyright}
+      </p>
+      <div class="flex gap-5">
+        {footer.bottomLinks.map((link) => (
+          <a
+            href={getLocalizedPath(link.href, lang)}
+            class="text-sm text-[#f0ebe0]/40 hover:text-primary transition-colors"
+          >
+            {link.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,62 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { getContentByLanguage } from '../../lib/content';
+import { getLocalizedPath } from '../../lib/i18n';
+
+const lang = 'en' as const;
+const content = getContentByLanguage(lang);
+const terms = content.terms;
+---
+
+<PageLayout
+  title="Terms of Service | AUTO SAVE"
+  description="AUTO SAVE terms of service, privacy policy, and service agreement for car air conditioning repair and maintenance services."
+  lang={lang}
+>
+  {/* Hero */}
+  <section class="relative overflow-hidden hero-gradient text-[#f0ebe0]">
+    <div class="hero-pattern"></div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-24">
+      <span class="hero-animate eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-primary">{terms.eyebrow}</span>
+      <h1 class="hero-animate hero-animate-delay-1 mt-4 text-4xl font-bold tracking-tight font-display sm:text-5xl">{terms.title}</h1>
+      <p class="hero-animate hero-animate-delay-2 mt-4 text-sm text-[#f0ebe0]/60">
+        {terms.lastUpdatedPrefix} {terms.lastUpdatedDate}
+      </p>
+    </div>
+  </section>
+
+  {/* Content */}
+  <section class="py-20 lg:py-28">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto space-y-10">
+        {terms.sections.map((section, i) => (
+          <div class="border-s-2 border-primary/25 ps-6 hover:border-primary/50 transition-colors" data-animate="fade-in-up" data-animate-delay={String(i * 100)}>
+            <h2 class="text-xl font-bold font-display mb-3">{section.title}</h2>
+            {section.body && <p class="text-muted-foreground leading-relaxed">{section.body}</p>}
+            {section.bodyPrefix && (
+              <p class="text-muted-foreground leading-relaxed">
+                {section.bodyPrefix}{' '}
+                <a href={getLocalizedPath('/contact', lang)} class="text-primary font-semibold hover:underline">
+                  {section.bodyLink}
+                </a>{' '}
+                {section.bodySuffix}
+              </p>
+            )}
+            {section.bullets && (
+              <ul class="mt-3 space-y-2">
+                {section.bullets.map((bullet) => (
+                  <li class="flex items-start gap-2.5 text-sm text-muted-foreground">
+                    <svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>

@@ -1,0 +1,116 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { getContentByLanguage } from '../lib/content';
+import { getLocalizedPath } from '../lib/i18n';
+
+const lang = 'ar' as const;
+const content = getContentByLanguage(lang);
+const about = content.about;
+---
+
+<PageLayout
+  title="من نحن | خدمة إصلاح مكيف السيارة"
+  description="تعرف على اوتو سيف وكيف نوفر أفضل أسعار لقطع المكيف عبر مراكز خدمة معتمدة."
+  lang={lang}
+>
+  {/* Hero */}
+  <section class="relative overflow-hidden hero-gradient text-[#f0ebe0]">
+    <div class="hero-pattern"></div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-24 lg:px-8 lg:py-32">
+      <div class="max-w-2xl">
+        <span class="hero-animate eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-primary">{about.heroEyebrow}</span>
+        <h1 class="hero-animate hero-animate-delay-1 mt-4 text-4xl font-bold tracking-tight font-display sm:text-5xl">{about.heroTitle}</h1>
+        <p class="hero-animate hero-animate-delay-2 mt-6 text-lg text-[#f0ebe0]/65 leading-relaxed">{about.heroDescription}</p>
+      </div>
+    </div>
+  </section>
+
+  {/* Mission */}
+  <section class="py-20 lg:py-28">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto" data-animate="fade-in-up">
+        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">{about.missionEyebrow}</span>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">{about.missionTitle}</h2>
+        {about.missionParagraphs.map((p) => (
+          <p class="mt-4 text-muted-foreground leading-relaxed">{p}</p>
+        ))}
+        <ul class="mt-6 space-y-3">
+          {about.missionPoints.map((point) => (
+            <li class="flex items-center gap-2.5 text-sm font-medium">
+              <svg class="h-5 w-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              {point}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* Values */}
+  <section class="py-20 lg:py-28 bg-secondary/40">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-14" data-animate="fade-in-up">
+        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">{about.valuesEyebrow}</span>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">{about.valuesTitle}</h2>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-3 max-w-4xl mx-auto">
+        {about.values.map((value, i) => (
+          <div
+            class="rounded-xl border border-border bg-card p-7 text-center shadow-sm card-hover-lift border-t-2 border-t-primary/25 hover:border-t-primary/60"
+            data-animate="fade-in-up"
+            data-animate-delay={String((i + 1) * 100)}
+          >
+            <h3 class="text-lg font-semibold mb-2 font-display">{value.title}</h3>
+            <p class="text-sm text-muted-foreground">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Process */}
+  <section class="py-20 lg:py-28">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-14" data-animate="fade-in-up">
+        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">{about.processEyebrow}</span>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">{about.processTitle}</h2>
+        <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">{about.processDescription}</p>
+      </div>
+      <div class="grid gap-8 sm:grid-cols-3 max-w-4xl mx-auto">
+        {about.processSteps.map((step, i) => (
+          <div
+            class="text-center step-connector"
+            data-animate="fade-in-up"
+            data-animate-delay={String((i + 1) * 150)}
+          >
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-full gold-gradient text-white font-bold font-display mb-5 shadow-lg shadow-primary/20">
+              {i + 1}
+            </div>
+            <h3 class="text-lg font-semibold mb-2 font-display">{step.title}</h3>
+            <p class="text-sm text-muted-foreground">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="relative py-20 lg:py-28 overflow-hidden hero-gradient text-[#f0ebe0]">
+    <div class="hero-pattern"></div>
+    <div class="container mx-auto px-4 text-center relative z-10">
+      <div class="w-16 h-1 gold-gradient mx-auto mb-8 rounded-full" data-animate="scale-in"></div>
+      <h2 class="text-3xl font-bold font-display mb-5" data-animate="fade-in-up">{about.ctaTitle}</h2>
+      <p class="text-lg text-[#f0ebe0]/65 max-w-2xl mx-auto mb-10" data-animate="fade-in-up" data-animate-delay="100">{about.ctaDescription}</p>
+      <a
+        href={getLocalizedPath('/contact', lang)}
+        class="inline-flex items-center justify-center rounded-lg gold-gradient gold-shimmer px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/20 transition hover:shadow-xl"
+        data-animate="fade-in-up"
+        data-animate-delay="200"
+      >
+        {about.ctaButton}
+      </a>
+    </div>
+  </section>
+</PageLayout>

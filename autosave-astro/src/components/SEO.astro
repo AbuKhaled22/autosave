@@ -1,0 +1,99 @@
+---
+/**
+ * SEO component — generates canonical URL, hreflang alternates, and x-default.
+ *
+ * Usage:
+ *   <SEO
+ *     title="Page Title"
+ *     description="Meta description"
+ *     currentLang={currentLang}
+ *     canonicalUrl={Astro.url.href}
+ *     ogImage="/og-image.jpg"
+ *     ogType="website"
+ *   />
+ */
+
+interface Props {
+  title: string;
+  description: string;
+  currentLang: 'ar' | 'en';
+  canonicalUrl: string;
+  ogImage?: string;
+  ogType?: string;
+  keywords?: string[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  currentLang,
+  canonicalUrl,
+  ogImage = '/og-image.jpg',
+  ogType = 'website',
+  keywords = [],
+  noindex = false,
+} = Astro.props;
+
+const site = Astro.site?.origin ?? 'https://autosave.sa';
+const alternateLang = currentLang === 'en' ? 'ar' : 'en';
+
+// Build alternate URL
+// For Arabic (default locale): paths are at root e.g. /about
+// For English: paths are at /en/about
+function buildAlternateUrl(url: string, fromLang: string, toLang: string): string {
+  const urlObj = new URL(url);
+  const path = urlObj.pathname;
+
+  if (fromLang === 'ar') {
+    // Current is Arabic (root), alternate is English (/en/...)
+    const enPath = path === '/' ? '/en' : `/en${path}`;
+    return `${site}${enPath}`;
+  } else {
+    // Current is English (/en/...), alternate is Arabic (root)
+    const arPath = path.replace(/^\/en\/?/, '/') || '/';
+    return `${site}${arPath}`;
+  }
+}
+
+const alternateUrl = buildAlternateUrl(canonicalUrl, currentLang, alternateLang);
+const xDefaultUrl = currentLang === 'ar' ? canonicalUrl : alternateUrl; // Arabic is default
+
+const ogLocale = currentLang === 'ar' ? 'ar_SA' : 'en_US';
+const siteName = currentLang === 'ar' ? 'اوتو سيف' : 'AUTO SAVE';
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${site}${ogImage}`;
+---
+
+{/* Canonical & hreflang */}
+<link rel="canonical" href={canonicalUrl} />
+<link rel="alternate" hreflang={currentLang} href={canonicalUrl} />
+<link rel="alternate" hreflang={alternateLang} href={alternateUrl} />
+<link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+
+{/* Basic meta */}
+<meta name="description" content={description} />
+{keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
+{noindex ? (
+  <meta name="robots" content="noindex, nofollow" />
+) : (
+  <meta name="robots" content="index, follow" />
+)}
+
+{/* Open Graph */}
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={fullOgImage} />
+<meta property="og:locale" content={ogLocale} />
+<meta property="og:site_name" content={siteName} />
+
+{/* Twitter */}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={fullOgImage} />
+
+{/* Icons */}
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/icon.svg" />

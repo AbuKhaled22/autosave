@@ -1,0 +1,49 @@
+---
+import type { Language } from '../../lib/i18n';
+import { getLocalizedPath } from '../../lib/i18n';
+
+interface Props {
+  content: {
+    title: string;
+    description: string;
+    primary: string;
+    secondary: string;
+  };
+  lang: Language;
+}
+
+const { content, lang } = Astro.props;
+---
+
+<section class="relative py-20 lg:py-28 overflow-hidden hero-gradient text-[#f0ebe0]">
+  {/* Decorative geometric pattern */}
+  <div class="hero-pattern" style="opacity: 1.5;"></div>
+
+  <div class="container mx-auto px-4 text-center relative z-10">
+    {/* Gold accent line */}
+    <div class="w-16 h-1 gold-gradient mx-auto mb-8 rounded-full" data-animate="scale-in"></div>
+
+    <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl mb-5" data-animate="fade-in-up">
+      {content.title}
+    </h2>
+    <p class="text-lg text-[#f0ebe0]/65 max-w-2xl mx-auto mb-10" data-animate="fade-in-up" data-animate-delay="100">
+      {content.description}
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center" data-animate="fade-in-up" data-animate-delay="200">
+      <a
+        href={getLocalizedPath('/contact', lang)}
+        class="inline-flex items-center justify-center rounded-lg gold-gradient gold-shimmer px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/20 transition hover:shadow-xl"
+      >
+        {content.primary}
+      </a>
+      <a
+        href="https://wa.me/966500000000"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center rounded-lg border border-[#f0ebe0]/15 px-7 py-3.5 text-base font-semibold text-[#f0ebe0] transition hover:bg-[#f0ebe0]/5 hover:border-[#f0ebe0]/25"
+      >
+        {content.secondary}
+      </a>
+    </div>
+  </div>
+</section>

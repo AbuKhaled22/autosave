@@ -1,0 +1,37 @@
+---
+interface Props {
+  content: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    steps: { step: string; title: string; description: string }[];
+  };
+}
+
+const { content } = Astro.props;
+---
+
+<section class="py-20 lg:py-28 bg-secondary/40" id="how-it-works">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-14" data-animate="fade-in-up">
+      <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">{content.eyebrow}</span>
+      <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">{content.title}</h2>
+      <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">{content.description}</p>
+    </div>
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {content.steps.map((step, i) => (
+        <div
+          class="relative text-center step-connector"
+          data-animate="fade-in-up"
+          data-animate-delay={String((i + 1) * 100)}
+        >
+          <div class="inline-flex h-14 w-14 items-center justify-center rounded-full gold-gradient text-white text-lg font-bold font-display mb-5 shadow-lg shadow-primary/20">
+            {step.step}
+          </div>
+          <h3 class="text-lg font-semibold mb-2 font-display">{step.title}</h3>
+          <p class="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,98 @@
+---
+import SEO from '../components/SEO.astro';
+import LocalBusinessSchema from '../components/LocalBusinessSchema.astro';
+import type { Language } from '../lib/i18n';
+import { getContentByLanguage } from '../lib/content';
+import '../styles/globals.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Language;
+  ogImage?: string;
+  ogType?: string;
+  keywords?: string[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  lang,
+  ogImage,
+  ogType,
+  keywords,
+  noindex,
+} = Astro.props;
+
+const canonicalUrl = Astro.url.href;
+const content = getContentByLanguage(lang);
+const dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+// Google Fonts — Outfit (display), Source Serif 4 (body), IBM Plex Sans Arabic
+const fontUrl =
+  'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap';
+---
+
+<!doctype html>
+<html lang={lang} dir={dir}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+
+    {/* Google Fonts */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href={fontUrl} rel="stylesheet" />
+
+    {/* SEO head tags */}
+    <SEO
+      title={title}
+      description={description}
+      currentLang={lang}
+      canonicalUrl={canonicalUrl}
+      ogImage={ogImage}
+      ogType={ogType}
+      keywords={keywords}
+      noindex={noindex}
+    />
+
+    {/* JSON-LD structured data */}
+    <LocalBusinessSchema lang={lang} />
+  </head>
+  <body class="font-sans antialiased min-h-screen flex flex-col">
+    <slot name="header" />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <slot name="footer" />
+
+    {/* Scroll-triggered animation observer */}
+    <script is:inline>
+      (function() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+        );
+        function observe() {
+          document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', observe);
+        } else {
+          observe();
+        }
+      })();
+    </script>
+  </body>
+</html>
