@@ -74,6 +74,17 @@ These are defined in `globals.css` and must be used instead of reinventing equiv
 | `nav-link-hover`    | Gold underline that grows from start on hover (for nav links)  |
 | `blog-card-image`   | Gold tint overlay appearing on parent `.group:hover`           |
 
+### Responsive & Mobile-First
+
+| Principle                  | Rule                                                                                                                                       |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Base styles = mobile       | Write all base Tailwind classes for 320px–480px screens. Add `sm:`, `md:`, `lg:`, `xl:` modifiers to enhance for larger viewports.         |
+| Single-column default      | Use `flex-col` / stacked layouts as the base. Only add `md:flex-row`, `md:grid-cols-2`, `lg:grid-cols-3`, etc. at breakpoints.              |
+| Touch targets              | Buttons and interactive elements must be at least 44×44px (`min-h-11 min-w-11`) on mobile.                                                  |
+| Fluid widths               | Use `w-full` as the base; constrain with `max-w-*` at larger breakpoints.                                                                   |
+| Readable text              | Ensure body text is at least `text-base` (16px) on mobile. Never require horizontal scrolling.                                              |
+| Spacing                    | Use compact padding/margins on mobile (`p-4`, `gap-4`); increase at breakpoints (`md:p-8`, `lg:gap-8`).                                    |
+
 ### Decorative
 
 | Class               | Description                                                   |

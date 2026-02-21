@@ -19,8 +19,10 @@ excludeFrom: "code-review"
 
 ## UI & Styling
 
+- **Mobile-First:** Always write base styles targeting mobile screens first, then layer on `sm:`, `md:`, `lg:`, `xl:` breakpoint modifiers for larger viewports. Every React island must render correctly and be fully usable on small screens (320px–480px). Use single-column layouts by default and only introduce multi-column layouts at responsive breakpoints.
 - Use Radix UI primitives (if needed) wrapped with Tailwind CSS v4 classes. Do **not** install heavy component libraries (MUI, Ant Design, Chakra, etc.).
 - Use Tailwind logical properties (`ms-*`, `me-*`, `ps-*`, `pe-*`, `start-*`, `end-*`) for RTL-safe layouts.
+- Ensure all touch targets (buttons, form controls, interactive elements) are at least 44×44px on mobile.
 - Icons: use inline SVGs or a lightweight icon library. Ensure icons that convey direction (arrows, chevrons) flip horizontally in RTL mode.
 
 ## State Management

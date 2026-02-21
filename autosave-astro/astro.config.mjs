@@ -3,10 +3,12 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
+const isGitHubPages = !!process.env.GITHUB_ACTIONS;
+
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://AbuKhaled22.github.io',
-  base: '/autosave',
+  site: isGitHubPages ? 'https://AbuKhaled22.github.io' : 'https://autosave.sa',
+  base: isGitHubPages ? '/autosave' : '/',
   i18n: {
     defaultLocale: 'ar',
     locales: ['ar', 'en'],

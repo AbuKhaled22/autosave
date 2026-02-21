@@ -28,22 +28,37 @@ const about = content.about;
   {/* Mission */}
   <section class="py-20 lg:py-28">
     <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto" data-animate="fade-in-up">
-        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">{about.missionEyebrow}</span>
-        <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">{about.missionTitle}</h2>
-        {about.missionParagraphs.map((p) => (
-          <p class="mt-4 text-muted-foreground leading-relaxed">{p}</p>
-        ))}
-        <ul class="mt-6 space-y-3">
-          {about.missionPoints.map((point) => (
-            <li class="flex items-center gap-2.5 text-sm font-medium">
-              <svg class="h-5 w-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              {point}
-            </li>
+      <div class="grid items-center gap-12 lg:grid-cols-2" data-animate="fade-in-up">
+        <div>
+          <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">{about.missionEyebrow}</span>
+          <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">{about.missionTitle}</h2>
+          {about.missionParagraphs.map((p) => (
+            <p class="mt-4 text-muted-foreground leading-relaxed">{p}</p>
           ))}
-        </ul>
+          <div class="mt-8 grid grid-cols-2 gap-6">
+            {about.missionPoints.map((point, i) => (
+              <div class="flex items-center gap-3">
+                <svg class="h-5 w-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  {i === 0 && <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />}
+                  {i === 1 && <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />}
+                  {i === 2 && <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0016.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.3 46.3 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" />}
+                  {i === 3 && <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />}
+                </svg>
+                <span class="text-sm font-medium">{point}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="relative aspect-square overflow-hidden rounded-2xl lg:aspect-[4/3]">
+          <img
+            src="/images/hero-car.jpeg"
+            alt="Certified auto AC technician inspecting a car air conditioning system"
+            class="h-full w-full object-cover"
+            width="600"
+            height="450"
+            loading="lazy"
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -62,6 +77,13 @@ const about = content.about;
             data-animate="fade-in-up"
             data-animate-delay={String((i + 1) * 100)}
           >
+            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 mb-5">
+              <svg class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                {i === 0 && <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-2.813a4.5 4.5 0 00-6.364-6.364L4.5 8.25" />}
+                {i === 1 && <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />}
+                {i === 2 && <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />}
+              </svg>
+            </div>
             <h3 class="text-lg font-semibold mb-2 font-display">{value.title}</h3>
             <p class="text-sm text-muted-foreground">{value.description}</p>
           </div>

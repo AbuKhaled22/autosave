@@ -29,15 +29,33 @@ const schema = {
     'latitude': 24.7136,
     'longitude': 46.6753,
   },
-  'priceRange': '$$',
-  'openingHours': 'Sa-Fr 08:00-20:00',
+  'priceRange': '49-200 SAR diagnostic fee',
+  'openingHours': 'Sa-Th 08:00-20:00',
   'description':
     lang === 'ar'
       ? 'خدمات احترافية لإصلاح مكيف السيارة وتغيير الكمبروسر وتعبئة الفريون والصيانة الدورية. ضمان أفضل سعر عبر مراكز خدمة معتمدة.'
       : 'Professional car AC repair, compressor replacement, freon refill, and maintenance. Best price guarantee with certified service centers.',
-  'areaServed': {
-    '@type': 'City',
-    'name': lang === 'ar' ? 'الرياض' : 'Riyadh',
+  'areaServed': [
+    { '@type': 'City', 'name': lang === 'ar' ? 'الرياض' : 'Riyadh' },
+    { '@type': 'City', 'name': lang === 'ar' ? 'جدة' : 'Jeddah' },
+    { '@type': 'City', 'name': lang === 'ar' ? 'الدمام' : 'Dammam' },
+    { '@type': 'City', 'name': lang === 'ar' ? 'مكة' : 'Makkah' },
+    { '@type': 'City', 'name': lang === 'ar' ? 'المدينة' : 'Madinah' },
+    { '@type': 'City', 'name': lang === 'ar' ? 'الخبر' : 'Khobar' },
+  ],
+  'serviceType': [
+    'Car AC Repair',
+    'AC Compressor Replacement',
+    'Freon Refill',
+    'AC Leak Detection',
+    'AC Maintenance',
+    'Condenser Repair',
+    'Evaporator Service',
+  ],
+  'aggregateRating': {
+    '@type': 'AggregateRating',
+    'ratingValue': '4.8',
+    'reviewCount': '320',
   },
   'hasOfferCatalog': {
     '@type': 'OfferCatalog',

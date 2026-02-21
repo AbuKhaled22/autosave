@@ -49,6 +49,15 @@ applyTo: "**/*.astro"
 - Always include explicit `width` and `height` to prevent CLS.
 - Use descriptive, localized `alt` text.
 
+## Mobile-First Responsive Design
+
+- **Always design and build mobile-first.** Write base Tailwind classes for the smallest screens (320px–480px), then add `sm:`, `md:`, `lg:`, `xl:` modifiers to progressively enhance for larger viewports.
+- Default layouts must use single-column stacking. Only introduce multi-column grids (`grid-cols-2`, `grid-cols-3`, etc.) behind responsive breakpoints (e.g., `md:grid-cols-2`, `lg:grid-cols-3`).
+- Ensure all text is readable without horizontal scrolling on mobile. Use fluid font sizing or appropriate responsive text classes.
+- Touch targets (buttons, links, interactive areas) must be at least 44×44px on mobile.
+- Use `w-full` as the base width for cards, forms, and content blocks; constrain with `max-w-*` and responsive widths at larger breakpoints.
+- Test that navigation, modals, dropdowns, and overlays are fully functional on small screens.
+
 ## RTL Styling
 
 - Use Tailwind logical properties (`ms-*`, `me-*`, `ps-*`, `pe-*`, `start-*`, `end-*`) instead of physical properties (`ml-*`, `mr-*`, `pl-*`, `pr-*`, `left-*`, `right-*`) so layouts automatically flip for Arabic RTL.

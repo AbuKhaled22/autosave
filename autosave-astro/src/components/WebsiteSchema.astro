@@ -1,0 +1,30 @@
+---
+/**
+ * WebsiteSchema — JSON-LD structured data for WebSite with SearchAction.
+ * Injected into the <head> of the home page for Google rich snippets.
+ */
+
+interface Props {
+  lang: 'ar' | 'en';
+}
+
+const { lang } = Astro.props;
+const site = Astro.site?.origin ?? 'https://autosave.sa';
+const blogPath = lang === 'en' ? '/en/blog' : '/blog';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  'name': 'AUTO SAVE',
+  'url': site,
+  'description':
+    'Expert car air conditioning repair and maintenance services with certified service maintenance centers and best price guarantee.',
+  'potentialAction': {
+    '@type': 'SearchAction',
+    'target': `${site}${blogPath}?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

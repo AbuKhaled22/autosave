@@ -1,0 +1,55 @@
+---
+/**
+ * FAQSchema — JSON-LD structured data for FAQPage.
+ * Injected into the <head> of the home page for Google FAQ rich snippets.
+ */
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': [
+    {
+      '@type': 'Question',
+      'name': 'How much does a car AC repair cost?',
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': 'Car AC repair costs vary depending on the issue. Our diagnostic fee starts at 49 SAR for drop-off or 200 SAR for pickup service. Simple freon refills cost $100-$300, while compressor replacement ranges from $500-$1,500. We guarantee the best price on spare parts.',
+      },
+    },
+    {
+      '@type': 'Question',
+      'name': 'How do I know if my car AC needs repair?',
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': 'Common signs include weak or warm air from vents, strange noises when AC is on, musty smells, water leaking inside the car, or the AC not turning on at all. If you notice any of these, schedule a diagnostic appointment.',
+      },
+    },
+    {
+      '@type': 'Question',
+      'name': 'How long does a car AC repair take?',
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': 'Simple repairs like a freon refill take 30-60 minutes. More complex repairs like compressor replacement may take 3-5 hours. Our team provides an accurate time estimate after diagnosis.',
+      },
+    },
+    {
+      '@type': 'Question',
+      'name': 'Do you offer a warranty on car AC repairs?',
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': 'Yes, all repairs performed through our certified service maintenance center network include a warranty on both parts and labor. The specific warranty period depends on the repair type and is communicated before work begins.',
+      },
+    },
+    {
+      '@type': 'Question',
+      'name': 'Can you pick up my car for AC repair?',
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': 'Yes, we offer a pickup service for 200 SAR where our team collects your vehicle from your location, takes it to the nearest certified service maintenance center, and returns it after repair. Alternatively, you can drop off your car at a service maintenance center for a 49 SAR diagnostic fee.',
+      },
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
