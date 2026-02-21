@@ -3,6 +3,8 @@ name: Deploy Astro to GitHub Pages
 on:
   push:
     branches: [main]
+    paths:
+      - 'autosave-astro/**'
   workflow_dispatch:
 
 permissions:
