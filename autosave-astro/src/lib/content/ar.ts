@@ -19,6 +19,8 @@ export const arContent = {
         title: "الخدمات",
         links: [
           { name: "إصلاح مكيف السيارة", href: "/contact" },
+          { name: "تعبئة فريون مكيف السيارة", href: "/services/ac-recharge" },
+          { name: "تغيير كمبروسر المكيف", href: "/services/compressor-replacement" },
           { name: "دليل كمبروسر المكيف", href: "/blog/complete-guide-car-ac-compressor" },
           { name: "تعبئة الفريون", href: "/blog/car-ac-freon-refill-everything-you-need-to-know" },
           { name: "نصائح صيانة المكيف", href: "/blog/car-ac-maintenance-tips-extend-system-life" },
@@ -30,6 +32,8 @@ export const arContent = {
         links: [
           { name: "المكيف لا يبرد؟", href: "/blog/car-ac-not-cooling-causes-fixes" },
           { name: "أصوات غريبة من المكيف", href: "/blog/car-ac-making-strange-noises-what-they-mean" },
+          { name: "كشف تسريب فريون", href: "/services/leak-detection" },
+          { name: "خدمات الرياض", href: "/services/riyadh" },
           { name: "دليل الصيف", href: "/blog/prepare-car-ac-for-summer-heat" },
           { name: "بنفسك أم فني؟", href: "/blog/diy-vs-professional-car-ac-repair" },
           { name: "كل المقالات", href: "/blog" },
@@ -41,6 +45,8 @@ export const arContent = {
           { name: "من نحن", href: "/about" },
           { name: "الأسعار", href: "/pricing" },
           { name: "تواصل معنا", href: "/contact" },
+          { name: "الخدمة في جدة", href: "/services/jeddah" },
+          { name: "الخدمة في الدمام", href: "/services/dammam" },
           { name: "الشروط والضمان", href: "/terms" },
           { name: "المدونة", href: "/blog" },
         ],
@@ -50,6 +56,8 @@ export const arContent = {
     bottomLinks: [
       { name: "الشروط والأحكام", href: "/terms" },
       { name: "من نحن", href: "/about" },
+      { name: "تواصل معنا", href: "/contact" },
+      { name: "المدونة", href: "/blog" },
     ],
   },
   home: {

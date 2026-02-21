@@ -412,42 +412,49 @@ Published in src/lib/blog-data.ts + blog-data-ar.ts
   Keywords: F2 educational, B10 general, A10
   Slug: how-car-ac-system-works
   Target: "how car ac works", "شرح نظام تكييف السيارة"
+  Status: ✅ Published
 
   POST 3 (Week 2)
   "Car AC Compressor: Signs It's Failing & Replacement Cost"
   Keywords: B2 compressor symptoms, B6 pricing, A2+A6
   Slug: car-ac-compressor-guide
   Target: "car ac compressor replacement cost", "تغيير كمبروسر المكيف"
+  Status: ✅ Published (implemented as: complete-guide-car-ac-compressor)
 
   POST 4 (Week 2)
   "Car AC Freon Recharge: Everything You Need to Know"
   Keywords: B1 recharge keywords, B6 pricing, A1+A6
   Slug: car-ac-freon-recharge-guide
   Target: "car ac recharge", "تعبئة فريون السيارة"
+  Status: ✅ Published (implemented as: car-ac-freon-refill-everything-you-need-to-know)
 
   POST 5 (Week 3)
   "7 Reasons Your Car AC Smells Bad (And How to Fix It)"
   Keywords: B2 smell symptoms, A2
   Slug: car-ac-bad-smell-causes
   Target: "car ac bad smell", "رائحة كريهة من مكيف السيارة"
+  Status: □ Pending
 
   POST 6 (Week 3)
   "Car AC Making Noise? Here's What Each Sound Means"
   Keywords: B2 noise symptoms, A2
   Slug: car-ac-noise-diagnosis
   Target: "car ac making noise", "صوت مكيف السيارة"
+  Status: ✅ Published (implemented as: car-ac-making-strange-noises-what-they-mean)
 
   POST 7 (Week 4)
   "Prepare Your Car AC for Saudi Summer: Complete Checklist"
   Keywords: B7 seasonal, A7
   Slug: prepare-car-ac-for-summer
   Target: "prepare car ac for summer", "تجهيز مكيف السيارة للصيف"
+  Status: ✅ Published (implemented as: prepare-car-ac-for-summer-heat)
 
   POST 8 (Week 4)
   "Car AC Leak Detection: Signs, Methods & Repair Costs"
   Keywords: B1 leak keywords, B2 symptoms, B6 pricing
   Slug: car-ac-leak-detection-guide
   Target: "car ac leak detection", "كشف تسريب فريون"
+  Status: ✅ Published (implemented as: how-to-detect-car-ac-refrigerant-leaks)
 
 ─── MONTH 2: BRAND-SPECIFIC + PROBLEM-SOLVING ──────────────────────────────
 
@@ -717,7 +724,7 @@ ARABIZI INTEGRATION (Section C):
 │ ✅ Generate AC component/parts pages                                         │
 │ ✅ Generate service type pages                                               │
 │ ✅ Generate city × service cross-dimensional pages                           │
-│ □ Write & publish blog posts 2-8                                             │
+│ ◐ Write & publish blog posts 2-8 (6/7 published, Post 5 pending)             │
 │ ✅ Create pricing page (manual)                                              │
 │ □ Create knowledge hub page (manual)                                         │
 │                                                                              │

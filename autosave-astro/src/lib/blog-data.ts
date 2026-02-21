@@ -130,6 +130,144 @@ If your car AC is not cooling, start with the basics (cabin filter, visual inspe
     `,
   },
   {
+    slug: "how-car-ac-system-works",
+    title: "Complete Guide: How Your Car AC System Works",
+    excerpt:
+      "Understand how your car AC system actually works, from compressor to evaporator. Learn the cooling cycle, key components, and what each part does before diagnosing any AC problem.",
+    image: "/images/blog/how-car-ac-system-works.jpeg",
+    imageAlt: "Diagram-style view of car AC components including compressor, condenser, evaporator and expansion valve",
+    date: "2026-02-08",
+    readTime: "9 min read",
+    category: "Education",
+    tags: [
+      "how car AC works",
+      "car AC system",
+      "auto air conditioning components",
+      "car AC compressor condenser evaporator",
+      "car cooling cycle",
+      "Saudi car AC guide",
+    ],
+    content: `
+## Why Understanding Your Car AC System Matters
+
+Many drivers only think about air conditioning when the system stops cooling in summer. But if you understand how the AC system works, you can spot early warning signs, explain symptoms clearly to a technician, and avoid unnecessary replacement costs.
+
+Your car AC is not just one part. It is a closed loop made of pressure, temperature change, airflow, and electronic control. When one component underperforms, the whole system loses efficiency.
+
+## The Basic Cooling Cycle in Simple Terms
+
+At its core, the AC system moves heat from inside your cabin to outside air. Refrigerant is the medium that carries this heat.
+
+The cycle repeats in four stages:
+
+1. **Compression** — refrigerant gas is pressurized by the compressor.
+2. **Condensation** — hot gas releases heat in the condenser and turns into liquid.
+3. **Expansion** — liquid passes through the expansion valve and pressure drops rapidly.
+4. **Evaporation** — cold refrigerant absorbs cabin heat in the evaporator, then returns as low-pressure gas.
+
+This continuous loop is why AC performance depends on every part working correctly.
+
+## Main Car AC Components and Their Roles
+
+### 1) Compressor (The Heart of the System)
+The compressor pulls in low-pressure refrigerant gas and compresses it into high-pressure, high-temperature gas.
+
+If compressor output is weak, cooling becomes poor everywhere in the cycle.
+
+### 2) Condenser (Heat Rejection Unit)
+The condenser is usually mounted in front of the radiator. It cools high-pressure refrigerant gas so it condenses into liquid.
+
+If airflow across the condenser is blocked by dust, bent fins, or weak fans, AC is often weaker at idle and better while driving.
+
+### 3) Receiver-Drier or Accumulator (Moisture and Debris Control)
+Depending on system design, your vehicle uses a receiver-drier or an accumulator. Their job is to filter particles and remove moisture from refrigerant.
+
+Moisture inside the AC loop can cause corrosion, acid formation, and expansion valve freezing.
+
+### 4) Expansion Valve or Orifice Tube (Flow Metering)
+This part controls how much refrigerant enters the evaporator. It creates a sharp pressure drop, which makes refrigerant cold enough to absorb cabin heat.
+
+A stuck valve can cause intermittent cooling, frost on lines, or unstable vent temperature.
+
+### 5) Evaporator (Cabin Cooling Core)
+The evaporator sits inside the dashboard HVAC housing. Cabin air passes over it, heat is absorbed by refrigerant, and cooler air is sent through vents.
+
+If evaporator airflow is restricted by dirt or a clogged cabin filter, you may feel weak or uneven cooling.
+
+### 6) Blower Motor and Cabin Filter (Air Delivery)
+Even with a perfect refrigerant cycle, you need strong airflow to feel cooling. The blower motor pushes air through the evaporator, and the cabin filter keeps dust out.
+
+A dirty filter is one of the most common reasons drivers think “AC is weak.”
+
+### 7) Sensors, Pressure Switches, and Control Module
+Modern vehicles rely on temperature sensors, pressure sensors, relays, and an HVAC control unit. These protect the system and regulate performance.
+
+Electrical faults can disable compressor engagement even when refrigerant level is normal.
+
+## Why AC Performance Changes Between Idle and Highway
+
+A common complaint in Saudi cities is: “The AC is fine on the highway but weak in traffic.”
+
+Usually, this points to condenser airflow problems at low speed:
+
+- condenser fan weakness,
+- blocked condenser fins,
+- overcharged or undercharged refrigerant,
+- high ambient heat load in stop-and-go traffic.
+
+In very hot weather, small inefficiencies that are hidden in mild temperatures become obvious quickly.
+
+## Refrigerant Types: R-134a vs R-1234yf
+
+Most older cars use R-134a, while many newer vehicles use R-1234yf. These refrigerants require different service procedures and equipment.
+
+Using the wrong refrigerant or incorrect fill quantity can damage the compressor and reduce cooling performance. Always follow manufacturer specifications exactly.
+
+## What “Low Refrigerant” Really Means
+
+Refrigerant is not fuel. It does not get consumed during normal operation. If level is low, there is usually a leak.
+
+Proper service should include:
+
+- leak inspection,
+- refrigerant recovery,
+- vacuum hold test,
+- recharge by exact weight.
+
+Quick top-ups without diagnosis often provide temporary cooling but do not solve the root cause.
+
+## Common Failure Patterns You Can Identify Early
+
+Knowing component roles helps you connect symptoms to likely causes:
+
+- **Weak airflow + musty smell** → cabin filter or evaporator contamination.
+- **Cold while driving, warm at idle** → condenser fan or airflow issue.
+- **Intermittent cooling + clicking** → clutch, relay, or pressure switch behavior.
+- **No cooling + compressor not engaging** → electrical path, pressure protection, or low charge.
+- **Repeated loss of cooling over weeks** → refrigerant leak.
+
+These patterns are not final diagnosis, but they make troubleshooting faster and more accurate.
+
+## Preventive Maintenance for Hot Climate Driving
+
+For Saudi operating conditions, preventive AC checks are not optional. Heat load is extreme for long periods.
+
+Recommended routine:
+
+1. Inspect cabin filter every 3-6 months.
+2. Check condenser cleanliness before peak summer.
+3. Run AC briefly in cooler months to keep seals lubricated.
+4. Diagnose any new noise or odor immediately.
+5. Perform annual performance test before temperatures spike.
+
+## Final Takeaway
+
+A car AC system works through a precise heat-transfer cycle: compress, condense, expand, and evaporate. The system is only as strong as its weakest component.
+
+When you understand what each part does, you can make better service decisions, reduce repeat failures, and keep cabin comfort reliable even in extreme summer conditions.
+    `,
+  },
+  {
     slug: "complete-guide-car-ac-compressor",
     title: "Car AC Compressor Guide: Signs, Costs & Fixes",
     excerpt:

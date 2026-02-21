@@ -19,6 +19,8 @@ export const enContent = {
         title: "Services",
         links: [
           { name: "Car AC Repair", href: "/contact" },
+          { name: "Car AC Freon Recharge", href: "/services/ac-recharge" },
+          { name: "Compressor Replacement", href: "/services/compressor-replacement" },
           { name: "AC Compressor Guide", href: "/blog/complete-guide-car-ac-compressor" },
           { name: "Freon Refill", href: "/blog/car-ac-freon-refill-everything-you-need-to-know" },
           { name: "AC Maintenance Tips", href: "/blog/car-ac-maintenance-tips-extend-system-life" },
@@ -30,6 +32,8 @@ export const enContent = {
         links: [
           { name: "AC Not Cooling?", href: "/blog/car-ac-not-cooling-causes-fixes" },
           { name: "Strange AC Noises", href: "/blog/car-ac-making-strange-noises-what-they-mean" },
+          { name: "AC Leak Detection", href: "/services/leak-detection" },
+          { name: "Riyadh Services", href: "/services/riyadh" },
           { name: "Summer AC Guide", href: "/blog/prepare-car-ac-for-summer-heat" },
           { name: "DIY vs Professional", href: "/blog/diy-vs-professional-car-ac-repair" },
           { name: "All Articles", href: "/blog" },
@@ -41,6 +45,8 @@ export const enContent = {
           { name: "About Us", href: "/about" },
           { name: "Pricing", href: "/pricing" },
           { name: "Contact", href: "/contact" },
+          { name: "Jeddah Service Area", href: "/services/jeddah" },
+          { name: "Dammam Service Area", href: "/services/dammam" },
           { name: "Terms & Guarantee", href: "/terms" },
           { name: "Blog", href: "/blog" },
         ],
@@ -51,6 +57,8 @@ export const enContent = {
     bottomLinks: [
       { name: "Terms & Conditions", href: "/terms" },
       { name: "About", href: "/about" },
+      { name: "Contact", href: "/contact" },
+      { name: "Blog", href: "/blog" },
     ],
   },
   home: {
