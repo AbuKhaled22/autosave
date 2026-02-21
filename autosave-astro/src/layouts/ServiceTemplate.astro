@@ -1,0 +1,208 @@
+---
+/**
+ * ServiceTemplate — layout template for service type pages.
+ * Renders a full SEO-optimized page for a specific AC service.
+ * Route: /services/[service] and /en/services/[service]
+ */
+import PageLayout from './PageLayout.astro';
+import ProgrammaticHero from '../components/programmatic/ProgrammaticHero.astro';
+import FAQSection from '../components/programmatic/FAQSection.astro';
+import CTAWhatsApp from '../components/programmatic/CTAWhatsApp.astro';
+import RelatedLinks from '../components/programmatic/RelatedLinks.astro';
+import PriceTable from '../components/programmatic/PriceTable.astro';
+import type { ACService } from '../data/services';
+import type { Language } from '../lib/i18n';
+import { services } from '../data/services';
+import { getComponentBySlug } from '../data/components';
+import { getTopCities } from '../data/cities';
+
+interface Props {
+  service: ACService;
+  lang: Language;
+}
+
+const { service, lang } = Astro.props;
+const isAr = lang === 'ar';
+
+const serviceName = isAr ? service.nameAr : service.nameEn;
+
+const pageTitle = isAr
+  ? `${serviceName} | اوتو سيف`
+  : `${serviceName} | Auto Save`;
+
+const pageDescription = isAr ? service.descriptionAr : service.descriptionEn;
+
+const breadcrumbs = [
+  { label: isAr ? 'الرئيسية' : 'Home', href: isAr ? '/' : '/en' },
+  { label: isAr ? 'الخدمات' : 'Services', href: isAr ? '/services' : '/en/services' },
+  { label: serviceName },
+];
+
+const whatsappMessage = isAr
+  ? `السلام عليكم، أريد حجز خدمة ${serviceName}`
+  : `Hi, I would like to book ${serviceName} service`;
+
+// Process steps
+const processSteps = isAr ? service.processStepsAr : service.processStepsEn;
+
+// Price rows
+const priceRows = [
+  {
+    label: serviceName,
+    priceRange: `${service.priceRangeMin}–${service.priceRangeMax}`,
+    note: isAr
+      ? `المدة: ${service.durationMinutes} دقيقة تقريباً`
+      : `Duration: ~${service.durationMinutes} minutes`,
+  },
+];
+
+// Related parts
+const relatedParts = service.partsInvolved
+  .map((slug) => getComponentBySlug(slug))
+  .filter(Boolean)
+  .map((c) => ({
+    title: isAr ? c!.nameAr : c!.nameEn,
+    href: isAr ? `/parts/${c!.slug}` : `/en/parts/${c!.slug}`,
+    description: isAr ? c!.descriptionAr : c!.descriptionEn,
+  }));
+
+// Related services (exclude self)
+const relatedServices = services
+  .filter((s) => s.slug !== service.slug)
+  .slice(0, 3)
+  .map((s) => ({
+    title: isAr ? s.nameAr : s.nameEn,
+    href: isAr ? `/services/${s.slug}` : `/en/services/${s.slug}`,
+    description: isAr ? s.descriptionAr : s.descriptionEn,
+  }));
+
+// City links for this service
+const topCities = getTopCities(6).map((city) => ({
+  title: isAr
+    ? `${serviceName} في ${city.nameAr}`
+    : `${serviceName} in ${city.nameEn}`,
+  href: isAr
+    ? `/services/${city.slug}`
+    : `/en/services/${city.slug}`,
+}));
+
+const allRelatedLinks = [...relatedParts, ...relatedServices];
+
+// Service JSON-LD schema
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: serviceName,
+  provider: {
+    '@type': 'AutoRepair',
+    name: isAr ? 'اوتو سيف' : 'Auto Save',
+    url: Astro.site?.origin ?? 'https://autosave.sa',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Saudi Arabia',
+  },
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'SAR',
+    lowPrice: service.priceRangeMin,
+    highPrice: service.priceRangeMax,
+  },
+};
+---
+
+<PageLayout
+  title={pageTitle}
+  description={pageDescription}
+  lang={lang}
+  keywords={isAr ? service.keywordsAr : service.keywordsEn}
+>
+  <ProgrammaticHero
+    eyebrow={isAr ? 'خدماتنا' : 'Our Services'}
+    title={serviceName}
+    description={pageDescription}
+    lang={lang}
+    breadcrumbs={breadcrumbs}
+  />
+
+  {/* Process steps */}
+  <section class="py-20 lg:py-28" data-animate="fade-in-up">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-10 text-center">
+        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-primary">
+          {isAr ? 'طريقة العمل' : 'Process'}
+        </span>
+        <h2 class="mt-4 font-display text-2xl font-bold text-foreground sm:text-3xl">
+          {isAr ? 'خطوات الخدمة' : 'Service Steps'}
+        </h2>
+      </div>
+
+      <ol class="relative space-y-4">
+        {processSteps.map((step, index) => (
+          <li
+            class="flex items-start gap-4 rounded-xl border border-border bg-card p-4 shadow-sm sm:p-5"
+            data-animate="fade-in-up"
+            data-animate-delay={String((index + 1) * 100)}
+          >
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 font-display text-sm font-bold text-primary">
+              {index + 1}
+            </span>
+            <span class="text-foreground">{step}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* Service details: duration & price */}
+  <PriceTable rows={priceRows} lang={lang} />
+
+  {/* Available in cities */}
+  {topCities.length > 0 && (
+    <section class="bg-secondary/40 py-20 lg:py-28" data-animate="fade-in-up">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="mb-8 font-display text-2xl font-bold text-foreground sm:text-3xl">
+          {isAr
+            ? `${serviceName} متاحة في هذه المدن`
+            : `${serviceName} Available in These Cities`}
+        </h2>
+        <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+          {topCities.map((city, index) => (
+            <a
+              href={city.href}
+              class="rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium text-foreground shadow-sm transition hover:border-primary/40 hover:text-primary"
+              data-animate="fade-in-up"
+              data-animate-delay={String((index + 1) * 100)}
+            >
+              {city.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* FAQ */}
+  {service.faqs.length > 0 && (
+    <FAQSection
+      faqs={service.faqs}
+      lang={lang}
+      title={isAr
+        ? `أسئلة شائعة عن ${serviceName}`
+        : `FAQ About ${serviceName}`}
+    />
+  )}
+
+  {/* Related links */}
+  {allRelatedLinks.length > 0 && (
+    <div class="bg-secondary/40">
+      <RelatedLinks links={allRelatedLinks} lang={lang} />
+    </div>
+  )}
+
+  {/* CTA */}
+  <CTAWhatsApp lang={lang} message={whatsappMessage} />
+
+  {/* Service schema */}
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+</PageLayout>

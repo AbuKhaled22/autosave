@@ -1,0 +1,70 @@
+---
+/**
+ * ServiceList — displays a grid of AC services with links.
+ * Used on city pages and brand pages to list available services.
+ */
+import type { Language } from '../../lib/i18n';
+import { services } from '../../data/services';
+
+interface Props {
+  lang: Language;
+  /** Optional: limit the number of services shown */
+  limit?: number;
+  /** Optional: custom title */
+  title?: string;
+  /** Optional: base path for service links (e.g., '/services/riyadh') */
+  basePath?: string;
+}
+
+const { lang, limit, title, basePath } = Astro.props;
+
+const displayServices = limit ? services.slice(0, limit) : services;
+
+const sectionTitle =
+  title ?? (lang === 'ar' ? 'خدماتنا' : 'Our Services');
+---
+
+<section class="py-20 lg:py-28" data-animate="fade-in-up">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-10 text-center">
+      <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-primary">
+        {lang === 'ar' ? 'الخدمات' : 'Services'}
+      </span>
+      <h2 class="mt-4 font-display text-2xl font-bold text-foreground sm:text-3xl">
+        {sectionTitle}
+      </h2>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {displayServices.map((service, index) => {
+        const href = basePath
+          ? `${basePath}/${service.slug}`
+          : (lang === 'ar' ? `/services/${service.slug}` : `/en/services/${service.slug}`);
+
+        return (
+          <a
+            href={href}
+            class="group rounded-xl border border-border bg-card p-5 shadow-sm transition card-hover-lift border-t-2 border-t-primary/25 hover:border-t-primary/60"
+            data-animate="fade-in-up"
+            data-animate-delay={String((index + 1) * 100)}
+          >
+            <h3 class="font-display font-semibold text-foreground transition-colors group-hover:text-primary">
+              {lang === 'ar' ? service.nameAr : service.nameEn}
+            </h3>
+            <p class="mt-2 text-sm text-muted-foreground line-clamp-2">
+              {lang === 'ar' ? service.descriptionAr : service.descriptionEn}
+            </p>
+            <div class="mt-3 flex items-center justify-between">
+              <span class="text-sm font-medium text-primary">
+                {service.priceRangeMin}–{service.priceRangeMax} {lang === 'ar' ? 'ريال' : 'SAR'}
+              </span>
+              <span class="text-xs text-muted-foreground">
+                {service.durationMinutes} {lang === 'ar' ? 'دقيقة' : 'min'}
+              </span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</section>

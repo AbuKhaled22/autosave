@@ -1,0 +1,19 @@
+---
+/**
+ * AC component/parts pages (English).
+ * Generates /en/parts/[component] for all 15 components.
+ */
+import { components } from '../../../data/components';
+import ComponentTemplate from '../../../layouts/ComponentTemplate.astro';
+
+export function getStaticPaths() {
+  return components.map((component) => ({
+    params: { component: component.slug },
+    props: { component },
+  }));
+}
+
+const { component } = Astro.props;
+---
+
+<ComponentTemplate component={component} lang="en" />

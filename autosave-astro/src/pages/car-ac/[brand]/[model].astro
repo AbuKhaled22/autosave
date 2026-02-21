@@ -1,0 +1,130 @@
+---
+/**
+ * Car model sub-pages (Arabic — default locale).
+ * Generates /car-ac/[brand]/[model] for high-popularity brand models.
+ */
+import { carBrands, getBrandBySlug, type CarBrand, type CarModel } from '../../../data/car-brands';
+import { services } from '../../../data/services';
+import PageLayout from '../../../layouts/PageLayout.astro';
+import ProgrammaticHero from '../../../components/programmatic/ProgrammaticHero.astro';
+import FAQSection from '../../../components/programmatic/FAQSection.astro';
+import CTAWhatsApp from '../../../components/programmatic/CTAWhatsApp.astro';
+import RelatedLinks from '../../../components/programmatic/RelatedLinks.astro';
+
+export function getStaticPaths() {
+  return carBrands
+    .filter((b) => b.popularity === 'high')
+    .flatMap((brand) =>
+      brand.models.map((model) => ({
+        params: { brand: brand.slug, model: model.slug },
+        props: { brand, model },
+      }))
+    );
+}
+
+interface Props {
+  brand: CarBrand;
+  model: CarModel;
+}
+
+const { brand, model } = Astro.props;
+const lang = 'ar';
+
+const title = `إصلاح مكيف ${brand.nameAr} ${model.nameAr} | أوتو سيف`;
+const description = `خدمة إصلاح وصيانة مكيف سيارة ${brand.nameAr} ${model.nameAr} (${model.years}). تشخيص وإصلاح مشاكل التكييف الشائعة بأيدي فنيين متخصصين.`;
+
+const breadcrumbs = [
+  { label: 'الرئيسية', href: '/' },
+  { label: 'السيارات', href: '/car-ac/' },
+  { label: brand.nameAr, href: `/car-ac/${brand.slug}/` },
+  { label: model.nameAr },
+];
+
+const relatedModels = brand.models
+  .filter((m) => m.slug !== model.slug)
+  .map((m) => ({
+    title: `${brand.nameAr} ${m.nameAr}`,
+    href: `/car-ac/${brand.slug}/${m.slug}/`,
+    description: m.years,
+  }));
+
+const serviceLinks = services.slice(0, 6).map((s) => ({
+  title: s.nameAr,
+  href: `/services/${s.slug}/`,
+  description: s.descriptionAr.slice(0, 80) + '...',
+}));
+---
+
+<PageLayout title={title} description={description} lang={lang}>
+  <ProgrammaticHero
+    eyebrow={`${brand.nameAr} ${model.nameAr}`}
+    title={`إصلاح مكيف ${brand.nameAr} ${model.nameAr}`}
+    description={`خدمة متخصصة لصيانة وإصلاح نظام تكييف ${brand.nameAr} ${model.nameAr} موديلات ${model.years}`}
+    lang={lang}
+    breadcrumbs={breadcrumbs}
+  />
+
+  <!-- Model-Specific AC Issues -->
+  <section class="py-20 lg:py-28" data-animate="fade-in-up">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+        مشاكل التكييف الشائعة في {brand.nameAr} {model.nameAr}
+      </h2>
+      <p class="mt-4 text-lg text-muted-foreground">
+        موديلات {model.years}
+      </p>
+      <ul class="mt-8 space-y-4">
+        {model.commonAcIssuesAr.map((issue) => (
+          <li class="flex items-start gap-3 rounded-xl border border-border bg-secondary/30 p-4">
+            <span class="mt-1 inline-block size-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span>
+            <span class="text-foreground">{issue}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Brand General Info -->
+  <section class="bg-secondary/20 py-20 lg:py-28" data-animate="fade-in-up">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+        نظام تكييف سيارات {brand.nameAr}
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+        {brand.generalIssuesAr}
+      </p>
+    </div>
+  </section>
+
+  <!-- Services We Offer -->
+  <section class="py-20 lg:py-28" data-animate="fade-in-up">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+        خدماتنا لـ {brand.nameAr} {model.nameAr}
+      </h2>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {services.slice(0, 6).map((s) => (
+          <a href={`/services/${s.slug}/`} class="card-hover-lift rounded-xl border border-border bg-white p-5 transition-all">
+            <h3 class="font-display text-lg font-semibold text-foreground">{s.nameAr}</h3>
+            <p class="mt-2 text-sm text-muted-foreground line-clamp-2">{s.descriptionAr}</p>
+            <p class="mt-3 text-sm font-medium text-primary">{s.priceRangeMin} - {s.priceRangeMax} ر.س</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQSection faqs={brand.faqs} lang={lang} title={`الأسئلة الشائعة عن مكيف ${brand.nameAr} ${model.nameAr}`} />
+
+  <!-- Related Models -->
+  {relatedModels.length > 0 && (
+    <RelatedLinks links={relatedModels} lang={lang} title={`موديلات ${brand.nameAr} الأخرى`} />
+  )}
+
+  <!-- CTA -->
+  <CTAWhatsApp
+    lang={lang}
+    message={`أحتاج صيانة مكيف ${brand.nameAr} ${model.nameAr}`}
+  />
+</PageLayout>

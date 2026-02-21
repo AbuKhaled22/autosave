@@ -1,0 +1,19 @@
+---
+/**
+ * Symptom/problem pages (Arabic — default locale).
+ * Generates /symptoms/[symptom] for all 20 symptoms.
+ */
+import { symptoms } from '../../data/symptoms';
+import SymptomTemplate from '../../layouts/SymptomTemplate.astro';
+
+export function getStaticPaths() {
+  return symptoms.map((symptom) => ({
+    params: { symptom: symptom.slug },
+    props: { symptom },
+  }));
+}
+
+const { symptom } = Astro.props;
+---
+
+<SymptomTemplate symptom={symptom} lang="ar" />

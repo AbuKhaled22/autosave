@@ -1,0 +1,244 @@
+---
+/**
+ * Riyadh neighborhood pages + City × Service cross-dimensional pages (English).
+ *
+ * Handles two types:
+ * 1. /en/services/riyadh/[neighborhood] — neighborhood landing pages (12 pages)
+ * 2. /en/services/[city]/[service] — cross-dimensional pages for top 5 cities × top 5 services (25 pages)
+ */
+import { cities, getCityBySlug, type City, type CityNeighborhood } from '../../../../data/cities';
+import { services, getServiceBySlug, type ACService } from '../../../../data/services';
+import PageLayout from '../../../../layouts/PageLayout.astro';
+import ProgrammaticHero from '../../../../components/programmatic/ProgrammaticHero.astro';
+import FAQSection from '../../../../components/programmatic/FAQSection.astro';
+import CTAWhatsApp from '../../../../components/programmatic/CTAWhatsApp.astro';
+import RelatedLinks from '../../../../components/programmatic/RelatedLinks.astro';
+import ServiceList from '../../../../components/programmatic/ServiceList.astro';
+
+interface NeighborhoodProps {
+  pageType: 'neighborhood';
+  city: City;
+  neighborhood: CityNeighborhood;
+  service: null;
+}
+
+interface CityServiceProps {
+  pageType: 'city-service';
+  city: City;
+  neighborhood: null;
+  service: ACService;
+}
+
+type Props = NeighborhoodProps | CityServiceProps;
+
+export function getStaticPaths() {
+  const TOP_CITY_SLUGS = ['riyadh', 'jeddah', 'dammam', 'makkah', 'madinah'];
+  const TOP_SERVICE_SLUGS = ['ac-recharge', 'compressor-replacement', 'leak-detection', 'ac-diagnostic', 'ac-cleaning'];
+
+  const paths: { params: { city: string; slug: string }; props: Props }[] = [];
+
+  // Riyadh neighborhoods
+  const riyadh = getCityBySlug('riyadh');
+  if (riyadh) {
+    for (const neighborhood of riyadh.neighborhoods) {
+      paths.push({
+        params: { city: 'riyadh', slug: neighborhood.slug },
+        props: { pageType: 'neighborhood', city: riyadh, neighborhood, service: null },
+      });
+    }
+  }
+
+  // City × Service cross-dimensional
+  for (const citySlug of TOP_CITY_SLUGS) {
+    const city = getCityBySlug(citySlug);
+    if (!city) continue;
+    for (const serviceSlug of TOP_SERVICE_SLUGS) {
+      const service = getServiceBySlug(serviceSlug);
+      if (!service) continue;
+      paths.push({
+        params: { city: citySlug, slug: serviceSlug },
+        props: { pageType: 'city-service', city, neighborhood: null, service },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const props = Astro.props as Props;
+const lang = 'en';
+
+// ─── Neighborhood page data ─────────────────────────────────────────────────
+function getNeighborhoodData(city: City, neighborhood: CityNeighborhood) {
+  const title = `Car AC Repair in ${neighborhood.nameEn} | Auto Save`;
+  const description = `Car AC maintenance and repair services in ${neighborhood.nameEn}, ${city.nameEn}. Expert team with warranty on all services.`;
+  const breadcrumbs = [
+    { label: 'Home', href: '/en/' },
+    { label: 'Services', href: '/en/services/' },
+    { label: city.nameEn, href: `/en/services/${city.slug}/` },
+    { label: neighborhood.nameEn },
+  ];
+  return { title, description, breadcrumbs };
+}
+
+// ─── City × Service page data ──────────────────────────────────────────────
+function getCityServiceData(city: City, service: ACService) {
+  const title = `${service.nameEn} in ${city.nameEn} | Auto Save`;
+  const description = `${service.nameEn} service in ${city.nameEn}. ${service.descriptionEn.slice(0, 120)}`;
+  const breadcrumbs = [
+    { label: 'Home', href: '/en/' },
+    { label: 'Services', href: '/en/services/' },
+    { label: city.nameEn, href: `/en/services/${city.slug}/` },
+    { label: service.nameEn },
+  ];
+  return { title, description, breadcrumbs };
+}
+
+const isNeighborhood = props.pageType === 'neighborhood';
+const pageData = isNeighborhood
+  ? getNeighborhoodData(props.city, props.neighborhood!)
+  : getCityServiceData(props.city, props.service!);
+---
+
+<PageLayout title={pageData.title} description={pageData.description} lang={lang}>
+  {isNeighborhood && props.neighborhood && (
+    <>
+      <ProgrammaticHero
+        eyebrow={`${props.city.nameEn} · ${props.neighborhood.nameEn}`}
+        title={`Car AC Repair in ${props.neighborhood.nameEn}`}
+        description={`We offer car AC maintenance and repair services in ${props.neighborhood.nameEn}, ${props.city.nameEn}. Our expert team is ready to serve you.`}
+        lang={lang}
+        breadcrumbs={pageData.breadcrumbs}
+      />
+
+      <!-- Climate Note -->
+      <section class="py-20 lg:py-28" data-animate="fade-in-up">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+            Why You Need Car AC Service in {props.neighborhood.nameEn}
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+            {props.city.climateNoteEn}
+          </p>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <ServiceList lang={lang} title={`Car AC Services in ${props.neighborhood.nameEn}`} />
+
+      <!-- Other Neighborhoods -->
+      <RelatedLinks
+        lang={lang}
+        title={`Other Areas in ${props.city.nameEn}`}
+        links={props.city.neighborhoods
+          .filter((n) => n.slug !== props.neighborhood!.slug)
+          .slice(0, 6)
+          .map((n) => ({
+            title: n.nameEn,
+            href: `/en/services/${props.city.slug}/${n.slug}/`,
+          }))}
+      />
+
+      <!-- FAQ -->
+      <FAQSection faqs={props.city.faqs} lang={lang} title={`FAQs About Service in ${props.neighborhood.nameEn}`} />
+
+      <!-- CTA -->
+      <CTAWhatsApp
+        lang={lang}
+        message={`I need car AC service in ${props.neighborhood.nameEn}, ${props.city.nameEn}`}
+      />
+    </>
+  )}
+
+  {!isNeighborhood && props.service && (
+    <>
+      <ProgrammaticHero
+        eyebrow={`${props.city.nameEn} · ${props.service.nameEn}`}
+        title={`${props.service.nameEn} in ${props.city.nameEn}`}
+        description={props.service.descriptionEn}
+        lang={lang}
+        breadcrumbs={pageData.breadcrumbs}
+      />
+
+      <!-- Service Process Steps -->
+      <section class="py-20 lg:py-28" data-animate="fade-in-up">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+            {props.service.nameEn} Process in {props.city.nameEn}
+          </h2>
+          <ol class="mt-8 space-y-6">
+            {props.service.processStepsEn.map((step, i) => (
+              <li class="flex items-start gap-4" data-animate="fade-in-up" data-animate-delay={`${i * 100}`}>
+                <span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary font-display text-lg font-bold text-white">
+                  {i + 1}
+                </span>
+                <p class="mt-1 text-lg text-foreground">{step}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <!-- Pricing & Duration -->
+      <section class="bg-secondary/20 py-20 lg:py-28" data-animate="fade-in-up">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+            Cost & Duration
+          </h2>
+          <div class="mt-8 grid gap-6 sm:grid-cols-2">
+            <div class="rounded-xl border border-border bg-white p-6">
+              <p class="text-sm text-muted-foreground">Price Range</p>
+              <p class="mt-2 font-display text-3xl font-bold text-primary">
+                {props.service.priceRangeMin} - {props.service.priceRangeMax} <span class="text-base">SAR</span>
+              </p>
+            </div>
+            <div class="rounded-xl border border-border bg-white p-6">
+              <p class="text-sm text-muted-foreground">Estimated Duration</p>
+              <p class="mt-2 font-display text-3xl font-bold text-foreground">
+                {props.service.durationMinutes} <span class="text-base">minutes</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- City Info -->
+      <section class="py-20 lg:py-28" data-animate="fade-in-up">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+            {props.service.nameEn} in {props.city.nameEn}
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+            {props.city.introEn}
+          </p>
+          <p class="mt-4 text-muted-foreground">
+            {props.city.climateNoteEn}
+          </p>
+        </div>
+      </section>
+
+      <!-- FAQ (combined from city + service) -->
+      <FAQSection
+        faqs={[...props.service.faqs.slice(0, 3), ...props.city.faqs.slice(0, 2)]}
+        lang={lang}
+        title={`FAQs About ${props.service.nameEn} in ${props.city.nameEn}`}
+      />
+
+      <!-- Related Links -->
+      <RelatedLinks
+        lang={lang}
+        title="Related Services"
+        links={[
+          { title: `All Services in ${props.city.nameEn}`, href: `/en/services/${props.city.slug}/` },
+          { title: `${props.service.nameEn} Details`, href: `/en/services/${props.service.slug}/` },
+        ]}
+      />
+
+      <!-- CTA -->
+      <CTAWhatsApp
+        lang={lang}
+        message={`I need ${props.service.nameEn} in ${props.city.nameEn}`}
+      />
+    </>
+  )}
+</PageLayout>

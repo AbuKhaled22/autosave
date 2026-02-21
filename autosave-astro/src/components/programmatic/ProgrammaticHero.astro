@@ -1,0 +1,46 @@
+---
+/**
+ * ProgrammaticHero — reusable hero section for programmatic SEO pages.
+ * Uses the Desert Luxury hero-gradient with pattern overlay and animated entrance.
+ */
+import type { Language } from '../../lib/i18n';
+import BreadcrumbNav from './BreadcrumbNav.astro';
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  lang: Language;
+  breadcrumbs: BreadcrumbItem[];
+}
+
+const { eyebrow, title, description, lang, breadcrumbs } = Astro.props;
+---
+
+<section class="relative overflow-hidden hero-gradient text-[#f0ebe0]">
+  <div class="hero-pattern" aria-hidden="true"></div>
+  <div class="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
+    <div class="text-[#f0ebe0]/70">
+      <BreadcrumbNav items={breadcrumbs} lang={lang} />
+    </div>
+
+    <span class="hero-animate eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-primary">
+      {eyebrow}
+    </span>
+
+    <h1 class="hero-animate hero-animate-delay-1 mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+      {title}
+    </h1>
+
+    <p class="hero-animate hero-animate-delay-2 mt-4 max-w-2xl text-base text-[#f0ebe0]/65 sm:text-lg lg:mt-6">
+      {description}
+    </p>
+
+    <slot name="hero-extra" />
+  </div>
+</section>

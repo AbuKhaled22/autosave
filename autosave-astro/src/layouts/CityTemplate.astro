@@ -1,0 +1,178 @@
+---
+/**
+ * CityTemplate — layout template for city landing pages.
+ * Renders a full SEO-optimized page for a specific city.
+ * Route: /services/[city] and /en/services/[city]
+ */
+import PageLayout from './PageLayout.astro';
+import ProgrammaticHero from '../components/programmatic/ProgrammaticHero.astro';
+import ServiceList from '../components/programmatic/ServiceList.astro';
+import FAQSection from '../components/programmatic/FAQSection.astro';
+import CTAWhatsApp from '../components/programmatic/CTAWhatsApp.astro';
+import RelatedLinks from '../components/programmatic/RelatedLinks.astro';
+import type { City } from '../data/cities';
+import type { Language } from '../lib/i18n';
+import { cities } from '../data/cities';
+
+interface Props {
+  city: City;
+  lang: Language;
+}
+
+const { city, lang } = Astro.props;
+const isAr = lang === 'ar';
+
+const cityName = isAr ? city.nameAr : city.nameEn;
+const regionName = isAr ? city.regionAr : city.regionEn;
+
+const pageTitle = isAr
+  ? `إصلاح مكيف السيارة في ${cityName} | اوتو سيف`
+  : `Car AC Repair in ${cityName} | Auto Save`;
+
+const pageDescription = isAr
+  ? `خدمات إصلاح وصيانة مكيف السيارة في ${cityName}، ${regionName}. تعبئة فريون، تغيير كمبروسر، كشف تسريب وأكثر. ضمان أفضل سعر.`
+  : `Car AC repair and maintenance services in ${cityName}, ${regionName}. Freon recharge, compressor replacement, leak detection and more. Best price guarantee.`;
+
+const heroEyebrow = isAr ? `خدماتنا في ${cityName}` : `Our Services in ${cityName}`;
+const heroTitle = isAr
+  ? `إصلاح مكيف السيارة في ${cityName}`
+  : `Car AC Repair in ${cityName}`;
+
+const breadcrumbs = [
+  { label: isAr ? 'الرئيسية' : 'Home', href: isAr ? '/' : '/en' },
+  { label: isAr ? 'الخدمات' : 'Services', href: isAr ? '/services' : '/en/services' },
+  { label: cityName },
+];
+
+const whatsappMessage = isAr
+  ? `السلام عليكم، أريد حجز موعد لصيانة مكيف سيارتي في ${cityName}`
+  : `Hi, I would like to book a car AC repair appointment in ${cityName}`;
+
+// Related cities (exclude current, pick 5)
+const relatedCities = cities
+  .filter((c) => c.slug !== city.slug)
+  .slice(0, 5)
+  .map((c) => ({
+    title: isAr
+      ? `إصلاح مكيف السيارة في ${c.nameAr}`
+      : `Car AC Repair in ${c.nameEn}`,
+    href: isAr ? `/services/${c.slug}` : `/en/services/${c.slug}`,
+    description: isAr ? c.introAr : c.introEn,
+  }));
+
+// Neighborhood links (for cities with neighborhoods)
+const neighborhoodLinks = city.neighborhoods.map((n) => ({
+  title: isAr ? `خدمة مكيف السيارة في ${n.nameAr}` : `Car AC Service in ${n.nameEn}`,
+  href: isAr
+    ? `/services/${city.slug}/${n.slug}`
+    : `/en/services/${city.slug}/${n.slug}`,
+}));
+---
+
+<PageLayout
+  title={pageTitle}
+  description={pageDescription}
+  lang={lang}
+  keywords={isAr
+    ? [`إصلاح مكيف السيارة ${cityName}`, `صيانة مكيف سيارة ${cityName}`, `تعبئة فريون ${cityName}`]
+    : [`car ac repair ${cityName}`, `ac service ${cityName}`, `freon recharge ${cityName}`]
+  }
+>
+  <ProgrammaticHero
+    eyebrow={heroEyebrow}
+    title={heroTitle}
+    description={isAr ? city.introAr : city.introEn}
+    lang={lang}
+    breadcrumbs={breadcrumbs}
+  />
+
+  {/* City intro & climate info */}
+  <section class="py-20 lg:py-28" data-animate="fade-in-up">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div class="prose prose-lg mx-auto max-w-none text-foreground">
+        <h2 class="font-display text-2xl font-bold sm:text-3xl">
+          {isAr
+            ? `لماذا يحتاج مكيف سيارتك صيانة في ${cityName}؟`
+            : `Why Does Your Car AC Need Service in ${cityName}?`}
+        </h2>
+        <p class="mt-4 text-muted-foreground">
+          {isAr ? city.climateNoteAr : city.climateNoteEn}
+        </p>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          <div class="rounded-xl border border-border bg-card p-5 shadow-sm border-t-2 border-t-primary/25">
+            <div class="text-sm font-medium text-muted-foreground">
+              {isAr ? 'المنطقة' : 'Region'}
+            </div>
+            <div class="mt-1 font-display font-semibold text-foreground">
+              {regionName}
+            </div>
+          </div>
+          <div class="rounded-xl border border-border bg-card p-5 shadow-sm border-t-2 border-t-primary/25">
+            <div class="text-sm font-medium text-muted-foreground">
+              {isAr ? 'عدد السكان' : 'Population'}
+            </div>
+            <div class="mt-1 font-display font-semibold text-foreground">
+              {city.population}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Services grid */}
+  <div class="bg-secondary/40">
+    <ServiceList
+      lang={lang}
+      title={isAr
+        ? `خدمات مكيف السيارة في ${cityName}`
+        : `Car AC Services in ${cityName}`}
+    />
+  </div>
+
+  {/* Neighborhoods (if any) */}
+  {neighborhoodLinks.length > 0 && (
+    <section class="py-20 lg:py-28" data-animate="fade-in-up">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="mb-8 font-display text-2xl font-bold text-foreground sm:text-3xl">
+          {isAr
+            ? `أحياء ${cityName} التي نخدمها`
+            : `${cityName} Neighborhoods We Serve`}
+        </h2>
+        <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {neighborhoodLinks.map((link, index) => (
+            <a
+              href={link.href}
+              class="rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium text-foreground shadow-sm transition hover:border-primary/40 hover:text-primary"
+              data-animate="fade-in-up"
+              data-animate-delay={String((index + 1) * 50)}
+            >
+              {link.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* FAQ */}
+  <div class="bg-secondary/40">
+    <FAQSection
+      faqs={city.faqs}
+      lang={lang}
+      title={isAr
+        ? `أسئلة شائعة عن مكيف السيارة في ${cityName}`
+        : `FAQ About Car AC in ${cityName}`}
+    />
+  </div>
+
+  {/* Related cities */}
+  <RelatedLinks
+    links={relatedCities}
+    lang={lang}
+    title={isAr ? 'خدماتنا في مدن أخرى' : 'Our Services in Other Cities'}
+  />
+
+  {/* CTA */}
+  <CTAWhatsApp lang={lang} message={whatsappMessage} />
+</PageLayout>

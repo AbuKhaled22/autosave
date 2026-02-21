@@ -1,0 +1,19 @@
+---
+/**
+ * Car brand pages (English).
+ * Generates /en/car-ac/[brand] for all 30 brands.
+ */
+import { carBrands } from '../../../data/car-brands';
+import BrandTemplate from '../../../layouts/BrandTemplate.astro';
+
+export function getStaticPaths() {
+  return carBrands.map((brand) => ({
+    params: { brand: brand.slug },
+    props: { brand },
+  }));
+}
+
+const { brand } = Astro.props;
+---
+
+<BrandTemplate brand={brand} lang="en" />

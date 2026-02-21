@@ -1,0 +1,76 @@
+---
+/**
+ * RelatedLinks — renders a grid of related page links for internal linking.
+ * Used at the bottom of programmatic pages to build the internal linking web.
+ */
+import type { Language } from '../../lib/i18n';
+
+interface RelatedLink {
+  title: string;
+  href: string;
+  description?: string;
+}
+
+interface Props {
+  links: RelatedLink[];
+  lang: Language;
+  title?: string;
+}
+
+const { links, lang, title } = Astro.props;
+
+const sectionTitle =
+  title ??
+  (lang === 'ar' ? 'قد يهمك أيضاً' : 'You Might Also Be Interested In');
+---
+
+{links.length > 0 && (
+  <section class="bg-secondary/40 py-20 lg:py-28" data-animate="fade-in-up">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="mb-8 font-display text-2xl font-bold text-foreground sm:text-3xl">
+        {sectionTitle}
+      </h2>
+
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {links.map((link, index) => (
+          <a
+            href={link.href}
+            class="group rounded-xl border border-border bg-card p-5 shadow-sm transition card-hover-lift border-t-2 border-t-primary/25 hover:border-t-primary/60"
+            data-animate="fade-in-up"
+            data-animate-delay={String((index + 1) * 100)}
+          >
+            <h3 class="font-display font-semibold text-foreground transition-colors group-hover:text-primary">
+              {link.title}
+            </h3>
+            {link.description && (
+              <p class="mt-2 text-sm text-muted-foreground line-clamp-2">
+                {link.description}
+              </p>
+            )}
+            <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">
+              {lang === 'ar' ? 'اقرأ المزيد' : 'Read more'}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class:list={[
+                  'transition-transform group-hover:translate-x-1',
+                  lang === 'ar' ? 'rotate-180 group-hover:-translate-x-1' : '',
+                ]}
+                aria-hidden="true"
+              >
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

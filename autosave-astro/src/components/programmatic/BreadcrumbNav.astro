@@ -1,0 +1,74 @@
+---
+/**
+ * BreadcrumbNav — semantic breadcrumb navigation with JSON-LD BreadcrumbList schema.
+ * Renders RTL/LTR-safe breadcrumbs with structured data for Google rich snippets.
+ */
+import type { Language } from '../../lib/i18n';
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+  lang: Language;
+}
+
+const { items, lang } = Astro.props;
+const site = Astro.site?.origin ?? 'https://autosave.sa';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: `${site}${item.href}` } : {}),
+  })),
+};
+---
+
+<nav aria-label={lang === 'ar' ? 'مسار التصفح' : 'Breadcrumb'} class="mb-6">
+  <ol class="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
+    {items.map((item, index) => (
+      <li class="flex items-center gap-1.5">
+        {index > 0 && (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class:list={[
+              'shrink-0 opacity-40',
+              lang === 'ar' ? 'rotate-180' : '',
+            ]}
+            aria-hidden="true"
+          >
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        )}
+        {item.href && index < items.length - 1 ? (
+          <a
+            href={item.href}
+            class="transition-colors hover:text-primary"
+          >
+            {item.label}
+          </a>
+        ) : (
+          <span class="font-medium text-foreground" aria-current="page">
+            {item.label}
+          </span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

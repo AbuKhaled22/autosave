@@ -1,0 +1,203 @@
+---
+/**
+ * ComponentTemplate — layout template for AC component/parts pages.
+ * Renders a full SEO-optimized page for a specific AC component.
+ * Route: /parts/[component] and /en/parts/[component]
+ */
+import PageLayout from './PageLayout.astro';
+import ProgrammaticHero from '../components/programmatic/ProgrammaticHero.astro';
+import FAQSection from '../components/programmatic/FAQSection.astro';
+import CTAWhatsApp from '../components/programmatic/CTAWhatsApp.astro';
+import RelatedLinks from '../components/programmatic/RelatedLinks.astro';
+import PriceTable from '../components/programmatic/PriceTable.astro';
+import type { ACComponent } from '../data/components';
+import type { Language } from '../lib/i18n';
+import { components, getComponentBySlug } from '../data/components';
+import { getSymptomBySlug } from '../data/symptoms';
+
+interface Props {
+  component: ACComponent;
+  lang: Language;
+}
+
+const { component, lang } = Astro.props;
+const isAr = lang === 'ar';
+
+const compName = isAr ? component.nameAr : component.nameEn;
+
+const pageTitle = isAr
+  ? `${compName} مكيف السيارة | اوتو سيف`
+  : `Car AC ${compName} | Auto Save`;
+
+const pageDescription = isAr ? component.descriptionAr : component.descriptionEn;
+
+const breadcrumbs = [
+  { label: isAr ? 'الرئيسية' : 'Home', href: isAr ? '/' : '/en' },
+  { label: isAr ? 'قطع الغيار' : 'Parts', href: isAr ? '/parts' : '/en/parts' },
+  { label: compName },
+];
+
+const whatsappMessage = isAr
+  ? `السلام عليكم، أحتاج ${compName} لمكيف سيارتي`
+  : `Hi, I need a ${compName} for my car AC`;
+
+// Price rows
+const priceRows = [
+  {
+    label: isAr ? 'قطعة أصلية (OEM)' : 'OEM Part',
+    priceRange: `${component.priceRangeOEM.min}–${component.priceRangeOEM.max}`,
+    note: isAr ? 'من الشركة المصنعة' : 'From manufacturer',
+  },
+  {
+    label: isAr ? 'قطعة بديلة' : 'Aftermarket Part',
+    priceRange: `${component.priceRangeAftermarket.min}–${component.priceRangeAftermarket.max}`,
+    note: isAr ? 'جودة عالية بسعر أقل' : 'High quality at lower price',
+  },
+];
+
+// Related symptoms
+const relatedSymptomLinks = component.relatedSymptomSlugs
+  .map((slug) => getSymptomBySlug(slug))
+  .filter(Boolean)
+  .map((s) => ({
+    title: isAr ? s!.titleAr : s!.titleEn,
+    href: isAr ? `/symptoms/${s!.slug}` : `/en/symptoms/${s!.slug}`,
+    description: isAr ? s!.descriptionAr : s!.descriptionEn,
+  }));
+
+// Related components (other components, exclude self)
+const relatedComponents = components
+  .filter((c) => c.slug !== component.slug)
+  .slice(0, 3)
+  .map((c) => ({
+    title: isAr ? c.nameAr : c.nameEn,
+    href: isAr ? `/parts/${c.slug}` : `/en/parts/${c.slug}`,
+    description: isAr ? c.descriptionAr : c.descriptionEn,
+  }));
+
+const allRelatedLinks = [...relatedSymptomLinks, ...relatedComponents];
+
+// Failure signs
+const failureSigns = isAr ? component.failureSignsAr : component.failureSignsEn;
+
+// JSON-LD Product schema
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: isAr ? `${compName} مكيف السيارة` : `Car AC ${compName}`,
+  description: pageDescription,
+  category: isAr ? 'قطع غيار مكيف السيارة' : 'Car AC Parts',
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'SAR',
+    lowPrice: component.priceRangeAftermarket.min,
+    highPrice: component.priceRangeOEM.max,
+  },
+};
+---
+
+<PageLayout
+  title={pageTitle}
+  description={pageDescription}
+  lang={lang}
+  keywords={isAr
+    ? [`${compName}`, `${compName} مكيف السيارة`, `سعر ${compName}`]
+    : [`car ac ${compName.toLowerCase()}`, `${compName.toLowerCase()} replacement`, `${compName.toLowerCase()} price`]
+  }
+>
+  <ProgrammaticHero
+    eyebrow={isAr ? 'قطع الغيار' : 'Parts'}
+    title={isAr ? `${compName} مكيف السيارة` : `Car AC ${compName}`}
+    description={pageDescription}
+    lang={lang}
+    breadcrumbs={breadcrumbs}
+  />
+
+  {/* Function & description */}
+  <section class="py-20 lg:py-28" data-animate="fade-in-up">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+        {isAr ? `ما هو ${compName}؟` : `What Is the ${compName}?`}
+      </h2>
+      <p class="mt-4 text-lg text-muted-foreground">
+        {isAr ? component.functionAr : component.functionEn}
+      </p>
+    </div>
+  </section>
+
+  {/* Failure signs */}
+  <section class="bg-secondary/40 py-20 lg:py-28" data-animate="fade-in-up">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-10 text-center">
+        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-primary">
+          {isAr ? 'علامات التلف' : 'Failure Signs'}
+        </span>
+        <h2 class="mt-4 font-display text-2xl font-bold text-foreground sm:text-3xl">
+          {isAr
+            ? `كيف تعرف أن ${compName} يحتاج تغيير؟`
+            : `How to Know If Your ${compName} Needs Replacement?`}
+        </h2>
+      </div>
+
+      <div class="grid gap-3 sm:grid-cols-2">
+        {failureSigns.map((sign, index) => (
+          <div
+            class="flex items-start gap-3 rounded-xl border border-border bg-card p-4 shadow-sm"
+            data-animate="fade-in-up"
+            data-animate-delay={String((index + 1) * 100)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="mt-0.5 shrink-0 text-destructive"
+              aria-hidden="true"
+            >
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            <span class="text-foreground">{sign}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Pricing */}
+  <PriceTable
+    rows={priceRows}
+    lang={lang}
+    title={isAr ? `أسعار ${compName}` : `${compName} Pricing`}
+  />
+
+  {/* FAQ */}
+  {component.faqs.length > 0 && (
+    <div class="bg-secondary/40">
+      <FAQSection
+        faqs={component.faqs}
+        lang={lang}
+        title={isAr
+          ? `أسئلة شائعة عن ${compName}`
+          : `FAQ About ${compName}`}
+      />
+    </div>
+  )}
+
+  {/* Related links */}
+  {allRelatedLinks.length > 0 && (
+    <RelatedLinks links={allRelatedLinks} lang={lang} />
+  )}
+
+  {/* CTA */}
+  <CTAWhatsApp lang={lang} message={whatsappMessage} />
+
+  {/* Product schema */}
+  <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+</PageLayout>

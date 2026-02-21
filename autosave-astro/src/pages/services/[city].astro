@@ -1,0 +1,19 @@
+---
+/**
+ * City landing pages (Arabic — default locale).
+ * Generates /services/[city] for all cities.
+ */
+import { cities } from '../../data/cities';
+import CityTemplate from '../../layouts/CityTemplate.astro';
+
+export function getStaticPaths() {
+  return cities.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+---
+
+<CityTemplate city={city} lang="ar" />

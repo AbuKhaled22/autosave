@@ -1,0 +1,29 @@
+---
+/**
+ * Combined city landing + service type pages (Arabic — default locale).
+ * Generates /services/[slug] for all cities AND all services.
+ */
+import { cities, type City } from '../../data/cities';
+import { services, type ACService } from '../../data/services';
+import CityTemplate from '../../layouts/CityTemplate.astro';
+import ServiceTemplate from '../../layouts/ServiceTemplate.astro';
+
+export function getStaticPaths() {
+  const cityPaths = cities.map((city) => ({
+    params: { slug: city.slug },
+    props: { city, service: null as ACService | null, pageType: 'city' as const },
+  }));
+
+  const servicePaths = services.map((service) => ({
+    params: { slug: service.slug },
+    props: { city: null as City | null, service, pageType: 'service' as const },
+  }));
+
+  return [...cityPaths, ...servicePaths];
+}
+
+const { city, service, pageType } = Astro.props;
+---
+
+{pageType === 'city' && city && <CityTemplate city={city} lang="ar" />}
+{pageType === 'service' && service && <ServiceTemplate service={service} lang="ar" />}

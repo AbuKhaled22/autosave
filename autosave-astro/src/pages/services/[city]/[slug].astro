@@ -1,0 +1,244 @@
+---
+/**
+ * Riyadh neighborhood pages + City × Service cross-dimensional pages (Arabic).
+ *
+ * Handles two types:
+ * 1. /services/riyadh/[neighborhood] — neighborhood landing pages (12 pages)
+ * 2. /services/[city]/[service] — cross-dimensional pages for top 5 cities × top 5 services (25 pages)
+ */
+import { cities, getCityBySlug, type City, type CityNeighborhood } from '../../../data/cities';
+import { services, getServiceBySlug, type ACService } from '../../../data/services';
+import PageLayout from '../../../layouts/PageLayout.astro';
+import ProgrammaticHero from '../../../components/programmatic/ProgrammaticHero.astro';
+import FAQSection from '../../../components/programmatic/FAQSection.astro';
+import CTAWhatsApp from '../../../components/programmatic/CTAWhatsApp.astro';
+import RelatedLinks from '../../../components/programmatic/RelatedLinks.astro';
+import ServiceList from '../../../components/programmatic/ServiceList.astro';
+
+interface NeighborhoodProps {
+  pageType: 'neighborhood';
+  city: City;
+  neighborhood: CityNeighborhood;
+  service: null;
+}
+
+interface CityServiceProps {
+  pageType: 'city-service';
+  city: City;
+  neighborhood: null;
+  service: ACService;
+}
+
+type Props = NeighborhoodProps | CityServiceProps;
+
+export function getStaticPaths() {
+  const TOP_CITY_SLUGS = ['riyadh', 'jeddah', 'dammam', 'makkah', 'madinah'];
+  const TOP_SERVICE_SLUGS = ['ac-recharge', 'compressor-replacement', 'leak-detection', 'ac-diagnostic', 'ac-cleaning'];
+
+  const paths: { params: { city: string; slug: string }; props: Props }[] = [];
+
+  // Riyadh neighborhoods
+  const riyadh = getCityBySlug('riyadh');
+  if (riyadh) {
+    for (const neighborhood of riyadh.neighborhoods) {
+      paths.push({
+        params: { city: 'riyadh', slug: neighborhood.slug },
+        props: { pageType: 'neighborhood', city: riyadh, neighborhood, service: null },
+      });
+    }
+  }
+
+  // City × Service cross-dimensional
+  for (const citySlug of TOP_CITY_SLUGS) {
+    const city = getCityBySlug(citySlug);
+    if (!city) continue;
+    for (const serviceSlug of TOP_SERVICE_SLUGS) {
+      const service = getServiceBySlug(serviceSlug);
+      if (!service) continue;
+      paths.push({
+        params: { city: citySlug, slug: serviceSlug },
+        props: { pageType: 'city-service', city, neighborhood: null, service },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const props = Astro.props as Props;
+const lang = 'ar';
+
+// ─── Neighborhood page data ─────────────────────────────────────────────────
+function getNeighborhoodData(city: City, neighborhood: CityNeighborhood) {
+  const title = `إصلاح مكيف السيارة في ${neighborhood.nameAr} | أوتو سيف`;
+  const description = `خدمات صيانة وإصلاح مكيفات السيارات في ${neighborhood.nameAr}، ${city.nameAr}. فريق متخصص وضمان على جميع الخدمات.`;
+  const breadcrumbs = [
+    { label: 'الرئيسية', href: '/' },
+    { label: 'خدماتنا', href: '/services/' },
+    { label: city.nameAr, href: `/services/${city.slug}/` },
+    { label: neighborhood.nameAr },
+  ];
+  return { title, description, breadcrumbs };
+}
+
+// ─── City × Service page data ──────────────────────────────────────────────
+function getCityServiceData(city: City, service: ACService) {
+  const title = `${service.nameAr} في ${city.nameAr} | أوتو سيف`;
+  const description = `خدمة ${service.nameAr} في ${city.nameAr}. ${service.descriptionAr.slice(0, 120)}`;
+  const breadcrumbs = [
+    { label: 'الرئيسية', href: '/' },
+    { label: 'خدماتنا', href: '/services/' },
+    { label: city.nameAr, href: `/services/${city.slug}/` },
+    { label: service.nameAr },
+  ];
+  return { title, description, breadcrumbs };
+}
+
+const isNeighborhood = props.pageType === 'neighborhood';
+const pageData = isNeighborhood
+  ? getNeighborhoodData(props.city, props.neighborhood!)
+  : getCityServiceData(props.city, props.service!);
+---
+
+<PageLayout title={pageData.title} description={pageData.description} lang={lang}>
+  {isNeighborhood && props.neighborhood && (
+    <>
+      <ProgrammaticHero
+        eyebrow={`${props.city.nameAr} • ${props.neighborhood.nameAr}`}
+        title={`إصلاح مكيف السيارة في ${props.neighborhood.nameAr}`}
+        description={`نقدم خدمات صيانة وإصلاح مكيفات السيارات في ${props.neighborhood.nameAr}، ${props.city.nameAr}. فريقنا المتخصص مستعد لخدمتك.`}
+        lang={lang}
+        breadcrumbs={pageData.breadcrumbs}
+      />
+
+      <!-- Climate Note -->
+      <section class="py-20 lg:py-28" data-animate="fade-in-up">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+            لماذا تحتاج صيانة مكيف سيارتك في {props.neighborhood.nameAr}؟
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+            {props.city.climateNoteAr}
+          </p>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <ServiceList lang={lang} title={`خدمات مكيف السيارة في ${props.neighborhood.nameAr}`} />
+
+      <!-- Other Neighborhoods -->
+      <RelatedLinks
+        lang={lang}
+        title={`أحياء أخرى في ${props.city.nameAr}`}
+        links={props.city.neighborhoods
+          .filter((n) => n.slug !== props.neighborhood!.slug)
+          .slice(0, 6)
+          .map((n) => ({
+            title: n.nameAr,
+            href: `/services/${props.city.slug}/${n.slug}/`,
+          }))}
+      />
+
+      <!-- FAQ -->
+      <FAQSection faqs={props.city.faqs} lang={lang} title={`الأسئلة الشائعة عن خدمة ${props.neighborhood.nameAr}`} />
+
+      <!-- CTA -->
+      <CTAWhatsApp
+        lang={lang}
+        message={`أحتاج خدمة مكيف سيارة في ${props.neighborhood.nameAr}، ${props.city.nameAr}`}
+      />
+    </>
+  )}
+
+  {!isNeighborhood && props.service && (
+    <>
+      <ProgrammaticHero
+        eyebrow={`${props.city.nameAr} • ${props.service.nameAr}`}
+        title={`${props.service.nameAr} في ${props.city.nameAr}`}
+        description={props.service.descriptionAr}
+        lang={lang}
+        breadcrumbs={pageData.breadcrumbs}
+      />
+
+      <!-- Service Process Steps -->
+      <section class="py-20 lg:py-28" data-animate="fade-in-up">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+            خطوات {props.service.nameAr} في {props.city.nameAr}
+          </h2>
+          <ol class="mt-8 space-y-6">
+            {props.service.processStepsAr.map((step, i) => (
+              <li class="flex items-start gap-4" data-animate="fade-in-up" data-animate-delay={`${i * 100}`}>
+                <span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary font-display text-lg font-bold text-white">
+                  {i + 1}
+                </span>
+                <p class="mt-1 text-lg text-foreground">{step}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <!-- Pricing & Duration -->
+      <section class="bg-secondary/20 py-20 lg:py-28" data-animate="fade-in-up">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+            التكلفة والمدة
+          </h2>
+          <div class="mt-8 grid gap-6 sm:grid-cols-2">
+            <div class="rounded-xl border border-border bg-white p-6">
+              <p class="text-sm text-muted-foreground">نطاق السعر</p>
+              <p class="mt-2 font-display text-3xl font-bold text-primary">
+                {props.service.priceRangeMin} - {props.service.priceRangeMax} <span class="text-base">ر.س</span>
+              </p>
+            </div>
+            <div class="rounded-xl border border-border bg-white p-6">
+              <p class="text-sm text-muted-foreground">المدة التقديرية</p>
+              <p class="mt-2 font-display text-3xl font-bold text-foreground">
+                {props.service.durationMinutes} <span class="text-base">دقيقة</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- City Info -->
+      <section class="py-20 lg:py-28" data-animate="fade-in-up">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+            {props.service.nameAr} في {props.city.nameAr}
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+            {props.city.introAr}
+          </p>
+          <p class="mt-4 text-muted-foreground">
+            {props.city.climateNoteAr}
+          </p>
+        </div>
+      </section>
+
+      <!-- FAQ (combined from city + service) -->
+      <FAQSection
+        faqs={[...props.service.faqs.slice(0, 3), ...props.city.faqs.slice(0, 2)]}
+        lang={lang}
+        title={`الأسئلة الشائعة عن ${props.service.nameAr} في ${props.city.nameAr}`}
+      />
+
+      <!-- Related Links -->
+      <RelatedLinks
+        lang={lang}
+        title="خدمات ذات صلة"
+        links={[
+          { title: `جميع الخدمات في ${props.city.nameAr}`, href: `/services/${props.city.slug}/` },
+          { title: `تفاصيل ${props.service.nameAr}`, href: `/services/${props.service.slug}/` },
+        ]}
+      />
+
+      <!-- CTA -->
+      <CTAWhatsApp
+        lang={lang}
+        message={`أحتاج ${props.service.nameAr} في ${props.city.nameAr}`}
+      />
+    </>
+  )}
+</PageLayout>

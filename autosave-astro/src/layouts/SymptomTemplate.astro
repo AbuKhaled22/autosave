@@ -1,0 +1,192 @@
+---
+/**
+ * SymptomTemplate — layout template for symptom/problem pages.
+ * Renders a full SEO-optimized page for a specific AC symptom.
+ * Route: /symptoms/[symptom] and /en/symptoms/[symptom]
+ */
+import PageLayout from './PageLayout.astro';
+import ProgrammaticHero from '../components/programmatic/ProgrammaticHero.astro';
+import FAQSection from '../components/programmatic/FAQSection.astro';
+import CTAWhatsApp from '../components/programmatic/CTAWhatsApp.astro';
+import RelatedLinks from '../components/programmatic/RelatedLinks.astro';
+import PriceTable from '../components/programmatic/PriceTable.astro';
+import type { Symptom } from '../data/symptoms';
+import type { Language } from '../lib/i18n';
+import { symptoms, getSymptomBySlug } from '../data/symptoms';
+import { getComponentBySlug } from '../data/components';
+
+interface Props {
+  symptom: Symptom;
+  lang: Language;
+}
+
+const { symptom, lang } = Astro.props;
+const isAr = lang === 'ar';
+
+const symptomTitle = isAr ? symptom.titleAr : symptom.titleEn;
+
+const pageTitle = isAr
+  ? `${symptomTitle}؟ الأسباب والحلول | اوتو سيف`
+  : `${symptomTitle}? Causes & Solutions | Auto Save`;
+
+const pageDescription = isAr ? symptom.descriptionAr : symptom.descriptionEn;
+
+const breadcrumbs = [
+  { label: isAr ? 'الرئيسية' : 'Home', href: isAr ? '/' : '/en' },
+  { label: isAr ? 'الأعراض' : 'Symptoms', href: isAr ? '/symptoms' : '/en/symptoms' },
+  { label: symptomTitle },
+];
+
+const whatsappMessage = isAr
+  ? `السلام عليكم، عندي مشكلة: ${symptomTitle}`
+  : `Hi, I have an issue: ${symptomTitle}`;
+
+// Likelihood label & color
+function getLikelihoodLabel(likelihood: string) {
+  if (isAr) {
+    return likelihood === 'high' ? 'احتمال عالي' : likelihood === 'medium' ? 'احتمال متوسط' : 'احتمال منخفض';
+  }
+  return likelihood === 'high' ? 'High likelihood' : likelihood === 'medium' ? 'Medium likelihood' : 'Low likelihood';
+}
+
+function getLikelihoodColor(likelihood: string) {
+  return likelihood === 'high'
+    ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+    : likelihood === 'medium'
+      ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'
+      : 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400';
+}
+
+// Related symptoms
+const relatedSymptomLinks = symptom.relatedSymptomSlugs
+  .map((slug) => getSymptomBySlug(slug))
+  .filter(Boolean)
+  .map((s) => ({
+    title: isAr ? s!.titleAr : s!.titleEn,
+    href: isAr ? `/symptoms/${s!.slug}` : `/en/symptoms/${s!.slug}`,
+    description: isAr ? s!.descriptionAr : s!.descriptionEn,
+  }));
+
+// Related components
+const relatedComponentLinks = symptom.relatedComponentSlugs
+  .map((slug) => getComponentBySlug(slug))
+  .filter(Boolean)
+  .map((c) => ({
+    title: isAr ? c!.nameAr : c!.nameEn,
+    href: isAr ? `/parts/${c!.slug}` : `/en/parts/${c!.slug}`,
+    description: isAr ? c!.descriptionAr : c!.descriptionEn,
+  }));
+
+const allRelatedLinks = [...relatedSymptomLinks, ...relatedComponentLinks];
+
+// Price range row
+const priceRows = [
+  {
+    label: isAr ? 'تكلفة الإصلاح التقديرية' : 'Estimated Repair Cost',
+    priceRange: `${symptom.costRangeMin}–${symptom.costRangeMax}`,
+    note: isAr ? 'حسب السبب ونوع السيارة' : 'Depends on cause and vehicle type',
+  },
+];
+---
+
+<PageLayout
+  title={pageTitle}
+  description={pageDescription}
+  lang={lang}
+  keywords={isAr ? symptom.keywordsAr : symptom.keywordsEn}
+>
+  <ProgrammaticHero
+    eyebrow={isAr ? 'مشاكل المكيف' : 'AC Problems'}
+    title={symptomTitle}
+    description={pageDescription}
+    lang={lang}
+    breadcrumbs={breadcrumbs}
+  />
+
+  {/* Causes section */}
+  <section class="py-20 lg:py-28" data-animate="fade-in-up">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-10 text-center">
+        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-primary">
+          {isAr ? 'التشخيص' : 'Diagnosis'}
+        </span>
+        <h2 class="mt-4 font-display text-2xl font-bold text-foreground sm:text-3xl">
+          {isAr ? 'الأسباب المحتملة' : 'Possible Causes'}
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {symptom.causes.map((cause, index) => (
+          <div
+            class="rounded-xl border border-border bg-card p-5 shadow-sm"
+            data-animate="fade-in-up"
+            data-animate-delay={String((index + 1) * 100)}
+          >
+            <div class="flex flex-wrap items-center gap-3">
+              <h3 class="font-display text-lg font-semibold text-foreground">
+                {isAr ? cause.titleAr : cause.titleEn}
+              </h3>
+              <span class:list={['rounded-full px-2.5 py-0.5 text-xs font-medium', getLikelihoodColor(cause.likelihood)]}>
+                {getLikelihoodLabel(cause.likelihood)}
+              </span>
+            </div>
+            <p class="mt-2 text-muted-foreground">
+              {isAr ? cause.explanationAr : cause.explanationEn}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Diagnostic steps */}
+  <section class="bg-secondary/40 py-20 lg:py-28" data-animate="fade-in-up">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-10 text-center">
+        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-primary">
+          {isAr ? 'خطوات الفحص' : 'Inspection Steps'}
+        </span>
+        <h2 class="mt-4 font-display text-2xl font-bold text-foreground sm:text-3xl">
+          {isAr ? 'كيف تفحص المشكلة؟' : 'How to Diagnose?'}
+        </h2>
+      </div>
+
+      <ol class="space-y-4">
+        {(isAr ? symptom.diagnosticStepsAr : symptom.diagnosticStepsEn).map((step, index) => (
+          <li
+            class="flex items-start gap-4 rounded-xl border border-border bg-card p-4 shadow-sm sm:p-5"
+            data-animate="fade-in-up"
+            data-animate-delay={String((index + 1) * 100)}
+          >
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 font-display text-sm font-bold text-primary">
+              {index + 1}
+            </span>
+            <span class="text-foreground">{step}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* Price estimate */}
+  <PriceTable
+    rows={priceRows}
+    lang={lang}
+    title={isAr ? 'تكلفة الإصلاح' : 'Repair Cost'}
+  />
+
+  {/* FAQ */}
+  {symptom.faqs.length > 0 && (
+    <div class="bg-secondary/40">
+      <FAQSection faqs={symptom.faqs} lang={lang} />
+    </div>
+  )}
+
+  {/* Related links */}
+  {allRelatedLinks.length > 0 && (
+    <RelatedLinks links={allRelatedLinks} lang={lang} />
+  )}
+
+  {/* CTA */}
+  <CTAWhatsApp lang={lang} message={whatsappMessage} />
+</PageLayout>

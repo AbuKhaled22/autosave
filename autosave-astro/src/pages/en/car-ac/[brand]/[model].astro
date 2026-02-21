@@ -1,0 +1,124 @@
+---
+/**
+ * Car model sub-pages (English).
+ * Generates /en/car-ac/[brand]/[model] for high-popularity brand models.
+ */
+import { carBrands, type CarBrand, type CarModel } from '../../../../data/car-brands';
+import { services } from '../../../../data/services';
+import PageLayout from '../../../../layouts/PageLayout.astro';
+import ProgrammaticHero from '../../../../components/programmatic/ProgrammaticHero.astro';
+import FAQSection from '../../../../components/programmatic/FAQSection.astro';
+import CTAWhatsApp from '../../../../components/programmatic/CTAWhatsApp.astro';
+import RelatedLinks from '../../../../components/programmatic/RelatedLinks.astro';
+
+export function getStaticPaths() {
+  return carBrands
+    .filter((b) => b.popularity === 'high')
+    .flatMap((brand) =>
+      brand.models.map((model) => ({
+        params: { brand: brand.slug, model: model.slug },
+        props: { brand, model },
+      }))
+    );
+}
+
+interface Props {
+  brand: CarBrand;
+  model: CarModel;
+}
+
+const { brand, model } = Astro.props;
+const lang = 'en';
+
+const title = `${brand.nameEn} ${model.nameEn} AC Repair | Auto Save`;
+const description = `Professional ${brand.nameEn} ${model.nameEn} (${model.years}) car AC repair and maintenance service. Expert diagnosis and repair of common AC problems.`;
+
+const breadcrumbs = [
+  { label: 'Home', href: '/en/' },
+  { label: 'Car AC', href: '/en/car-ac/' },
+  { label: brand.nameEn, href: `/en/car-ac/${brand.slug}/` },
+  { label: model.nameEn },
+];
+
+const relatedModels = brand.models
+  .filter((m) => m.slug !== model.slug)
+  .map((m) => ({
+    title: `${brand.nameEn} ${m.nameEn}`,
+    href: `/en/car-ac/${brand.slug}/${m.slug}/`,
+    description: m.years,
+  }));
+---
+
+<PageLayout title={title} description={description} lang={lang}>
+  <ProgrammaticHero
+    eyebrow={`${brand.nameEn} ${model.nameEn}`}
+    title={`${brand.nameEn} ${model.nameEn} AC Repair`}
+    description={`Specialized AC maintenance and repair for ${brand.nameEn} ${model.nameEn} models (${model.years})`}
+    lang={lang}
+    breadcrumbs={breadcrumbs}
+  />
+
+  <!-- Model-Specific AC Issues -->
+  <section class="py-20 lg:py-28" data-animate="fade-in-up">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+        Common AC Problems in {brand.nameEn} {model.nameEn}
+      </h2>
+      <p class="mt-4 text-lg text-muted-foreground">
+        Model years: {model.years}
+      </p>
+      <ul class="mt-8 space-y-4">
+        {model.commonAcIssuesEn.map((issue) => (
+          <li class="flex items-start gap-3 rounded-xl border border-border bg-secondary/30 p-4">
+            <span class="mt-1 inline-block size-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span>
+            <span class="text-foreground">{issue}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Brand General Info -->
+  <section class="bg-secondary/20 py-20 lg:py-28" data-animate="fade-in-up">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+        About {brand.nameEn} AC Systems
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+        {brand.generalIssuesEn}
+      </p>
+    </div>
+  </section>
+
+  <!-- Services We Offer -->
+  <section class="py-20 lg:py-28" data-animate="fade-in-up">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+        Our Services for {brand.nameEn} {model.nameEn}
+      </h2>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {services.slice(0, 6).map((s) => (
+          <a href={`/en/services/${s.slug}/`} class="card-hover-lift rounded-xl border border-border bg-white p-5 transition-all">
+            <h3 class="font-display text-lg font-semibold text-foreground">{s.nameEn}</h3>
+            <p class="mt-2 text-sm text-muted-foreground line-clamp-2">{s.descriptionEn}</p>
+            <p class="mt-3 text-sm font-medium text-primary">{s.priceRangeMin} - {s.priceRangeMax} SAR</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQSection faqs={brand.faqs} lang={lang} title={`FAQs About ${brand.nameEn} ${model.nameEn} AC`} />
+
+  <!-- Related Models -->
+  {relatedModels.length > 0 && (
+    <RelatedLinks links={relatedModels} lang={lang} title={`Other ${brand.nameEn} Models`} />
+  )}
+
+  <!-- CTA -->
+  <CTAWhatsApp
+    lang={lang}
+    message={`I need AC repair for my ${brand.nameEn} ${model.nameEn}`}
+  />
+</PageLayout>
