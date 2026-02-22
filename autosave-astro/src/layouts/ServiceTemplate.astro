@@ -49,7 +49,7 @@ const processSteps = isAr ? service.processStepsAr : service.processStepsEn;
 const priceRows = [
   {
     label: serviceName,
-    priceRange: `${service.priceRangeMin}–${service.priceRangeMax}`,
+    details: isAr ? 'يتم تحديد تفاصيل التنفيذ بعد الفحص' : 'Service details are confirmed after inspection',
     note: isAr
       ? `المدة: ${service.durationMinutes} دقيقة تقريباً`
       : `Duration: ~${service.durationMinutes} minutes`,
@@ -102,12 +102,6 @@ const serviceSchema = {
     '@type': 'Country',
     name: 'Saudi Arabia',
   },
-  offers: {
-    '@type': 'Offer',
-    priceCurrency: 'SAR',
-    lowPrice: service.priceRangeMin,
-    highPrice: service.priceRangeMax,
-  },
 };
 ---
 
@@ -154,7 +148,7 @@ const serviceSchema = {
     </div>
   </section>
 
-  {/* Service details: duration & price */}
+  {/* Service details */}
   <PriceTable rows={priceRows} lang={lang} />
 
   {/* Available in cities */}

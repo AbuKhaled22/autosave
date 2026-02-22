@@ -29,7 +29,7 @@ const schema = {
     'latitude': 24.7136,
     'longitude': 46.6753,
   },
-  'priceRange': '49-??? diagnostic fee',
+  'priceRange': lang === 'ar' ? 'حسب الفحص' : 'On request',
   'openingHours': 'Sa-Th 08:00-20:00',
   'description':
     lang === 'ar'
@@ -71,8 +71,6 @@ const schema = {
               ? 'تسليم السيارة لأقرب مركز معتمد مع تنسيق وضمان السعر'
               : 'Drop off at nearest certified center with coordination and price guarantee',
         },
-        'price': '49',
-        'priceCurrency': 'SAR',
       },
       {
         '@type': 'Offer',
@@ -84,8 +82,6 @@ const schema = {
               ? 'استلام السيارة وإصلاح المكيف وإعادتها'
               : 'Pick up your car, repair the AC, and return it to you',
         },
-        'price': '200',
-        'priceCurrency': 'SAR',
       },
     ],
   },

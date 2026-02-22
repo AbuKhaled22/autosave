@@ -2,6 +2,7 @@
 import type { Language } from '../lib/i18n';
 import { getContentByLanguage } from '../lib/content';
 import { getLocalizedPath, getAlternateLang } from '../lib/i18n';
+import { carBrands } from '../data/car-brands';
 import ComingSoonLink from './ComingSoonLink.astro';
 
 interface Props {
@@ -23,6 +24,14 @@ function getBasePath(path: string): string {
 const basePath = getBasePath(currentPath);
 const toggleHref = getLocalizedPath(basePath, altLang);
 const toggleLabel = altLang === 'ar' ? 'العربية' : 'English';
+const brandsWithModelPages = new Set(carBrands.filter((brand) => brand.popularity === 'high').map((brand) => brand.slug));
+const localizedBrandName = (nameAr: string, nameEn: string) => (lang === 'ar' ? nameAr : nameEn);
+
+const carsQuickLinks = [
+  { label: content.header.carsMenu.blogLinkLabel, href: '/blog' },
+  { label: content.header.carsMenu.guidesLinkLabel, href: '/blog' },
+  { label: content.header.carsMenu.reportLinkLabel, href: '/contact' },
+];
 ---
 
 <header class="sticky top-0 z-50 w-full border-b-2 border-primary/15 bg-background/90 backdrop-blur-xl">
@@ -37,8 +46,99 @@ const toggleLabel = altLang === 'ar' ? 'العربية' : 'English';
     </a>
 
     {/* Desktop Navigation */}
-    <nav class="hidden md:flex items-center gap-8">
-      {content.header.nav.map((item) => (
+    <nav class="hidden md:flex items-center gap-6">
+      <a
+        href={getLocalizedPath(content.header.nav[0].href, lang)}
+        class="nav-link-hover text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+      >
+        {content.header.nav[0].name}
+      </a>
+
+      <div class="group relative">
+        <button
+          type="button"
+          class="inline-flex items-center gap-2 rounded-lg px-2 py-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          aria-label={content.header.carsMenu.trigger}
+          aria-haspopup="true"
+        >
+          <span>{content.header.carsMenu.trigger}</span>
+          <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg>
+        </button>
+
+        <div class="pointer-events-none invisible absolute start-0 top-full z-50 mt-3 w-[min(94vw,68rem)] rounded-2xl border border-border bg-card p-5 opacity-0 shadow-xl transition-all duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100">
+          <div class="grid gap-5 lg:grid-cols-[2fr_1fr]">
+            <section>
+              <h2 class="font-display text-lg font-semibold text-foreground">{content.header.carsMenu.title}</h2>
+              <p class="mt-1 text-sm text-muted-foreground">{content.header.carsMenu.description}</p>
+              <p class="mt-3 text-xs font-semibold uppercase tracking-wide text-primary">{content.header.carsMenu.categoriesLabel}</p>
+
+              <div class="mt-3 grid max-h-[60vh] gap-2 overflow-y-auto pe-1">
+                {carBrands.map((brand) => (
+                  <details class="rounded-lg border border-border bg-background/60 p-3">
+                    <summary class="cursor-pointer list-none text-sm font-semibold text-foreground">
+                      <span>{localizedBrandName(brand.nameAr, brand.nameEn)}</span>
+                    </summary>
+                    <div class="mt-2 space-y-2 border-t border-border pt-2">
+                      <a
+                        href={getLocalizedPath(`/car-ac/${brand.slug}`, lang)}
+                        class="inline-flex rounded-md border border-primary/30 px-2.5 py-1.5 text-xs font-medium text-primary transition-colors hover:bg-primary/5"
+                      >
+                        {content.header.carsMenu.viewBrandLabel}
+                      </a>
+
+                      {brandsWithModelPages.has(brand.slug) ? (
+                        <div>
+                          <p class="text-xs font-medium text-muted-foreground">{content.header.carsMenu.modelsLabel}</p>
+                          <div class="mt-2 flex flex-wrap gap-1.5">
+                            {brand.models.map((model) => (
+                              <a
+                                href={getLocalizedPath(`/car-ac/${brand.slug}/${model.slug}`, lang)}
+                                class="rounded-md border border-border bg-card px-2 py-1 text-xs text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                              >
+                                {localizedBrandName(model.nameAr, model.nameEn)}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <div>
+                          <p class="text-xs font-medium text-muted-foreground">{content.header.carsMenu.modelsLabel}</p>
+                          <div class="mt-2 flex flex-wrap gap-1.5">
+                            {brand.models.map((model) => (
+                              <span class="rounded-md border border-border bg-card px-2 py-1 text-xs text-muted-foreground">
+                                {localizedBrandName(model.nameAr, model.nameEn)}
+                              </span>
+                            ))}
+                          </div>
+                          <p class="mt-2 text-xs text-muted-foreground">{content.header.carsMenu.noModelPagesLabel}</p>
+                        </div>
+                      )}
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </section>
+
+            <aside class="rounded-xl border border-border bg-secondary/35 p-4">
+              <h3 class="font-display text-base font-semibold text-foreground">{content.header.carsMenu.quickLinksLabel}</h3>
+              <div class="mt-3 space-y-2">
+                {carsQuickLinks.map((link) => (
+                  <a
+                    href={getLocalizedPath(link.href, lang)}
+                    class="block rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+
+      {content.header.nav.slice(1).map((item) => (
         <a
           href={getLocalizedPath(item.href, lang)}
           class="nav-link-hover text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
@@ -84,7 +184,7 @@ const toggleLabel = altLang === 'ar' ? 'العربية' : 'English';
   {/* Mobile Navigation */}
   <div id="mobile-menu" class="mobile-menu-enter md:hidden">
     <div>
-      <nav class="container mx-auto px-4 py-5 flex flex-col gap-1 border-t-2 border-primary/10 bg-background">
+      <nav class="container mx-auto flex flex-col gap-1 border-t-2 border-primary/10 bg-background px-4 py-5">
         {content.header.nav.map((item) => (
           <a
             href={getLocalizedPath(item.href, lang)}
@@ -93,6 +193,65 @@ const toggleLabel = altLang === 'ar' ? 'العربية' : 'English';
             {item.name}
           </a>
         ))}
+
+        <section class="mt-2 rounded-xl border border-border bg-secondary/25 p-3">
+          <h2 class="font-display text-base font-semibold text-foreground">{content.header.carsMenu.title}</h2>
+          <p class="mt-1 text-xs text-muted-foreground">{content.header.carsMenu.description}</p>
+
+          <div class="mt-3 max-h-72 space-y-2 overflow-y-auto">
+            {carBrands.map((brand) => (
+              <details class="rounded-lg border border-border bg-card p-2.5">
+                <summary class="cursor-pointer list-none text-sm font-semibold text-foreground">
+                  {localizedBrandName(brand.nameAr, brand.nameEn)}
+                </summary>
+                <div class="mt-2 space-y-2 border-t border-border pt-2">
+                  <a
+                    href={getLocalizedPath(`/car-ac/${brand.slug}`, lang)}
+                    class="inline-flex rounded-md border border-primary/30 px-2.5 py-1.5 text-xs font-medium text-primary"
+                  >
+                    {content.header.carsMenu.viewBrandLabel}
+                  </a>
+
+                  {brandsWithModelPages.has(brand.slug) ? (
+                    <div class="flex flex-wrap gap-1.5">
+                      {brand.models.map((model) => (
+                        <a
+                          href={getLocalizedPath(`/car-ac/${brand.slug}/${model.slug}`, lang)}
+                          class="rounded-md border border-border px-2 py-1 text-xs text-foreground"
+                        >
+                          {localizedBrandName(model.nameAr, model.nameEn)}
+                        </a>
+                      ))}
+                    </div>
+                  ) : (
+                    <div>
+                      <div class="flex flex-wrap gap-1.5">
+                        {brand.models.map((model) => (
+                          <span class="rounded-md border border-border px-2 py-1 text-xs text-muted-foreground">
+                            {localizedBrandName(model.nameAr, model.nameEn)}
+                          </span>
+                        ))}
+                      </div>
+                      <p class="mt-2 text-xs text-muted-foreground">{content.header.carsMenu.noModelPagesLabel}</p>
+                    </div>
+                  )}
+                </div>
+              </details>
+            ))}
+          </div>
+
+          <div class="mt-3 grid gap-2">
+            {carsQuickLinks.map((link) => (
+              <a
+                href={getLocalizedPath(link.href, lang)}
+                class="rounded-lg border border-border bg-card px-3 py-2 text-xs font-medium text-foreground"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </section>
+
         <ComingSoonLink
           href={getLocalizedPath('/contact', lang)}
           lang={lang}

@@ -11,8 +11,8 @@ interface Props {
     popular: string;
     plans: {
       name: string;
-      price: string;
-      currency: string;
+      price?: string;
+      currency?: string;
       description: string;
       cta: string;
       features: string[];
@@ -48,10 +48,7 @@ const { content, lang } = Astro.props;
             </span>
           )}
           <h3 class="text-xl font-bold font-display mb-3">{plan.name}</h3>
-          <div class="flex items-baseline gap-1.5 mb-5">
-            <span class="text-4xl font-bold gold-gradient-text font-display">{plan.price}</span>
-            <span class="text-muted-foreground text-sm">{plan.currency}</span>
-          </div>
+          <p class="text-sm font-semibold text-primary mb-5">{lang === 'ar' ? 'تفاصيل الرسوم عند الطلب' : 'Service fee details on request'}</p>
           <p class="text-sm text-muted-foreground mb-7">{plan.description}</p>
           <ul class="space-y-3.5 mb-8">
             {plan.features.map((feature) => (

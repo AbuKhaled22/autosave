@@ -14,11 +14,11 @@ const content = getContentByLanguage(lang);
 const pricingFaqs = [
   {
     question: 'كم تكلفة إصلاح مكيف السيارة في السعودية؟',
-    answer: 'تتراوح تكلفة إصلاح مكيف السيارة بين 80 و 5,000 ريال حسب نوع العطل. تعبئة الفريون تبدأ من 150 ريال، بينما تغيير الكمبروسر قد يصل إلى 3,500 ريال.',
+    answer: 'تعتمد تكلفة الإصلاح على نوع العطل وحالة النظام ونوع السيارة. يتم تحديد التفاصيل بعد الفحص الفني.',
   },
   {
     question: 'هل أسعاركم تشمل القطع وأجرة العمل؟',
-    answer: 'رسوم الخدمة (49 أو 200 ريال) تغطي التنسيق وضبط الجودة وضمان السعر. القطع وأجرة الإصلاح تُحسب بشكل منفصل بأفضل الأسعار المضمونة.',
+    answer: 'رسوم الخدمة تغطي التنسيق وضبط الجودة. القطع وأجرة الإصلاح يتم توضيحها بشكل منفصل بعد التشخيص.',
   },
   {
     question: 'كيف تضمنون أفضل سعر لقطع الغيار؟',
@@ -30,7 +30,7 @@ const pricingFaqs = [
   },
   {
     question: 'ما الفرق بين خدمة التسليم للمركز وخدمة الاستلام والإرجاع؟',
-    answer: 'في خدمة التسليم (49 ريال) تُسلم سيارتك بنفسك لأقرب مركز معتمد. في خدمة الاستلام والإرجاع (200 ريال) نستلم سيارتك من باب منزلك ونعيدها بعد الإصلاح.',
+    answer: 'في خدمة التسليم للمركز تقوم بإيصال سيارتك بنفسك لأقرب مركز معتمد. في خدمة الاستلام والإرجاع نستلم السيارة من موقعك ونعيدها بعد الانتهاء.',
   },
   {
     question: 'هل الأسعار تختلف حسب نوع السيارة؟',
@@ -71,11 +71,7 @@ const pricingFaqs = [
         <div class="rounded-2xl border border-border bg-card p-8 shadow-sm card-hover-lift" data-animate="fade-in-up">
           <h3 class="text-xl font-bold font-display">خدمة التسليم للمركز</h3>
           <p class="mt-2 text-sm text-muted-foreground">تُسلم سيارتك لأقرب مركز معتمد ونحن نتولى التنسيق.</p>
-          <div class="mt-6 flex items-baseline gap-1">
-            <span class="text-5xl font-bold font-display text-primary">49</span>
-            <span class="text-lg text-muted-foreground">ريال</span>
-          </div>
-          <p class="mt-1 text-xs text-muted-foreground">رسوم الخدمة فقط</p>
+          <p class="mt-6 text-sm font-semibold text-primary">تفاصيل الرسوم تُحدد عند الطلب</p>
           <ul class="mt-8 space-y-3">
             <li class="flex items-start gap-3">
               <svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
@@ -118,11 +114,7 @@ const pricingFaqs = [
           <div class="absolute -top-4 start-1/2 -translate-x-1/2 rounded-full gold-gradient px-4 py-1 text-xs font-bold text-white">الأكثر طلبا</div>
           <h3 class="text-xl font-bold font-display">استلام وإرجاع</h3>
           <p class="mt-2 text-sm text-muted-foreground">نستلم سيارتك من باب منزلك ونعيدها بعد الإصلاح.</p>
-          <div class="mt-6 flex items-baseline gap-1">
-            <span class="text-5xl font-bold font-display text-primary">200</span>
-            <span class="text-lg text-muted-foreground">ريال</span>
-          </div>
-          <p class="mt-1 text-xs text-muted-foreground">رسوم الخدمة فقط</p>
+          <p class="mt-6 text-sm font-semibold text-primary">تفاصيل الرسوم تُحدد عند الطلب</p>
           <ul class="mt-8 space-y-3">
             <li class="flex items-start gap-3">
               <svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
@@ -168,17 +160,17 @@ const pricingFaqs = [
           </div>
         </div>
       </div>
-      <p class="mt-8 text-center text-sm text-muted-foreground max-w-2xl mx-auto">* رسوم الخدمة تشمل التنسيق وضبط الجودة وضمان السعر. القطع وأجرة الإصلاح تُحسب بشكل منفصل بأفضل الأسعار المضمونة.</p>
+      <p class="mt-8 text-center text-sm text-muted-foreground max-w-2xl mx-auto">* يتم توضيح جميع التفاصيل بعد الفحص الأولي لضمان وضوح نطاق العمل.</p>
     </div>
   </section>
 
-  {/* Service Pricing Table */}
+  {/* Service Details Table */}
   <section class="py-20 lg:py-28 bg-secondary/40">
     <div class="container mx-auto px-4">
       <div class="text-center mb-14" data-animate="fade-in-up">
-        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">أسعار الخدمات</span>
-        <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">تكلفة خدمات صيانة المكيف</h2>
-        <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">أسعار تقديرية لأعمال الإصلاح والصيانة. السعر النهائي يُحدد بعد الفحص حسب نوع السيارة وحالة المكيف.</p>
+        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">تفاصيل الخدمات</span>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">نظرة عامة على خدمات صيانة المكيف</h2>
+        <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">تفاصيل عامة عن الخدمات ومدة التنفيذ. يتم تحديد نطاق العمل النهائي بعد الفحص.</p>
       </div>
 
       <div class="overflow-x-auto max-w-4xl mx-auto" data-animate="fade-in-up">
@@ -187,7 +179,7 @@ const pricingFaqs = [
             <tr class="bg-foreground text-card">
               <th class="px-6 py-4 text-start text-sm font-semibold font-display">الخدمة</th>
               <th class="px-6 py-4 text-start text-sm font-semibold font-display">المدة التقديرية</th>
-              <th class="px-6 py-4 text-start text-sm font-semibold font-display">نطاق السعر (ريال)</th>
+              <th class="px-6 py-4 text-start text-sm font-semibold font-display">ملاحظات</th>
               <th class="px-6 py-4 text-center text-sm font-semibold font-display">التفاصيل</th>
             </tr>
           </thead>
@@ -203,7 +195,7 @@ const pricingFaqs = [
                     : `${service.durationMinutes} دقيقة`}
                 </td>
                 <td class="px-6 py-4">
-                  <span class="font-semibold text-primary text-sm">{service.priceRangeMin} - {service.priceRangeMax}</span>
+                  <span class="font-semibold text-primary text-sm">يحدد بعد الفحص</span>
                 </td>
                 <td class="px-6 py-4 text-center">
                   <ComingSoonLink
@@ -222,13 +214,13 @@ const pricingFaqs = [
     </div>
   </section>
 
-  {/* Parts Pricing Table */}
+  {/* Parts Details Table */}
   <section class="py-20 lg:py-28">
     <div class="container mx-auto px-4">
       <div class="text-center mb-14" data-animate="fade-in-up">
-        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">أسعار القطع</span>
-        <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">أسعار قطع غيار مكيف السيارة</h2>
-        <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">مقارنة بين أسعار القطع الأصلية (OEM) والبديلة. نبحث لك عن أفضل سعر من موردين معتمدين.</p>
+        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">تفاصيل القطع</span>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">قطع غيار مكيف السيارة</h2>
+        <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">معلومات عامة عن القطع المتاحة ونوعها. يتم تحديد الخيارات المناسبة بعد التشخيص.</p>
       </div>
 
       <div class="overflow-x-auto max-w-5xl mx-auto" data-animate="fade-in-up">
@@ -236,8 +228,8 @@ const pricingFaqs = [
           <thead>
             <tr class="bg-foreground text-card">
               <th class="px-6 py-4 text-start text-sm font-semibold font-display">القطعة</th>
-              <th class="px-6 py-4 text-start text-sm font-semibold font-display">أصلي (OEM) - ريال</th>
-              <th class="px-6 py-4 text-start text-sm font-semibold font-display">بديل - ريال</th>
+              <th class="px-6 py-4 text-start text-sm font-semibold font-display">توفر أصلي (OEM)</th>
+              <th class="px-6 py-4 text-start text-sm font-semibold font-display">توفر بديل</th>
               <th class="px-6 py-4 text-center text-sm font-semibold font-display">التفاصيل</th>
             </tr>
           </thead>
@@ -247,11 +239,9 @@ const pricingFaqs = [
                 <td class="px-6 py-4">
                   <span class="font-semibold text-sm">{component.nameAr}</span>
                 </td>
-                <td class="px-6 py-4 text-sm text-muted-foreground">
-                  {component.priceRangeOEM.min} - {component.priceRangeOEM.max}
-                </td>
+                <td class="px-6 py-4 text-sm text-muted-foreground">متاح حسب نوع السيارة</td>
                 <td class="px-6 py-4">
-                  <span class="font-semibold text-primary text-sm">{component.priceRangeAftermarket.min} - {component.priceRangeAftermarket.max}</span>
+                  <span class="font-semibold text-primary text-sm">خيارات متعددة حسب الفحص</span>
                 </td>
                 <td class="px-6 py-4 text-center">
                   <ComingSoonLink
@@ -365,8 +355,8 @@ const pricingFaqs = [
     <div class="hero-pattern"></div>
     <div class="container mx-auto px-4 text-center relative z-10">
       <div class="w-16 h-1 gold-gradient mx-auto mb-8 rounded-full" data-animate="scale-in"></div>
-      <h2 class="text-3xl font-bold font-display mb-5" data-animate="fade-in-up">احصل على عرض سعر مجاني</h2>
-      <p class="text-lg text-[#f0ebe0]/65 max-w-2xl mx-auto mb-10" data-animate="fade-in-up" data-animate-delay="100">تواصل معنا عبر واتساب واحصل على تشخيص وعرض سعر خلال دقائق. بدون التزام.</p>
+      <h2 class="text-3xl font-bold font-display mb-5" data-animate="fade-in-up">احصل على استشارة مجانية</h2>
+      <p class="text-lg text-[#f0ebe0]/65 max-w-2xl mx-auto mb-10" data-animate="fade-in-up" data-animate-delay="100">تواصل معنا عبر واتساب للحصول على تشخيص أولي وتفاصيل الخدمة خلال دقائق. بدون التزام.</p>
       <ComingSoonLink
         href={getLocalizedPath('/contact', lang)}
         lang={lang}
@@ -403,12 +393,6 @@ const pricingFaqs = [
         "itemOffered": {
           "@type": "Service",
           "name": service.nameAr,
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "priceCurrency": "SAR",
-          "minPrice": service.priceRangeMin,
-          "maxPrice": service.priceRangeMax,
         }
       }))
     }

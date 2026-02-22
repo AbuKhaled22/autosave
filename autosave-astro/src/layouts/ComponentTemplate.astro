@@ -45,12 +45,12 @@ const whatsappMessage = isAr
 const priceRows = [
   {
     label: isAr ? 'قطعة أصلية (OEM)' : 'OEM Part',
-    priceRange: `${component.priceRangeOEM.min}–${component.priceRangeOEM.max}`,
+    details: isAr ? 'متاح حسب نوع السيارة' : 'Available based on vehicle type',
     note: isAr ? 'من الشركة المصنعة' : 'From manufacturer',
   },
   {
     label: isAr ? 'قطعة بديلة' : 'Aftermarket Part',
-    priceRange: `${component.priceRangeAftermarket.min}–${component.priceRangeAftermarket.max}`,
+    details: isAr ? 'خيارات متعددة بعد الفحص' : 'Multiple options after inspection',
     note: isAr ? 'جودة عالية بسعر أقل' : 'High quality at lower price',
   },
 ];
@@ -87,12 +87,6 @@ const productSchema = {
   name: isAr ? `${compName} مكيف السيارة` : `Car AC ${compName}`,
   description: pageDescription,
   category: isAr ? 'قطع غيار مكيف السيارة' : 'Car AC Parts',
-  offers: {
-    '@type': 'AggregateOffer',
-    priceCurrency: 'SAR',
-    lowPrice: component.priceRangeAftermarket.min,
-    highPrice: component.priceRangeOEM.max,
-  },
 };
 ---
 
@@ -170,11 +164,11 @@ const productSchema = {
     </div>
   </section>
 
-  {/* Pricing */}
+  {/* Details */}
   <PriceTable
     rows={priceRows}
     lang={lang}
-    title={isAr ? `أسعار ${compName}` : `${compName} Pricing`}
+    title={isAr ? `تفاصيل ${compName}` : `${compName} Details`}
   />
 
   {/* FAQ */}

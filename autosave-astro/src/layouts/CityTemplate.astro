@@ -22,6 +22,11 @@ interface Props {
 const { city, lang } = Astro.props;
 const isAr = lang === 'ar';
 
+const redactMoney = (text: string) =>
+  text
+    .replace(/\$\s*\d[\d,]*(?:\s*-\s*\$?\d[\d,]*)?/g, isAr ? 'حسب الفحص' : 'after inspection')
+    .replace(/\d[\d,]*(?:\s*-\s*\d[\d,]*)?\s*(?:\+)?\s*(?:SAR|ريال(?:\s+سعودي)?|ر\.س)/gi, isAr ? 'حسب الفحص' : 'after inspection');
+
 const cityName = isAr ? city.nameAr : city.nameEn;
 const regionName = isAr ? city.regionAr : city.regionEn;
 
@@ -57,7 +62,7 @@ const relatedCities = cities
       ? `إصلاح مكيف السيارة في ${c.nameAr}`
       : `Car AC Repair in ${c.nameEn}`,
     href: isAr ? `/services/${c.slug}` : `/en/services/${c.slug}`,
-    description: isAr ? c.introAr : c.introEn,
+    description: redactMoney(isAr ? c.introAr : c.introEn),
   }));
 
 // Neighborhood links (for cities with neighborhoods)
@@ -81,7 +86,7 @@ const neighborhoodLinks = city.neighborhoods.map((n) => ({
   <ProgrammaticHero
     eyebrow={heroEyebrow}
     title={heroTitle}
-    description={isAr ? city.introAr : city.introEn}
+    description={redactMoney(isAr ? city.introAr : city.introEn)}
     lang={lang}
     breadcrumbs={breadcrumbs}
   />
@@ -96,7 +101,7 @@ const neighborhoodLinks = city.neighborhoods.map((n) => ({
             : `Why Does Your Car AC Need Service in ${cityName}?`}
         </h2>
         <p class="mt-4 text-muted-foreground">
-          {isAr ? city.climateNoteAr : city.climateNoteEn}
+          {redactMoney(isAr ? city.climateNoteAr : city.climateNoteEn)}
         </p>
         <div class="mt-6 grid gap-4 sm:grid-cols-2">
           <div class="rounded-xl border border-border bg-card p-5 shadow-sm border-t-2 border-t-primary/25">

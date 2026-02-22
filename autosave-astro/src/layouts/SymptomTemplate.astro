@@ -82,8 +82,8 @@ const allRelatedLinks = [...relatedSymptomLinks, ...relatedComponentLinks];
 // Price range row
 const priceRows = [
   {
-    label: isAr ? 'تكلفة الإصلاح التقديرية' : 'Estimated Repair Cost',
-    priceRange: `${symptom.costRangeMin}–${symptom.costRangeMax}`,
+    label: isAr ? 'تفاصيل الإصلاح' : 'Repair Details',
+    details: isAr ? 'تُحدد بعد الفحص الفني حسب السبب' : 'Confirmed after technical inspection based on root cause',
     note: isAr ? 'حسب السبب ونوع السيارة' : 'Depends on cause and vehicle type',
   },
 ];
@@ -168,11 +168,11 @@ const priceRows = [
     </div>
   </section>
 
-  {/* Price estimate */}
+  {/* Service details */}
   <PriceTable
     rows={priceRows}
     lang={lang}
-    title={isAr ? 'تكلفة الإصلاح' : 'Repair Cost'}
+    title={isAr ? 'تفاصيل الإصلاح' : 'Repair Details'}
   />
 
   {/* FAQ */}

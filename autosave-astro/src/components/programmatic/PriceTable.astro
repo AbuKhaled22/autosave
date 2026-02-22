@@ -7,7 +7,7 @@ import type { Language } from '../../lib/i18n';
 
 interface PriceRow {
   label: string;
-  priceRange: string;
+  details: string;
   note?: string;
 }
 
@@ -15,15 +15,12 @@ interface Props {
   rows: PriceRow[];
   lang: Language;
   title?: string;
-  currency?: string;
 }
 
-const { rows, lang, title, currency } = Astro.props;
+const { rows, lang, title } = Astro.props;
 
 const sectionTitle =
-  title ?? (lang === 'ar' ? 'الأسعار التقديرية' : 'Estimated Pricing');
-
-const currencyLabel = currency ?? (lang === 'ar' ? 'ريال' : 'SAR');
+  title ?? (lang === 'ar' ? 'تفاصيل الخدمة' : 'Service Details');
 ---
 
 {rows.length > 0 && (
@@ -31,7 +28,7 @@ const currencyLabel = currency ?? (lang === 'ar' ? 'ريال' : 'SAR');
     <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
       <div class="mb-10 text-center">
         <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-primary">
-          {lang === 'ar' ? 'التكلفة' : 'Cost'}
+          {lang === 'ar' ? 'التفاصيل' : 'Details'}
         </span>
         <h2 class="mt-4 font-display text-2xl font-bold text-foreground sm:text-3xl">
           {sectionTitle}
@@ -50,7 +47,7 @@ const currencyLabel = currency ?? (lang === 'ar' ? 'ريال' : 'SAR');
               {row.label}
             </div>
             <div class="mt-1 text-lg font-bold text-primary">
-              {row.priceRange} <span class="text-sm font-normal text-muted-foreground">{currencyLabel}</span>
+              {row.details}
             </div>
             {row.note && (
               <p class="mt-1 text-sm text-muted-foreground">{row.note}</p>
@@ -68,7 +65,7 @@ const currencyLabel = currency ?? (lang === 'ar' ? 'ريال' : 'SAR');
                 {lang === 'ar' ? 'الخدمة' : 'Service'}
               </th>
               <th class="px-6 py-4 text-start font-display font-semibold text-foreground">
-                {lang === 'ar' ? 'السعر' : 'Price'}
+                {lang === 'ar' ? 'التفاصيل' : 'Details'}
               </th>
               <th class="px-6 py-4 text-start font-display font-semibold text-foreground">
                 {lang === 'ar' ? 'ملاحظات' : 'Notes'}
@@ -87,7 +84,7 @@ const currencyLabel = currency ?? (lang === 'ar' ? 'ريال' : 'SAR');
                   {row.label}
                 </td>
                 <td class="px-6 py-4 font-bold text-primary">
-                  {row.priceRange} <span class="text-sm font-normal text-muted-foreground">{currencyLabel}</span>
+                  {row.details}
                 </td>
                 <td class="px-6 py-4 text-sm text-muted-foreground">
                   {row.note ?? '—'}
@@ -100,8 +97,8 @@ const currencyLabel = currency ?? (lang === 'ar' ? 'ريال' : 'SAR');
 
       <p class="mt-4 text-center text-sm text-muted-foreground">
         {lang === 'ar'
-          ? '* الأسعار تقديرية وقد تختلف حسب نوع السيارة وحالتها. تواصل معنا للحصول على عرض سعر دقيق.'
-          : '* Prices are estimates and may vary depending on vehicle type and condition. Contact us for an accurate quote.'}
+          ? '* يتم تأكيد تفاصيل الخدمة بعد الفحص الأولي حسب حالة السيارة.'
+          : '* Service details are confirmed after initial inspection based on vehicle condition.'}
       </p>
     </div>
   </section>

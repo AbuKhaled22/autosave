@@ -17,8 +17,15 @@ interface Props {
 
 const { content } = Astro.props;
 
+const sanitizeMoney = (text: string) =>
+  text
+    .replace(/\$\s*\d[\d,]*(?:\s*-\s*\$?\d[\d,]*)?/g, 'on request')
+    .replace(/\d[\d,]*(?:\s*-\s*\d[\d,]*)?\s*(?:\+)?\s*(?:SAR|ريال(?:\s+سعودي)?|ر\.س)/gi, 'after inspection');
+
+const safeContent = sanitizeMoney(content);
+
 // Parse raw content lines
-const contentLines = content
+const contentLines = safeContent
   .split('\n')
   .filter((line: string) => line.trim())
   .map((line: string) => line.trim());

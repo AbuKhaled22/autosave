@@ -28,6 +28,11 @@ if (!post) {
 const relatedPosts = getRelatedPosts(slug, 3, lang);
 const canonicalUrl = Astro.url.href;
 
+const sanitizeMoney = (text: string) =>
+  text
+    .replace(/\$\s*\d[\d,]*(?:\s*-\s*\$?\d[\d,]*)?/g, 'on request')
+    .replace(/\d[\d,]*(?:\s*-\s*\d[\d,]*)?\s*(?:\+)?\s*(?:SAR|ريال(?:\s+سعودي)?|ر\.س)/gi, 'after inspection');
+
 const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
@@ -37,7 +42,7 @@ const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
 
 <PageLayout
   title={post.title}
-  description={post.excerpt}
+  description={sanitizeMoney(post.excerpt)}
   lang={lang}
   keywords={post.tags}
   ogType="article"
@@ -71,7 +76,7 @@ const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
           </span>
         </div>
         <h1 class="hero-animate hero-animate-delay-1 text-3xl font-bold tracking-tight font-display sm:text-4xl lg:text-5xl">{post.title}</h1>
-        <p class="hero-animate hero-animate-delay-2 mt-4 text-lg text-[#f0ebe0]/65">{post.excerpt}</p>
+        <p class="hero-animate hero-animate-delay-2 mt-4 text-lg text-[#f0ebe0]/65">{sanitizeMoney(post.excerpt)}</p>
       </div>
     </header>
 

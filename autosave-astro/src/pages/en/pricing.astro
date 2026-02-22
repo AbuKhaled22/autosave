@@ -14,11 +14,11 @@ const content = getContentByLanguage(lang);
 const pricingFaqs = [
   {
     question: 'How much does car AC repair cost in Saudi Arabia?',
-    answer: 'Car AC repair costs range from 80 to 5,000 SAR depending on the issue. A freon recharge starts at 150 SAR, while a compressor replacement can cost up to 3,500 SAR.',
+    answer: 'Repair cost depends on the issue type, system condition, and vehicle model. Final details are shared after technical inspection.',
   },
   {
     question: 'Do your prices include parts and labor?',
-    answer: 'The service fee (49 or 200 SAR) covers coordination, quality assurance, and price matching. Parts and repair labor are billed separately at guaranteed best prices.',
+    answer: 'Service fees cover coordination and quality assurance. Parts and labor are explained separately after diagnosis.',
   },
   {
     question: 'How do you guarantee the best price on spare parts?',
@@ -30,7 +30,7 @@ const pricingFaqs = [
   },
   {
     question: 'What is the difference between Drop-Off and Pickup service?',
-    answer: 'With Drop-Off service (49 SAR), you drive your car to the nearest certified center. With Pickup & Return service (200 SAR), we collect your car from your doorstep and return it after repair.',
+    answer: 'With Drop-Off service, you drive your car to the nearest certified center. With Pickup & Return service, we collect your car and return it after repair.',
   },
   {
     question: 'Do prices vary by car brand?',
@@ -71,11 +71,7 @@ const pricingFaqs = [
         <div class="rounded-2xl border border-border bg-card p-8 shadow-sm card-hover-lift" data-animate="fade-in-up">
           <h3 class="text-xl font-bold font-display">Drop-Off Service</h3>
           <p class="mt-2 text-sm text-muted-foreground">Drive to the nearest certified center and we handle the coordination.</p>
-          <div class="mt-6 flex items-baseline gap-1">
-            <span class="text-5xl font-bold font-display text-primary">49</span>
-            <span class="text-lg text-muted-foreground">SAR</span>
-          </div>
-          <p class="mt-1 text-xs text-muted-foreground">Service fee only</p>
+          <p class="mt-6 text-sm font-semibold text-primary">Service fee details are shared on request</p>
           <ul class="mt-8 space-y-3">
             <li class="flex items-start gap-3">
               <svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
@@ -118,11 +114,7 @@ const pricingFaqs = [
           <div class="absolute -top-4 start-1/2 -translate-x-1/2 rounded-full gold-gradient px-4 py-1 text-xs font-bold text-white">Most Popular</div>
           <h3 class="text-xl font-bold font-display">Pickup & Return</h3>
           <p class="mt-2 text-sm text-muted-foreground">We pick up your car from your door and return it after repair.</p>
-          <div class="mt-6 flex items-baseline gap-1">
-            <span class="text-5xl font-bold font-display text-primary">200</span>
-            <span class="text-lg text-muted-foreground">SAR</span>
-          </div>
-          <p class="mt-1 text-xs text-muted-foreground">Service fee only</p>
+          <p class="mt-6 text-sm font-semibold text-primary">Service fee details are shared on request</p>
           <ul class="mt-8 space-y-3">
             <li class="flex items-start gap-3">
               <svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
@@ -168,17 +160,17 @@ const pricingFaqs = [
           </div>
         </div>
       </div>
-      <p class="mt-8 text-center text-sm text-muted-foreground max-w-2xl mx-auto">* Service fees cover coordination, quality assurance, and price matching. Spare parts and repair labor are billed separately at guaranteed best prices.</p>
+      <p class="mt-8 text-center text-sm text-muted-foreground max-w-2xl mx-auto">* All service details are confirmed after initial inspection for full clarity of work scope.</p>
     </div>
   </section>
 
-  {/* Service Pricing Table */}
+  {/* Service Details Table */}
   <section class="py-20 lg:py-28 bg-secondary/40">
     <div class="container mx-auto px-4">
       <div class="text-center mb-14" data-animate="fade-in-up">
-        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">Service Pricing</span>
-        <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">AC Service Cost Estimates</h2>
-        <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">Estimated pricing for repair and maintenance services. Final price is determined after inspection based on vehicle type and AC condition.</p>
+        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">Service Details</span>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">AC Service Overview</h2>
+        <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">General service information and estimated duration. Final scope is confirmed after inspection.</p>
       </div>
 
       <div class="overflow-x-auto max-w-4xl mx-auto" data-animate="fade-in-up">
@@ -187,7 +179,7 @@ const pricingFaqs = [
             <tr class="bg-foreground text-card">
               <th class="px-6 py-4 text-start text-sm font-semibold font-display">Service</th>
               <th class="px-6 py-4 text-start text-sm font-semibold font-display">Est. Duration</th>
-              <th class="px-6 py-4 text-start text-sm font-semibold font-display">Price Range (SAR)</th>
+              <th class="px-6 py-4 text-start text-sm font-semibold font-display">Notes</th>
               <th class="px-6 py-4 text-center text-sm font-semibold font-display">Details</th>
             </tr>
           </thead>
@@ -203,7 +195,7 @@ const pricingFaqs = [
                     : `${service.durationMinutes} min`}
                 </td>
                 <td class="px-6 py-4">
-                  <span class="font-semibold text-primary text-sm">{service.priceRangeMin} - {service.priceRangeMax}</span>
+                  <span class="font-semibold text-primary text-sm">Confirmed after inspection</span>
                 </td>
                 <td class="px-6 py-4 text-center">
                   <ComingSoonLink
@@ -222,13 +214,13 @@ const pricingFaqs = [
     </div>
   </section>
 
-  {/* Parts Pricing Table */}
+  {/* Parts Details Table */}
   <section class="py-20 lg:py-28">
     <div class="container mx-auto px-4">
       <div class="text-center mb-14" data-animate="fade-in-up">
-        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">Parts Pricing</span>
-        <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">AC Spare Parts Prices</h2>
-        <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">Compare OEM and aftermarket part prices. We search certified suppliers to find you the best value.</p>
+        <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">Parts Details</span>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">AC Spare Parts Information</h2>
+        <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">General information about available parts and options. Suitability is confirmed after diagnosis.</p>
       </div>
 
       <div class="overflow-x-auto max-w-5xl mx-auto" data-animate="fade-in-up">
@@ -236,8 +228,8 @@ const pricingFaqs = [
           <thead>
             <tr class="bg-foreground text-card">
               <th class="px-6 py-4 text-start text-sm font-semibold font-display">Part</th>
-              <th class="px-6 py-4 text-start text-sm font-semibold font-display">OEM Price (SAR)</th>
-              <th class="px-6 py-4 text-start text-sm font-semibold font-display">Aftermarket (SAR)</th>
+              <th class="px-6 py-4 text-start text-sm font-semibold font-display">OEM Availability</th>
+              <th class="px-6 py-4 text-start text-sm font-semibold font-display">Aftermarket Availability</th>
               <th class="px-6 py-4 text-center text-sm font-semibold font-display">Details</th>
             </tr>
           </thead>
@@ -247,11 +239,9 @@ const pricingFaqs = [
                 <td class="px-6 py-4">
                   <span class="font-semibold text-sm">{component.nameEn}</span>
                 </td>
-                <td class="px-6 py-4 text-sm text-muted-foreground">
-                  {component.priceRangeOEM.min} - {component.priceRangeOEM.max}
-                </td>
+                <td class="px-6 py-4 text-sm text-muted-foreground">Available based on vehicle type</td>
                 <td class="px-6 py-4">
-                  <span class="font-semibold text-primary text-sm">{component.priceRangeAftermarket.min} - {component.priceRangeAftermarket.max}</span>
+                  <span class="font-semibold text-primary text-sm">Multiple options after inspection</span>
                 </td>
                 <td class="px-6 py-4 text-center">
                   <ComingSoonLink
@@ -365,8 +355,8 @@ const pricingFaqs = [
     <div class="hero-pattern"></div>
     <div class="container mx-auto px-4 text-center relative z-10">
       <div class="w-16 h-1 gold-gradient mx-auto mb-8 rounded-full" data-animate="scale-in"></div>
-      <h2 class="text-3xl font-bold font-display mb-5" data-animate="fade-in-up">Get a Free Quote</h2>
-      <p class="text-lg text-[#f0ebe0]/65 max-w-2xl mx-auto mb-10" data-animate="fade-in-up" data-animate-delay="100">Contact us via WhatsApp for a diagnosis and price quote within minutes. No commitment required.</p>
+      <h2 class="text-3xl font-bold font-display mb-5" data-animate="fade-in-up">Get a Free Consultation</h2>
+      <p class="text-lg text-[#f0ebe0]/65 max-w-2xl mx-auto mb-10" data-animate="fade-in-up" data-animate-delay="100">Contact us via WhatsApp for a quick initial diagnosis and service details. No commitment required.</p>
       <ComingSoonLink
         href={getLocalizedPath('/contact', lang)}
         lang={lang}
@@ -403,12 +393,6 @@ const pricingFaqs = [
         "itemOffered": {
           "@type": "Service",
           "name": service.nameEn,
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "priceCurrency": "SAR",
-          "minPrice": service.priceRangeMin,
-          "maxPrice": service.priceRangeMax,
         }
       }))
     }
