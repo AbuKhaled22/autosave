@@ -80,13 +80,13 @@ const carImages = Array.from({ length: 21 }, (_, index) => {
       <header class="mb-10 text-center" data-animate="fade-in-up">
         <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">معرض السيارات التي تم خدمتها</h2>
         <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-          عرض كامل لبعض السيارات التي تمت خدمتها داخل المركز المعتمد، بتصميم حديث يوضح جودة العمل والنتيجة النهائية.
+          عرض كامل لبعض السيارات التي تمت خدمتها داخل المراكز المعتمدة.
         </p>
       </header>
 
-      <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <ul id="gallery-grid" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {carImages.map((image, index) => (
-          <li data-animate="fade-in-up" data-animate-delay={String(((index % 6) + 1) * 100)}>
+          <li class:list={[index >= 6 && 'gallery-hidden-item hidden']} data-animate="fade-in-up" data-animate-delay={String(((index % 6) + 1) * 100)}>
             <article class="card-hover-lift overflow-hidden rounded-xl border border-border bg-card shadow-sm">
               <figure>
                 <Image
@@ -105,6 +105,45 @@ const carImages = Array.from({ length: 21 }, (_, index) => {
           </li>
         ))}
       </ul>
+
+      <div class="mt-10 flex justify-center">
+        <button
+          id="load-more-btn"
+          type="button"
+          aria-label="عرض المزيد من الصور"
+          class="inline-flex min-h-11 min-w-44 items-center justify-center gap-2 rounded-lg border border-primary bg-primary/10 px-8 py-3 text-sm font-semibold text-primary transition hover:bg-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          <svg id="load-more-spinner" class="hidden h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <span id="load-more-text">عرض المزيد</span>
+        </button>
+      </div>
     </div>
   </section>
+
+  <script>
+    const btn = document.getElementById('load-more-btn') as HTMLButtonElement | null;
+    const spinner = document.getElementById('load-more-spinner');
+    const text = document.getElementById('load-more-text');
+    const defaultLabel = '\u0639\u0631\u0636 \u0627\u0644\u0645\u0632\u064A\u062F';
+    const loadingLabel = '\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...';
+
+    btn?.addEventListener('click', () => {
+      if (btn.disabled) return;
+      btn.disabled = true;
+      spinner?.classList.remove('hidden');
+      if (text) text.textContent = loadingLabel;
+
+      setTimeout(() => {
+        document.querySelectorAll('.gallery-hidden-item').forEach((item) => {
+          item.classList.remove('hidden', 'gallery-hidden-item');
+        });
+        spinner?.classList.add('hidden');
+        if (text) text.textContent = defaultLabel;
+        btn.disabled = false;
+      }, 10000);
+    });
+  </script>
 </PageLayout>

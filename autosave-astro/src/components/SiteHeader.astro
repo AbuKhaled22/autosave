@@ -26,7 +26,7 @@ function getBasePath(path: string): string {
 const basePath = getBasePath(currentPath);
 const toggleHref = getLocalizedPath(basePath, altLang);
 const toggleLabel = altLang === 'ar' ? 'العربية' : 'English';
-const authorizedInstallmentHref = getLocalizedPath('/authorized-installment-center', lang);
+const authorizedInstallmentHref = getLocalizedPath('/authorized-maintenance-center', lang);
 const authorizedInstallmentLabel = lang === 'ar' ? 'المراكز المعتمدة' : 'authorized maintenance Center';
 const brandsWithModelPages = new Set(carBrands.filter((brand) => brand.popularity === 'high').map((brand) => brand.slug));
 const localizedBrandName = (nameAr: string, nameEn: string) => (lang === 'ar' ? nameAr : nameEn);
