@@ -9,6 +9,10 @@ const isGitHubPages = !!process.env.GITHUB_ACTIONS;
 export default defineConfig({
   site: isGitHubPages ? 'https://AbuKhaled22.github.io' : 'https://autosaveks.com',
   base: isGitHubPages ? '/autosave' : '/',
+  redirects: {
+    '/authorized-installment-center': '/authorized-maintenance-center',
+    '/en/authorized-installment-center': '/en/authorized-maintenance-center',
+  },
   i18n: {
     defaultLocale: 'ar',
     locales: ['ar', 'en'],
