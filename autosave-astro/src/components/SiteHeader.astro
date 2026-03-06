@@ -26,6 +26,11 @@ function getBasePath(path: string): string {
 const basePath = getBasePath(currentPath);
 const toggleHref = getLocalizedPath(basePath, altLang);
 const toggleLabel = altLang === 'ar' ? 'العربية' : 'English';
+
+function resolveHeaderHref(href: string): string {
+  return getLocalizedPath(href, lang);
+}
+
 const authorizedInstallmentHref = getLocalizedPath('/authorized-maintenance-center', lang);
 const authorizedInstallmentLabel = lang === 'ar' ? 'المراكز المعتمدة' : 'authorized maintenance Center';
 const brandsWithModelPages = new Set(carBrands.filter((brand) => brand.popularity === 'high').map((brand) => brand.slug));
@@ -60,7 +65,7 @@ const carsQuickLinks = [
     {/* Desktop Navigation */}
     <nav class="hidden md:flex items-center gap-6">
       <a
-        href={getLocalizedPath(content.header.nav[0].href, lang)}
+        href={resolveHeaderHref(content.header.nav[0].href)}
         class="nav-link-hover text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
       >
         {content.header.nav[0].name}
@@ -127,7 +132,7 @@ const carsQuickLinks = [
               <div class="mt-3 space-y-2">
                 {servicesQuickLinks.map((link) => (
                   <a
-                    href={getLocalizedPath(link.href, lang)}
+                    href={resolveHeaderHref(link.href)}
                     class="block rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary"
                   >
                     {link.label}
@@ -211,7 +216,7 @@ const carsQuickLinks = [
               <div class="mt-3 space-y-2">
                 {carsQuickLinks.map((link) => (
                   <a
-                    href={getLocalizedPath(link.href, lang)}
+                    href={resolveHeaderHref(link.href)}
                     class="block rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary"
                   >
                     {link.label}
@@ -225,7 +230,7 @@ const carsQuickLinks = [
 
       {content.header.nav.slice(1).map((item) => (
         <a
-          href={getLocalizedPath(item.href, lang)}
+          href={resolveHeaderHref(item.href)}
           class="nav-link-hover text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
         >
           {item.name}
@@ -280,7 +285,7 @@ const carsQuickLinks = [
       <nav class="container mx-auto flex flex-col gap-1 border-t-2 border-primary/10 bg-background px-4 py-5">
         {content.header.nav.map((item) => (
           <a
-            href={getLocalizedPath(item.href, lang)}
+            href={resolveHeaderHref(item.href)}
             class="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary/60 py-2.5 px-3 rounded-lg transition-colors"
           >
             {item.name}
@@ -325,7 +330,7 @@ const carsQuickLinks = [
           <div class="mt-3 grid gap-2">
             {servicesQuickLinks.map((link) => (
               <a
-                href={getLocalizedPath(link.href, lang)}
+                href={resolveHeaderHref(link.href)}
                 class="rounded-lg border border-border bg-card px-3 py-2 text-xs font-medium text-foreground"
               >
                 {link.label}
@@ -383,7 +388,7 @@ const carsQuickLinks = [
           <div class="mt-3 grid gap-2">
             {carsQuickLinks.map((link) => (
               <a
-                href={getLocalizedPath(link.href, lang)}
+                href={resolveHeaderHref(link.href)}
                 class="rounded-lg border border-border bg-card px-3 py-2 text-xs font-medium text-foreground"
               >
                 {link.label}

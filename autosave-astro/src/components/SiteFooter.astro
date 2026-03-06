@@ -11,6 +11,10 @@ const { lang } = Astro.props;
 const content = getContentByLanguage(lang);
 const footer = content.footer;
 const year = new Date().getFullYear();
+
+function resolveFooterHref(href: string): string {
+  return getLocalizedPath(href, lang);
+}
 ---
 
 <footer class="footer-dark text-[#f0ebe0]/90" role="contentinfo">
@@ -43,7 +47,7 @@ const year = new Date().getFullYear();
           {footer.groups.services.links.map((link) => (
             <li>
               <a
-                href={getLocalizedPath(link.href, lang)}
+                href={resolveFooterHref(link.href)}
                 class="nav-link-hover inline-flex min-h-11 items-center text-sm text-[#f0ebe0]/60 hover:text-primary transition-colors"
                 aria-label={link.name}
               >
@@ -63,7 +67,7 @@ const year = new Date().getFullYear();
           {footer.groups.resources.links.map((link) => (
             <li>
               <a
-                href={getLocalizedPath(link.href, lang)}
+                href={resolveFooterHref(link.href)}
                 class="nav-link-hover inline-flex min-h-11 items-center text-sm text-[#f0ebe0]/60 hover:text-primary transition-colors"
                 aria-label={link.name}
               >
@@ -83,7 +87,7 @@ const year = new Date().getFullYear();
           {footer.groups.company.links.map((link) => (
             <li>
               <a
-                href={getLocalizedPath(link.href, lang)}
+                href={resolveFooterHref(link.href)}
                 class="nav-link-hover inline-flex min-h-11 items-center text-sm text-[#f0ebe0]/60 hover:text-primary transition-colors"
                 aria-label={link.name}
               >
@@ -103,7 +107,7 @@ const year = new Date().getFullYear();
       <nav aria-label={lang === 'ar' ? 'روابط قانونية' : 'Legal links'} class="flex flex-wrap items-center gap-5">
         {footer.bottomLinks.map((link) => (
           <a
-            href={getLocalizedPath(link.href, lang)}
+            href={resolveFooterHref(link.href)}
             class="nav-link-hover inline-flex min-h-11 items-center text-sm text-[#f0ebe0]/40 hover:text-primary transition-colors"
             aria-label={link.name}
           >

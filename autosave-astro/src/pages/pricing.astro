@@ -7,9 +7,12 @@ import FAQSchema from '../components/FAQSchema.astro';
 import LocalBusinessSchema from '../components/LocalBusinessSchema.astro';
 import { services } from '../data/services';
 import { components as acComponents } from '../data/components';
+import { DROP_OFF_CALENDLY_URL, getGeneralContactWhatsAppUrl, getPickupReturnWhatsAppUrl } from '../lib/whatsapp';
 
 const lang = 'ar' as const;
 const content = getContentByLanguage(lang);
+const pickupBookingUrl = getPickupReturnWhatsAppUrl(lang);
+const contactWhatsAppUrl = getGeneralContactWhatsAppUrl(lang);
 
 const pricingFaqs = [
   {
@@ -71,7 +74,8 @@ const pricingFaqs = [
         <div class="rounded-2xl border border-border bg-card p-8 shadow-sm card-hover-lift" data-animate="fade-in-up">
           <h3 class="text-xl font-bold font-display">خدمة التسليم للمركز</h3>
           <p class="mt-2 text-sm text-muted-foreground">تُسلم سيارتك لأقرب مركز معتمد ونحن نتولى التنسيق.</p>
-          <p class="mt-6 text-sm font-semibold text-primary">تفاصيل الرسوم تُحدد عند الطلب</p>
+          <p class="mt-6 text-sm font-semibold text-primary">تفاصيل رسوم الخدمة تُوضح أثناء الحجز</p>
+          <p class="mt-1 text-xs text-muted-foreground">يرجى الاطلاع على أحدث تفاصيل الرسوم قبل تأكيد الحجز.</p>
           <ul class="mt-8 space-y-3">
             <li class="flex items-start gap-3">
               <svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
@@ -79,7 +83,7 @@ const pricingFaqs = [
             </li>
             <li class="flex items-start gap-3">
               <svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-              <span class="text-sm">بحث أفضل أسعار القطع</span>
+              <span class="text-sm">بحث عن افضل القطع وارخص سعر مع ضمان ارجاع الفارق اذا وجد</span>
             </li>
             <li class="flex items-start gap-3">
               <svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
@@ -100,8 +104,10 @@ const pricingFaqs = [
           </ul>
           <div class="mt-8">
             <ComingSoonLink
-              href={getLocalizedPath('/contact', lang)}
+              href={DROP_OFF_CALENDLY_URL}
               lang={lang}
+              target="_blank"
+              rel="noopener noreferrer"
               class="block w-full rounded-lg border-2 border-primary py-3 text-center text-sm font-semibold text-primary transition hover:bg-primary hover:text-white"
             >
               احجز التسليم
@@ -126,7 +132,7 @@ const pricingFaqs = [
             </li>
             <li class="flex items-start gap-3">
               <svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-              <span class="text-sm">بحث أفضل أسعار القطع</span>
+              <span class="text-sm">بحث عن افضل القطع وارخص سعر مع ضمان ارجاع الفارق اذا وجد</span>
             </li>
             <li class="flex items-start gap-3">
               <svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
@@ -151,8 +157,10 @@ const pricingFaqs = [
           </ul>
           <div class="mt-8">
             <ComingSoonLink
-              href={getLocalizedPath('/contact', lang)}
+              href={pickupBookingUrl}
               lang={lang}
+              target="_blank"
+              rel="noopener noreferrer"
               class="block w-full rounded-lg gold-gradient gold-shimmer py-3 text-center text-sm font-semibold text-white shadow-lg shadow-primary/20 transition hover:shadow-xl"
             >
               احجز الاستلام
@@ -358,8 +366,10 @@ const pricingFaqs = [
       <h2 class="text-3xl font-bold font-display mb-5" data-animate="fade-in-up">احصل على استشارة مجانية</h2>
       <p class="text-lg text-[#f0ebe0]/65 max-w-2xl mx-auto mb-10" data-animate="fade-in-up" data-animate-delay="100">تواصل معنا عبر واتساب للحصول على تشخيص أولي وتفاصيل الخدمة خلال دقائق. بدون التزام.</p>
       <ComingSoonLink
-        href={getLocalizedPath('/contact', lang)}
+        href={contactWhatsAppUrl}
         lang={lang}
+        target="_blank"
+        rel="noopener noreferrer"
         class="inline-flex items-center justify-center rounded-lg gold-gradient gold-shimmer px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/20 transition hover:shadow-xl"
         data-animate="fade-in-up"
         data-animate-delay="200"

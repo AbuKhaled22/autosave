@@ -1,12 +1,13 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import { getContentByLanguage } from '../lib/content';
-import { getLocalizedPath } from '../lib/i18n';
 import ComingSoonLink from '../components/ComingSoonLink.astro';
+import { getGeneralContactWhatsAppUrl } from '../lib/whatsapp';
 
 const lang = 'ar' as const;
 const content = getContentByLanguage(lang);
 const terms = content.terms;
+const contactWhatsAppUrl = getGeneralContactWhatsAppUrl(lang);
 ---
 
 <PageLayout
@@ -37,7 +38,7 @@ const terms = content.terms;
             {section.bodyPrefix && (
               <p class="text-muted-foreground leading-relaxed">
                 {section.bodyPrefix}{' '}
-                <ComingSoonLink href={getLocalizedPath('/contact', lang)} lang={lang} class="text-primary font-semibold hover:underline">
+                <ComingSoonLink href={contactWhatsAppUrl} lang={lang} target="_blank" rel="noopener noreferrer" class="text-primary font-semibold hover:underline">
                   {section.bodyLink}
                 </ComingSoonLink>{' '}
                 {section.bodySuffix}

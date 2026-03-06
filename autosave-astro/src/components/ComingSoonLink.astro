@@ -12,12 +12,7 @@ interface Props {
   id?: string;
 }
 
-const { href, lang, class: className, target, rel, ariaLabel, style, id } = Astro.props;
-
-const comingSoonMessage =
-  lang === 'ar'
-    ? 'قريباً سنخدمك بطريقة احترافية.'
-    : 'Soon we will serve you in a professional way.';
+const { href, class: className, target, rel, ariaLabel, style, id } = Astro.props;
 ---
 
 <a
@@ -28,7 +23,6 @@ const comingSoonMessage =
   aria-label={ariaLabel}
   style={style}
   id={id}
-  onclick={`event.preventDefault(); alert(${JSON.stringify(comingSoonMessage)});`}
 >
   <slot />
 </a>

@@ -15,6 +15,7 @@ import type { Language } from '../lib/i18n';
 import { symptoms, getSymptomBySlug } from '../data/symptoms';
 import { getComponentBySlug } from '../data/components';
 import { getSymptomSeoByFamily, shouldNoindexThinContent } from '../lib/seo-hardening';
+import { getGeneralContactWhatsAppUrl } from '../lib/whatsapp';
 
 interface Props {
   symptom: Symptom;
@@ -23,6 +24,7 @@ interface Props {
 
 const { symptom, lang } = Astro.props;
 const isAr = lang === 'ar';
+const contactWhatsAppUrl = getGeneralContactWhatsAppUrl(lang);
 
 const symptomTitle = isAr ? symptom.titleAr : symptom.titleEn;
 const pageDescription = isAr ? symptom.descriptionAr : symptom.descriptionEn;
@@ -94,7 +96,7 @@ const intentHubLinks = [
   },
   {
     title: isAr ? 'التواصل وحجز الفحص' : 'Contact & Inspection Booking',
-    href: isAr ? '/contact' : '/en/contact',
+    href: contactWhatsAppUrl,
     description: isAr
       ? 'حجز سريع مع وصف العرض لتوجيه الفحص من البداية.'
       : 'Quick booking with symptom context to guide first inspection.',

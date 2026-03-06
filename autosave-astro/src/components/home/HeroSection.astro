@@ -1,8 +1,8 @@
 ---
 import type { Language } from '../../lib/i18n';
-import { getLocalizedPath } from '../../lib/i18n';
 import ComingSoonLink from '../ComingSoonLink.astro';
 import HeroCarSvg from './HeroCarSvg.astro';
+import { getGeneralContactWhatsAppUrl } from '../../lib/whatsapp';
 
 interface Props {
   content: {
@@ -19,6 +19,7 @@ interface Props {
 
 const { content, lang } = Astro.props;
 const isArabic = lang === 'ar';
+const contactWhatsAppUrl = getGeneralContactWhatsAppUrl(lang);
 ---
 
 <section class="relative overflow-hidden hero-gradient text-[#f0ebe0]">
@@ -40,14 +41,16 @@ const isArabic = lang === 'ar';
         </p>
         <div class="hero-animate hero-animate-delay-3 flex flex-col sm:flex-row gap-4 mb-14">
           <ComingSoonLink
-            href={getLocalizedPath('/contact', lang)}
+            href={contactWhatsAppUrl}
             lang={lang}
+            target="_blank"
+            rel="noopener noreferrer"
             class="inline-flex items-center justify-center rounded-lg gold-gradient gold-shimmer px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/20 transition hover:shadow-xl hover:shadow-primary/30"
           >
             {content.primaryCta}
           </ComingSoonLink>
           <ComingSoonLink
-            href="https://wa.me/966500000000"
+            href={contactWhatsAppUrl}
             lang={lang}
             target="_blank"
             rel="noopener noreferrer"

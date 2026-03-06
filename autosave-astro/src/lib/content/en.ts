@@ -167,7 +167,7 @@ export const enContent = {
           step: "03",
           title: "Choose Your Service",
           description:
-            "Pick your preferred service option: we pick up your car (???) or you drop it off at the center (؟؟ service assistance fee).",
+            "Pick your preferred service option: Drop-Off or Pickup & Return. Service fee details are available on the pricing page (/pricing).",
         },
         {
           step: "04",
@@ -186,14 +186,14 @@ export const enContent = {
       plans: [
         {
           name: "Drop-Off Service",
-          price: "49",
+          price: "On request",
           currency: "SAR",
           description:
-            "Drive to the nearest certified AC service maintenance center. We handle the coordination and guarantee best prices.",
+            "Drive to the nearest certified center and we handle coordination. Service fee details are listed on the pricing page (/pricing).",
           cta: "Book Drop-Off",
           features: [
             "Matched to nearest certified center",
-            "Best spare parts price search",
+            "Search for the best parts at the cheapest price, with a guarantee to return the price difference if any.",
             "Price match guarantee",
             "Quality-checked repair",
             "Dedicated WhatsApp support",
@@ -203,15 +203,15 @@ export const enContent = {
         },
         {
           name: "Pickup & Return",
-          price: "200",
+          price: "On request",
           currency: "SAR",
           description:
-            "We pick up your car, get the AC repaired at a certified center, and deliver it back to you.",
+            "We pick up your car, complete repair at a certified center, and return it to your location. Pricing is shared on request.",
           cta: "Book Pickup",
           features: [
             "Door-to-door car pickup",
             "Matched to certified center",
-            "Best spare parts price search",
+            "Search for the best parts at the cheapest price, with a guarantee to return the price difference if any.",
             "Price match guarantee",
             "Quality-checked repair",
             "Dedicated WhatsApp support",
@@ -245,7 +245,7 @@ export const enContent = {
         {
           name: "Omar R.",
           car: "Nissan Patrol 2026",
-          text: "Used the drop-off service for just ؟؟. The certified technician diagnosed and fixed it the same day.",
+          text: "Used the drop-off service and the process was smooth. The certified technician diagnosed and fixed it the same day.",
           rating: 5,
         },
       ],
@@ -270,12 +270,12 @@ export const enContent = {
             "We search across our network of certified suppliers and service maintenance centers to find the best price for your car AC repair parts. If you find a lower price for the same quality part from a reputable supplier, we'll match it.",
         },
         {
-          question: "What's included in the ؟؟ drop-off service?",
+          question: "What's included in the drop-off service?",
           answer:
             "Matching you with the nearest certified center, negotiating spare part prices, quality verification, and WhatsApp support.",
         },
         {
-          question: "What's included in the ??? pickup service?",
+          question: "What's included in the pickup service?",
           answer:
             "Everything in drop-off plus door-to-door pickup and return after repair and quality check.",
         },
@@ -371,7 +371,9 @@ export const enContent = {
     pricingTitle: "Quick Pricing",
     dropOff: "Drop-off at maintenance center",
     pickup: "Pickup from your location",
-    pricingNote: "Service fee. Parts and labor quoted separately after inspection.",
+    dropOffStatus: "During booking",
+    pickupStatus: "On request",
+    pricingNote: "For current Drop-Off and Pickup & Return service fee details, please visit /pricing. Parts and labor are quoted separately after inspection.",
     guaranteeTitle: "Our Guarantee",
     guarantees: [
       "Best price guarantee on spare parts",
@@ -411,7 +413,7 @@ export const enContent = {
       {
         title: "3. Pricing and Payment",
         body:
-          "Diagnostic fees are ؟؟ for drop-off and ??? for pickup. Parts and labor are quoted after diagnosis and require approval.",
+          "Drop-Off and Pickup & Return service fee details are published on /pricing and may be updated. Parts and labor are quoted after diagnosis and require approval.",
       },
       {
         title: "4. Service Warranty",

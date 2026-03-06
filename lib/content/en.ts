@@ -157,7 +157,7 @@ export const enContent = {
           cta: "Book Drop-Off",
           features: [
             "Matched to nearest certified center",
-            "Best spare parts price search",
+            "Search for the best parts at the cheapest price, with a guarantee to return the price difference if any.",
             "Price match guarantee",
             "Quality-checked repair",
             "Dedicated WhatsApp support",
@@ -175,7 +175,7 @@ export const enContent = {
           features: [
             "Door-to-door car pickup",
             "Matched to certified center",
-            "Best spare parts price search",
+            "Search for the best parts at the cheapest price, with a guarantee to return the price difference if any.",
             "Price match guarantee",
             "Quality-checked repair",
             "Dedicated WhatsApp support",

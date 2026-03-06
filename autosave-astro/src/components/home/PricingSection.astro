@@ -1,7 +1,7 @@
 ---
 import type { Language } from '../../lib/i18n';
-import { getLocalizedPath } from '../../lib/i18n';
 import ComingSoonLink from '../ComingSoonLink.astro';
+import { DROP_OFF_CALENDLY_URL, getGeneralContactWhatsAppUrl, getPickupReturnWhatsAppUrl } from '../../lib/whatsapp';
 
 interface Props {
   content: {
@@ -23,6 +23,21 @@ interface Props {
 }
 
 const { content, lang } = Astro.props;
+const contactWhatsAppUrl = getGeneralContactWhatsAppUrl(lang);
+const pickupBookingUrl = getPickupReturnWhatsAppUrl(lang);
+
+function getPlanCtaUrl(planName: string): string {
+  const name = planName.toLowerCase();
+  if (name.includes('drop') || planName.includes('التسليم')) {
+    return DROP_OFF_CALENDLY_URL;
+  }
+
+  if (name.includes('pickup') || planName.includes('استلام') || planName.includes('إرجاع')) {
+    return pickupBookingUrl;
+  }
+
+  return contactWhatsAppUrl;
+}
 ---
 
 <section class="py-20 lg:py-28" id="pricing">
@@ -61,8 +76,10 @@ const { content, lang } = Astro.props;
             ))}
           </ul>
           <ComingSoonLink
-            href={getLocalizedPath('/contact', lang)}
+            href={getPlanCtaUrl(plan.name)}
             lang={lang}
+            target="_blank"
+            rel="noopener noreferrer"
             class:list={[
               'block w-full rounded-lg py-3.5 text-center text-sm font-semibold transition-all',
               i === 1

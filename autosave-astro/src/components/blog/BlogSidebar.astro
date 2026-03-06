@@ -15,6 +15,7 @@
 import type { Language } from '../../lib/i18n';
 import { getLocalizedPath } from '../../lib/i18n';
 import type { BlogPost } from '../../lib/blog-data';
+import { getGeneralContactWhatsAppUrl } from '../../lib/whatsapp';
 
 interface BlogPostContent {
   needRepairTitle: string;
@@ -35,20 +36,23 @@ interface Props {
 }
 
 const { lang, blogContent, relatedPosts } = Astro.props;
+const contactWhatsAppUrl = getGeneralContactWhatsAppUrl(lang);
 ---
 
 {/* Mobile CTA strip — visible below lg breakpoint */}
 <div class="lg:hidden rounded-xl border border-border bg-card p-4 shadow-sm mb-8">
   <div class="flex flex-col gap-2 sm:flex-row">
     <a
-      href={getLocalizedPath('/contact', lang)}
+      href={contactWhatsAppUrl}
+      target="_blank"
+      rel="noopener noreferrer"
       class="flex-1 rounded-lg gold-gradient gold-shimmer py-2.5 text-center text-sm font-semibold text-white shadow-md transition hover:shadow-lg hover:shadow-primary/20"
       aria-label={blogContent.requestService}
     >
       {blogContent.requestService}
     </a>
     <a
-      href="https://wa.me/966500000000"
+      href={contactWhatsAppUrl}
       target="_blank"
       rel="noopener noreferrer"
       class="flex-1 rounded-lg border border-primary/30 py-2.5 text-center text-sm font-semibold text-primary transition hover:bg-primary/5"
@@ -66,14 +70,16 @@ const { lang, blogContent, relatedPosts } = Astro.props;
     <h3 class="text-lg font-semibold mb-2 font-display">{blogContent.needRepairTitle}</h3>
     <p class="text-sm text-muted-foreground mb-4">{blogContent.needRepairText}</p>
     <a
-      href={getLocalizedPath('/contact', lang)}
+      href={contactWhatsAppUrl}
+      target="_blank"
+      rel="noopener noreferrer"
       class="block w-full rounded-lg gold-gradient gold-shimmer py-2.5 text-center text-sm font-semibold text-white shadow-md transition hover:shadow-lg hover:shadow-primary/20 mb-2"
       aria-label={blogContent.requestService}
     >
       {blogContent.requestService}
     </a>
     <a
-      href="https://wa.me/966500000000"
+      href={contactWhatsAppUrl}
       target="_blank"
       rel="noopener noreferrer"
       class="block w-full rounded-lg border border-primary/30 py-2.5 text-center text-sm font-semibold text-primary transition hover:bg-primary/5"

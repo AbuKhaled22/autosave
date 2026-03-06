@@ -1,9 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import PageLayout from '../../layouts/PageLayout.astro';
-import { getLocalizedPath } from '../../lib/i18n';
+import { getGeneralContactWhatsAppUrl } from '../../lib/whatsapp';
 
 const lang = 'en' as const;
+const contactWhatsAppUrl = getGeneralContactWhatsAppUrl(lang);
 const carImages = Array.from({ length: 21 }, (_, index) => {
   const order = String(index + 1).padStart(2, '0');
   return {
@@ -64,7 +65,9 @@ const carImages = Array.from({ length: 21 }, (_, index) => {
             <li class="rounded-lg bg-secondary/60 p-4">Professional follow-up and practical recommendations to keep your car performing well.</li>
           </ul>
           <a
-            href={getLocalizedPath('/contact', lang)}
+            href={contactWhatsAppUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Go to AUTO SAVE contact page"
             class="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg gold-gradient gold-shimmer px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:shadow-lg hover:shadow-primary/20"
           >

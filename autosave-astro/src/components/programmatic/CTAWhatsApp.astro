@@ -4,6 +4,7 @@
  * Used at the bottom of every programmatic SEO page.
  */
 import type { Language } from '../../lib/i18n';
+import { getGeneralContactWhatsAppUrl, getWhatsAppUrl } from '../../lib/whatsapp';
 
 interface Props {
   lang: Language;
@@ -14,7 +15,6 @@ interface Props {
 }
 
 const { lang, title, description, message } = Astro.props;
-const phone = '966XXXXXXXXX'; // Replace with actual phone number
 
 const ctaTitle =
   title ??
@@ -32,7 +32,8 @@ const defaultMessage =
   message ??
   (lang === 'ar' ? 'السلام عليكم، أريد حجز موعد لصيانة مكيف سيارتي' : 'Hi, I would like to book a car AC repair appointment');
 
-const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(defaultMessage)}`;
+const whatsappUrl = getWhatsAppUrl(defaultMessage);
+const contactWhatsAppUrl = getGeneralContactWhatsAppUrl(lang);
 ---
 
 <section class="relative overflow-hidden hero-gradient text-[#f0ebe0]" data-animate="fade-in-up">
@@ -65,7 +66,9 @@ const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(defaultMes
         {lang === 'ar' ? 'احجز عبر واتساب' : 'Book via WhatsApp'}
       </a>
       <a
-        href={lang === 'ar' ? '/contact' : '/en/contact'}
+        href={contactWhatsAppUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         class="inline-flex min-h-11 min-w-11 items-center gap-2 rounded-lg border border-[#f0ebe0]/30 px-8 py-3.5 text-sm font-semibold text-[#f0ebe0] transition hover:bg-[#f0ebe0]/10"
       >
         {lang === 'ar' ? 'تواصل معنا' : 'Contact Us'}

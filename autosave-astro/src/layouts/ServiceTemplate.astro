@@ -16,6 +16,7 @@ import { services } from '../data/services';
 import { getComponentBySlug } from '../data/components';
 import { getCityBySlug } from '../data/cities';
 import { getServiceSeoByFamily, shouldNoindexThinContent } from '../lib/seo-hardening';
+import { getGeneralContactWhatsAppUrl } from '../lib/whatsapp';
 
 interface Props {
   service: ACService;
@@ -24,6 +25,7 @@ interface Props {
 
 const { service, lang } = Astro.props;
 const isAr = lang === 'ar';
+const contactWhatsAppUrl = getGeneralContactWhatsAppUrl(lang);
 
 const serviceName = isAr ? service.nameAr : service.nameEn;
 const involvedPartNames = service.partsInvolved
@@ -115,7 +117,7 @@ const intentHubLinks = [
   },
   {
     title: isAr ? 'تواصل وحجز الموعد' : 'Contact & Booking',
-    href: isAr ? '/contact' : '/en/contact',
+    href: contactWhatsAppUrl,
     description: isAr
       ? 'حجز سريع للحالة مع وصف واضح للأعراض والخدمة المطلوبة.'
       : 'Quick booking with clear symptom and service context.',
