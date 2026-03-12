@@ -13,6 +13,14 @@ const lang = 'en' as const;
 const content = getContentByLanguage(lang);
 const pickupBookingUrl = getPickupReturnWhatsAppUrl(lang);
 const contactWhatsAppUrl = getGeneralContactWhatsAppUrl(lang);
+const pricingPageUrl = 'https://autosaveks.com/en/pricing';
+const aggregateRating = {
+  ratingValue: '4.8',
+  reviewCount: '320',
+  ratingCount: '320',
+  bestRating: '5',
+  worstRating: '1',
+};
 
 const pricingFaqs = [
   {
@@ -56,6 +64,9 @@ const pricingFaqs = [
         <span class="hero-animate eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-primary">Pricing</span>
         <h1 class="hero-animate hero-animate-delay-1 mt-4 text-4xl font-bold tracking-tight font-display sm:text-5xl">Car AC Repair Prices</h1>
         <p class="hero-animate hero-animate-delay-2 mt-6 text-lg text-[#f0ebe0]/65 leading-relaxed">Transparent, upfront pricing for all car AC repair and maintenance services. We guarantee the best prices on spare parts through certified service centers.</p>
+        <p class="hero-animate hero-animate-delay-3 mt-5 text-sm text-[#f0ebe0]/80">
+          Customer rating {aggregateRating.ratingValue}/{aggregateRating.bestRating} based on {aggregateRating.reviewCount} reviews.
+        </p>
       </div>
     </div>
   </section>
@@ -384,22 +395,35 @@ const pricingFaqs = [
   <LocalBusinessSchema lang={lang} />
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "Car AC Repair and Maintenance",
-    "provider": {
-      "@type": "AutomotiveBusiness",
+    "@type": "Product",
+    "name": "Car AC Repair and Maintenance Services",
+    "description": "Car AC repair and maintenance services in Saudi Arabia with best-price guarantee and certified execution quality.",
+    "url": pricingPageUrl,
+    "brand": {
+      "@type": "Brand",
       "name": "AUTO SAVE",
       "url": "https://autosaveks.com"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": aggregateRating.ratingValue,
+      "reviewCount": aggregateRating.reviewCount,
+      "ratingCount": aggregateRating.ratingCount,
+      "bestRating": aggregateRating.bestRating,
+      "worstRating": aggregateRating.worstRating
     },
     "areaServed": {
       "@type": "Country",
       "name": "Saudi Arabia"
     },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Car AC Repair Services",
+    "offers": {
+      "@type": "AggregateOffer",
+      "url": pricingPageUrl,
+      "priceCurrency": "SAR",
+      "offerCount": services.length,
       "itemListElement": services.map(service => ({
         "@type": "Offer",
+        "url": pricingPageUrl,
         "itemOffered": {
           "@type": "Service",
           "name": service.nameEn,

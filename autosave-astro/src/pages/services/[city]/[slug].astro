@@ -118,6 +118,43 @@ const pageKeywords = isNeighborhood
       'فحص ليزر تسريب الفريون',
       'فحص ليزر لمكيف السيارة',
     ];
+
+const aggregateRating = {
+  ratingValue: '4.8',
+  reviewCount: '320',
+  ratingCount: '320',
+  bestRating: '5',
+  worstRating: '1',
+};
+
+const cityServiceReviewSchema = !isNeighborhood && props.service
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: `${props.service.nameAr} في ${props.city.nameAr}`,
+      description: props.service.descriptionAr,
+      url: Astro.url.href,
+      brand: {
+        '@type': 'Brand',
+        name: 'اوتو سيف',
+        url: Astro.site?.origin ?? 'https://autosaveks.com',
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: aggregateRating.ratingValue,
+        reviewCount: aggregateRating.reviewCount,
+        ratingCount: aggregateRating.ratingCount,
+        bestRating: aggregateRating.bestRating,
+        worstRating: aggregateRating.worstRating,
+      },
+      offers: {
+        '@type': 'Offer',
+        url: Astro.url.href,
+        priceCurrency: 'SAR',
+        availability: 'https://schema.org/InStock',
+      },
+    }
+  : null;
 ---
 
 <PageLayout title={pageData.title} description={pageData.description} lang={lang} keywords={pageKeywords}>
@@ -179,6 +216,14 @@ const pageKeywords = isNeighborhood
         lang={lang}
         breadcrumbs={pageData.breadcrumbs}
       />
+
+      <section class="py-8" data-animate="fade-in-up">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <p class="text-sm text-muted-foreground">
+            تقييم العملاء {aggregateRating.ratingValue} من {aggregateRating.bestRating} بناءً على {aggregateRating.reviewCount} مراجعة.
+          </p>
+        </div>
+      </section>
 
       <!-- Service Process Steps -->
       <section class="py-20 lg:py-28" data-animate="fade-in-up">
@@ -257,6 +302,10 @@ const pageKeywords = isNeighborhood
         lang={lang}
         message={`أحتاج ${props.service.nameAr} في ${props.city.nameAr}`}
       />
+
+      {cityServiceReviewSchema && (
+        <script type="application/ld+json" set:html={JSON.stringify(cityServiceReviewSchema)} />
+      )}
     </>
   )}
 </PageLayout>

@@ -2,7 +2,7 @@
 
 ## Project Context
 
-This is the codebase for Auto Save KSA (`autosaveksa.com`), a scalable, bilingual (English/Arabic) automotive services platform targeting the Saudi Arabian market. The site is optimized for local SEO, lead generation, and high performance across Google Core Web Vitals.
+This is the codebase for Auto Save KSA (`autosaveks.com`), a scalable, bilingual (English/Arabic) automotive services platform targeting the Saudi Arabian market. The site is optimized for local SEO, lead generation, and high performance across Google Core Web Vitals.
 
 ## Tech Stack
 

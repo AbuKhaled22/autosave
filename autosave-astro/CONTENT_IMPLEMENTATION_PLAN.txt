@@ -1021,7 +1021,7 @@ IMPLEMENTATION:
   Track rankings for these priority keyword clusters:
 
   CLUSTER 1 — Brand keywords (highest commercial intent):
-    "اوتو سيف", "Auto Save KSA", "autosaveksa"
+    "اوتو سيف", "Auto Save KSA", "autosaveks"
 
   CLUSTER 2 — Core service + Riyadh:
     "إصلاح مكيف السيارة الرياض", "car ac repair Riyadh"
