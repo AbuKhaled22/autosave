@@ -14,6 +14,8 @@ const content = getContentByLanguage(lang);
 const pickupBookingUrl = getPickupReturnWhatsAppUrl(lang);
 const contactWhatsAppUrl = getGeneralContactWhatsAppUrl(lang);
 const pricingPageUrl = 'https://autosaveks.com/pricing';
+const serviceLowPrice = Math.min(...services.map((service) => service.priceRangeMin));
+const serviceHighPrice = Math.max(...services.map((service) => service.priceRangeMax));
 const aggregateRating = {
   ratingValue: '4.8',
   reviewCount: '320',
@@ -420,6 +422,8 @@ const pricingFaqs = [
       "@type": "AggregateOffer",
       "url": pricingPageUrl,
       "priceCurrency": "SAR",
+      "lowPrice": serviceLowPrice,
+      "highPrice": serviceHighPrice,
       "offerCount": services.length,
       "itemListElement": services.map(service => ({
         "@type": "Offer",
