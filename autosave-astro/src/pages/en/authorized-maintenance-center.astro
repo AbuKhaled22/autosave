@@ -6,6 +6,8 @@ import { getGeneralContactWhatsAppUrl } from '../../lib/whatsapp';
 const lang = 'en' as const;
 const contactWhatsAppUrl = getGeneralContactWhatsAppUrl(lang);
 const pageUrl = 'https://autosaveks.com/en/authorized-maintenance-center/';
+const productImageUrl = 'https://autosaveks.com/images/blog/ac-compressor-guide.jpeg';
+const priceValidUntil = `${new Date().getFullYear() + 1}-12-31`;
 const aggregateRating = {
   ratingValue: '4.8',
   reviewCount: '320',
@@ -165,6 +167,7 @@ const carImages = Array.from({ length: 21 }, (_, index) => {
     "@type": "Product",
     "name": "Authorized maintenance center for car service",
     "description": "Authorized maintenance center for car service with certified technicians and high-quality execution.",
+    "image": [productImageUrl],
     "url": pageUrl,
     "brand": {
       "@type": "Brand",
@@ -182,7 +185,41 @@ const carImages = Array.from({ length: 21 }, (_, index) => {
     "offers": {
       "@type": "Offer",
       "url": pageUrl,
+      "price": "150",
       "priceCurrency": "SAR",
+      "priceValidUntil": priceValidUntil,
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": "0",
+          "currency": "SAR"
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "SA"
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 1,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 1,
+            "unitCode": "DAY"
+          }
+        }
+      },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "SA",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+      },
       "availability": "https://schema.org/InStock"
     }
   })} />
