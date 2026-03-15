@@ -37,6 +37,8 @@ const pageSummary = isAr ? service.descriptionAr : service.descriptionEn;
 const serviceSeo = getServiceSeoByFamily(service.slug, serviceName, service.durationMinutes, lang);
 const pageTitle = serviceSeo.title;
 const metaDescription = serviceSeo.description;
+const siteOrigin = Astro.site?.origin ?? 'https://autosaveks.com';
+const productImageUrl = `${siteOrigin}/images/blog/ac-compressor-guide.jpeg`;
 
 const breadcrumbs = [
   { label: isAr ? 'الرئيسية' : 'Home', href: isAr ? '/' : '/en' },
@@ -231,11 +233,12 @@ const serviceReviewSchema = {
   '@type': 'Product',
   name: serviceName,
   description: pageSummary,
+  image: [productImageUrl],
   url: Astro.url.href,
   brand: {
     '@type': 'Brand',
     name: isAr ? 'اوتو سيف' : 'Auto Save',
-    url: Astro.site?.origin ?? 'https://autosaveks.com',
+    url: siteOrigin,
   },
   aggregateRating: {
     '@type': 'AggregateRating',
@@ -248,6 +251,7 @@ const serviceReviewSchema = {
   offers: {
     '@type': 'Offer',
     url: Astro.url.href,
+    price: String(service.priceRangeMin),
     priceCurrency: 'SAR',
     availability: 'https://schema.org/InStock',
   },

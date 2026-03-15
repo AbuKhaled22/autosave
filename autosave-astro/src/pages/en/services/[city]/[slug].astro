@@ -71,6 +71,8 @@ export function getStaticPaths() {
 
 const props = Astro.props as Props;
 const lang = 'en';
+const siteOrigin = Astro.site?.origin ?? 'https://autosaveks.com';
+const productImageUrl = `${siteOrigin}/images/blog/ac-compressor-guide.jpeg`;
 
 // ─── Neighborhood page data ─────────────────────────────────────────────────
 function getNeighborhoodData(city: City, neighborhood: CityNeighborhood) {
@@ -133,11 +135,12 @@ const cityServiceReviewSchema = !isNeighborhood && props.service
       '@type': 'Product',
       name: `${props.service.nameEn} in ${props.city.nameEn}`,
       description: props.service.descriptionEn,
+      image: [productImageUrl],
       url: Astro.url.href,
       brand: {
         '@type': 'Brand',
         name: 'Auto Save',
-        url: Astro.site?.origin ?? 'https://autosaveks.com',
+        url: siteOrigin,
       },
       aggregateRating: {
         '@type': 'AggregateRating',
@@ -150,6 +153,7 @@ const cityServiceReviewSchema = !isNeighborhood && props.service
       offers: {
         '@type': 'Offer',
         url: Astro.url.href,
+        price: String(props.service.priceRangeMin),
         priceCurrency: 'SAR',
         availability: 'https://schema.org/InStock',
       },
