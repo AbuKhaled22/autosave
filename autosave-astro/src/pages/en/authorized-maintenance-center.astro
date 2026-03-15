@@ -5,6 +5,14 @@ import { getGeneralContactWhatsAppUrl } from '../../lib/whatsapp';
 
 const lang = 'en' as const;
 const contactWhatsAppUrl = getGeneralContactWhatsAppUrl(lang);
+const pageUrl = 'https://autosaveks.com/en/authorized-maintenance-center/';
+const aggregateRating = {
+  ratingValue: '4.8',
+  reviewCount: '320',
+  ratingCount: '320',
+  bestRating: '5',
+  worstRating: '1',
+};
 const carImages = Array.from({ length: 21 }, (_, index) => {
   const order = String(index + 1).padStart(2, '0');
   return {
@@ -27,6 +35,9 @@ const carImages = Array.from({ length: 21 }, (_, index) => {
         <h1 class="hero-animate hero-animate-delay-1 mt-4 text-4xl font-bold tracking-tight font-display sm:text-5xl">Authorized maintenance center for Car Service</h1>
         <p class="hero-animate hero-animate-delay-2 mt-6 text-base leading-relaxed text-[#f0ebe0]/65 sm:text-lg">
           We deliver trusted automotive support with maintenance centers options, certified technicians, and professional service quality from inspection to final delivery.
+        </p>
+        <p class="hero-animate hero-animate-delay-3 mt-5 text-sm text-[#f0ebe0]/80">
+          Customer rating {aggregateRating.ratingValue}/{aggregateRating.bestRating} based on {aggregateRating.reviewCount} reviews.
         </p>
       </header>
     </div>
@@ -149,4 +160,30 @@ const carImages = Array.from({ length: 21 }, (_, index) => {
       }, 10000);
     });
   </script>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Authorized maintenance center for car service",
+    "description": "Authorized maintenance center for car service with certified technicians and high-quality execution.",
+    "url": pageUrl,
+    "brand": {
+      "@type": "Brand",
+      "name": "AUTO SAVE",
+      "url": "https://autosaveks.com"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": aggregateRating.ratingValue,
+      "reviewCount": aggregateRating.reviewCount,
+      "ratingCount": aggregateRating.ratingCount,
+      "bestRating": aggregateRating.bestRating,
+      "worstRating": aggregateRating.worstRating
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": pageUrl,
+      "priceCurrency": "SAR",
+      "availability": "https://schema.org/InStock"
+    }
+  })} />
 </PageLayout>

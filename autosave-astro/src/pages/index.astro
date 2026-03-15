@@ -16,6 +16,14 @@ import FAQSchema from '../components/FAQSchema.astro';
 const lang = 'ar' as const;
 const content = getContentByLanguage(lang);
 const blogPosts = getBlogPosts(lang).slice(0, 3);
+const homePageUrl = 'https://autosaveks.com/';
+const aggregateRating = {
+  ratingValue: '4.8',
+  reviewCount: '320',
+  ratingCount: '320',
+  bestRating: '5',
+  worstRating: '1',
+};
 ---
 
 <PageLayout
@@ -25,6 +33,13 @@ const blogPosts = getBlogPosts(lang).slice(0, 3);
   keywords={['إصلاح مكيف السيارة', 'صيانة مكيف السيارة', 'تعبئة فريون', 'كمبروسر المكيف', 'مركز صيانة مكيف', 'تشخيص مكيف السيارة']}
 >
   <HeroSection content={content.home.hero} lang={lang} />
+  <section class="py-8" data-animate="fade-in-up">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <p class="text-sm text-muted-foreground">
+        تقييم العملاء {aggregateRating.ratingValue} من {aggregateRating.bestRating} بناءً على {aggregateRating.reviewCount} مراجعة.
+      </p>
+    </div>
+  </section>
   <TrustBadges items={content.home.trustBadges} />
   <BenefitsSection content={content.home.benefits} />
   <HowItWorks content={content.home.howItWorks} />
@@ -34,4 +49,30 @@ const blogPosts = getBlogPosts(lang).slice(0, 3);
   <CtaSection content={content.home.cta} lang={lang} />
   <WebsiteSchema lang={lang} />
   <FAQSchema />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "خدمات صيانة مكيف السيارة",
+    "description": "خدمات احترافية لإصلاح مكيف السيارة وتغيير الكمبروسر وتعبئة الفريون والصيانة الدورية.",
+    "url": homePageUrl,
+    "brand": {
+      "@type": "Brand",
+      "name": "اوتو سيف",
+      "url": "https://autosaveks.com"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": aggregateRating.ratingValue,
+      "reviewCount": aggregateRating.reviewCount,
+      "ratingCount": aggregateRating.ratingCount,
+      "bestRating": aggregateRating.bestRating,
+      "worstRating": aggregateRating.worstRating
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": homePageUrl,
+      "priceCurrency": "SAR",
+      "availability": "https://schema.org/InStock"
+    }
+  })} />
 </PageLayout>
