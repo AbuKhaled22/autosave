@@ -39,6 +39,7 @@ const pageTitle = serviceSeo.title;
 const metaDescription = serviceSeo.description;
 const siteOrigin = Astro.site?.origin ?? 'https://autosaveks.com';
 const productImageUrl = `${siteOrigin}/images/blog/ac-compressor-guide.jpeg`;
+const priceValidUntil = `${new Date().getFullYear() + 1}-12-31`;
 
 const breadcrumbs = [
   { label: isAr ? 'الرئيسية' : 'Home', href: isAr ? '/' : '/en' },
@@ -253,6 +254,24 @@ const serviceReviewSchema = {
     url: Astro.url.href,
     price: String(service.priceRangeMin),
     priceCurrency: 'SAR',
+    priceValidUntil,
+    shippingDetails: {
+      '@type': 'OfferShippingDetails',
+      shippingRate: {
+        '@type': 'MonetaryAmount',
+        value: '0',
+        currency: 'SAR',
+      },
+      shippingDestination: {
+        '@type': 'DefinedRegion',
+        addressCountry: 'SA',
+      },
+    },
+    hasMerchantReturnPolicy: {
+      '@type': 'MerchantReturnPolicy',
+      applicableCountry: 'SA',
+      returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+    },
     availability: 'https://schema.org/InStock',
   },
 };

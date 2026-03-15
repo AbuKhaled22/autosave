@@ -73,6 +73,7 @@ const props = Astro.props as Props;
 const lang = 'ar';
 const siteOrigin = Astro.site?.origin ?? 'https://autosaveks.com';
 const productImageUrl = `${siteOrigin}/images/blog/ac-compressor-guide.jpeg`;
+const priceValidUntil = `${new Date().getFullYear() + 1}-12-31`;
 
 // ─── Neighborhood page data ─────────────────────────────────────────────────
 function getNeighborhoodData(city: City, neighborhood: CityNeighborhood) {
@@ -155,6 +156,24 @@ const cityServiceReviewSchema = !isNeighborhood && props.service
         url: Astro.url.href,
         price: String(props.service.priceRangeMin),
         priceCurrency: 'SAR',
+        priceValidUntil,
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: {
+            '@type': 'MonetaryAmount',
+            value: '0',
+            currency: 'SAR',
+          },
+          shippingDestination: {
+            '@type': 'DefinedRegion',
+            addressCountry: 'SA',
+          },
+        },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'SA',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+        },
         availability: 'https://schema.org/InStock',
       },
     }
