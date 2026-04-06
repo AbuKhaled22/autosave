@@ -171,6 +171,28 @@ const serviceCueAr = serviceFamilyCueAr[serviceFamily];
 const serviceCueEn = serviceFamilyCueEn[serviceFamily];
 const firstProcessStep = processSteps[0] ?? (isAr ? 'فحص أولي للنظام' : 'Initial system inspection');
 
+const serviceIntentIntro = isAr
+  ? `${serviceLeadAr} في خدمة ${serviceName} نحدد أولوية ${serviceCueAr} بناءً على أعراض السيارة الفعلية، وليس عبر مسار ثابت لكل الحالات.`
+  : `${serviceLeadEn} For ${serviceName} in Riyadh, we prioritize ${serviceCueEn} based on the real symptom profile, not a one-size-fits-all workflow.`;
+
+const serviceExecutionIntro = isAr
+  ? `تبدأ المعالجة عادةً بـ: ${firstProcessStep}. بعد ذلك نربط نتيجة الفحص بمدة تنفيذ تقريبية (${service.durationMinutes} دقيقة) قبل اعتماد قرار الإصلاح أو التبديل.`
+  : `Execution typically starts with: ${firstProcessStep}. Findings are then mapped to an estimated ${service.durationMinutes}-minute workflow before confirming repair or replacement scope.`;
+
+const serviceIntroHighlights = isAr
+  ? [
+      `نطاق الخدمة: ${serviceCueAr}`,
+      `المكونات المرتبطة: ${involvedPartNames.slice(0, 3).join('، ') || 'تُحدد بعد الفحص الفني'}`,
+      'هدف المعالجة: استقرار الأداء تحت الحرارة العالية داخل المدينة',
+      'قرار ما بعد الفحص: إصلاح موضعي أو تبديل جزء محدد فقط عند الحاجة',
+    ]
+  : [
+      `Service focus: ${serviceCueEn}`,
+      `Related components: ${involvedPartNames.slice(0, 3).join(', ') || 'Confirmed after technical inspection'}`,
+      'Technical goal: stable AC behavior under high urban heat load',
+      'Post-diagnosis decision: targeted repair first, replacement only when justified',
+    ];
+
 const generatedServiceFaqs = [
   {
     questionAr: `ما الخطوة الأهم في ${serviceCueAr} ضمن خدمة ${serviceName}؟`,
@@ -359,14 +381,15 @@ const serviceSchema = {
         {isAr ? `ماذا تشمل خدمة ${serviceName}؟` : `What Does ${serviceName} Include?`}
       </h2>
       <p class="mt-4 text-muted-foreground">
-        {isAr
-          ? `هذه الصفحة مخصصة لخدمة ${serviceName} فقط، وتتضمن خطوات التنفيذ، المدة المتوقعة، وأهم المكونات المرتبطة بالخدمة لسيارات الرياض.`
-          : `This page is dedicated to ${serviceName} only, including execution steps, expected duration, and the key components involved for Riyadh vehicles.`}
+        {serviceIntentIntro}
+      </p>
+      <p class="mt-3 text-muted-foreground">
+        {serviceExecutionIntro}
       </p>
       <ul class="mt-6 grid gap-3 sm:grid-cols-2">
-        {(isAr ? service.processStepsAr : service.processStepsEn).slice(0, 4).map((step) => (
+        {serviceIntroHighlights.map((highlight) => (
           <li class="rounded-lg border border-border bg-card p-4 text-sm text-foreground shadow-sm">
-            {step}
+            {highlight}
           </li>
         ))}
       </ul>

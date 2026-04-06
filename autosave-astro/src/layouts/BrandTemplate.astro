@@ -24,11 +24,11 @@ const isAr = lang === 'ar';
 const brandName = isAr ? brand.nameAr : brand.nameEn;
 
 const pageTitle = isAr
-  ? `إصلاح مكيف ${brandName} | اوتو سيف`
-  : `${brandName} AC Repair | Auto Save`;
+  ? `إصلاح مكيف السيارة وتكييف سيارات ${brandName} | اوتو سيف`
+  : `${brandName} Car AC Repair & Service in Riyadh | Auto Save`;
 
 const pageDescription = isAr
-  ? `متخصصون في إصلاح وصيانة مكيف سيارات ${brandName}. تشخيص دقيق، قطع غيار أصلية وبديلة، ضمان على الصيانة. احجز الآن.`
+  ? `أفضل ورشة في الرياض لصيانة تكييف السيارات وإصلاح مكيف سيارات ${brandName}. تشخيص دقيق وقطع غيار أصلية وبديلة مع ضمان.`
   : `Specialists in ${brandName} car AC repair and maintenance. Accurate diagnosis, OEM and aftermarket parts, service warranty. Book now.`;
 
 const leakLaserKeywordsAr = [
@@ -77,7 +77,7 @@ const relatedBrands = carBrands
   description={pageDescription}
   lang={lang}
   keywords={isAr
-    ? [`مكيف ${brandName}`, `إصلاح مكيف ${brandName}`, `صيانة مكيف ${brandName}`, ...leakLaserKeywordsAr]
+    ? [`مكيف ${brandName}`, `إصلاح مكيف ${brandName}`, `صيانة تكييف سيارات ${brandName}`, `أفضل ورشة تكييف سيارات ${brandName}`, ...leakLaserKeywordsAr]
     : [`${brandName} ac repair`, `${brandName} ac service`, `${brandName} ac problems`, ...leakLaserKeywordsEn]
   }
 >

@@ -13,10 +13,12 @@
  *   />
  */
 
+import { getAlternateLang, getLocalizedPath, type Language } from '../lib/i18n';
+
 interface Props {
   title: string;
   description: string;
-  currentLang: 'ar' | 'en';
+  currentLang: Language;
   canonicalUrl: string;
   ogImage?: string;
   ogType?: string;
@@ -35,29 +37,21 @@ const {
   noindex = false,
 } = Astro.props;
 
-const site = Astro.site?.origin ?? 'https://autosaveks.com';
-const alternateLang = currentLang === 'en' ? 'ar' : 'en';
+const requestedUrl = new URL(canonicalUrl, Astro.url);
+const site = Astro.site?.origin ?? requestedUrl.origin ?? 'https://autosaveks.com';
+const alternateLang = getAlternateLang(currentLang);
 
-// Build alternate URL
-// For Arabic (default locale): paths are at root e.g. /about
-// For English: paths are at /en/about
-function buildAlternateUrl(url: string, fromLang: string, toLang: string): string {
-  const urlObj = new URL(url);
-  const path = urlObj.pathname;
+const normalizedPathname =
+  requestedUrl.pathname === '/' ? '/' : requestedUrl.pathname.replace(/\/+$/, '');
+const pathWithoutLocale = normalizedPathname.replace(/^\/en(?=\/|$)/, '') || '/';
 
-  if (fromLang === 'ar') {
-    // Current is Arabic (root), alternate is English (/en/...)
-    const enPath = path === '/' ? '/en' : `/en${path}`;
-    return `${site}${enPath}`;
-  } else {
-    // Current is English (/en/...), alternate is Arabic (root)
-    const arPath = path.replace(/^\/en\/?/, '/') || '/';
-    return `${site}${arPath}`;
-  }
+function absoluteLocalizedUrl(path: string, lang: Language): string {
+  return new URL(getLocalizedPath(path, lang), site).toString();
 }
 
-const alternateUrl = buildAlternateUrl(canonicalUrl, currentLang, alternateLang);
-const xDefaultUrl = currentLang === 'ar' ? canonicalUrl : alternateUrl; // Arabic is default
+const normalizedCanonicalUrl = absoluteLocalizedUrl(pathWithoutLocale, currentLang);
+const alternateUrl = absoluteLocalizedUrl(pathWithoutLocale, alternateLang);
+const xDefaultUrl = absoluteLocalizedUrl(pathWithoutLocale, 'ar');
 
 const ogLocale = currentLang === 'ar' ? 'ar_SA' : 'en_US';
 const siteName = currentLang === 'ar' ? 'اوتو سيف' : 'AUTO SAVE';
@@ -65,8 +59,8 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${site}${ogImage}`;
 ---
 
 {/* Canonical & hreflang */}
-<link rel="canonical" href={canonicalUrl} />
-<link rel="alternate" hreflang={currentLang} href={canonicalUrl} />
+<link rel="canonical" href={normalizedCanonicalUrl} />
+<link rel="alternate" hreflang={currentLang} href={normalizedCanonicalUrl} />
 <link rel="alternate" hreflang={alternateLang} href={alternateUrl} />
 <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
 
@@ -83,7 +77,7 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${site}${ogImage}`;
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content={ogType} />
-<meta property="og:url" content={canonicalUrl} />
+<meta property="og:url" content={normalizedCanonicalUrl} />
 <meta property="og:image" content={fullOgImage} />
 <meta property="og:locale" content={ogLocale} />
 <meta property="og:site_name" content={siteName} />

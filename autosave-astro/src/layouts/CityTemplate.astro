@@ -32,11 +32,11 @@ const cityName = isAr ? city.nameAr : city.nameEn;
 const regionName = isAr ? city.regionAr : city.regionEn;
 
 const pageTitle = isAr
-  ? `إصلاح مكيف السيارة في ${cityName} | اوتو سيف`
+  ? `إصلاح مكيف السيارة وتكييف السيارات في ${cityName} | اوتو سيف`
   : `Car AC Repair in ${cityName} | Auto Save`;
 
 const pageDescription = isAr
-  ? `خدمات إصلاح وصيانة مكيف السيارة في ${cityName}، ${regionName}. تعبئة فريون، تغيير كمبروسر، كشف تسريب وأكثر. ضمان أفضل سعر.`
+  ? `أفضل ورشة في ${cityName} لصيانة تكييف السيارات وإصلاح مكيف السيارة لجميع السيارات في ${regionName}. فحص دقيق وضمان أفضل سعر.`
   : `Car AC repair and maintenance services in ${cityName}, ${regionName}. Freon recharge, compressor replacement, leak detection and more. Best price guarantee.`;
 
 const leakLaserKeywordsAr = [
@@ -142,7 +142,7 @@ const noindexThinCity = shouldNoindexThinContent({
   lang={lang}
   noindex={noindexThinCity}
   keywords={isAr
-    ? [`إصلاح مكيف السيارة ${cityName}`, `صيانة مكيف سيارة ${cityName}`, `تعبئة فريون ${cityName}`, ...leakLaserKeywordsAr]
+    ? [`إصلاح مكيف السيارة ${cityName}`, `صيانة تكييف السيارات ${cityName}`, `أفضل ورشة تكييف سيارات ${cityName}`, `تعبئة فريون ${cityName}`, ...leakLaserKeywordsAr]
     : [`car ac repair ${cityName}`, `ac service ${cityName}`, `freon recharge ${cityName}`, ...leakLaserKeywordsEn]
   }
 >

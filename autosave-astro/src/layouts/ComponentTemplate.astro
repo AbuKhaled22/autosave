@@ -28,12 +28,14 @@ const isAr = lang === 'ar';
 const compName = isAr ? component.nameAr : component.nameEn;
 
 const pageTitle = isAr
-  ? `${compName} مكيف السيارة | اوتو سيف`
+  ? `${compName} لمكيف السيارة وتكييف السيارات | اوتو سيف`
   : `Car AC ${compName} | Auto Save`;
 
-const pageDescription = isAr ? component.descriptionAr : component.descriptionEn;
+const pageDescription = isAr
+  ? `${component.descriptionAr} هذه الصفحة مخصصة لصيانة تكييف السيارات وإصلاح مكيف السيارة لجميع السيارات في الرياض.`
+  : component.descriptionEn;
 
-const defaultKeywordsAr = [`${compName}`, `${compName} مكيف السيارة`, `سعر ${compName}`];
+const defaultKeywordsAr = [`${compName}`, `${compName} مكيف السيارة`, `صيانة تكييف السيارات`, `سعر ${compName}`];
 const defaultKeywordsEn = [
   `car ac ${compName.toLowerCase()}`,
   `${compName.toLowerCase()} replacement`,

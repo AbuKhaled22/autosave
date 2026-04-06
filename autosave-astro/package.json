@@ -4,7 +4,9 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/move-noindex-to-backup.mjs",
+    "build:dist": "pnpm build && node scripts/prepare-dist-deploy.mjs",
+    "deploy:dist": "pnpm build:dist",
     "preview": "astro preview",
     "astro": "astro"
   },

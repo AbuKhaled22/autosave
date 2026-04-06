@@ -1,0 +1,32 @@
+{
+  "stats": {
+    "totalPages": 328,
+    "indexablePages": 296,
+    "noindexPages": 32,
+    "redirectDocs": 32,
+    "missingTitle": 0,
+    "shortTitle": 0,
+    "longTitle": 0,
+    "missingDesc": 0,
+    "shortDesc": 0,
+    "longDesc": 0,
+    "missingCanonical": 0,
+    "missingH1": 0,
+    "multiH1": 0,
+    "lowWordCount": 0,
+    "noSchema": 0,
+    "missingHreflang": 0,
+    "duplicateTitleGroups": 0,
+    "duplicateDescriptionGroups": 0
+  },
+  "topIssues": {
+    "longTitle": [],
+    "shortDesc": [],
+    "longDesc": [],
+    "lowWordCount": [],
+    "noSchema": [],
+    "missingHreflang": [],
+    "duplicateTitles": [],
+    "duplicateDescriptions": []
+  }
+}

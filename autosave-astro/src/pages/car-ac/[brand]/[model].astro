@@ -3,13 +3,14 @@
  * Car model sub-pages (Arabic — default locale).
  * Generates /car-ac/[brand]/[model] for high-popularity brand models.
  */
-import { carBrands, getBrandBySlug, type CarBrand, type CarModel } from '../../../data/car-brands';
+import { carBrands, type CarBrand, type CarModel } from '../../../data/car-brands';
 import { services } from '../../../data/services';
 import PageLayout from '../../../layouts/PageLayout.astro';
 import ProgrammaticHero from '../../../components/programmatic/ProgrammaticHero.astro';
 import FAQSection from '../../../components/programmatic/FAQSection.astro';
 import CTAWhatsApp from '../../../components/programmatic/CTAWhatsApp.astro';
 import RelatedLinks from '../../../components/programmatic/RelatedLinks.astro';
+import { getModelSeoCopy } from '../../../lib/model-seo-copy';
 
 export function getStaticPaths() {
   return carBrands
@@ -29,16 +30,21 @@ interface Props {
 
 const { brand, model } = Astro.props;
 const lang = 'ar';
+const site = Astro.site?.origin ?? 'https://autosaveks.com';
+const modelSeoCopy = getModelSeoCopy(brand, model, lang);
 
-const title = `إصلاح مكيف ${brand.nameAr} ${model.nameAr} | أوتو سيف`;
-const description = `خدمة إصلاح وصيانة مكيف سيارة ${brand.nameAr} ${model.nameAr} (${model.years}). تشخيص وإصلاح مشاكل التكييف الشائعة بأيدي فنيين متخصصين.`;
+const title = modelSeoCopy.metaTitle;
+const description = modelSeoCopy.metaDescription;
 const keywords = [
+  modelSeoCopy.keyword,
   `إصلاح مكيف ${brand.nameAr} ${model.nameAr}`,
+  `صيانة مكيف ${brand.nameAr} ${model.nameAr}`,
+  `أعطال مكيف ${brand.nameAr} ${model.nameAr}`,
+  'صيانة تكييف السيارات في الرياض',
   `تسريب فريون ${brand.nameAr} ${model.nameAr}`,
   `كشف تسريب مكيف ${brand.nameAr} ${model.nameAr}`,
-  `فحص ليزر ${brand.nameAr} ${model.nameAr}`,
+  `فحص كمبروسر ${brand.nameAr} ${model.nameAr}`,
   'فحص ليزر تسريب الفريون',
-  'فحص ليزر لمكيف السيارة',
 ];
 
 const breadcrumbs = [
@@ -56,21 +62,58 @@ const relatedModels = brand.models
     description: m.years,
   }));
 
-const serviceLinks = services.slice(0, 6).map((s) => ({
-  title: s.nameAr,
-  href: `/services/${s.slug}/`,
-  description: s.descriptionAr.slice(0, 80) + '...',
-}));
+const modelServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `إصلاح أعطال مكيف ${brand.nameAr} ${model.nameAr} في الرياض`,
+  serviceType: `Car AC Repair for ${brand.nameEn} ${model.nameEn}`,
+  areaServed: {
+    '@type': 'City',
+    name: 'Riyadh',
+  },
+  provider: {
+    '@type': 'AutoRepair',
+    name: 'اوتو سيف',
+    url: site,
+    telephone: '+966537133080',
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.8',
+    reviewCount: '320',
+    ratingCount: '320',
+    bestRating: '5',
+    worstRating: '1',
+  },
+};
 ---
 
 <PageLayout title={title} description={description} lang={lang} keywords={keywords}>
   <ProgrammaticHero
     eyebrow={`${brand.nameAr} ${model.nameAr}`}
-    title={`إصلاح مكيف ${brand.nameAr} ${model.nameAr}`}
-    description={`خدمة متخصصة لصيانة وإصلاح نظام تكييف ${brand.nameAr} ${model.nameAr} موديلات ${model.years}`}
+    title={modelSeoCopy.keyword}
+    description={modelSeoCopy.heroDescription}
     lang={lang}
     breadcrumbs={breadcrumbs}
   />
+
+  <script type="application/ld+json" set:html={JSON.stringify(modelServiceSchema)} />
+
+  <!-- Keyword-Focused SEO Content -->
+  <section class="bg-secondary/20 py-20 lg:py-28" data-animate="fade-in-up">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <article class="space-y-5 rounded-2xl border border-border bg-card p-6 sm:p-8">
+        <h2 class="font-display text-2xl font-bold text-foreground sm:text-3xl">
+          {modelSeoCopy.sectionTitle}
+        </h2>
+        {modelSeoCopy.paragraphs.map((paragraph) => (
+          <p class="text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {paragraph}
+          </p>
+        ))}
+      </article>
+    </div>
+  </section>
 
   <!-- Model-Specific AC Issues -->
   <section class="py-20 lg:py-28" data-animate="fade-in-up">

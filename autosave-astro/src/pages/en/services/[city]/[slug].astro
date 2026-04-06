@@ -78,7 +78,7 @@ const priceValidUntil = `${new Date().getFullYear() + 1}-12-31`;
 // ─── Neighborhood page data ─────────────────────────────────────────────────
 function getNeighborhoodData(city: City, neighborhood: CityNeighborhood) {
   const title = `Car AC Repair in ${neighborhood.nameEn} | Auto Save`;
-  const description = `Car AC maintenance and repair services in ${neighborhood.nameEn}, ${city.nameEn}. Expert team with warranty on all services.`;
+  const description = `Car AC maintenance and repair in ${neighborhood.nameEn}, ${city.nameEn} by certified technicians, with warranty-backed work and same-day WhatsApp booking support.`;
   const breadcrumbs = [
     { label: 'Home', href: '/en/' },
     { label: 'Services', href: '/en/services/' },
@@ -91,7 +91,7 @@ function getNeighborhoodData(city: City, neighborhood: CityNeighborhood) {
 // ─── City × Service page data ──────────────────────────────────────────────
 function getCityServiceData(city: City, service: ACService) {
   const title = `${service.nameEn} in ${city.nameEn} | Auto Save`;
-  const description = `${service.nameEn} service in ${city.nameEn}. ${service.descriptionEn.slice(0, 120)}`;
+  const description = `${service.nameEn} in ${city.nameEn} with accurate diagnostics, clear pricing before repair, and warranty-backed execution. Book same-day service via WhatsApp.`;
   const breadcrumbs = [
     { label: 'Home', href: '/en/' },
     { label: 'Services', href: '/en/services/' },

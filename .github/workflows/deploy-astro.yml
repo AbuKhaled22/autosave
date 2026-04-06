@@ -41,13 +41,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build Astro
-        run: pnpm build
+      - name: Build Astro deploy-dist
+        run: pnpm build:dist
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: autosave-astro/dist
+          path: autosave-astro/deploy-dist
 
   deploy:
     needs: build

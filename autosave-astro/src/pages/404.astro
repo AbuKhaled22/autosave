@@ -1,25 +1,44 @@
 ---
-const target = '/';
+const homeUrlAr = '/';
+const homeUrlEn = '/en/';
+const servicesUrlAr = '/services/';
+const contactUrlAr = '/contact/';
 ---
 
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Redirecting…</title>
-    <meta http-equiv="refresh" content={`0;url=${target}`} />
-    <link rel="canonical" href={target} />
-    <script is:inline>
-      window.location.replace('/');
-    </script>
+    <title>404 | الصفحة غير موجودة</title>
+    <meta name="robots" content="noindex, follow" />
   </head>
   <body>
     <main>
-      <h1>Redirecting to home page</h1>
+      <h1>الصفحة غير موجودة</h1>
       <p>
-        If you are not redirected automatically,
-        <a href={target} aria-label="Go to homepage">go to homepage</a>.
+        عذرا، الرابط الذي طلبته غير متاح حاليا. يمكنك العودة للصفحة الرئيسية أو تصفح
+        الخدمات.
+      </p>
+
+      <nav aria-label="روابط مساعدة">
+        <ul>
+          <li>
+            <a href={homeUrlAr} aria-label="العودة إلى الصفحة الرئيسية">الصفحة الرئيسية</a>
+          </li>
+          <li>
+            <a href={servicesUrlAr} aria-label="تصفح صفحة الخدمات">الخدمات</a>
+          </li>
+          <li>
+            <a href={contactUrlAr} aria-label="الانتقال إلى صفحة التواصل">تواصل معنا</a>
+          </li>
+        </ul>
+      </nav>
+
+      <p lang="en" dir="ltr">
+        The page you requested does not exist. You can continue from
+        <a href={homeUrlEn} aria-label="Go to English homepage">the English homepage</a>.
       </p>
     </main>
   </body>
 </html>
+

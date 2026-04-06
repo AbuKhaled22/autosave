@@ -77,8 +77,8 @@ const priceValidUntil = `${new Date().getFullYear() + 1}-12-31`;
 
 // ─── Neighborhood page data ─────────────────────────────────────────────────
 function getNeighborhoodData(city: City, neighborhood: CityNeighborhood) {
-  const title = `إصلاح مكيف السيارة في ${neighborhood.nameAr} | أوتو سيف`;
-  const description = `خدمات صيانة وإصلاح مكيفات السيارات في ${neighborhood.nameAr}، ${city.nameAr}. فريق متخصص وضمان على جميع الخدمات.`;
+  const title = `أفضل ورشة صيانة تكييف السيارات في ${neighborhood.nameAr} | مكيف السيارة`;
+  const description = `خدمات صيانة تكييف السيارات وإصلاح مكيف السيارة في ${neighborhood.nameAr}، ${city.nameAr} لجميع السيارات وبأفضل سعر مع ضمان.`;
   const breadcrumbs = [
     { label: 'الرئيسية', href: '/' },
     { label: 'خدماتنا', href: '/services/' },
@@ -90,8 +90,8 @@ function getNeighborhoodData(city: City, neighborhood: CityNeighborhood) {
 
 // ─── City × Service page data ──────────────────────────────────────────────
 function getCityServiceData(city: City, service: ACService) {
-  const title = `${service.nameAr} في ${city.nameAr} | أوتو سيف`;
-  const description = `خدمة ${service.nameAr} في ${city.nameAr}. ${service.descriptionAr.slice(0, 120)}`;
+  const title = `${service.nameAr} في ${city.nameAr} | صيانة مكيف السيارة وتكييف السيارات`;
+  const description = `خدمة ${service.nameAr} لصيانة تكييف السيارات وإصلاح مكيف السيارة في ${city.nameAr}. ${service.descriptionAr.slice(0, 95)}`;
   const breadcrumbs = [
     { label: 'الرئيسية', href: '/' },
     { label: 'خدماتنا', href: '/services/' },
@@ -109,6 +109,8 @@ const pageData = isNeighborhood
 const pageKeywords = isNeighborhood
   ? [
       `إصلاح مكيف السيارة ${props.neighborhood!.nameAr}`,
+      `صيانة تكييف السيارات ${props.neighborhood!.nameAr}`,
+      `أفضل ورشة تكييف سيارات ${props.neighborhood!.nameAr}`,
       `كشف تسريب فريون ${props.neighborhood!.nameAr}`,
       `فحص ليزر ${props.neighborhood!.nameAr}`,
       'فحص ليزر تسريب الفريون',
@@ -116,6 +118,7 @@ const pageKeywords = isNeighborhood
     ]
   : [
       `${props.service!.nameAr} ${props.city.nameAr}`,
+      `صيانة تكييف السيارات ${props.city.nameAr}`,
       ...props.service!.keywordsAr,
       `فحص ليزر ${props.city.nameAr}`,
       'فحص ليزر تسريب الفريون',

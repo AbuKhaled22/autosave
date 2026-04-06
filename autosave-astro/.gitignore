@@ -1,5 +1,7 @@
 # build output
 dist/
+deploy-dist/
+backup/noindex-pages/
 # generated types
 .astro/
 

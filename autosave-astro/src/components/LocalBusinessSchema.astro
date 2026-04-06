@@ -10,14 +10,25 @@ interface Props {
 
 const { lang } = Astro.props;
 const site = Astro.site?.origin ?? 'https://autosaveks.com';
+const businessName = lang === 'ar' ? 'اوتو سيف - صيانة مكيف السيارة' : 'Auto Save - Car AC Service';
+const aggregateRating = {
+  ratingValue: '4.8',
+  reviewCount: '320',
+  ratingCount: '320',
+  bestRating: '5',
+  worstRating: '1',
+};
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'AutoRepair',
-  'name': lang === 'ar' ? 'اوتو سيف - صيانة مكيف السيارة' : 'Auto Save - Car AC Service',
+  '@id': `${site}/#auto-save-riyadh`,
+  'name': businessName,
   'image': `${site}/og-image.jpg`,
   'url': site,
   'telephone': '+966537133080',
+  'currenciesAccepted': 'SAR',
+  'availableLanguage': ['ar', 'en'],
   'address': {
     '@type': 'PostalAddress',
     'addressLocality': lang === 'ar' ? 'الرياض' : 'Riyadh',
@@ -31,6 +42,31 @@ const schema = {
   },
   'priceRange': lang === 'ar' ? 'حسب الفحص' : 'On request',
   'openingHours': 'Sa-Th 08:00-20:00',
+  'openingHoursSpecification': [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+      opens: '08:00',
+      closes: '20:00',
+    },
+  ],
+  'contactPoint': [
+    {
+      '@type': 'ContactPoint',
+      telephone: '+966537133080',
+      contactType: 'customer service',
+      areaServed: 'SA',
+      availableLanguage: ['ar', 'en'],
+    },
+  ],
+  'aggregateRating': {
+    '@type': 'AggregateRating',
+    ratingValue: aggregateRating.ratingValue,
+    reviewCount: aggregateRating.reviewCount,
+    ratingCount: aggregateRating.ratingCount,
+    bestRating: aggregateRating.bestRating,
+    worstRating: aggregateRating.worstRating,
+  },
   'description':
     lang === 'ar'
       ? 'خدمات احترافية لإصلاح مكيف السيارة وتغيير الكمبروسر وتعبئة الفريون والصيانة الدورية. ضمان أفضل سعر عبر مراكز خدمة معتمدة.'
@@ -75,6 +111,7 @@ const schema = {
       },
     ],
   },
+  'sameAs': ['https://wa.me/966537133080'],
 };
 ---
 

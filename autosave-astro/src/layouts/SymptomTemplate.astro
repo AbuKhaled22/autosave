@@ -161,6 +161,26 @@ const symptomLeadEn = symptomFamilyLeadEn[symptomFamily];
 const symptomCueArText = symptomCueAr[symptomFamily];
 const symptomCueEnText = symptomCueEn[symptomFamily];
 
+const symptomIntentIntro = isAr
+  ? `${symptomLeadAr} عند ظهور ${symptomTitle} نبدأ بتأكيد نمط ${symptomCueArText} لتجنب الخلط بين الأعراض المتشابهة.`
+  : `${symptomLeadEn} When ${symptomTitle} appears, we first confirm the ${symptomCueEnText} before selecting any repair direction.`;
+
+const symptomExecutionIntro = isAr
+  ? `أول خطوة عملية عادةً: ${firstDiagnosticStep || 'فحص بصري سريع ثم قياس أداء التبريد'}. بعد ذلك نرتب الأسباب حسب الاحتمال لتقليل التجربة العشوائية.`
+  : `The first practical step is usually: ${firstDiagnosticStep || 'a visual baseline check followed by cooling-performance validation'}. Causes are then prioritized by likelihood to avoid random trial-and-error.`;
+
+const symptomIntroHighlights = isAr
+  ? [
+      `أعلى سبب مرجح حالياً: ${topCause ? topCause.titleAr : 'يُحدد بعد الفحص'}`,
+      `عدد الأسباب عالية الاحتمال: ${highLikelihoodCount}`,
+      `مسار الفحص الأولي: ${firstDiagnosticStep || 'فحص بصري + قياسات أساسية'}`,
+    ]
+  : [
+      `Top likely cause: ${topCause ? topCause.titleEn : 'Confirmed after workshop inspection'}`,
+      `High-likelihood causes: ${highLikelihoodCount}`,
+      `Initial check path: ${firstDiagnosticStep || 'Visual baseline + key measurements'}`,
+    ];
+
 // Price range row
 const priceRows = [
   {
@@ -263,10 +283,18 @@ const symptomSchema = {
         {isAr ? `ملخص تشخيص ${symptomTitle}` : `${symptomTitle} Diagnosis Snapshot`}
       </h2>
       <p class="mt-4 text-muted-foreground">
-        {isAr
-          ? `يركز هذا الدليل على عرض مسار التشخيص لهذه الحالة فقط، مع الأسباب الأكثر ترجيحاً وخطوات فحص عملية قبل الإصلاح.`
-          : `This guide focuses only on the diagnostic path for this symptom, with most likely causes and practical pre-repair inspection steps.`}
+        {symptomIntentIntro}
       </p>
+      <p class="mt-3 text-muted-foreground">
+        {symptomExecutionIntro}
+      </p>
+      <ul class="mt-6 grid gap-3 sm:grid-cols-3">
+        {symptomIntroHighlights.map((highlight) => (
+          <li class="rounded-lg border border-border bg-card p-4 text-sm text-foreground shadow-sm">
+            {highlight}
+          </li>
+        ))}
+      </ul>
       <div class="mt-6 grid gap-4 sm:grid-cols-3">
         <div class="rounded-xl border border-border bg-card p-4 shadow-sm">
           <p class="text-sm text-muted-foreground">{isAr ? 'أسباب عالية الاحتمال' : 'High-likelihood causes'}</p>

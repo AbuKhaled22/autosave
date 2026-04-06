@@ -4,14 +4,55 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 const isGitHubPages = !!process.env.GITHUB_ACTIONS;
+const excludedSitemapSnippets = ['/coming-soon', '/draft', '/test', '/preview', '/staging', '/tmp', '/404'];
+const fallbackCitySlug = 'riyadh';
+const nonIndexableCitySlugs = [
+  'jeddah',
+  'dammam',
+  'khobar',
+  'makkah',
+  'madinah',
+  'buraidah',
+  'abha',
+  'tabuk',
+  'taif',
+  'hail',
+  'al-ahsa',
+  'najran',
+  'jubail',
+  'yanbu',
+  'khamis-mushait',
+];
+
+const cityFallbackRedirects = Object.fromEntries(
+  nonIndexableCitySlugs.flatMap((citySlug) => {
+    // Keep fallback redirect coverage at city-root level only.
+    // This avoids generating large volumes of low-value redirect documents for city-service combinations.
+    return [
+      [`/services/${citySlug}/`, `/services/${fallbackCitySlug}/`],
+      [`/en/services/${citySlug}/`, `/en/services/${fallbackCitySlug}/`],
+    ];
+  })
+);
+
+/**
+ * Exclude non-indexable and utility URLs from sitemap output.
+ * @param {string} page
+ */
+function shouldIncludeSitemapPage(page) {
+  const pathname = new URL(page, 'https://autosaveks.com').pathname.toLowerCase();
+  return !excludedSitemapSnippets.some((snippet) => pathname.includes(snippet));
+}
 
 // https://astro.build/config
 export default defineConfig({
   site: isGitHubPages ? 'https://AbuKhaled22.github.io' : 'https://autosaveks.com',
   base: isGitHubPages ? '/autosave' : '/',
+  trailingSlash: 'always',
   redirects: {
     '/authorized-installment-center': '/authorized-maintenance-center',
     '/en/authorized-installment-center': '/en/authorized-maintenance-center',
+    ...cityFallbackRedirects,
   },
   i18n: {
     defaultLocale: 'ar',
@@ -22,6 +63,7 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      filter: shouldIncludeSitemapPage,
       i18n: {
         defaultLocale: 'ar',
         locales: {
