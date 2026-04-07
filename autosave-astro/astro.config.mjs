@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-const isGitHubPages = !!process.env.GITHUB_ACTIONS;
+const isGitHubPages = process.env.DEPLOY_TARGET === 'github-pages' || process.env.GITHUB_PAGES === 'true';
 const excludedSitemapSnippets = ['/coming-soon', '/draft', '/test', '/preview', '/staging', '/tmp', '/404'];
 const fallbackCitySlug = 'riyadh';
 const nonIndexableCitySlugs = [
