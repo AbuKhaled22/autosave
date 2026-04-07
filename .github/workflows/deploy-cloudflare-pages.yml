@@ -1,10 +1,6 @@
 name: Deploy Astro to Cloudflare Pages
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'autosave-astro/**'
   workflow_dispatch:
 
 env:

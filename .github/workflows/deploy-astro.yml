@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'autosave-astro/**'
+      - '.github/workflows/deploy-astro.yml'
   workflow_dispatch:
 
 env:
