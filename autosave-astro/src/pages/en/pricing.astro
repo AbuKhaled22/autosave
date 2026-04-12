@@ -4,7 +4,6 @@ import { getContentByLanguage } from '../../lib/content';
 import { getLocalizedPath } from '../../lib/i18n';
 import ComingSoonLink from '../../components/ComingSoonLink.astro';
 import FAQSchema from '../../components/FAQSchema.astro';
-import LocalBusinessSchema from '../../components/LocalBusinessSchema.astro';
 import { services } from '../../data/services';
 import { components as acComponents } from '../../data/components';
 import { DROP_OFF_CALENDLY_URL, getGeneralContactWhatsAppUrl, getPickupReturnWhatsAppUrl } from '../../lib/whatsapp';
@@ -394,10 +393,11 @@ const pricingFaqs = [
 
   {/* JSON-LD */}
   <FAQSchema />
-  <LocalBusinessSchema lang={lang} />
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Product",
+    "@id": `${pricingPageUrl}#pricing-product`,
+    "mainEntityOfPage": pricingPageUrl,
     "name": "Car AC Repair and Maintenance Services",
     "description": "Car AC repair and maintenance services in Saudi Arabia with best-price guarantee and certified execution quality.",
     "url": pricingPageUrl,

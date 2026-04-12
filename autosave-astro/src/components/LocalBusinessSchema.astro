@@ -11,13 +11,6 @@ interface Props {
 const { lang } = Astro.props;
 const site = Astro.site?.origin ?? 'https://autosaveks.com';
 const businessName = lang === 'ar' ? 'اوتو سيف - صيانة مكيف السيارة' : 'Auto Save - Car AC Service';
-const aggregateRating = {
-  ratingValue: '4.8',
-  reviewCount: '320',
-  ratingCount: '320',
-  bestRating: '5',
-  worstRating: '1',
-};
 
 const schema = {
   '@context': 'https://schema.org',
@@ -59,14 +52,6 @@ const schema = {
       availableLanguage: ['ar', 'en'],
     },
   ],
-  'aggregateRating': {
-    '@type': 'AggregateRating',
-    ratingValue: aggregateRating.ratingValue,
-    reviewCount: aggregateRating.reviewCount,
-    ratingCount: aggregateRating.ratingCount,
-    bestRating: aggregateRating.bestRating,
-    worstRating: aggregateRating.worstRating,
-  },
   'description':
     lang === 'ar'
       ? 'خدمات احترافية لإصلاح مكيف السيارة وتغيير الكمبروسر وتعبئة الفريون والصيانة الدورية. ضمان أفضل سعر عبر مراكز خدمة معتمدة.'
