@@ -103,7 +103,7 @@ export const enContent = {
     },
     trustBadges: [
       { label: "Best Price Guarantee", description: "We match any lower price" },
-      { label: "Certified Centers", description: "Vetted & approved partners" },
+      { label: "workshop", description: "alternative solutions to your issues" },
       { label: "Fast Turnaround", description: "Same-day service available" },
       { label: "Genuine Parts", description: "High quality aftermarket" },
     ],
@@ -189,11 +189,10 @@ export const enContent = {
           price: "On request",
           currency: "SAR",
           description:
-            "Drive to the nearest certified center and we handle coordination. Service fee details are listed on the pricing page (/pricing).",
+            "Drive to the workshop and we handle coordination. Additional service is free of charge.",
           cta: "Book Drop-Off",
           features: [
-            "Matched to nearest certified center",
-            "Search for the best parts at the cheapest price, with a guarantee to return the price difference if any.",
+            "Search for the best parts at the cheapest price, with a guarantee to return triple the price difference if any.",
             "Price match guarantee",
             "Quality-checked repair",
             "Dedicated WhatsApp support",
@@ -206,12 +205,11 @@ export const enContent = {
           price: "On request",
           currency: "SAR",
           description:
-            "We pick up your car, complete repair at a certified center, and return it to your location. Pricing is shared on request.",
+            "We pick up your car, complete repair at a workshop, and return it to your location. Pricing is shared on request.",
           cta: "Book Pickup",
           features: [
             "Door-to-door car pickup",
-            "Matched to certified center",
-            "Search for the best parts at the cheapest price, with a guarantee to return the price difference if any.",
+            "Search for the best parts at the cheapest price, with a guarantee to return triple the price difference if any.",
             "Price match guarantee",
             "Quality-checked repair",
             "Dedicated WhatsApp support",
@@ -233,7 +231,7 @@ export const enContent = {
         {
           name: "Ahmed K.",
           car: "Toyota Camry 2026",
-          text: "My car AC was blowing hot air in the middle of summer. AUTO SAVE found me a certified center, got the compressor replaced at a great price, and even picked up my car.",
+          text: "My car AC was blowing hot air in the middle of summer. AUTO SAVE help me got the compressor replaced at a great price, and even picked up my car.",
           rating: 5,
         },
         {
@@ -272,7 +270,7 @@ export const enContent = {
         {
           question: "What's included in the drop-off service?",
           answer:
-            "Matching you with the nearest certified center, negotiating spare part prices, quality verification, and WhatsApp support.",
+            "Matching you with the nearest workshop, negotiating spare part prices, quality verification, and WhatsApp support.",
         },
         {
           question: "What's included in the pickup service?",
@@ -333,9 +331,9 @@ export const enContent = {
           "We compare multiple certified suppliers for the same quality part to secure the best market price.",
       },
       {
-        title: "Certified Center Matching",
+        title: "workshop",
         description:
-          "We match you to a vetted workshop based on your car make, model, and issue type.",
+          "In the workshop we provide sloutions based on your car make, model, and issue type.",
       },
       {
         title: "Quality Verification",
