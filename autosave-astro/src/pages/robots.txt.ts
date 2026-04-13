@@ -15,6 +15,14 @@ Disallow: /*?*utm_
 Disallow: /*?*gclid=
 Disallow: /*?*fbclid=
 
+# AI discovery manifests
+Allow: /llms.txt
+Allow: /llms-en.txt
+Allow: /llms-ar.txt
+Allow: /llms-full.txt
+Allow: /llm-en.text
+Allow: /llm-ar.text
+
 Host: ${hostName}
 Sitemap: ${sitemapURL.href}
 `;

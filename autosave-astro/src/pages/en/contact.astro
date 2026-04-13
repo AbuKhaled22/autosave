@@ -10,6 +10,12 @@ const contact = content.contact;
 const dropOffBookingUrl = DROP_OFF_CALENDLY_URL;
 const pickupBookingUrl = getPickupReturnWhatsAppUrl(lang);
 const generalWhatsappUrl = getGeneralContactWhatsAppUrl(lang);
+const aiContextLinks = [
+  { label: 'Index', href: '/llms.txt' },
+  { label: 'EN', href: '/llms-en.txt' },
+  { label: 'AR', href: '/llms-ar.txt' },
+  { label: 'Full', href: '/llms-full.txt' },
+];
 ---
 
 <PageLayout
@@ -85,6 +91,22 @@ const generalWhatsappUrl = getGeneralContactWhatsAppUrl(lang);
             >
               {contact.openWhatsapp}
             </ComingSoonLink>
+
+            <div class="mt-4 rounded-lg border border-border/70 bg-background/70 p-4">
+              <h4 class="text-xs font-semibold font-display uppercase tracking-wider text-primary">AI Context</h4>
+              <p class="mt-1 text-xs text-muted-foreground">Discovery links for AI assistants and context crawlers.</p>
+              <nav aria-label="AI context links" class="mt-2 flex flex-wrap gap-2">
+                {aiContextLinks.map((link) => (
+                  <a
+                    href={link.href}
+                    class="inline-flex min-h-8 items-center rounded border border-border px-2 py-1 text-xs text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                    aria-label={`${link.label} context link`}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+            </div>
           </div>
         </div>
 

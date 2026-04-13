@@ -11,6 +11,14 @@ const { lang } = Astro.props;
 const content = getContentByLanguage(lang);
 const footer = content.footer;
 const year = new Date().getFullYear();
+const aiContextTitle = lang === 'ar' ? 'سياق الذكاء الاصطناعي' : 'AI Context';
+const aiContextAriaLabel = lang === 'ar' ? 'روابط سياق الذكاء الاصطناعي' : 'AI context links';
+const aiContextLinks = [
+  { label: 'Index', href: '/llms.txt' },
+  { label: 'EN', href: '/llms-en.txt' },
+  { label: 'AR', href: '/llms-ar.txt' },
+  { label: 'Full', href: '/llms-full.txt' },
+];
 
 function resolveFooterHref(href: string): string {
   return getLocalizedPath(href, lang);
@@ -104,17 +112,31 @@ function resolveFooterHref(href: string): string {
       <p class="text-sm text-[#f0ebe0]/40 leading-relaxed">
         &copy; {year} {footer.copyright}
       </p>
-      <nav aria-label={lang === 'ar' ? 'روابط قانونية' : 'Legal links'} class="flex flex-wrap items-center gap-5">
-        {footer.bottomLinks.map((link) => (
-          <a
-            href={resolveFooterHref(link.href)}
-            class="nav-link-hover inline-flex min-h-11 items-center text-sm text-[#f0ebe0]/40 hover:text-primary transition-colors"
-            aria-label={link.name}
-          >
-            {link.name}
-          </a>
-        ))}
-      </nav>
+      <div class="flex w-full flex-col items-start gap-3 sm:w-auto sm:items-end">
+        <nav aria-label={lang === 'ar' ? 'روابط قانونية' : 'Legal links'} class="flex flex-wrap items-center gap-5">
+          {footer.bottomLinks.map((link) => (
+            <a
+              href={resolveFooterHref(link.href)}
+              class="nav-link-hover inline-flex min-h-11 items-center text-sm text-[#f0ebe0]/40 hover:text-primary transition-colors"
+              aria-label={link.name}
+            >
+              {link.name}
+            </a>
+          ))}
+        </nav>
+        <nav aria-label={aiContextAriaLabel} class="flex flex-wrap items-center gap-2 text-xs">
+          <span class="text-[#f0ebe0]/35">{aiContextTitle}:</span>
+          {aiContextLinks.map((link) => (
+            <a
+              href={link.href}
+              class="inline-flex min-h-8 items-center rounded border border-[#f0ebe0]/20 px-2 py-1 text-[#f0ebe0]/55 transition-colors hover:border-primary/50 hover:text-primary"
+              aria-label={lang === 'ar' ? `رابط ${link.label}` : `${link.label} context link`}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </div>
     </div>
   </div>
 </footer>
