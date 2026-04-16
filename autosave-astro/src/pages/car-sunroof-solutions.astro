@@ -1,0 +1,633 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getLocalizedPath } from '../lib/i18n';
+
+const lang = 'ar' as const;
+const pagePath = '/car-sunroof-solutions';
+const alternatePath = getLocalizedPath(pagePath, 'en');
+const SUNROOF_WHATSAPP_NUMBER = '966500393753';
+const buildSunroofWhatsAppUrl = (message: string) =>
+  `https://wa.me/${SUNROOF_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+const whatsappUrl = buildSunroofWhatsAppUrl('مرحباً، أحتاج خدمة حلول فتحة سقف السيارة لجميع الأنواع والموديلات.');
+
+const keywords = [
+  'حلول فتحات سقف السيارات',
+  'تصليح فتحة سقف السيارة',
+  'تصليح بانوراما السيارة',
+  'إصلاح بانوراما السيارة',
+  'صيانة فتحة السقف الرياض',
+  'تسريب ماء فتحة السقف',
+  'إصلاح تسريب فتحة السقف',
+  'برمجة محرك فتحة السقف',
+  'تبديل سكة فتحة السقف',
+  'car sunroof solutions',
+  'sunroof repair riyadh',
+  'panoramic roof repair',
+  'sunroof leak repair',
+  'sunroof motor replacement',
+  'car roof glass repair',
+];
+
+const issues = [
+  {
+    title: 'إصلاح تعليق فتحة السقف',
+    icon: 'motor',
+    description: 'معالجة توقف الفتح والإغلاق أو الحركة البطيئة عبر فحص المسارات والمحرك والتحكم الإلكتروني.',
+    details: [
+      'تشخيص محرك فتحة السقف ووحدة الأوامر.',
+      'فحص سكة الحركة وتنظيف مسارات الانزلاق.',
+      'إعادة ضبط الفتح والإغلاق الأوتوماتيكي.',
+    ],
+  },
+  {
+    title: 'حل مشكلة تسريب المياه',
+    icon: 'leak',
+    description: 'تنظيف مجاري التصريف واستبدال العوازل التالفة لمنع دخول الماء للفرش والدوائر الداخلية.',
+    details: [
+      'فحص مجاري تصريف فتحة السقف تحت ضغط ماء مباشر.',
+      'تنظيف فتحات التصريف وإزالة الانسداد بالكامل.',
+      'تبديل جلدة العزل التالفة واختبار الإغلاق النهائي.',
+    ],
+  },
+  {
+    title: 'صيانة البانوراما المزدوجة',
+    icon: 'panorama',
+    description: 'خدمة مخصصة لفتحات السقف البانورامية الكبيرة مع ضبط الحركة والتثبيت بدون أصوات مزعجة.',
+    details: [
+      'خدمة فتحات السقف البانورامية متعددة الأجزاء.',
+      'ضبط المحاور ومزامنة الحركة بين الألواح.',
+      'تقليل ضوضاء الاحتكاك والاهتزاز داخل المقصورة.',
+    ],
+  },
+  {
+    title: 'تبديل الزجاج أو العازل',
+    icon: 'glass',
+    description: 'استبدال زجاج السقف أو الجلدة العازلة بقطع مناسبة لكل موديل للحفاظ على الإغلاق المحكم.',
+    details: [
+      'تبديل زجاج فتحة السقف حسب مواصفات الموديل.',
+      'استبدال العوازل المطاطية لمنع الهواء والماء.',
+      'معايرة الإغلاق بعد التركيب لضمان الثبات.',
+    ],
+  },
+  {
+    title: 'إصلاح صوت الاحتكاك والاهتزاز',
+    icon: 'noise',
+    description: 'تشخيص أسباب الضوضاء وإعادة ضبط مسار الحركة وتثبيت القطع الداخلية بدقة.',
+    details: [
+      'تحديد مصدر الطقطقة أو الصرير في السقف.',
+      'إعادة تثبيت مكونات المسار والحوامل الداخلية.',
+      'اختبار الطريق بعد الخدمة للتأكد من هدوء الحركة.',
+    ],
+  },
+  {
+    title: 'معايرة وبرمجة النظام',
+    icon: 'calibration',
+    description: 'إعادة برمجة وحدات التحكم بعد الإصلاح لضمان عمل الفتحة أوتوماتيكياً بشكل صحيح.',
+    details: [
+      'إعادة ضبط نظام الفتح والإغلاق من وحدة التحكم.',
+      'برمجة نقاط التوقف النهائية لحركة السقف.',
+      'فحص استجابة الأزرار والذاكرة الإلكترونية.',
+    ],
+  },
+];
+
+const ownerMistakes = [
+  {
+    title: 'إهمال تنظيف مجاري التصريف',
+    description:
+      'تراكم الأتربة يمنع خروج الماء ويؤدي إلى تسريب ماء فتحة السقف داخل المقصورة، وهي من أكثر أسباب طلب تصليح فتحة سقف السيارة.',
+  },
+  {
+    title: 'فتح وإغلاق الفتحة بعنف',
+    description:
+      'الاستخدام المتكرر بطريقة غير صحيحة يسرع تآكل سكة الفتحة والمسننات، ثم يتطور العطل إلى تعليق في الفتح أو الإغلاق.',
+  },
+  {
+    title: 'تجاهل أصوات الطقطقة المبكرة',
+    description:
+      'الأصوات الصغيرة غالباً مؤشر بداية خلل ميكانيكي في البانوراما أو الأدلة، ومعالجتها مبكراً تقلل تكلفة إصلاح بانوراما السيارة لاحقاً.',
+  },
+  {
+    title: 'استخدام مواد تشحيم غير مناسبة',
+    description:
+      'مواد غير مخصصة قد تجمع الأوساخ وتؤثر على سلاسة الحركة، وتسبب ضغطاً إضافياً على محرك فتحة السقف وحساسات الإغلاق.',
+  },
+];
+
+const otherIssues = [
+  {
+    title: 'تلف حساس وضعية الفتحة',
+    description:
+      'يؤدي لتوقف الفتحة في منتصف الحركة أو العودة العكسية بشكل مفاجئ، ويحتاج فحصاً كهربائياً دقيقاً وإعادة معايرة للنظام.',
+  },
+  {
+    title: 'خلل وحدة التحكم الإلكترونية',
+    description:
+      'يظهر على شكل فقدان استجابة للأزرار أو أوامر غير دقيقة للفتح والإغلاق، وغالباً يتطلب برمجة فتحة السقف بعد الإصلاح.',
+  },
+  {
+    title: 'انحراف السكة أو كسر دليل الحركة',
+    description:
+      'يسبب احتكاكاً عالياً وصوتاً مزعجاً وعدم ثبات في الحركة، وقد يتطلب تبديل سكة فتحة السقف أو إعادة محاذاة دقيقة.',
+  },
+  {
+    title: 'ضعف عزل الهواء مع السرعات العالية',
+    description:
+      'قد ينتج عن اهتراء العازل أو عدم محاذاة الزجاج بعد إصلاح سابق غير دقيق، ويؤثر مباشرة على الراحة والعزل داخل السيارة.',
+  },
+];
+
+const faqItems = [
+  {
+    question: 'كم يستغرق إصلاح فتحة سقف السيارة؟',
+    answer:
+      'الأعطال البسيطة قد تُنجز خلال ساعة إلى ساعتين، بينما الأعطال المعقدة مثل تبديل المحرك أو مسارات البانوراما تحتاج وقتاً أطول حسب نوع السيارة.',
+  },
+  {
+    question: 'كم تكلفة تصليح فتحة سقف السيارة في الرياض؟',
+    answer:
+      'التكلفة تختلف حسب نوع العطل وقطع الغيار المطلوبة. بعد الفحص نوضح حالة الفتحة، الحل المناسب، والتكلفة المتوقعة قبل بدء التنفيذ.',
+  },
+  {
+    question: 'هل تقدمون حلولاً لكل أنواع السيارات؟',
+    answer:
+      'نعم، نقدم حلول فتحات سقف السيارات لمعظم الموديلات الاقتصادية والفاخرة، مع فحص مخصص لكل نوع قبل بدء العمل.',
+  },
+  {
+    question: 'هل يمكن إصلاح تسريب الماء من فتحة السقف نهائياً؟',
+    answer:
+      'في أغلب الحالات نعم، يتم تنظيف وتصحيح مسارات التصريف واستبدال العوازل التالفة واختبار الإغلاق تحت ضغط الماء.',
+  },
+  {
+    question: 'هل تشمل الخدمة فتحة السقف البانورامية؟',
+    answer:
+      'نعم، تشمل الخدمة فتحات السقف العادية والبانورامية مع إجراءات ضبط دقيقة للمحاور والمسارات.',
+  },
+  {
+    question: 'هل يجب تبديل كامل فتحة السقف عند تعطلها؟',
+    answer:
+      'ليس دائماً. في كثير من الحالات يمكن إصلاح الجزء المتسبب بالمشكلة مثل المحرك أو السكة أو العازل دون الحاجة لتبديل النظام بالكامل.',
+  },
+  {
+    question: 'هل يمكن القيادة والسيارة فيها تسريب من فتحة السقف؟',
+    answer:
+      'يفضل عدم التأخير، لأن التسريب قد يؤثر على الفرش والدوائر الكهربائية مع الوقت. الإصلاح المبكر يقلل الأضرار والتكلفة المستقبلية.',
+  },
+  {
+    question: 'هل تقدمون فحصاً وتشخيصاً قبل الإصلاح؟',
+    answer:
+      'نعم، يتم الفحص الميكانيكي والكهربائي أولاً لتحديد سبب العطل بدقة، ثم شرح خطة الإصلاح المتاحة حسب حالة السيارة.',
+  },
+  {
+    question: 'هل توجد ضمانات على إصلاح فتحة السقف؟',
+    answer:
+      'نعم، تختلف مدة الضمان بحسب نوع الخدمة والقطع المستخدمة، ويتم توضيح تفاصيل الضمان بشكل واضح قبل التنفيذ.',
+  },
+  {
+    question: 'ماذا أفعل إذا علقت فتحة السقف وهي مفتوحة؟',
+    answer:
+      'تجنب إجبارها على الإغلاق يدوياً حتى لا يزيد الضرر. الأفضل التواصل مباشرة لتشخيص سبب التعليق وإغلاقها بطريقة آمنة.',
+  },
+  {
+    question: 'كيف أمنع تكرار عطل فتحة السقف بعد الإصلاح؟',
+    answer:
+      'الالتزام بالتنظيف الدوري لمجاري التصريف، استخدام التشغيل الصحيح، وفحص الأصوات أو البطء مبكراً يساعد على منع تكرار الأعطال.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AutoRepair',
+  name: 'حلول فتحات سقف السيارات',
+  url: `https://autosaveks.com${getLocalizedPath(pagePath, lang)}`,
+  description:
+    'صفحة متخصصة في حلول فتحات سقف السيارات لجميع الماركات والموديلات في الرياض، تشمل إصلاح التعليق، التسريب، البانوراما، والمعايرة.',
+  image: 'https://autosaveks.com/images/hero-car.jpeg',
+  serviceType: [
+    'Sunroof repair',
+    'Panoramic roof repair',
+    'Sunroof leak repair',
+    'Sunroof motor calibration',
+  ],
+  areaServed: {
+    '@type': 'City',
+    name: 'Riyadh',
+  },
+  availableLanguage: ['ar', 'en'],
+  provider: {
+    '@type': 'Organization',
+    name: 'AUTO SAVE',
+    url: 'https://autosaveks.com',
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="تصليح فتحة سقف السيارة الرياض | إصلاح بانوراما وتسريب الماء | Car Sunroof Solutions"
+  description="تصليح فتحة سقف السيارة بالرياض، إصلاح بانوراما السيارة، حل تسريب ماء فتحة السقف، تبديل محرك وسكة السقف. Car sunroof repair Riyadh for all makes and models."
+  lang={lang}
+  keywords={keywords}
+>
+  <article class="bg-background">
+    <header class="relative overflow-hidden hero-gradient text-[#f0ebe0]">
+      <div class="hero-pattern"></div>
+      <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:py-20 lg:px-8 lg:py-24">
+        <p class="hero-animate inline-flex items-center rounded-full border border-primary/40 bg-[#0c1b2e]/60 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-primary">
+          Car sunroof solutions | حلول فتحات سقف السيارات
+        </p>
+        <h1 class="hero-animate hero-animate-delay-1 mt-5 max-w-4xl text-3xl font-bold tracking-tight font-display sm:text-4xl lg:text-5xl">
+          حلول فتحة سقف السيارة لجميع الماركات والموديلات
+        </h1>
+        <p class="hero-animate hero-animate-delay-2 mt-5 max-w-3xl text-base leading-relaxed text-[#f0ebe0]/70 sm:text-lg">
+            تصليح فتحة سقف السيارة، إصلاح بانوراما، علاج تسريب الماء، وتبديل محرك وسكة السقف لكل موديل.
+        </p>
+        <nav class="hero-animate hero-animate-delay-3 mt-8 flex flex-col gap-3 sm:flex-row sm:items-center" aria-label="روابط الإجراء السريع">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="احجز خدمة حلول فتحة سقف السيارة عبر واتساب"
+            class="inline-flex min-h-11 items-center justify-center rounded-lg gold-gradient gold-shimmer px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition hover:shadow-xl"
+          >
+            احجز عبر واتساب
+          </a>
+          <a
+            href={alternatePath}
+            aria-label="Switch to English sunroof solutions page"
+            class="inline-flex min-h-11 items-center justify-center rounded-lg border border-[#f0ebe0]/35 px-6 py-3 text-sm font-semibold text-[#f0ebe0] transition hover:bg-[#f0ebe0]/10"
+          >
+            English Version
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">الخدمات الأعلى طلباً لفتحات سقف السيارات</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            ندعم جميع أنواع وموديلات السيارات، وننفذ حلول فتحة السقف من الأعطال البسيطة حتى الأعطال المعقدة بخطة تشخيص واضحة.
+          </p>
+        </header>
+        <ul class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {issues.map((issue, index) => (
+            <li data-animate="fade-in-up" data-animate-delay={String(((index % 3) + 1) * 100)}>
+              <button
+                type="button"
+                aria-label={`عرض تفاصيل خدمة ${issue.title}`}
+                data-service-title={issue.title}
+                data-service-icon={issue.icon}
+                data-service-description={issue.description}
+                data-service-details={JSON.stringify(issue.details)}
+                class="w-full rounded-xl border border-border bg-card p-6 text-start shadow-sm card-hover-lift border-t-2 border-t-primary/25 transition hover:border-t-primary/60"
+              >
+                <div class="flex items-start gap-3">
+                  <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                      {issue.icon === 'motor' && <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21m-5.83-5.83L3 21m12-9.75l3-3a2.121 2.121 0 013 3l-3 3m-6 0l4.5-4.5" />}
+                      {issue.icon === 'leak' && <path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75c-1.172 0-6 5.273-6 8.25a6 6 0 0012 0c0-2.977-4.828-8.25-6-8.25z" />}
+                      {issue.icon === 'panorama' && <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 7.5h16.5v9H3.75v-9zm4.5 0v9m7.5-9v9" />}
+                      {issue.icon === 'glass' && <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5h15M7.5 19.5v-3.75a4.5 4.5 0 019 0v3.75" />}
+                      {issue.icon === 'noise' && <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h3m10.5 0h3M7.5 8.25l2.25 3.75-2.25 3.75m9-7.5l-2.25 3.75 2.25 3.75" />}
+                      {issue.icon === 'calibration' && <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 6.75h15M4.5 12h15M4.5 17.25h15M9 5.25v3M15 10.5v3m-3.75 2.25v3" />}
+                    </svg>
+                  </span>
+                  <h3 class="pt-1 text-lg font-semibold font-display">{issue.title}</h3>
+                </div>
+                <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{issue.description}</p>
+                <span class="mt-4 inline-flex min-h-11 items-center rounded-lg border border-primary/30 px-4 py-2 text-xs font-semibold text-primary">
+                  عرض التفاصيل
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section
+      id="service-modal-overlay"
+      class="service-modal-overlay fixed inset-0 z-50 bg-foreground/65 p-4 sm:p-6"
+      aria-label="نافذة تفاصيل الخدمة"
+    >
+      <article
+        id="service-modal-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="service-modal-title"
+        class="service-modal-panel mx-auto mt-8 w-full max-w-2xl rounded-2xl border border-border bg-card p-5 shadow-2xl sm:mt-12 sm:p-8"
+      >
+        <header class="flex items-start justify-between gap-4">
+          <div class="flex items-start gap-3">
+            <span id="service-modal-icon-wrap" class="mt-1 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                <path id="service-modal-icon-path" stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21m-5.83-5.83L3 21m12-9.75l3-3a2.121 2.121 0 013 3l-3 3m-6 0l4.5-4.5" />
+              </svg>
+            </span>
+            <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-primary">Service Detail</p>
+            <h3 id="service-modal-title" class="mt-2 text-2xl font-bold tracking-tight font-display">تفاصيل الخدمة</h3>
+            </div>
+          </div>
+          <button
+            id="service-modal-close"
+            type="button"
+            aria-label="إغلاق نافذة تفاصيل الخدمة"
+            class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-border bg-secondary/50 text-foreground transition hover:bg-secondary"
+          >
+            ×
+          </button>
+        </header>
+
+        <p id="service-modal-description" class="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base"></p>
+
+        <section class="mt-6 rounded-xl bg-secondary/40 p-4 sm:p-5">
+          <h4 class="text-sm font-semibold font-display">ماذا تشمل الخدمة؟</h4>
+          <ul id="service-modal-points" class="mt-3 space-y-2 text-sm text-muted-foreground"></ul>
+        </section>
+
+        <footer class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="احجز خدمة فتحة السقف عبر واتساب"
+            class="inline-flex min-h-11 items-center justify-center rounded-lg gold-gradient gold-shimmer px-6 py-3 text-sm font-semibold text-white shadow-md"
+          >
+            احجز هذه الخدمة
+          </a>
+          <button
+            id="service-modal-close-secondary"
+            type="button"
+            aria-label="إغلاق نافذة التفاصيل"
+            class="inline-flex min-h-11 items-center justify-center rounded-lg border border-primary/30 px-6 py-3 text-sm font-semibold text-primary transition hover:bg-primary/5"
+          >
+            إغلاق
+          </button>
+        </footer>
+      </article>
+    </section>
+
+    <section class="bg-secondary/40 py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">أخطاء شائعة تؤدي إلى تصليح فتحة سقف السيارة</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            هذه الأخطاء من أكثر أسباب البحث عن تصليح فتحة سقف السيارة، إصلاح تسريب ماء فتحة السقف، وإصلاح بانوراما السيارة في الرياض، ونحن نعالجها لجميع الأنواع والموديلات.
+          </p>
+        </header>
+        <ul class="mt-8 grid gap-5 md:grid-cols-2">
+          {ownerMistakes.map((item, index) => (
+            <li data-animate="fade-in-up" data-animate-delay={String((index + 1) * 100)}>
+              <article class="rounded-xl border border-border bg-card p-6 shadow-sm card-hover-lift">
+                <h3 class="text-lg font-semibold font-display">{item.title}</h3>
+                <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+              </article>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">أعطال فتحة السقف والبانوراما المتقدمة التي نعالجها</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            إضافة إلى الأعطال الشائعة، نوفر تشخيصاً متقدماً للحالات الكهربائية والميكانيكية المعقدة يشمل برمجة فتحة السقف، تبديل سكة الفتحة، وضبط الإغلاق لكل موديل.
+          </p>
+        </header>
+        <ul class="mt-8 grid gap-5 md:grid-cols-2">
+          {otherIssues.map((item, index) => (
+            <li data-animate="fade-in-up" data-animate-delay={String((index + 1) * 100)}>
+              <article class="rounded-xl border border-border bg-card p-6 shadow-sm card-hover-lift">
+                <h3 class="text-lg font-semibold font-display">{item.title}</h3>
+                <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+              </article>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">منهجية العمل للحصول على نتيجة مستقرة</h2>
+        </header>
+        <ol class="mt-10 grid gap-5 md:grid-cols-3">
+          <li class="rounded-xl border border-border bg-card p-6 shadow-sm" data-animate="fade-in-up" data-animate-delay="100">
+            <h3 class="text-lg font-semibold font-display">1) تشخيص دقيق</h3>
+            <p class="mt-3 text-sm leading-relaxed text-muted-foreground">فحص ميكانيكي وكهربائي لتحديد أصل العطل بدلاً من الحلول المؤقتة.</p>
+          </li>
+          <li class="rounded-xl border border-border bg-card p-6 shadow-sm" data-animate="fade-in-up" data-animate-delay="200">
+            <h3 class="text-lg font-semibold font-display">2) تنفيذ مطابق للموديل</h3>
+            <p class="mt-3 text-sm leading-relaxed text-muted-foreground">استخدام قطع وإعدادات مناسبة لنوع السيارة للحفاظ على عمل فتحة السقف بسلاسة.</p>
+          </li>
+          <li class="rounded-xl border border-border bg-card p-6 shadow-sm" data-animate="fade-in-up" data-animate-delay="300">
+            <h3 class="text-lg font-semibold font-display">3) اختبار نهائي شامل</h3>
+            <p class="mt-3 text-sm leading-relaxed text-muted-foreground">اختبار الفتح والإغلاق والتسريب والضوضاء قبل التسليم لضمان جودة النتيجة.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="bg-secondary/40 py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">الأسئلة الشائعة حول فتحة السقف</h2>
+        </header>
+        <div class="mt-8 space-y-4">
+          {faqItems.map((item, index) => (
+            <details class="rounded-xl border border-border bg-card p-5" data-animate="fade-in-up" data-animate-delay={String((index + 1) * 100)}>
+              <summary class="cursor-pointer text-base font-semibold font-display">{item.question}</summary>
+              <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="relative overflow-hidden py-20 lg:py-28 hero-gradient text-[#f0ebe0]">
+      <div class="hero-pattern"></div>
+      <div class="relative z-10 container mx-auto px-4 text-center" data-animate="fade-in-up">
+        <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">تحتاج حل سريع لفتحة السقف؟</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[#f0ebe0]/70 sm:text-lg">
+          ابدأ الآن برسالة واتساب واحصل على تقييم مبدئي للحالة مع توجيه مناسب لنوع سيارتك.
+        </p>
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="ابدأ التواصل عبر واتساب لحلول فتحة السقف"
+          class="mt-8 inline-flex min-h-11 items-center justify-center rounded-lg gold-gradient gold-shimmer px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition hover:shadow-xl"
+        >
+          ابدأ التشخيص الآن
+        </a>
+      </div>
+    </section>
+  </article>
+
+  <style is:inline>
+    .service-modal-overlay {
+      opacity: 0;
+      pointer-events: none;
+      background-color: rgb(12 27 46 / 0.62);
+      transition: opacity 220ms ease;
+    }
+
+    @supports ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {
+      .service-modal-overlay {
+        background-color: rgb(12 27 46 / 0.45);
+        backdrop-filter: blur(8px) saturate(115%);
+        -webkit-backdrop-filter: blur(8px) saturate(115%);
+      }
+    }
+
+    .service-modal-panel {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+      transition: opacity 220ms ease, transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .service-modal-point {
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 160ms ease, transform 180ms ease;
+    }
+
+    .service-modal-point.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service-modal-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .service-modal-overlay.is-open .service-modal-panel {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .service-modal-overlay,
+      .service-modal-panel,
+      .service-modal-point {
+        transition: none;
+      }
+
+      .service-modal-point {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+
+  <script>
+    const overlay = document.getElementById('service-modal-overlay');
+    const iconPathEl = document.getElementById('service-modal-icon-path');
+    const titleEl = document.getElementById('service-modal-title');
+    const descriptionEl = document.getElementById('service-modal-description');
+    const pointsEl = document.getElementById('service-modal-points');
+    const closePrimary = document.getElementById('service-modal-close');
+    const closeSecondary = document.getElementById('service-modal-close-secondary');
+    const serviceButtons = document.querySelectorAll('[data-service-title]');
+    const iconPathMap = {
+      motor: 'M11.42 15.17L17.25 21m-5.83-5.83L3 21m12-9.75l3-3a2.121 2.121 0 013 3l-3 3m-6 0l4.5-4.5',
+      leak: 'M12 3.75c-1.172 0-6 5.273-6 8.25a6 6 0 0012 0c0-2.977-4.828-8.25-6-8.25z',
+      panorama: 'M3.75 7.5h16.5v9H3.75v-9zm4.5 0v9m7.5-9v9',
+      glass: 'M4.5 19.5h15M7.5 19.5v-3.75a4.5 4.5 0 019 0v3.75',
+      noise: 'M3.75 12h3m10.5 0h3M7.5 8.25l2.25 3.75-2.25 3.75m9-7.5l-2.25 3.75 2.25 3.75',
+      calibration: 'M4.5 6.75h15M4.5 12h15M4.5 17.25h15M9 5.25v3M15 10.5v3m-3.75 2.25v3',
+    };
+    let lastTrigger = null;
+
+    const closeModal = () => {
+      if (!overlay) return;
+      overlay.classList.remove('is-open');
+      document.body.classList.remove('overflow-hidden');
+      if (lastTrigger instanceof HTMLElement) {
+        lastTrigger.focus();
+      }
+    };
+
+    const openModal = (button) => {
+      if (!overlay || !titleEl || !descriptionEl || !pointsEl) return;
+      lastTrigger = button;
+      const title = button.getAttribute('data-service-title') || '';
+      const icon = button.getAttribute('data-service-icon') || 'motor';
+      const description = button.getAttribute('data-service-description') || '';
+      const detailsRaw = button.getAttribute('data-service-details') || '[]';
+      let details = [];
+
+      try {
+        details = JSON.parse(detailsRaw);
+      } catch {
+        details = [];
+      }
+
+      titleEl.textContent = title;
+      if (iconPathEl instanceof SVGPathElement) {
+        iconPathEl.setAttribute('d', iconPathMap[icon] || iconPathMap.motor);
+      }
+      descriptionEl.textContent = description;
+      pointsEl.innerHTML = '';
+      details.forEach((line, index) => {
+        const li = document.createElement('li');
+        li.className = 'service-modal-point rounded-lg bg-card px-3 py-2';
+        li.style.transitionDelay = `${index * 55}ms`;
+        li.textContent = line;
+        pointsEl.appendChild(li);
+      });
+
+      overlay.classList.add('is-open');
+      document.body.classList.add('overflow-hidden');
+      requestAnimationFrame(() => {
+        pointsEl.querySelectorAll('.service-modal-point').forEach((point) => {
+          point.classList.add('is-visible');
+        });
+      });
+      if (closePrimary instanceof HTMLElement) {
+        closePrimary.focus();
+      }
+    };
+
+    serviceButtons.forEach((button) => {
+      button.addEventListener('click', () => openModal(button));
+    });
+
+    closePrimary?.addEventListener('click', closeModal);
+    closeSecondary?.addEventListener('click', closeModal);
+
+    overlay?.addEventListener('click', (event) => {
+      if (event.target === overlay) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && overlay && overlay.classList.contains('is-open')) {
+        closeModal();
+      }
+    });
+  </script>
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

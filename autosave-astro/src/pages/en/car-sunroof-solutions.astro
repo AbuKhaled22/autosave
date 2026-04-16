@@ -1,0 +1,631 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLocalizedPath } from '../../lib/i18n';
+
+const lang = 'en' as const;
+const pagePath = '/car-sunroof-solutions';
+const alternatePath = getLocalizedPath(pagePath, 'ar');
+const SUNROOF_WHATSAPP_NUMBER = '966500393753';
+const buildSunroofWhatsAppUrl = (message: string) =>
+  `https://wa.me/${SUNROOF_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+const whatsappUrl = buildSunroofWhatsAppUrl('Hello, I need car sunroof solutions for my vehicle model in Riyadh.');
+
+const keywords = [
+  'car sunroof solutions',
+  'sunroof repair riyadh',
+  'car sunroof repair',
+  'panoramic roof repair',
+  'sunroof leak repair',
+  'sunroof motor replacement',
+  'sunroof rail repair',
+  'car roof glass replacement',
+  'fix stuck sunroof',
+  'حلول فتحات سقف السيارات',
+  'تصليح فتحة سقف السيارة',
+  'إصلاح بانوراما السيارة',
+  'صيانة فتحة السقف الرياض',
+];
+
+const issues = [
+  {
+    title: 'Stuck Sunroof Repair',
+    icon: 'motor',
+    description: 'Fixes for sunroof panels that stop opening or closing due to motor, rail, or control module issues.',
+    details: [
+      'Motor and switch diagnosis with electronic command checks.',
+      'Rail inspection, lubrication, and movement correction.',
+      'Automatic open/close recalibration after service.',
+    ],
+  },
+  {
+    title: 'Sunroof Water Leak Fix',
+    icon: 'leak',
+    description: 'Drain line cleaning and seal replacement to stop water entering the cabin and damaging trim or electronics.',
+    details: [
+      'Drain channel pressure test for hidden leaks.',
+      'Full drain cleaning to remove blockage and dirt build-up.',
+      'Seal replacement and post-repair leak validation.',
+    ],
+  },
+  {
+    title: 'Panoramic Roof Service',
+    icon: 'panorama',
+    description: 'Specialized service for panoramic roofs, including track alignment and smooth movement calibration.',
+    details: [
+      'Service for multi-panel panoramic roof systems.',
+      'Panel synchronization and track alignment tuning.',
+      'Noise reduction for friction and vibration points.',
+    ],
+  },
+  {
+    title: 'Roof Glass and Seal Replacement',
+    icon: 'glass',
+    description: 'Model-specific glass and weather strip replacement for stable closure and long-term insulation.',
+    details: [
+      'Vehicle-specific sunroof glass replacement.',
+      'Weather strip replacement for leak and wind protection.',
+      'Closure alignment and lock-point correction.',
+    ],
+  },
+  {
+    title: 'Noise and Vibration Correction',
+    icon: 'noise',
+    description: 'Accurate diagnosis for rattling sounds, wind noise, and vibration from roof assembly components.',
+    details: [
+      'Rattle source tracing across roof components.',
+      'Internal mount and guide stabilization.',
+      'Road-test confirmation after adjustments.',
+    ],
+  },
+  {
+    title: 'System Recalibration',
+    icon: 'calibration',
+    description: 'Electronic reset and calibration after repair so automatic open/close features work correctly.',
+    details: [
+      'Control module reset after mechanical repair.',
+      'End-point calibration for smooth operation.',
+      'Button response and memory function testing.',
+    ],
+  },
+];
+
+const ownerMistakes = [
+  {
+    title: 'Ignoring Drain Channel Cleaning',
+    description:
+      'Blocked drains trap water and trigger cabin leaks, one of the most common reasons people search for sunroof leak repair and car sunroof repair Riyadh.',
+  },
+  {
+    title: 'Forceful Open and Close Usage',
+    description:
+      'Aggressive operation increases wear on tracks, gears, and movement guides, then escalates into stuck panel failures.',
+  },
+  {
+    title: 'Delaying Early Noise Inspection',
+    description:
+      'Small rattles are often early warning signs of panoramic roof or guide issues that become expensive when ignored.',
+  },
+  {
+    title: 'Using Incorrect Lubricants',
+    description:
+      'Wrong products attract dust, reduce smooth panel travel, and increase load on the sunroof motor and closing sensors.',
+  },
+];
+
+const otherIssues = [
+  {
+    title: 'Sunroof Position Sensor Failure',
+    description:
+      'Can cause incomplete closing, reverse movement, or random stop behavior and usually requires precise electronic recalibration.',
+  },
+  {
+    title: 'Control Module Malfunction',
+    description:
+      'Leads to button response problems or inconsistent open/close commands and may require programming after repair.',
+  },
+  {
+    title: 'Track Misalignment or Guide Damage',
+    description:
+      'Creates friction, noise, and unstable movement, and in some cases needs sunroof rail repair or replacement.',
+  },
+  {
+    title: 'Wind Noise at Highway Speed',
+    description:
+      'Often linked to seal wear or inaccurate glass alignment after previous repair, directly affecting cabin comfort.',
+  },
+];
+
+const faqItems = [
+  {
+    question: 'How long does sunroof repair usually take?',
+    answer:
+      'Simple jobs can often be completed within 1-2 hours, while major repairs like motor replacement or panoramic rail fixes may require more time depending on the vehicle.',
+  },
+  {
+    question: 'How much does car sunroof repair cost in Riyadh?',
+    answer:
+      'Pricing depends on fault type and required parts. After inspection, we share the issue scope, recommended fix, and expected cost before repair starts.',
+  },
+  {
+    question: 'Do you support all car types and brands?',
+    answer:
+      'Yes. We provide car sunroof solutions for a wide range of economy and premium vehicles, with model-specific diagnostics before repair starts.',
+  },
+  {
+    question: 'Can sunroof leak issues be fixed permanently?',
+    answer:
+      'In most cases, yes. Proper drain restoration, seal replacement, and post-repair water testing usually resolve recurring leak problems.',
+  },
+  {
+    question: 'Do you service panoramic roofs too?',
+    answer:
+      'Yes. The service covers both standard and panoramic sunroof systems with accurate rail and movement adjustment.',
+  },
+  {
+    question: 'Do I need to replace the full sunroof system?',
+    answer:
+      'Not always. In many cases, only the failed component needs replacement, such as the motor, rail, seal, or sensor, not the full assembly.',
+  },
+  {
+    question: 'Is it safe to keep driving with a leaking sunroof?',
+    answer:
+      'It is better to repair early. Ongoing leaks can damage interior trims and nearby electrical parts, leading to higher repair costs later.',
+  },
+  {
+    question: 'Do you perform diagnosis before repair?',
+    answer:
+      'Yes. We start with mechanical and electrical diagnostics to identify root cause, then explain the recommended repair path clearly.',
+  },
+  {
+    question: 'Is there a warranty on sunroof repair?',
+    answer:
+      'Yes. Warranty terms depend on service type and parts used, and are clarified before approval and execution.',
+  },
+  {
+    question: 'What should I do if the sunroof is stuck open?',
+    answer:
+      'Avoid forcing it closed manually, as that can worsen the damage. Contact support for safe troubleshooting and proper closure steps.',
+  },
+  {
+    question: 'How can I prevent repeat sunroof problems?',
+    answer:
+      'Routine drain cleaning, proper usage, and early checks for unusual noise or slow movement help prevent repeat failures after repair.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AutoRepair',
+  name: 'Car sunroof solutions',
+  url: `https://autosaveks.com${getLocalizedPath(pagePath, lang)}`,
+  description:
+    'Dedicated car sunroof solutions for all makes and models in Riyadh, including stuck panel repair, leak fixes, panoramic roof service, and calibration.',
+  image: 'https://autosaveks.com/images/hero-car.jpeg',
+  serviceType: [
+    'Sunroof repair',
+    'Panoramic roof repair',
+    'Sunroof leak repair',
+    'Sunroof motor calibration',
+  ],
+  areaServed: {
+    '@type': 'City',
+    name: 'Riyadh',
+  },
+  availableLanguage: ['en', 'ar'],
+  provider: {
+    '@type': 'Organization',
+    name: 'AUTO SAVE',
+    url: 'https://autosaveks.com',
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="Sunroof Repair Riyadh | Car Sunroof Solutions, Panoramic Roof & Leak Fix"
+  description="Car sunroof repair Riyadh: fix stuck sunroof, panoramic roof repair, sunroof leak repair, motor and rail replacement for all car makes. تصليح فتحة سقف السيارة بالرياض."
+  lang={lang}
+  keywords={keywords}
+>
+  <article class="bg-background">
+    <header class="relative overflow-hidden hero-gradient text-[#f0ebe0]">
+      <div class="hero-pattern"></div>
+      <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:py-20 lg:px-8 lg:py-24">
+        <p class="hero-animate inline-flex items-center rounded-full border border-primary/40 bg-[#0c1b2e]/60 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-primary">
+          Car sunroof solutions | حلول فتحات سقف السيارات
+        </p>
+        <h1 class="hero-animate hero-animate-delay-1 mt-5 max-w-4xl text-3xl font-bold tracking-tight font-display sm:text-4xl lg:text-5xl">
+          Car Sunroof Solutions for All Makes and Models
+        </h1>
+        <p class="hero-animate hero-animate-delay-2 mt-5 max-w-3xl text-base leading-relaxed text-[#f0ebe0]/70 sm:text-lg">
+            car sunroof repair, panoramic roof repair, sunroof leak fix, and motor or rail replacement with model-specific diagnostics.
+        </p>
+        <nav class="hero-animate hero-animate-delay-3 mt-8 flex flex-col gap-3 sm:flex-row sm:items-center" aria-label="Quick action links">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Book car sunroof solutions on WhatsApp"
+            class="inline-flex min-h-11 items-center justify-center rounded-lg gold-gradient gold-shimmer px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition hover:shadow-xl"
+          >
+            Book on WhatsApp
+          </a>
+          <a
+            href={alternatePath}
+            aria-label="الانتقال إلى نسخة العربية لحلول فتحة السقف"
+            class="inline-flex min-h-11 items-center justify-center rounded-lg border border-[#f0ebe0]/35 px-6 py-3 text-sm font-semibold text-[#f0ebe0] transition hover:bg-[#f0ebe0]/10"
+          >
+            النسخة العربية
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">High-Demand Sunroof Services</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            We support all car types and models, from standard roofs to panoramic systems, with a clear diagnostic-first workflow.
+          </p>
+        </header>
+        <ul class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {issues.map((issue, index) => (
+            <li data-animate="fade-in-up" data-animate-delay={String(((index % 3) + 1) * 100)}>
+              <button
+                type="button"
+                aria-label={`Open service details for ${issue.title}`}
+                data-service-title={issue.title}
+                data-service-icon={issue.icon}
+                data-service-description={issue.description}
+                data-service-details={JSON.stringify(issue.details)}
+                class="w-full rounded-xl border border-border bg-card p-6 text-start shadow-sm card-hover-lift border-t-2 border-t-primary/25 transition hover:border-t-primary/60"
+              >
+                <div class="flex items-start gap-3">
+                  <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                      {issue.icon === 'motor' && <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21m-5.83-5.83L3 21m12-9.75l3-3a2.121 2.121 0 013 3l-3 3m-6 0l4.5-4.5" />}
+                      {issue.icon === 'leak' && <path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75c-1.172 0-6 5.273-6 8.25a6 6 0 0012 0c0-2.977-4.828-8.25-6-8.25z" />}
+                      {issue.icon === 'panorama' && <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 7.5h16.5v9H3.75v-9zm4.5 0v9m7.5-9v9" />}
+                      {issue.icon === 'glass' && <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5h15M7.5 19.5v-3.75a4.5 4.5 0 019 0v3.75" />}
+                      {issue.icon === 'noise' && <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h3m10.5 0h3M7.5 8.25l2.25 3.75-2.25 3.75m9-7.5l-2.25 3.75 2.25 3.75" />}
+                      {issue.icon === 'calibration' && <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 6.75h15M4.5 12h15M4.5 17.25h15M9 5.25v3M15 10.5v3m-3.75 2.25v3" />}
+                    </svg>
+                  </span>
+                  <h3 class="pt-1 text-lg font-semibold font-display">{issue.title}</h3>
+                </div>
+                <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{issue.description}</p>
+                <span class="mt-4 inline-flex min-h-11 items-center rounded-lg border border-primary/30 px-4 py-2 text-xs font-semibold text-primary">
+                  View Details
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section
+      id="service-modal-overlay"
+      class="service-modal-overlay fixed inset-0 z-50 bg-foreground/65 p-4 sm:p-6"
+      aria-label="Service details modal"
+    >
+      <article
+        id="service-modal-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="service-modal-title"
+        class="service-modal-panel mx-auto mt-8 w-full max-w-2xl rounded-2xl border border-border bg-card p-5 shadow-2xl sm:mt-12 sm:p-8"
+      >
+        <header class="flex items-start justify-between gap-4">
+          <div class="flex items-start gap-3">
+            <span id="service-modal-icon-wrap" class="mt-1 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                <path id="service-modal-icon-path" stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21m-5.83-5.83L3 21m12-9.75l3-3a2.121 2.121 0 013 3l-3 3m-6 0l4.5-4.5" />
+              </svg>
+            </span>
+            <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-primary">Service Detail</p>
+            <h3 id="service-modal-title" class="mt-2 text-2xl font-bold tracking-tight font-display">Service Detail</h3>
+            </div>
+          </div>
+          <button
+            id="service-modal-close"
+            type="button"
+            aria-label="Close service details modal"
+            class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-border bg-secondary/50 text-foreground transition hover:bg-secondary"
+          >
+            ×
+          </button>
+        </header>
+
+        <p id="service-modal-description" class="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base"></p>
+
+        <section class="mt-6 rounded-xl bg-secondary/40 p-4 sm:p-5">
+          <h4 class="text-sm font-semibold font-display">What Is Included</h4>
+          <ul id="service-modal-points" class="mt-3 space-y-2 text-sm text-muted-foreground"></ul>
+        </section>
+
+        <footer class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Book this sunroof service on WhatsApp"
+            class="inline-flex min-h-11 items-center justify-center rounded-lg gold-gradient gold-shimmer px-6 py-3 text-sm font-semibold text-white shadow-md"
+          >
+            Book This Service
+          </a>
+          <button
+            id="service-modal-close-secondary"
+            type="button"
+            aria-label="Close modal"
+            class="inline-flex min-h-11 items-center justify-center rounded-lg border border-primary/30 px-6 py-3 text-sm font-semibold text-primary transition hover:bg-primary/5"
+          >
+            Close
+          </button>
+        </footer>
+      </article>
+    </section>
+
+    <section class="bg-secondary/40 py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">Common Owner Mistakes Behind Sunroof Repair Searches</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            These are high-frequency causes behind car sunroof repair Riyadh, panoramic roof repair, and sunroof leak repair queries, and we handle them across all car types and models.
+          </p>
+        </header>
+        <ul class="mt-8 grid gap-5 md:grid-cols-2">
+          {ownerMistakes.map((item, index) => (
+            <li data-animate="fade-in-up" data-animate-delay={String((index + 1) * 100)}>
+              <article class="rounded-xl border border-border bg-card p-6 shadow-sm card-hover-lift">
+                <h3 class="text-lg font-semibold font-display">{item.title}</h3>
+                <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+              </article>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">Advanced Sunroof and Panoramic Roof Issues We Fix</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Beyond common faults, we diagnose advanced electrical and mechanical failures including sunroof motor replacement, sunroof rail repair, and post-repair calibration.
+          </p>
+        </header>
+        <ul class="mt-8 grid gap-5 md:grid-cols-2">
+          {otherIssues.map((item, index) => (
+            <li data-animate="fade-in-up" data-animate-delay={String((index + 1) * 100)}>
+              <article class="rounded-xl border border-border bg-card p-6 shadow-sm card-hover-lift">
+                <h3 class="text-lg font-semibold font-display">{item.title}</h3>
+                <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+              </article>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">A Practical Repair Approach</h2>
+        </header>
+        <ol class="mt-10 grid gap-5 md:grid-cols-3">
+          <li class="rounded-xl border border-border bg-card p-6 shadow-sm" data-animate="fade-in-up" data-animate-delay="100">
+            <h3 class="text-lg font-semibold font-display">1) Accurate Diagnostics</h3>
+            <p class="mt-3 text-sm leading-relaxed text-muted-foreground">Mechanical and electrical checks identify root causes before any repair starts.</p>
+          </li>
+          <li class="rounded-xl border border-border bg-card p-6 shadow-sm" data-animate="fade-in-up" data-animate-delay="200">
+            <h3 class="text-lg font-semibold font-display">2) Model-Specific Execution</h3>
+            <p class="mt-3 text-sm leading-relaxed text-muted-foreground">Service is matched to the exact make and roof mechanism for stable long-term performance.</p>
+          </li>
+          <li class="rounded-xl border border-border bg-card p-6 shadow-sm" data-animate="fade-in-up" data-animate-delay="300">
+            <h3 class="text-lg font-semibold font-display">3) Final Validation</h3>
+            <p class="mt-3 text-sm leading-relaxed text-muted-foreground">Open/close speed, leak checks, and noise testing are completed before handover.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="bg-secondary/40 py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">Sunroof Repair FAQs</h2>
+        </header>
+        <div class="mt-8 space-y-4">
+          {faqItems.map((item, index) => (
+            <details class="rounded-xl border border-border bg-card p-5" data-animate="fade-in-up" data-animate-delay={String((index + 1) * 100)}>
+              <summary class="cursor-pointer text-base font-semibold font-display">{item.question}</summary>
+              <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="relative overflow-hidden py-20 lg:py-28 hero-gradient text-[#f0ebe0]">
+      <div class="hero-pattern"></div>
+      <div class="relative z-10 container mx-auto px-4 text-center" data-animate="fade-in-up">
+        <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">Need a Fast Sunroof Fix?</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[#f0ebe0]/70 sm:text-lg">
+          Start with a WhatsApp message and get an initial assessment aligned with your exact vehicle model.
+        </p>
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Start sunroof diagnosis over WhatsApp"
+          class="mt-8 inline-flex min-h-11 items-center justify-center rounded-lg gold-gradient gold-shimmer px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition hover:shadow-xl"
+        >
+          Start Diagnosis
+        </a>
+      </div>
+    </section>
+  </article>
+
+  <style is:inline>
+    .service-modal-overlay {
+      opacity: 0;
+      pointer-events: none;
+      background-color: rgb(12 27 46 / 0.62);
+      transition: opacity 220ms ease;
+    }
+
+    @supports ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {
+      .service-modal-overlay {
+        background-color: rgb(12 27 46 / 0.45);
+        backdrop-filter: blur(8px) saturate(115%);
+        -webkit-backdrop-filter: blur(8px) saturate(115%);
+      }
+    }
+
+    .service-modal-panel {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+      transition: opacity 220ms ease, transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .service-modal-point {
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 160ms ease, transform 180ms ease;
+    }
+
+    .service-modal-point.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service-modal-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .service-modal-overlay.is-open .service-modal-panel {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .service-modal-overlay,
+      .service-modal-panel,
+      .service-modal-point {
+        transition: none;
+      }
+
+      .service-modal-point {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+
+  <script>
+    const overlay = document.getElementById('service-modal-overlay');
+    const iconPathEl = document.getElementById('service-modal-icon-path');
+    const titleEl = document.getElementById('service-modal-title');
+    const descriptionEl = document.getElementById('service-modal-description');
+    const pointsEl = document.getElementById('service-modal-points');
+    const closePrimary = document.getElementById('service-modal-close');
+    const closeSecondary = document.getElementById('service-modal-close-secondary');
+    const serviceButtons = document.querySelectorAll('[data-service-title]');
+    const iconPathMap = {
+      motor: 'M11.42 15.17L17.25 21m-5.83-5.83L3 21m12-9.75l3-3a2.121 2.121 0 013 3l-3 3m-6 0l4.5-4.5',
+      leak: 'M12 3.75c-1.172 0-6 5.273-6 8.25a6 6 0 0012 0c0-2.977-4.828-8.25-6-8.25z',
+      panorama: 'M3.75 7.5h16.5v9H3.75v-9zm4.5 0v9m7.5-9v9',
+      glass: 'M4.5 19.5h15M7.5 19.5v-3.75a4.5 4.5 0 019 0v3.75',
+      noise: 'M3.75 12h3m10.5 0h3M7.5 8.25l2.25 3.75-2.25 3.75m9-7.5l-2.25 3.75 2.25 3.75',
+      calibration: 'M4.5 6.75h15M4.5 12h15M4.5 17.25h15M9 5.25v3M15 10.5v3m-3.75 2.25v3',
+    };
+    let lastTrigger = null;
+
+    const closeModal = () => {
+      if (!overlay) return;
+      overlay.classList.remove('is-open');
+      document.body.classList.remove('overflow-hidden');
+      if (lastTrigger instanceof HTMLElement) {
+        lastTrigger.focus();
+      }
+    };
+
+    const openModal = (button) => {
+      if (!overlay || !titleEl || !descriptionEl || !pointsEl) return;
+      lastTrigger = button;
+      const title = button.getAttribute('data-service-title') || '';
+      const icon = button.getAttribute('data-service-icon') || 'motor';
+      const description = button.getAttribute('data-service-description') || '';
+      const detailsRaw = button.getAttribute('data-service-details') || '[]';
+      let details = [];
+
+      try {
+        details = JSON.parse(detailsRaw);
+      } catch {
+        details = [];
+      }
+
+      titleEl.textContent = title;
+      if (iconPathEl instanceof SVGPathElement) {
+        iconPathEl.setAttribute('d', iconPathMap[icon] || iconPathMap.motor);
+      }
+      descriptionEl.textContent = description;
+      pointsEl.innerHTML = '';
+      details.forEach((line, index) => {
+        const li = document.createElement('li');
+        li.className = 'service-modal-point rounded-lg bg-card px-3 py-2';
+        li.style.transitionDelay = `${index * 55}ms`;
+        li.textContent = line;
+        pointsEl.appendChild(li);
+      });
+
+      overlay.classList.add('is-open');
+      document.body.classList.add('overflow-hidden');
+      requestAnimationFrame(() => {
+        pointsEl.querySelectorAll('.service-modal-point').forEach((point) => {
+          point.classList.add('is-visible');
+        });
+      });
+      if (closePrimary instanceof HTMLElement) {
+        closePrimary.focus();
+      }
+    };
+
+    serviceButtons.forEach((button) => {
+      button.addEventListener('click', () => openModal(button));
+    });
+
+    closePrimary?.addEventListener('click', closeModal);
+    closeSecondary?.addEventListener('click', closeModal);
+
+    overlay?.addEventListener('click', (event) => {
+      if (event.target === overlay) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && overlay && overlay.classList.contains('is-open')) {
+        closeModal();
+      }
+    });
+  </script>
+
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>
