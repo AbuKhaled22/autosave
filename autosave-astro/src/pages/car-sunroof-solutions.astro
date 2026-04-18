@@ -26,6 +26,58 @@ const keywords = [
   'sunroof leak repair',
   'sunroof motor replacement',
   'car roof glass repair',
+  'Electric wheelchair repair Riyadh',
+  'تصليح كراسي متحركة كهربائية الرياض',
+  'Electric running board repair Riyadh',
+  'إصلاح دعسات كهربائية تاهو/جمس الرياض',
+  'تصليح دعسة كهربائية تاهو الرياض',
+  'تصليح دعسة كهربائية جمس الرياض',
+  'إصلاح دعسات كهربائية فورد الرياض',
+  'إصلاح دعسات كهربائية تويوتا الرياض',
+  'إصلاح دعسات كهربائية لكزس الرياض',
+  'إصلاح دعسات كهربائية كاديلاك الرياض',
+  'إصلاح دعسات كهربائية نيسان باترول الرياض',
+  'Ford running board repair Riyadh',
+  'Toyota running board repair Riyadh',
+  'Lexus running board repair Riyadh',
+  'Cadillac running board repair Riyadh',
+  'Nissan Patrol running board repair Riyadh',
+  'تصليح فتحة سقف BMW الرياض',
+  'تصليح فتحة سقف مرسيدس الرياض',
+  'تصليح فتحة سقف جمس الرياض',
+  'تصليح فتحة سقف تويوتا الرياض',
+  'تصليح فتحة سقف لكزس الرياض',
+  'repair electric wheelchair joystick Riyadh',
+  'running board motor repair Riyadh',
+];
+
+const supportedBrands = [
+  'تويوتا',
+  'نيسان',
+  'هيونداي',
+  'كيا',
+  'فورد',
+  'شيفروليه',
+  'جمس',
+  'دودج',
+  'جيب',
+  'لكزس',
+  'مرسيدس',
+  'BMW',
+  'أودي',
+  'بورشه',
+  'مازدا',
+  'ميتسوبيشي',
+  'هوندا',
+  'رنج روفر',
+  'كاديلاك',
+  'جينيسس',
+  'ام جي',
+  'جيلي',
+  'شانجان',
+  'سوبارو',
+  'فولكس واجن',
+  'إنفينيتي',
 ];
 
 const issues = [
@@ -96,21 +148,45 @@ const ownerMistakes = [
     title: 'إهمال تنظيف مجاري التصريف',
     description:
       'تراكم الأتربة يمنع خروج الماء ويؤدي إلى تسريب ماء فتحة السقف داخل المقصورة، وهي من أكثر أسباب طلب تصليح فتحة سقف السيارة.',
+    icon: 'leak',
+    details: [
+      'تنظيف مجاري التصريف بشكل دوري كل عدة أشهر.',
+      'فحص نقاط تجمع الأتربة حول حواف الفتحة بعد الغسيل.',
+      'اختبار نزول الماء سريعاً لتجنب أي انسداد مستقبلي.',
+    ],
   },
   {
     title: 'فتح وإغلاق الفتحة بعنف',
     description:
       'الاستخدام المتكرر بطريقة غير صحيحة يسرع تآكل سكة الفتحة والمسننات، ثم يتطور العطل إلى تعليق في الفتح أو الإغلاق.',
+    icon: 'motor',
+    details: [
+      'التوقف عن تكرار الضغط على الزر أثناء الحركة.',
+      'عدم محاولة إغلاق الفتحة يدوياً عند وجود مقاومة.',
+      'فحص السكة والمسننات قبل ظهور تلف كامل.',
+    ],
   },
   {
     title: 'تجاهل أصوات الطقطقة المبكرة',
     description:
       'الأصوات الصغيرة غالباً مؤشر بداية خلل ميكانيكي في البانوراما أو الأدلة، ومعالجتها مبكراً تقلل تكلفة إصلاح بانوراما السيارة لاحقاً.',
+    icon: 'noise',
+    details: [
+      'تشخيص مصدر الصوت قبل أن يتحول إلى كسر في الأجزاء المتحركة.',
+      'تثبيت القطع المرتخية داخل إطار السقف.',
+      'ضبط المسارات لتقليل الاحتكاك والاهتزاز.',
+    ],
   },
   {
     title: 'استخدام مواد تشحيم غير مناسبة',
     description:
       'مواد غير مخصصة قد تجمع الأوساخ وتؤثر على سلاسة الحركة، وتسبب ضغطاً إضافياً على محرك فتحة السقف وحساسات الإغلاق.',
+    icon: 'calibration',
+    details: [
+      'استخدام مواد مخصصة لمسارات فتحة السقف فقط.',
+      'تنظيف بقايا المواد القديمة قبل إعادة التشحيم.',
+      'إعادة معايرة الحركة بعد الصيانة للحفاظ على السلاسة.',
+    ],
   },
 ];
 
@@ -119,21 +195,139 @@ const otherIssues = [
     title: 'تلف حساس وضعية الفتحة',
     description:
       'يؤدي لتوقف الفتحة في منتصف الحركة أو العودة العكسية بشكل مفاجئ، ويحتاج فحصاً كهربائياً دقيقاً وإعادة معايرة للنظام.',
+    icon: 'calibration',
+    details: [
+      'فحص إشارة الحساس أثناء الفتح والإغلاق.',
+      'إعادة ضبط نقاط التوقف النهائية.',
+      'اختبار الاستجابة بعد المعايرة الإلكترونية.',
+    ],
   },
   {
     title: 'خلل وحدة التحكم الإلكترونية',
     description:
       'يظهر على شكل فقدان استجابة للأزرار أو أوامر غير دقيقة للفتح والإغلاق، وغالباً يتطلب برمجة فتحة السقف بعد الإصلاح.',
+    icon: 'motor',
+    details: [
+      'فحص التغذية الكهربائية لوحدة التحكم.',
+      'قراءة أعطال النظام وإصلاح السبب الرئيسي.',
+      'إعادة برمجة الوحدة بعد إصلاح العطل.',
+    ],
   },
   {
     title: 'انحراف السكة أو كسر دليل الحركة',
     description:
       'يسبب احتكاكاً عالياً وصوتاً مزعجاً وعدم ثبات في الحركة، وقد يتطلب تبديل سكة فتحة السقف أو إعادة محاذاة دقيقة.',
+    icon: 'panorama',
+    details: [
+      'فحص مسار الانزلاق واستقامة الأدلة.',
+      'إصلاح أو تبديل القطع المكسورة حسب الحالة.',
+      'اختبار الحركة بعد إعادة المحاذاة.',
+    ],
   },
   {
     title: 'ضعف عزل الهواء مع السرعات العالية',
     description:
       'قد ينتج عن اهتراء العازل أو عدم محاذاة الزجاج بعد إصلاح سابق غير دقيق، ويؤثر مباشرة على الراحة والعزل داخل السيارة.',
+    icon: 'glass',
+    details: [
+      'فحص جلدة العزل وإحكام الإغلاق النهائي.',
+      'ضبط زاوية الزجاج لمنع تسرب الهواء.',
+      'اختبار الطريق للتأكد من اختفاء الضوضاء.',
+    ],
+  },
+];
+
+const electricWheelchairIssues = [
+  {
+    issue: 'ضعف استجابة الجويستك أو تأخر الحركة',
+    issueDescription:
+      'يتكرر هذا العطل عند المستخدمين مع الاستخدام اليومي، ويظهر على شكل بطء في الاستجابة أو حركة غير دقيقة للكرسي.',
+    service: 'خدمة فحص وبرمجة وحدة التحكم والجويستك',
+    details: [
+      'فحص دائرة الجويستك وحساسات الاتجاه.',
+      'تنظيف نقاط التوصيل وإزالة الاهتزاز الكهربائي.',
+      'إعادة معايرة التحكم لتحسين الاستجابة.',
+    ],
+  },
+  {
+    issue: 'ضعف البطارية وسرعة نفاد الشحن',
+    issueDescription:
+      'من أكثر أسباب البحث عن تصليح كراسي متحركة كهربائية الرياض، حيث يقل مدى الحركة ويصبح الأداء غير مستقر.',
+    service: 'خدمة تشخيص البطارية والشاحن واستبدال الخلايا المتضررة',
+    details: [
+      'قياس الجهد الفعلي تحت الحمل.',
+      'فحص الشاحن ونظام الحماية.',
+      'استبدال البطارية أو إعادة توازنها حسب الحالة.',
+    ],
+  },
+  {
+    issue: 'توقف المحرك عند المرتفعات أو الأحمال',
+    issueDescription:
+      'قد يحدث بسبب سخونة المحرك أو ضعف في الأسلاك أو أعطال وحدة القيادة، ويؤثر مباشرة على الاعتمادية اليومية.',
+    service: 'خدمة صيانة محرك الكرسي المتحرك ونظام القيادة',
+    details: [
+      'فحص المحرك والفرامل الكهرومغناطيسية.',
+      'اختبار وحدة القيادة تحت ظروف تشغيل حقيقية.',
+      'إصلاح التوصيلات وتثبيت الحمل الكهربائي.',
+    ],
+  },
+  {
+    issue: 'اهتزاز أو صوت غير طبيعي في العجلات',
+    issueDescription:
+      'غالباً يكون السبب تآكل البيرنج أو عدم اتزان العجلة أو مشكلة في نظام التعليق، وقد يتطور لتوقف مفاجئ.',
+    service: 'خدمة فحص العجلات والمحاور والتعليق',
+    details: [
+      'فحص البيرنج والمحاور ونقاط التثبيت.',
+      'ضبط اتزان العجلات واستقامة الحركة.',
+      'تبديل القطع المتآكلة لتحسين الثبات.',
+    ],
+  },
+];
+
+const electricRunningBoardIssues = [
+  {
+    issue: 'الدعسة الكهربائية لا تنزل أو لا ترتفع',
+    issueDescription:
+      'هذا العطل شائع في سيارات تاهو وجمس، وكذلك فورد وتويوتا ولكزس وكاديلاك ونيسان باترول عند وجود نظام دعسات كهربائية.',
+    service: 'خدمة إصلاح دعسات كهربائية الرياض لتاهو وجمس وفورد وتويوتا ولكزس وكاديلاك وغيرها',
+    details: [
+      'فحص حساس الباب وإشارة التشغيل.',
+      'اختبار موتور الدعسة ووحدة الكنترول.',
+      'إعادة برمجة النظام بعد الإصلاح.',
+    ],
+  },
+  {
+    issue: 'بطء حركة الدعسة أو توقفها في المنتصف',
+    issueDescription:
+      'ينتج غالباً عن تراكم الأتربة في المفصلات أو مقاومة عالية في الميكانيزم، ويؤدي لإجهاد المحرك.',
+    service: 'خدمة تنظيف وضبط ميكانيزم الدعسة الكهربائية',
+    details: [
+      'تنظيف المفصلات وقواعد الحركة.',
+      'تشحيم احترافي مخصص للدعسات الكهربائية.',
+      'معايرة مسار الفتح والإغلاق لتقليل الجهد.',
+    ],
+  },
+  {
+    issue: 'صوت طقطقة أو احتكاك عند الفتح',
+    issueDescription:
+      'علامة مبكرة على ضعف التروس أو انحراف الذراع المتحرك، ومع الوقت قد تتعطل الدعسة بالكامل.',
+    service: 'خدمة إصلاح تروس وذراع الدعسة الكهربائية',
+    details: [
+      'فحص التروس الداخلية والمحاور.',
+      'تبديل القطع المتضررة قبل الكسر الكامل.',
+      'اختبار صوت الحركة بعد الإصلاح.',
+    ],
+  },
+  {
+    issue: 'الدعسة تعمل جهة واحدة فقط',
+    issueDescription:
+      'قد يحدث بسبب خلل أسلاك أو كنترول خاص بجهة واحدة، ويظهر كثيراً في الأعطال الكهربائية المتقطعة.',
+    service: 'خدمة تتبع أعطال الكهرباء للدعسات الجانبية',
+    details: [
+      'فحص الضفيرة الكهربائية لكل جهة.',
+      'اختبار الإشارات بين الكنترول والموتور.',
+      'إصلاح القصر أو الانقطاع وإعادة اختبار كامل.',
+    ],
   },
 ];
 
@@ -154,6 +348,21 @@ const faqItems = [
       'نعم، نقدم حلول فتحات سقف السيارات لمعظم الموديلات الاقتصادية والفاخرة، مع فحص مخصص لكل نوع قبل بدء العمل.',
   },
   {
+    question: 'هل توفرون تصليح فتحة سقف BMW في الرياض؟',
+    answer:
+      'نعم، نوفر تشخيصاً دقيقاً وإصلاحاً لأعطال فتحة السقف في سيارات BMW بما يشمل المحرك والسكة والحساسات.',
+  },
+  {
+    question: 'هل يتوفر إصلاح تسريب بانوراما مرسيدس في الرياض؟',
+    answer:
+      'نعم، تشمل الخدمة إصلاح تسريب بانوراما مرسيدس عبر تنظيف مجاري التصريف، معالجة العوازل، واختبار الإغلاق بعد الصيانة.',
+  },
+  {
+    question: 'هل تقدمون تبديل محرك فتحة سقف جمس في الرياض؟',
+    answer:
+      'نعم، نقوم بفحص نظام الحركة أولاً ثم إصلاح أو تبديل محرك فتحة سقف جمس حسب حالة القطع واعتماد الحل الأنسب.',
+  },
+  {
     question: 'هل يمكن إصلاح تسريب الماء من فتحة السقف نهائياً؟',
     answer:
       'في أغلب الحالات نعم، يتم تنظيف وتصحيح مسارات التصريف واستبدال العوازل التالفة واختبار الإغلاق تحت ضغط الماء.',
@@ -164,9 +373,9 @@ const faqItems = [
       'نعم، تشمل الخدمة فتحات السقف العادية والبانورامية مع إجراءات ضبط دقيقة للمحاور والمسارات.',
   },
   {
-    question: 'هل يجب تبديل كامل فتحة السقف عند تعطلها؟',
+    question: 'هل يمكن إصلاح سكة الفتحة دون تغيير النظام بالكامل؟',
     answer:
-      'ليس دائماً. في كثير من الحالات يمكن إصلاح الجزء المتسبب بالمشكلة مثل المحرك أو السكة أو العازل دون الحاجة لتبديل النظام بالكامل.',
+      'في كثير من الحالات نعم، يمكن إصلاح أو تبديل سكة الفتحة فقط بعد الفحص، دون الحاجة إلى تغيير كامل نظام فتحة السقف.',
   },
   {
     question: 'هل يمكن القيادة والسيارة فيها تسريب من فتحة السقف؟',
@@ -193,6 +402,26 @@ const faqItems = [
     answer:
       'الالتزام بالتنظيف الدوري لمجاري التصريف، استخدام التشغيل الصحيح، وفحص الأصوات أو البطء مبكراً يساعد على منع تكرار الأعطال.',
   },
+  {
+    question: 'هل توفرون تصليح كراسي متحركة كهربائية الرياض في نفس اليوم؟',
+    answer:
+      'في الأعطال القابلة للإصلاح السريع نعم، ويمكن إنجاز الخدمة في نفس اليوم حسب نوع العطل وتوفر القطع المطلوبة.',
+  },
+  {
+    question: 'ما أكثر أعطال الكراسي المتحركة الكهربائية شيوعاً؟',
+    answer:
+      'الأكثر شيوعاً: ضعف البطارية، تأخر استجابة الجويستك، توقف المحرك تحت الحمل، وأصوات الاهتزاز في العجلات.',
+  },
+  {
+    question: 'هل تصلحون الدعسات الكهربائية لعلامات أخرى غير تاهو وجمس؟',
+    answer:
+      'نعم، نوفر إصلاح الدعسات الكهربائية لماركات متعددة مثل فورد وتويوتا ولكزس وكاديلاك ونيسان باترول، إضافة إلى تاهو وجمس، لكل سيارة مزودة بنظام دعسات كهربائية.',
+  },
+  {
+    question: 'هل يمكن إصلاح موتور الدعسة الكهربائية بدون تبديل كامل؟',
+    answer:
+      'في كثير من الحالات نعم، ويتم تحديد ذلك بعد فحص دقيق للموتور والتروس وحالة التوصيلات الكهربائية.',
+  },
 ];
 
 const serviceSchema = {
@@ -208,6 +437,7 @@ const serviceSchema = {
     'Panoramic roof repair',
     'Sunroof leak repair',
     'Sunroof motor calibration',
+    'Electric running board repair',
   ],
   areaServed: {
     '@type': 'City',
@@ -236,8 +466,8 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="تصليح فتحة سقف السيارة الرياض | إصلاح بانوراما وتسريب الماء | Car Sunroof Solutions"
-  description="تصليح فتحة سقف السيارة بالرياض، إصلاح بانوراما السيارة، حل تسريب ماء فتحة السقف، تبديل محرك وسكة السقف. Car sunroof repair Riyadh for all makes and models."
+  title="تصليح فتحة سقف السيارة الرياض | BMW ومرسيدس وجمس وأكثر"
+  description="نوفر تصليح فتحة سقف السيارة في الرياض مع إصلاح البانوراما وتسريب الماء وخدمات مخصصة لماركات BMW ومرسيدس وجمس وتويوتا ولكزس."
   lang={lang}
   keywords={keywords}
 >
@@ -246,13 +476,13 @@ const faqSchema = {
       <div class="hero-pattern"></div>
       <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:py-20 lg:px-8 lg:py-24">
         <p class="hero-animate inline-flex items-center rounded-full border border-primary/40 bg-[#0c1b2e]/60 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-primary">
-          Car sunroof solutions | حلول فتحات سقف السيارات
+          حلول فتحات سقف السيارات
         </p>
         <h1 class="hero-animate hero-animate-delay-1 mt-5 max-w-4xl text-3xl font-bold tracking-tight font-display sm:text-4xl lg:text-5xl">
-          حلول فتحة سقف السيارة لجميع الماركات والموديلات
+          حلول فتحة سقف السيارة في الرياض لجميع الماركات والموديلات
         </h1>
         <p class="hero-animate hero-animate-delay-2 mt-5 max-w-3xl text-base leading-relaxed text-[#f0ebe0]/70 sm:text-lg">
-            تصليح فتحة سقف السيارة، إصلاح بانوراما، علاج تسريب الماء، وتبديل محرك وسكة السقف لكل موديل.
+            نوفر تصليح فتحة سقف السيارة في الرياض لسيارات BMW ومرسيدس وجمس وتويوتا ولكزس وغيرها مع تشخيص دقيق حسب الموديل. تشمل الخدمة إصلاح تعليق الفتحة، إصلاح البانوراما، علاج تسريب الماء، وصيانة المحرك أو السكة.
         </p>
         <nav class="hero-animate hero-animate-delay-3 mt-8 flex flex-col gap-3 sm:flex-row sm:items-center" aria-label="روابط الإجراء السريع">
           <a
@@ -265,11 +495,12 @@ const faqSchema = {
             احجز عبر واتساب
           </a>
           <a
+            id="sunroof-language-switch"
             href={alternatePath}
             aria-label="Switch to English sunroof solutions page"
             class="inline-flex min-h-11 items-center justify-center rounded-lg border border-[#f0ebe0]/35 px-6 py-3 text-sm font-semibold text-[#f0ebe0] transition hover:bg-[#f0ebe0]/10"
           >
-            English Version
+            النسخة الإنجليزية
           </a>
         </nav>
       </div>
@@ -278,7 +509,7 @@ const faqSchema = {
     <section class="py-20 lg:py-28">
       <div class="container mx-auto px-4">
         <header class="max-w-3xl" data-animate="fade-in-up">
-          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">الخدمات الأعلى طلباً لفتحات سقف السيارات</h2>
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">الخدمات الأعلى طلباً لفتحات سقف السيارات في الرياض</h2>
           <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
             ندعم جميع أنواع وموديلات السيارات، وننفذ حلول فتحة السقف من الأعطال البسيطة حتى الأعطال المعقدة بخطة تشخيص واضحة.
           </p>
@@ -319,6 +550,26 @@ const faqSchema = {
       </div>
     </section>
 
+    <section class="bg-secondary/40 py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">الماركات المدعومة: BMW ومرسيدس وجمس وتويوتا ولكزس وأكثر</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            نقدم تصليح فتحة سقف السيارة في الرياض لمعظم الماركات الاقتصادية والفاخرة مع إجراءات تشخيص وضبط خاصة بكل موديل.
+          </p>
+        </header>
+        <ul class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          {supportedBrands.map((brand, index) => (
+            <li data-animate="fade-in-up" data-animate-delay={String(((index % 6) + 1) * 80)}>
+              <article class="rounded-lg border border-border bg-card px-3 py-3 text-center text-sm font-semibold text-foreground">
+                {brand}
+              </article>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
     <section
       id="service-modal-overlay"
       class="service-modal-overlay fixed inset-0 z-50 bg-foreground/65 p-4 sm:p-6"
@@ -339,7 +590,7 @@ const faqSchema = {
               </svg>
             </span>
             <div>
-            <p class="text-xs font-semibold uppercase tracking-widest text-primary">Service Detail</p>
+            <p class="text-xs font-semibold uppercase tracking-widest text-primary">تفاصيل الخدمة</p>
             <h3 id="service-modal-title" class="mt-2 text-2xl font-bold tracking-tight font-display">تفاصيل الخدمة</h3>
             </div>
           </div>
@@ -385,7 +636,7 @@ const faqSchema = {
     <section class="bg-secondary/40 py-20 lg:py-28">
       <div class="container mx-auto px-4">
         <header class="max-w-3xl" data-animate="fade-in-up">
-          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">أخطاء شائعة تؤدي إلى تصليح فتحة سقف السيارة</h2>
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">أخطاء شائعة تؤدي إلى تصليح فتحة سقف السيارة في الرياض</h2>
           <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
             هذه الأخطاء من أكثر أسباب البحث عن تصليح فتحة سقف السيارة، إصلاح تسريب ماء فتحة السقف، وإصلاح بانوراما السيارة في الرياض، ونحن نعالجها لجميع الأنواع والموديلات.
           </p>
@@ -393,10 +644,33 @@ const faqSchema = {
         <ul class="mt-8 grid gap-5 md:grid-cols-2">
           {ownerMistakes.map((item, index) => (
             <li data-animate="fade-in-up" data-animate-delay={String((index + 1) * 100)}>
-              <article class="rounded-xl border border-border bg-card p-6 shadow-sm card-hover-lift">
-                <h3 class="text-lg font-semibold font-display">{item.title}</h3>
+              <button
+                type="button"
+                aria-label={`عرض تفاصيل ${item.title}`}
+                data-service-title={item.title}
+                data-service-icon={item.icon}
+                data-service-description={item.description}
+                data-service-details={JSON.stringify(item.details)}
+                class="w-full rounded-xl border border-border bg-card p-6 text-start shadow-sm card-hover-lift border-t-2 border-t-primary/25 transition hover:border-t-primary/60"
+              >
+                <div class="flex items-start gap-3">
+                  <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                      {item.icon === 'motor' && <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21m-5.83-5.83L3 21m12-9.75l3-3a2.121 2.121 0 013 3l-3 3m-6 0l4.5-4.5" />}
+                      {item.icon === 'leak' && <path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75c-1.172 0-6 5.273-6 8.25a6 6 0 0012 0c0-2.977-4.828-8.25-6-8.25z" />}
+                      {item.icon === 'panorama' && <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 7.5h16.5v9H3.75v-9zm4.5 0v9m7.5-9v9" />}
+                      {item.icon === 'glass' && <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5h15M7.5 19.5v-3.75a4.5 4.5 0 019 0v3.75" />}
+                      {item.icon === 'noise' && <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h3m10.5 0h3M7.5 8.25l2.25 3.75-2.25 3.75m9-7.5l-2.25 3.75 2.25 3.75" />}
+                      {item.icon === 'calibration' && <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 6.75h15M4.5 12h15M4.5 17.25h15M9 5.25v3M15 10.5v3m-3.75 2.25v3" />}
+                    </svg>
+                  </span>
+                  <h3 class="pt-1 text-lg font-semibold font-display">{item.title}</h3>
+                </div>
                 <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-              </article>
+                <span class="mt-4 inline-flex min-h-11 items-center rounded-lg border border-primary/30 px-4 py-2 text-xs font-semibold text-primary">
+                  عرض التفاصيل
+                </span>
+              </button>
             </li>
           ))}
         </ul>
@@ -414,10 +688,111 @@ const faqSchema = {
         <ul class="mt-8 grid gap-5 md:grid-cols-2">
           {otherIssues.map((item, index) => (
             <li data-animate="fade-in-up" data-animate-delay={String((index + 1) * 100)}>
-              <article class="rounded-xl border border-border bg-card p-6 shadow-sm card-hover-lift">
-                <h3 class="text-lg font-semibold font-display">{item.title}</h3>
+              <button
+                type="button"
+                aria-label={`عرض تفاصيل ${item.title}`}
+                data-service-title={item.title}
+                data-service-icon={item.icon}
+                data-service-description={item.description}
+                data-service-details={JSON.stringify(item.details)}
+                class="w-full rounded-xl border border-border bg-card p-6 text-start shadow-sm card-hover-lift border-t-2 border-t-primary/25 transition hover:border-t-primary/60"
+              >
+                <div class="flex items-start gap-3">
+                  <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                      {item.icon === 'motor' && <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21m-5.83-5.83L3 21m12-9.75l3-3a2.121 2.121 0 013 3l-3 3m-6 0l4.5-4.5" />}
+                      {item.icon === 'leak' && <path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75c-1.172 0-6 5.273-6 8.25a6 6 0 0012 0c0-2.977-4.828-8.25-6-8.25z" />}
+                      {item.icon === 'panorama' && <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 7.5h16.5v9H3.75v-9zm4.5 0v9m7.5-9v9" />}
+                      {item.icon === 'glass' && <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5h15M7.5 19.5v-3.75a4.5 4.5 0 019 0v3.75" />}
+                      {item.icon === 'noise' && <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h3m10.5 0h3M7.5 8.25l2.25 3.75-2.25 3.75m9-7.5l-2.25 3.75 2.25 3.75" />}
+                      {item.icon === 'calibration' && <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 6.75h15M4.5 12h15M4.5 17.25h15M9 5.25v3M15 10.5v3m-3.75 2.25v3" />}
+                    </svg>
+                  </span>
+                  <h3 class="pt-1 text-lg font-semibold font-display">{item.title}</h3>
+                </div>
                 <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-              </article>
+                <span class="mt-4 inline-flex min-h-11 items-center rounded-lg border border-primary/30 px-4 py-2 text-xs font-semibold text-primary">
+                  عرض التفاصيل
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="bg-secondary/40 py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">تصليح كراسي متحركة كهربائية الرياض للأعطال الشائعة</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            نوفر خدمة متخصصة للأعطال الكهربائية والميكانيكية في الكراسي المتحركة، مع تشخيص السبب الجذري وتحديد خدمة الإصلاح المناسبة لكل حالة.
+          </p>
+        </header>
+        <ul class="mt-8 grid gap-5 md:grid-cols-2">
+          {electricWheelchairIssues.map((item, index) => (
+            <li data-animate="fade-in-up" data-animate-delay={String((index + 1) * 100)}>
+              <button
+                type="button"
+                aria-label={`عرض تفاصيل ${item.issue}`}
+                data-service-title={item.issue}
+                data-service-icon="motor"
+                data-service-description={`${item.issueDescription} ${item.service}`}
+                data-service-details={JSON.stringify([`الخدمة: ${item.service}`, ...item.details])}
+                class="w-full rounded-xl border border-border bg-card p-6 text-start shadow-sm card-hover-lift border-t-2 border-t-primary/25 transition hover:border-t-primary/60"
+              >
+                <div class="flex items-start gap-3">
+                  <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21m-5.83-5.83L3 21m12-9.75l3-3a2.121 2.121 0 013 3l-3 3m-6 0l4.5-4.5" />
+                    </svg>
+                  </span>
+                  <h3 class="pt-1 text-lg font-semibold font-display">{item.issue}</h3>
+                </div>
+                <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.issueDescription}</p>
+                <span class="mt-4 inline-flex min-h-11 items-center rounded-lg border border-primary/30 px-4 py-2 text-xs font-semibold text-primary">
+                  عرض التفاصيل
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">إصلاح دعسات كهربائية الرياض لتاهو وجمس وفورد وتويوتا ولكزس وكاديلاك وأكثر</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            هذه الخدمة مخصصة لأعطال الدعسات الكهربائية في السيارات المزودة بهذا النظام من مختلف الماركات، وتشمل الأعطال المتقطعة، البطء، أصوات الاحتكاك، ومشاكل الكنترول.
+          </p>
+        </header>
+        <ul class="mt-8 grid gap-5 md:grid-cols-2">
+          {electricRunningBoardIssues.map((item, index) => (
+            <li data-animate="fade-in-up" data-animate-delay={String((index + 1) * 100)}>
+              <button
+                type="button"
+                aria-label={`عرض تفاصيل ${item.issue}`}
+                data-service-title={item.issue}
+                data-service-icon="calibration"
+                data-service-description={`${item.issueDescription} ${item.service}`}
+                data-service-details={JSON.stringify([`الخدمة: ${item.service}`, ...item.details])}
+                class="w-full rounded-xl border border-border bg-card p-6 text-start shadow-sm card-hover-lift border-t-2 border-t-primary/25 transition hover:border-t-primary/60"
+              >
+                <div class="flex items-start gap-3">
+                  <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 6.75h15M4.5 12h15M4.5 17.25h15M9 5.25v3M15 10.5v3m-3.75 2.25v3" />
+                    </svg>
+                  </span>
+                  <h3 class="pt-1 text-lg font-semibold font-display">{item.issue}</h3>
+                </div>
+                <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.issueDescription}</p>
+                <span class="mt-4 inline-flex min-h-11 items-center rounded-lg border border-primary/30 px-4 py-2 text-xs font-semibold text-primary">
+                  عرض التفاصيل
+                </span>
+              </button>
             </li>
           ))}
         </ul>
@@ -540,6 +915,41 @@ const faqSchema = {
   </style>
 
   <script>
+    const languageStorageKey = 'autosave-sunroof-lang';
+    const languageSwitchLink = document.getElementById('sunroof-language-switch');
+    const currentPageLang = document.documentElement.lang === 'ar' ? 'ar' : 'en';
+    const languagePaths = {
+      ar: '/car-sunroof-solutions/',
+      en: '/en/car-sunroof-solutions/',
+    };
+
+    const resolvePreferredLanguage = () => {
+      try {
+        const saved = localStorage.getItem(languageStorageKey);
+        if (saved === 'ar' || saved === 'en') return saved;
+      } catch {
+        // Ignore storage access errors and fall back to browser language.
+      }
+      return navigator.language.toLowerCase().startsWith('ar') ? 'ar' : 'en';
+    };
+
+    const normalizePath = (path) => (path.endsWith('/') ? path : `${path}/`);
+    const preferredLanguage = resolvePreferredLanguage();
+    const currentPath = normalizePath(window.location.pathname);
+    const targetPath = languagePaths[preferredLanguage];
+
+    if (preferredLanguage !== currentPageLang && currentPath !== targetPath) {
+      window.location.replace(targetPath);
+    }
+
+    languageSwitchLink?.addEventListener('click', () => {
+      try {
+        localStorage.setItem(languageStorageKey, 'en');
+      } catch {
+        // Ignore storage access errors.
+      }
+    });
+
     const overlay = document.getElementById('service-modal-overlay');
     const iconPathEl = document.getElementById('service-modal-icon-path');
     const titleEl = document.getElementById('service-modal-title');

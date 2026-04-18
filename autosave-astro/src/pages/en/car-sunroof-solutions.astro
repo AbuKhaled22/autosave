@@ -24,6 +24,53 @@ const keywords = [
   'تصليح فتحة سقف السيارة',
   'إصلاح بانوراما السيارة',
   'صيانة فتحة السقف الرياض',
+  'Electric wheelchair repair Riyadh',
+  'تصليح كراسي متحركة كهربائية الرياض',
+  'Electric running board repair Riyadh',
+  'إصلاح دعسات كهربائية تاهو/جمس الرياض',
+  'Tahoe running board repair Riyadh',
+  'GMC running board repair Riyadh',
+  'ford running board repair riyadh',
+  'toyota running board repair riyadh',
+  'lexus running board repair riyadh',
+  'cadillac running board repair riyadh',
+  'nissan patrol running board repair riyadh',
+  'bmw sunroof repair riyadh',
+  'mercedes sunroof repair riyadh',
+  'gmc sunroof repair riyadh',
+  'toyota sunroof repair riyadh',
+  'lexus sunroof repair riyadh',
+  'electric wheelchair joystick repair Riyadh',
+  'running board motor repair Riyadh',
+];
+
+const supportedBrands = [
+  'Toyota',
+  'Nissan',
+  'Hyundai',
+  'Kia',
+  'Ford',
+  'Chevrolet',
+  'GMC',
+  'Dodge',
+  'Jeep',
+  'Lexus',
+  'Mercedes',
+  'BMW',
+  'Audi',
+  'Porsche',
+  'Mazda',
+  'Mitsubishi',
+  'Honda',
+  'Range Rover',
+  'Cadillac',
+  'Genesis',
+  'MG',
+  'Geely',
+  'Changan',
+  'Subaru',
+  'Volkswagen',
+  'Infiniti',
 ];
 
 const issues = [
@@ -94,21 +141,45 @@ const ownerMistakes = [
     title: 'Ignoring Drain Channel Cleaning',
     description:
       'Blocked drains trap water and trigger cabin leaks, one of the most common reasons people search for sunroof leak repair and car sunroof repair Riyadh.',
+    icon: 'leak',
+    details: [
+      'Clean drainage channels on a regular schedule.',
+      'Inspect roof-edge dirt accumulation after washing.',
+      'Confirm fast water flow to avoid hidden blockage.',
+    ],
   },
   {
     title: 'Forceful Open and Close Usage',
     description:
       'Aggressive operation increases wear on tracks, gears, and movement guides, then escalates into stuck panel failures.',
+    icon: 'motor',
+    details: [
+      'Avoid repeated button presses while the panel is moving.',
+      'Do not force manual closure against resistance.',
+      'Inspect gear and rail wear before full jam failure.',
+    ],
   },
   {
     title: 'Delaying Early Noise Inspection',
     description:
       'Small rattles are often early warning signs of panoramic roof or guide issues that become expensive when ignored.',
+    icon: 'noise',
+    details: [
+      'Trace sound source before guide or rail damage expands.',
+      'Stabilize loose internal roof components.',
+      'Correct alignment to reduce friction-driven noise.',
+    ],
   },
   {
     title: 'Using Incorrect Lubricants',
     description:
       'Wrong products attract dust, reduce smooth panel travel, and increase load on the sunroof motor and closing sensors.',
+    icon: 'calibration',
+    details: [
+      'Use sunroof-compatible lubricants only.',
+      'Remove old residue before re-lubrication.',
+      'Recalibrate movement after maintenance for consistency.',
+    ],
   },
 ];
 
@@ -117,21 +188,139 @@ const otherIssues = [
     title: 'Sunroof Position Sensor Failure',
     description:
       'Can cause incomplete closing, reverse movement, or random stop behavior and usually requires precise electronic recalibration.',
+    icon: 'calibration',
+    details: [
+      'Validate sensor feedback during open and close cycles.',
+      'Reset travel limits for stable end-point behavior.',
+      'Run full-response verification after recalibration.',
+    ],
   },
   {
     title: 'Control Module Malfunction',
     description:
       'Leads to button response problems or inconsistent open/close commands and may require programming after repair.',
+    icon: 'motor',
+    details: [
+      'Check module power and communication integrity.',
+      'Diagnose fault memory before part replacement.',
+      'Reprogram control behavior after correction.',
+    ],
   },
   {
     title: 'Track Misalignment or Guide Damage',
     description:
       'Creates friction, noise, and unstable movement, and in some cases needs sunroof rail repair or replacement.',
+    icon: 'panorama',
+    details: [
+      'Inspect rail straightness and guide wear points.',
+      'Repair or replace damaged guide components.',
+      'Confirm smooth synchronized movement post-repair.',
+    ],
   },
   {
     title: 'Wind Noise at Highway Speed',
     description:
       'Often linked to seal wear or inaccurate glass alignment after previous repair, directly affecting cabin comfort.',
+    icon: 'glass',
+    details: [
+      'Inspect weather seal continuity around panel edges.',
+      'Correct glass closure angle and pressure points.',
+      'Road-test at speed to verify cabin noise reduction.',
+    ],
+  },
+];
+
+const electricWheelchairIssues = [
+  {
+    issue: 'Joystick delay or weak movement response',
+    issueDescription:
+      'A frequent reason people search Electric wheelchair repair Riyadh is delayed or inconsistent movement from the joystick control.',
+    service: 'Control module and joystick calibration service',
+    details: [
+      'Inspect joystick input circuit and directional sensors.',
+      'Clean and secure low-voltage signal connections.',
+      'Recalibrate control response for smoother operation.',
+    ],
+  },
+  {
+    issue: 'Battery drains quickly and reduced travel range',
+    issueDescription:
+      'Power drop under load is one of the most common electric wheelchair complaints and affects daily mobility reliability.',
+    service: 'Battery and charger diagnostics with targeted replacement',
+    details: [
+      'Measure real battery voltage under load.',
+      'Test charger output and protection behavior.',
+      'Replace weak battery units and verify runtime.',
+    ],
+  },
+  {
+    issue: 'Motor cuts out on inclines or heavier load',
+    issueDescription:
+      'This can result from motor heat, wiring resistance, or drive module instability and should be tested with real operating conditions.',
+    service: 'Drive motor and power delivery repair service',
+    details: [
+      'Check motor, electromagnetic brake, and current draw.',
+      'Load-test the drive controller for cut-out conditions.',
+      'Repair or reinforce critical wiring points.',
+    ],
+  },
+  {
+    issue: 'Wheel vibration or abnormal noise',
+    issueDescription:
+      'Bearing wear, axle play, and alignment issues can cause vibration and eventually lead to sudden mobility interruption.',
+    service: 'Wheel, axle, and bearing correction service',
+    details: [
+      'Inspect wheel bearings, axles, and mounting points.',
+      'Correct wheel alignment and rolling balance.',
+      'Replace worn components to restore stability.',
+    ],
+  },
+];
+
+const electricRunningBoardIssues = [
+  {
+    issue: 'Running board does not deploy or retract',
+    issueDescription:
+      'Very common on Tahoe and GMC, and also seen on Ford, Toyota, Lexus, Cadillac, and Nissan Patrol models with powered side steps.',
+    service: 'Electric running board repair Riyadh for Tahoe, GMC, Ford, Toyota, Lexus, Cadillac, and more',
+    details: [
+      'Verify door-trigger signal and command path.',
+      'Test running board motor and control module.',
+      'Reprogram board behavior after repair if required.',
+    ],
+  },
+  {
+    issue: 'Slow movement or stops halfway',
+    issueDescription:
+      'Dirt in hinges, high mechanical resistance, or poor lubrication can overload the motor and create intermittent operation.',
+    service: 'Hinge and mechanism restoration service',
+    details: [
+      'Clean hinge assemblies and movement rails.',
+      'Apply proper lubricant for electric board systems.',
+      'Adjust travel and load to reduce motor strain.',
+    ],
+  },
+  {
+    issue: 'Clicking or grinding sound during operation',
+    issueDescription:
+      'Often an early warning of gear wear or linkage misalignment that can escalate into a full board failure.',
+    service: 'Gear and linkage repair for powered side steps',
+    details: [
+      'Inspect internal gear set and pivot points.',
+      'Replace damaged wear parts before complete breakage.',
+      'Confirm smooth noise-free operation after service.',
+    ],
+  },
+  {
+    issue: 'Only one side works consistently',
+    issueDescription:
+      'A side-specific wiring or controller channel issue is common in intermittent electrical faults for power steps.',
+    service: 'Electrical tracing and side-channel recovery service',
+    details: [
+      'Trace harness continuity for each side independently.',
+      'Validate control signals between module and motor.',
+      'Repair short/open circuits and retest complete cycle.',
+    ],
   },
 ];
 
@@ -152,6 +341,21 @@ const faqItems = [
       'Yes. We provide car sunroof solutions for a wide range of economy and premium vehicles, with model-specific diagnostics before repair starts.',
   },
   {
+    question: 'Do you provide BMW sunroof repair in Riyadh?',
+    answer:
+      'Yes. We provide BMW sunroof diagnostics and repair for motor, rail, calibration, and leak-related issues based on the exact model system.',
+  },
+  {
+    question: 'Do you fix Mercedes panoramic roof leaks in Riyadh?',
+    answer:
+      'Yes. Mercedes panoramic roof leak service includes drainage correction, seal treatment, and closure validation after repair.',
+  },
+  {
+    question: 'Is GMC sunroof motor replacement available in Riyadh?',
+    answer:
+      'Yes. We diagnose the full movement system first, then repair or replace the GMC sunroof motor when required for stable operation.',
+  },
+  {
     question: 'Can sunroof leak issues be fixed permanently?',
     answer:
       'In most cases, yes. Proper drain restoration, seal replacement, and post-repair water testing usually resolve recurring leak problems.',
@@ -162,9 +366,9 @@ const faqItems = [
       'Yes. The service covers both standard and panoramic sunroof systems with accurate rail and movement adjustment.',
   },
   {
-    question: 'Do I need to replace the full sunroof system?',
+    question: 'Can you repair sunroof rails without replacing the full assembly?',
     answer:
-      'Not always. In many cases, only the failed component needs replacement, such as the motor, rail, seal, or sensor, not the full assembly.',
+      'In many cases, yes. We can repair or replace the rail and related movement parts without replacing the full sunroof system.',
   },
   {
     question: 'Is it safe to keep driving with a leaking sunroof?',
@@ -191,6 +395,26 @@ const faqItems = [
     answer:
       'Routine drain cleaning, proper usage, and early checks for unusual noise or slow movement help prevent repeat failures after repair.',
   },
+  {
+    question: 'Do you offer same-day electric wheelchair repair in Riyadh?',
+    answer:
+      'For fast-diagnosis faults, same-day service is available depending on issue type and parts availability.',
+  },
+  {
+    question: 'What are the most common electric wheelchair faults you fix?',
+    answer:
+      'Frequent cases include rapid battery drain, delayed joystick response, motor cut-out under load, and wheel vibration or noise.',
+  },
+  {
+    question: 'Do you repair running boards for brands other than Tahoe and GMC?',
+    answer:
+      'Yes. We also repair powered running boards for brands like Ford, Toyota, Lexus, Cadillac, and Nissan Patrol, as well as Tahoe and GMC platforms.',
+  },
+  {
+    question: 'Can a running board motor be repaired instead of full replacement?',
+    answer:
+      'In many cases yes. After inspection, we determine whether motor repair, gear service, or full replacement is the most reliable option.',
+  },
 ];
 
 const serviceSchema = {
@@ -206,6 +430,7 @@ const serviceSchema = {
     'Panoramic roof repair',
     'Sunroof leak repair',
     'Sunroof motor calibration',
+    'Electric running board repair',
   ],
   areaServed: {
     '@type': 'City',
@@ -234,8 +459,8 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Sunroof Repair Riyadh | Car Sunroof Solutions, Panoramic Roof & Leak Fix"
-  description="Car sunroof repair Riyadh: fix stuck sunroof, panoramic roof repair, sunroof leak repair, motor and rail replacement for all car makes. تصليح فتحة سقف السيارة بالرياض."
+  title="Car Sunroof Repair Riyadh | BMW, Mercedes, GMC and More"
+  description="Car sunroof repair Riyadh for BMW, Mercedes, GMC, Toyota, Lexus, and more, including stuck sunroof fixes, panoramic repair, leak sealing, and rail service."
   lang={lang}
   keywords={keywords}
 >
@@ -244,13 +469,13 @@ const faqSchema = {
       <div class="hero-pattern"></div>
       <div class="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:py-20 lg:px-8 lg:py-24">
         <p class="hero-animate inline-flex items-center rounded-full border border-primary/40 bg-[#0c1b2e]/60 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-primary">
-          Car sunroof solutions | حلول فتحات سقف السيارات
+          Car sunroof solutions
         </p>
         <h1 class="hero-animate hero-animate-delay-1 mt-5 max-w-4xl text-3xl font-bold tracking-tight font-display sm:text-4xl lg:text-5xl">
-          Car Sunroof Solutions for All Makes and Models
+          Car Sunroof Solutions in Riyadh for All Brands and Models
         </h1>
         <p class="hero-animate hero-animate-delay-2 mt-5 max-w-3xl text-base leading-relaxed text-[#f0ebe0]/70 sm:text-lg">
-            car sunroof repair, panoramic roof repair, sunroof leak fix, and motor or rail replacement with model-specific diagnostics.
+            We provide car sunroof repair in Riyadh for BMW, Mercedes, GMC, Toyota, Lexus, and other major brands with model-specific diagnostics. Our service includes stuck sunroof repair, panoramic roof repair, leak sealing, and motor or rail correction.
         </p>
         <nav class="hero-animate hero-animate-delay-3 mt-8 flex flex-col gap-3 sm:flex-row sm:items-center" aria-label="Quick action links">
           <a
@@ -263,11 +488,12 @@ const faqSchema = {
             Book on WhatsApp
           </a>
           <a
+            id="sunroof-language-switch"
             href={alternatePath}
-            aria-label="الانتقال إلى نسخة العربية لحلول فتحة السقف"
+            aria-label="Switch to Arabic sunroof solutions page"
             class="inline-flex min-h-11 items-center justify-center rounded-lg border border-[#f0ebe0]/35 px-6 py-3 text-sm font-semibold text-[#f0ebe0] transition hover:bg-[#f0ebe0]/10"
           >
-            النسخة العربية
+            Arabic Version
           </a>
         </nav>
       </div>
@@ -276,7 +502,7 @@ const faqSchema = {
     <section class="py-20 lg:py-28">
       <div class="container mx-auto px-4">
         <header class="max-w-3xl" data-animate="fade-in-up">
-          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">High-Demand Sunroof Services</h2>
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">High-Demand Sunroof Services in Riyadh</h2>
           <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
             We support all car types and models, from standard roofs to panoramic systems, with a clear diagnostic-first workflow.
           </p>
@@ -311,6 +537,26 @@ const faqSchema = {
                   View Details
                 </span>
               </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="bg-secondary/40 py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">Supported Car Brands: BMW, Mercedes, GMC, Toyota, Lexus and More</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Service coverage includes major brands in Saudi Arabia with model-specific diagnostics and repair workflows for each roof system type.
+          </p>
+        </header>
+        <ul class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          {supportedBrands.map((brand, index) => (
+            <li data-animate="fade-in-up" data-animate-delay={String(((index % 6) + 1) * 80)}>
+              <article class="rounded-lg border border-border bg-card px-3 py-3 text-center text-sm font-semibold text-foreground">
+                {brand}
+              </article>
             </li>
           ))}
         </ul>
@@ -383,7 +629,7 @@ const faqSchema = {
     <section class="bg-secondary/40 py-20 lg:py-28">
       <div class="container mx-auto px-4">
         <header class="max-w-3xl" data-animate="fade-in-up">
-          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">Common Owner Mistakes Behind Sunroof Repair Searches</h2>
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">Common Owner Mistakes That Lead to Sunroof Repair in Riyadh</h2>
           <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
             These are high-frequency causes behind car sunroof repair Riyadh, panoramic roof repair, and sunroof leak repair queries, and we handle them across all car types and models.
           </p>
@@ -391,10 +637,33 @@ const faqSchema = {
         <ul class="mt-8 grid gap-5 md:grid-cols-2">
           {ownerMistakes.map((item, index) => (
             <li data-animate="fade-in-up" data-animate-delay={String((index + 1) * 100)}>
-              <article class="rounded-xl border border-border bg-card p-6 shadow-sm card-hover-lift">
-                <h3 class="text-lg font-semibold font-display">{item.title}</h3>
+              <button
+                type="button"
+                aria-label={`Open details for ${item.title}`}
+                data-service-title={item.title}
+                data-service-icon={item.icon}
+                data-service-description={item.description}
+                data-service-details={JSON.stringify(item.details)}
+                class="w-full rounded-xl border border-border bg-card p-6 text-start shadow-sm card-hover-lift border-t-2 border-t-primary/25 transition hover:border-t-primary/60"
+              >
+                <div class="flex items-start gap-3">
+                  <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                      {item.icon === 'motor' && <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21m-5.83-5.83L3 21m12-9.75l3-3a2.121 2.121 0 013 3l-3 3m-6 0l4.5-4.5" />}
+                      {item.icon === 'leak' && <path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75c-1.172 0-6 5.273-6 8.25a6 6 0 0012 0c0-2.977-4.828-8.25-6-8.25z" />}
+                      {item.icon === 'panorama' && <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 7.5h16.5v9H3.75v-9zm4.5 0v9m7.5-9v9" />}
+                      {item.icon === 'glass' && <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5h15M7.5 19.5v-3.75a4.5 4.5 0 019 0v3.75" />}
+                      {item.icon === 'noise' && <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h3m10.5 0h3M7.5 8.25l2.25 3.75-2.25 3.75m9-7.5l-2.25 3.75 2.25 3.75" />}
+                      {item.icon === 'calibration' && <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 6.75h15M4.5 12h15M4.5 17.25h15M9 5.25v3M15 10.5v3m-3.75 2.25v3" />}
+                    </svg>
+                  </span>
+                  <h3 class="pt-1 text-lg font-semibold font-display">{item.title}</h3>
+                </div>
                 <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-              </article>
+                <span class="mt-4 inline-flex min-h-11 items-center rounded-lg border border-primary/30 px-4 py-2 text-xs font-semibold text-primary">
+                  View Details
+                </span>
+              </button>
             </li>
           ))}
         </ul>
@@ -412,10 +681,111 @@ const faqSchema = {
         <ul class="mt-8 grid gap-5 md:grid-cols-2">
           {otherIssues.map((item, index) => (
             <li data-animate="fade-in-up" data-animate-delay={String((index + 1) * 100)}>
-              <article class="rounded-xl border border-border bg-card p-6 shadow-sm card-hover-lift">
-                <h3 class="text-lg font-semibold font-display">{item.title}</h3>
+              <button
+                type="button"
+                aria-label={`Open details for ${item.title}`}
+                data-service-title={item.title}
+                data-service-icon={item.icon}
+                data-service-description={item.description}
+                data-service-details={JSON.stringify(item.details)}
+                class="w-full rounded-xl border border-border bg-card p-6 text-start shadow-sm card-hover-lift border-t-2 border-t-primary/25 transition hover:border-t-primary/60"
+              >
+                <div class="flex items-start gap-3">
+                  <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                      {item.icon === 'motor' && <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21m-5.83-5.83L3 21m12-9.75l3-3a2.121 2.121 0 013 3l-3 3m-6 0l4.5-4.5" />}
+                      {item.icon === 'leak' && <path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75c-1.172 0-6 5.273-6 8.25a6 6 0 0012 0c0-2.977-4.828-8.25-6-8.25z" />}
+                      {item.icon === 'panorama' && <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 7.5h16.5v9H3.75v-9zm4.5 0v9m7.5-9v9" />}
+                      {item.icon === 'glass' && <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5h15M7.5 19.5v-3.75a4.5 4.5 0 019 0v3.75" />}
+                      {item.icon === 'noise' && <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h3m10.5 0h3M7.5 8.25l2.25 3.75-2.25 3.75m9-7.5l-2.25 3.75 2.25 3.75" />}
+                      {item.icon === 'calibration' && <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 6.75h15M4.5 12h15M4.5 17.25h15M9 5.25v3M15 10.5v3m-3.75 2.25v3" />}
+                    </svg>
+                  </span>
+                  <h3 class="pt-1 text-lg font-semibold font-display">{item.title}</h3>
+                </div>
                 <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-              </article>
+                <span class="mt-4 inline-flex min-h-11 items-center rounded-lg border border-primary/30 px-4 py-2 text-xs font-semibold text-primary">
+                  View Details
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="bg-secondary/40 py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">Electric Wheelchair Repair Riyadh: Common Faults and Fast Service</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            We provide specialized diagnostics and repair for electric wheelchair electrical and mechanical faults, with issue-specific service paths for reliable daily use.
+          </p>
+        </header>
+        <ul class="mt-8 grid gap-5 md:grid-cols-2">
+          {electricWheelchairIssues.map((item, index) => (
+            <li data-animate="fade-in-up" data-animate-delay={String((index + 1) * 100)}>
+              <button
+                type="button"
+                aria-label={`Open details for ${item.issue}`}
+                data-service-title={item.issue}
+                data-service-icon="motor"
+                data-service-description={`${item.issueDescription} ${item.service}`}
+                data-service-details={JSON.stringify([`Service: ${item.service}`, ...item.details])}
+                class="w-full rounded-xl border border-border bg-card p-6 text-start shadow-sm card-hover-lift border-t-2 border-t-primary/25 transition hover:border-t-primary/60"
+              >
+                <div class="flex items-start gap-3">
+                  <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21m-5.83-5.83L3 21m12-9.75l3-3a2.121 2.121 0 013 3l-3 3m-6 0l4.5-4.5" />
+                    </svg>
+                  </span>
+                  <h3 class="pt-1 text-lg font-semibold font-display">{item.issue}</h3>
+                </div>
+                <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.issueDescription}</p>
+                <span class="mt-4 inline-flex min-h-11 items-center rounded-lg border border-primary/30 px-4 py-2 text-xs font-semibold text-primary">
+                  View Details
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-28">
+      <div class="container mx-auto px-4">
+        <header class="max-w-3xl" data-animate="fade-in-up">
+          <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">Electric Running Board Repair Riyadh for Tahoe, GMC, Ford, Toyota, Lexus, Cadillac and More</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            This service covers powered running board failures across multiple brands that use factory or aftermarket side-step systems, including intermittent motion, motor stress, gear noise, and controller-side electrical faults.
+          </p>
+        </header>
+        <ul class="mt-8 grid gap-5 md:grid-cols-2">
+          {electricRunningBoardIssues.map((item, index) => (
+            <li data-animate="fade-in-up" data-animate-delay={String((index + 1) * 100)}>
+              <button
+                type="button"
+                aria-label={`Open details for ${item.issue}`}
+                data-service-title={item.issue}
+                data-service-icon="calibration"
+                data-service-description={`${item.issueDescription} ${item.service}`}
+                data-service-details={JSON.stringify([`Service: ${item.service}`, ...item.details])}
+                class="w-full rounded-xl border border-border bg-card p-6 text-start shadow-sm card-hover-lift border-t-2 border-t-primary/25 transition hover:border-t-primary/60"
+              >
+                <div class="flex items-start gap-3">
+                  <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 6.75h15M4.5 12h15M4.5 17.25h15M9 5.25v3M15 10.5v3m-3.75 2.25v3" />
+                    </svg>
+                  </span>
+                  <h3 class="pt-1 text-lg font-semibold font-display">{item.issue}</h3>
+                </div>
+                <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.issueDescription}</p>
+                <span class="mt-4 inline-flex min-h-11 items-center rounded-lg border border-primary/30 px-4 py-2 text-xs font-semibold text-primary">
+                  View Details
+                </span>
+              </button>
             </li>
           ))}
         </ul>
@@ -538,6 +908,41 @@ const faqSchema = {
   </style>
 
   <script>
+    const languageStorageKey = 'autosave-sunroof-lang';
+    const languageSwitchLink = document.getElementById('sunroof-language-switch');
+    const currentPageLang = document.documentElement.lang === 'ar' ? 'ar' : 'en';
+    const languagePaths = {
+      ar: '/car-sunroof-solutions/',
+      en: '/en/car-sunroof-solutions/',
+    };
+
+    const resolvePreferredLanguage = () => {
+      try {
+        const saved = localStorage.getItem(languageStorageKey);
+        if (saved === 'ar' || saved === 'en') return saved;
+      } catch {
+        // Ignore storage access errors and fall back to browser language.
+      }
+      return navigator.language.toLowerCase().startsWith('ar') ? 'ar' : 'en';
+    };
+
+    const normalizePath = (path) => (path.endsWith('/') ? path : `${path}/`);
+    const preferredLanguage = resolvePreferredLanguage();
+    const currentPath = normalizePath(window.location.pathname);
+    const targetPath = languagePaths[preferredLanguage];
+
+    if (preferredLanguage !== currentPageLang && currentPath !== targetPath) {
+      window.location.replace(targetPath);
+    }
+
+    languageSwitchLink?.addEventListener('click', () => {
+      try {
+        localStorage.setItem(languageStorageKey, 'ar');
+      } catch {
+        // Ignore storage access errors.
+      }
+    });
+
     const overlay = document.getElementById('service-modal-overlay');
     const iconPathEl = document.getElementById('service-modal-icon-path');
     const titleEl = document.getElementById('service-modal-title');
