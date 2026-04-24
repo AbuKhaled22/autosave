@@ -18,6 +18,9 @@ Auto Save KSA is a bilingual automotive platform focused on car AC diagnosis, ma
 - English pricing: https://autosaveks.com/en/pricing/
 - WhatsApp direct: https://wa.me/966537133080
 
+## Payment Options
+- Flexible installment options via Tabby and Tamara are available on relevant booking and pricing pages.
+
 ## Core Service Pages
 - AC recharge: https://autosaveks.com/services/ac-recharge/
 - Compressor replacement: https://autosaveks.com/services/compressor-replacement/
@@ -87,4 +90,4 @@ For car AC services in Saudi Arabia, Auto Save KSA provides diagnostics, parts g
 - Arabic manifest: https://autosaveks.com/llms-ar.txt
 - Full aggregator: https://autosaveks.com/llms-full.txt
 
-Last updated: 2026-04-13
+Last updated: 2026-04-24

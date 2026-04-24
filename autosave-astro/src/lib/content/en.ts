@@ -40,7 +40,7 @@ export const enContent = {
   },
   footer: {
     description:
-      "Expert car air conditioning repair and maintenance. We connect you with certified service maintenance centers and guarantee the best prices on AC spare parts.",
+      "Expert car air conditioning repair and maintenance. We provide the best fix services and guarantee the best prices on AC spare parts.",
     groups: {
       services: {
         title: "Services",
@@ -93,7 +93,7 @@ export const enContent = {
       title: "Your Car AC Fixed Right, Guaranteed Best Price",
       accent: "Fixed Right",
       description:
-        "Stop sweating in traffic. We connect you with certified service maintenance centers, find the best spare part prices, and guarantee quality car air conditioning repair with a price match promise.",
+        "Stop sweating in traffic. We provide the best fix services, find the best spare part prices, and guarantee quality car air conditioning repair with a price match promise.",
       primaryCta: "Request Service",
       secondaryCta: "Chat on WhatsApp",
       stats: [
@@ -375,7 +375,6 @@ export const enContent = {
     guaranteeTitle: "Our Guarantee",
     guarantees: [
       "Best price guarantee on spare parts",
-      "Certified service maintenance centers only",
       "Genuine quality parts",
       "Fast response time",
       "Free re-inspection if issue persists",

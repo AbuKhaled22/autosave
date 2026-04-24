@@ -109,6 +109,31 @@ const pricingFaqs = [
               <span class="text-sm">توصيل القطع للمركز مجانا</span>
             </li>
           </ul>
+          <div class="mt-7 rounded-xl border border-primary/25 bg-primary/5 p-4">
+            <h4 class="text-sm font-semibold text-foreground mb-2">بدون دفع فوري—قسّط براحتك</h4>
+            <p class="text-xs text-muted-foreground mb-3 leading-relaxed">نظّم ميزانيتك: قسّم كامل تكلفة الإصلاح والقطع على دفعات شهرية بدون فوائد. ادفع فقط ما تحتاج، عندما تحتاج.</p>
+            <p class="text-xs font-medium text-foreground mb-3">شركاء بدون فوائد:</p>
+            <div class="mt-3 flex flex-wrap items-center gap-3">
+              <a
+                href="https://tabby.ai/ar-AE"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="الدفع عبر تابي"
+                class="inline-flex min-h-11 items-center rounded-lg border border-border bg-white px-3 py-2 transition hover:border-primary/50"
+              >
+                <img src="/images/tabby.png" alt="شعار تابي" width="108" height="36" loading="lazy" class="h-8 w-auto object-contain" />
+              </a>
+              <a
+                href="https://tamara.co/ar-sa"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="الدفع عبر تمارا"
+                class="inline-flex min-h-11 items-center rounded-lg border border-border bg-white px-3 py-2 transition hover:border-primary/50"
+              >
+                <img src="/images/tammara.png" alt="شعار تمارا" width="108" height="36" loading="lazy" class="h-8 w-auto object-contain" />
+              </a>
+            </div>
+          </div>
           <div class="mt-8">
             <ComingSoonLink
               href={DROP_OFF_CALENDLY_URL}
@@ -158,6 +183,31 @@ const pricingFaqs = [
               <span class="text-sm">إرجاع السيارة بعد الانتهاء</span>
             </li>
           </ul>
+          <div class="mt-7 rounded-xl border border-primary/25 bg-primary/5 p-4">
+            <h4 class="text-sm font-semibold text-foreground mb-2">وزّع التكاليف بدون فوائد</h4>
+            <p class="text-xs text-muted-foreground mb-3 leading-relaxed">لا مفاجآت مالية: قسّم إجمالي استثمار الإصلاح والقطع على دفعات شهرية مريحة بنسبة فائدة صفر. موافقة فورية.</p>
+            <p class="text-xs font-medium text-foreground mb-3">خطط دفع موثوقة:</p>
+            <div class="mt-3 flex flex-wrap items-center gap-3">
+              <a
+                href="https://tabby.ai/ar-AE"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="الدفع عبر تابي"
+                class="inline-flex min-h-11 items-center rounded-lg border border-border bg-white px-3 py-2 transition hover:border-primary/50"
+              >
+                <img src="/images/tabby.png" alt="شعار تابي" width="108" height="36" loading="lazy" class="h-8 w-auto object-contain" />
+              </a>
+              <a
+                href="https://tamara.co/ar-sa"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="الدفع عبر تمارا"
+                class="inline-flex min-h-11 items-center rounded-lg border border-border bg-white px-3 py-2 transition hover:border-primary/50"
+              >
+                <img src="/images/tammara.png" alt="شعار تمارا" width="108" height="36" loading="lazy" class="h-8 w-auto object-contain" />
+              </a>
+            </div>
+          </div>
           <div class="mt-8">
             <ComingSoonLink
               href={pickupBookingUrl}
@@ -383,7 +433,7 @@ const pricingFaqs = [
   </section>
 
   {/* JSON-LD */}
-  <FAQSchema />
+  <FAQSchema items={pricingFaqs} />
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Product",

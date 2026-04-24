@@ -47,8 +47,28 @@ const aiContextLinks = [
             {/* Drop-off */}
             <div class="rounded-xl border border-border bg-card p-7 shadow-sm card-hover-lift border-t-2 border-t-primary/25">
               <h3 class="text-lg font-semibold mb-1 font-display">{contact.dropOff}</h3>
-              <p class="text-sm font-semibold text-primary">Price 69 SAR — 58% discount now 29 SAR</p>
-              <p class="mt-1 text-xs text-muted-foreground">Extra 30% off this Drop-Off offer when booking from Sunday to Thursday.</p>
+              <p class="text-sm text-muted-foreground">Drive to the workshop and we handle coordination, repair, and the best spare-part pricing.</p>
+              <div class="mt-5 rounded-xl border border-primary/25 bg-primary/5 p-4">
+                <h4 class="text-sm font-semibold text-foreground mb-2">No upfront cost—pay in flexible installments</h4>
+                <p class="text-xs text-muted-foreground mb-3 leading-relaxed">Split the repair and parts cost into comfortable monthly payments with zero interest, fast approval, and a clear plan.</p>
+                <p class="text-xs font-medium text-foreground mb-3">Zero-interest partners:</p>
+                <div class="flex flex-wrap items-center gap-2">
+                  <a href="https://tabby.ai/ar-AE" target="_blank" rel="noopener noreferrer" aria-label="Pay with Tabby" class="inline-flex min-h-10 items-center rounded-lg border border-border bg-white px-2.5 py-1.5 transition hover:border-primary/50">
+                    <img src="/images/tabby.png" alt="Tabby payment logo" width="108" height="36" loading="lazy" class="h-6 w-auto object-contain" />
+                  </a>
+                  <a href="https://tamara.co/ar-sa" target="_blank" rel="noopener noreferrer" aria-label="Pay with Tamara" class="inline-flex min-h-10 items-center rounded-lg border border-border bg-white px-2.5 py-1.5 transition hover:border-primary/50">
+                    <img src="/images/tammara.png" alt="Tamara payment logo" width="108" height="36" loading="lazy" class="h-6 w-auto object-contain" />
+                  </a>
+                </div>
+              </div>
+              <ul class="mt-5 space-y-3">
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg><span class="text-sm">Search for the best parts at the cheapest price, with a guarantee to return triple the price difference if any.</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg><span class="text-sm">Price match guarantee</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg><span class="text-sm">Quality-checked repair</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg><span class="text-sm">Dedicated WhatsApp support</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg><span class="text-sm">Service warranty included</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg><span class="text-sm">Free part delivery</span></li>
+              </ul>
               <ComingSoonLink
                 href={dropOffBookingUrl}
                 lang={lang}
@@ -63,7 +83,30 @@ const aiContextLinks = [
             {/* Pickup */}
             <div class="rounded-xl border-2 border-primary bg-gradient-to-b from-primary/8 to-primary/2 p-7 shadow-lg shadow-primary/10 card-hover-lift">
               <h3 class="text-lg font-semibold mb-1 font-display">{contact.pickup}</h3>
-              <p class="text-sm font-semibold text-primary">Service fee details are shared on request</p>
+              <p class="text-sm text-muted-foreground">We pick up your car, complete the repair at a workshop, and return it after quality inspection.</p>
+              <div class="mt-5 rounded-xl border border-primary/25 bg-primary/5 p-4">
+                <h4 class="text-sm font-semibold text-foreground mb-2">Spread costs over time—zero interest</h4>
+                <p class="text-xs text-muted-foreground mb-3 leading-relaxed">Avoid a large one-time bill: divide the total repair and parts investment into easy monthly installments at zero percent interest.</p>
+                <p class="text-xs font-medium text-foreground mb-3">Trusted payment plans:</p>
+                <div class="flex flex-wrap items-center gap-2">
+                  <a href="https://tabby.ai/ar-AE" target="_blank" rel="noopener noreferrer" aria-label="Pay with Tabby" class="inline-flex min-h-10 items-center rounded-lg border border-border bg-white px-2.5 py-1.5 transition hover:border-primary/50">
+                    <img src="/images/tabby.png" alt="Tabby payment logo" width="108" height="36" loading="lazy" class="h-6 w-auto object-contain" />
+                  </a>
+                  <a href="https://tamara.co/ar-sa" target="_blank" rel="noopener noreferrer" aria-label="Pay with Tamara" class="inline-flex min-h-10 items-center rounded-lg border border-border bg-white px-2.5 py-1.5 transition hover:border-primary/50">
+                    <img src="/images/tammara.png" alt="Tamara payment logo" width="108" height="36" loading="lazy" class="h-6 w-auto object-contain" />
+                  </a>
+                </div>
+              </div>
+              <ul class="mt-5 space-y-3">
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg><span class="text-sm">Door-to-door car pickup</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg><span class="text-sm">Search for the best parts at the cheapest price, with a guarantee to return triple the price difference if any.</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg><span class="text-sm">Price match guarantee</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg><span class="text-sm">Quality-checked repair</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg><span class="text-sm">Dedicated WhatsApp support</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg><span class="text-sm">Service warranty included</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg><span class="text-sm">Car delivered back to you</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg><span class="text-sm">Free part delivery</span></li>
+              </ul>
               <ComingSoonLink
                 href={pickupBookingUrl}
                 lang={lang}

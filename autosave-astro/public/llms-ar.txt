@@ -18,6 +18,9 @@
 - الأسعار بالإنجليزية: https://autosaveks.com/en/pricing/
 - واتساب مباشر: https://wa.me/966537133080
 
+## خيارات الدفع
+- خيارات التقسيط المرنة عبر Tabby و Tamara متاحة على صفحات الحجز/الأسعار ذات الصلة.
+
 ## صفحات الخدمات الأساسية
 - تعبئة الفريون: https://autosaveks.com/services/ac-recharge/
 - تغيير الكمبروسر: https://autosaveks.com/services/compressor-replacement/
@@ -87,4 +90,4 @@ English manifest: https://autosaveks.com/llms-en.txt
 AI entrypoint: https://autosaveks.com/llms.txt
 Full aggregator: https://autosaveks.com/llms-full.txt
 
-آخر تحديث: 2026-04-13
+آخر تحديث: 2026-04-24

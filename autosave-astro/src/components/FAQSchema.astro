@@ -1,54 +1,31 @@
 ---
 /**
  * FAQSchema — JSON-LD structured data for FAQPage.
- * Injected into the <head> of the home page for Google FAQ rich snippets.
+ * Accepts page FAQ items and injects JSON-LD into <head>.
  */
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FAQItem[];
+}
+
+const { items } = Astro.props;
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  'mainEntity': [
-    {
-      '@type': 'Question',
-      'name': 'How much does a car AC repair cost?',
-      'acceptedAnswer': {
-        '@type': 'Answer',
-        'text': 'Car AC repair requirements vary depending on the issue and vehicle condition. Service details are confirmed after diagnosis, and all work scope is shared clearly before repair starts.',
-      },
+  'mainEntity': items.map((item) => ({
+    '@type': 'Question',
+    'name': item.question,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': item.answer,
     },
-    {
-      '@type': 'Question',
-      'name': 'How do I know if my car AC needs repair?',
-      'acceptedAnswer': {
-        '@type': 'Answer',
-        'text': 'Common signs include weak or warm air from vents, strange noises when AC is on, musty smells, water leaking inside the car, or the AC not turning on at all. If you notice any of these, schedule a diagnostic appointment.',
-      },
-    },
-    {
-      '@type': 'Question',
-      'name': 'How long does a car AC repair take?',
-      'acceptedAnswer': {
-        '@type': 'Answer',
-        'text': 'Simple repairs like a freon refill take 30-60 minutes. More complex repairs like compressor replacement may take 3-5 hours. Our team provides an accurate time estimate after diagnosis.',
-      },
-    },
-    {
-      '@type': 'Question',
-      'name': 'Do you offer a warranty on car AC repairs?',
-      'acceptedAnswer': {
-        '@type': 'Answer',
-        'text': 'Yes, all repairs performed through our certified service maintenance center network include a warranty on both parts and labor. The specific warranty period depends on the repair type and is communicated before work begins.',
-      },
-    },
-    {
-      '@type': 'Question',
-      'name': 'Can you pick up my car for AC repair?',
-      'acceptedAnswer': {
-        '@type': 'Answer',
-        'text': 'Yes, we offer a pickup service where our team collects your vehicle, delivers it to a certified service maintenance center, and returns it after repair. You can also choose the drop-off option at a workshop.',
-      },
-    },
-  ],
+  })),
 };
 ---
 

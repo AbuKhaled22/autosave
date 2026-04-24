@@ -44,7 +44,21 @@ export const symptoms: Symptom[] = [
     descriptionEn:
       'The car AC runs but does not produce cold air. This is a very common problem especially during summer in Saudi Arabia and can have multiple causes.',
     keywordsAr: ['مكيف السيارة لا يبرد', 'المكيف ما يبرد', 'مكيف السيارة حار', 'المكيف لا يعمل بارد', 'فحص ليزر', 'فحص ليزر تسريب الفريون', 'فحص ليزر لمكيف السيارة'],
-    keywordsEn: ['car ac not cooling', 'ac not blowing cold', 'car ac warm air', 'ac not cold', 'laser leak test car ac', 'car ac laser inspection', 'freon leak laser test'],
+    keywordsEn: [
+      'car ac not cooling',
+      'ac not blowing cold',
+      'car ac warm air',
+      'ac not cold',
+      'laser leak test car ac',
+      'car ac laser inspection',
+      'freon leak laser test',
+      'how to find a freon leak',
+      'how to check for ac leak in car',
+      'how to find ac leak in car',
+      'how to know if freon is leaking in car',
+      'car freon leak',
+      'refrigerant leak car',
+    ],
     causes: [
       {
         titleAr: 'نقص الفريون',
@@ -235,7 +249,7 @@ export const symptoms: Symptom[] = [
       'مكيف السيارة توقف فجأة عن العمل بالكامل. لا يعمل الكمبروسر ولا تخرج بارد من فتحات التهوية.',
     descriptionEn:
       'The car AC has completely stopped working. The compressor does not engage and no cold air comes from the vents.',
-    keywordsAr: ['المكيف توقف', 'مكيف السيارة ما يشتغل', 'المكيف لا يعمل'],
+    keywordsAr: ['المكيف توقف', 'مكيف السيارة ما يشتغل', 'المكيف لا يعمل', 'أسباب عدم عمل تكييف السيارة'],
     keywordsEn: ['ac stopped working', 'car ac not working', 'ac won\'t turn on'],
     causes: [
       {
@@ -673,7 +687,7 @@ export const symptoms: Symptom[] = [
       'فيوز مكيف السيارة يحترق بشكل متكرر عند تشغيل المكيف. مشكلة كهربائية تحتاج تشخيص دقيق.',
     descriptionEn:
       'The car AC fuse keeps blowing repeatedly when the AC is turned on. An electrical problem that needs accurate diagnosis.',
-    keywordsAr: ['فيوز المكيف يحترق', 'فيوز المكيف ينقطع', 'مشكلة كهربائية في المكيف'],
+    keywordsAr: ['فيوز المكيف يحترق', 'فيوز المكيف ينقطع', 'مشكلة كهربائية في المكيف', 'فيوز المكيف في السيارة'],
     keywordsEn: ['ac fuse keeps blowing', 'ac fuse burns out', 'ac electrical problem'],
     causes: [
       {

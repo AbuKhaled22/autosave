@@ -926,41 +926,6 @@ const faqSchema = {
   </style>
 
   <script>
-    const languageStorageKey = 'autosave-sunroof-lang';
-    const languageSwitchLink = document.getElementById('sunroof-language-switch');
-    const currentPageLang = document.documentElement.lang === 'ar' ? 'ar' : 'en';
-    const languagePaths = {
-      ar: '/car-sunroof-solutions/',
-      en: '/en/car-sunroof-solutions/',
-    };
-
-    const resolvePreferredLanguage = () => {
-      try {
-        const saved = localStorage.getItem(languageStorageKey);
-        if (saved === 'ar' || saved === 'en') return saved;
-      } catch {
-        // Ignore storage access errors and fall back to browser language.
-      }
-      return navigator.language.toLowerCase().startsWith('ar') ? 'ar' : 'en';
-    };
-
-    const normalizePath = (path) => (path.endsWith('/') ? path : `${path}/`);
-    const preferredLanguage = resolvePreferredLanguage();
-    const currentPath = normalizePath(window.location.pathname);
-    const targetPath = languagePaths[preferredLanguage];
-
-    if (preferredLanguage !== currentPageLang && currentPath !== targetPath) {
-      window.location.replace(targetPath);
-    }
-
-    languageSwitchLink?.addEventListener('click', () => {
-      try {
-        localStorage.setItem(languageStorageKey, 'en');
-      } catch {
-        // Ignore storage access errors.
-      }
-    });
-
     const overlay = document.getElementById('service-modal-overlay');
     const iconPathEl = document.getElementById('service-modal-icon-path');
     const titleEl = document.getElementById('service-modal-title');

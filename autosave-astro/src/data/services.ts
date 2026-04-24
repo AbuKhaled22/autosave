@@ -58,6 +58,12 @@ export const services: ACService[] = [
       'تعبئة غاز المكيف',
       'فريون السيارة',
       'شحن مكيف السيارة',
+      'تعبئة فريون السيارة',
+      'فريون سيارة',
+      'فريون مكيف',
+      'مكيفات سيارات',
+      'تكييف سيارات',
+      'صيانة مكيفات',
     ],
     keywordsEn: [
       'car ac recharge',
@@ -65,6 +71,11 @@ export const services: ACService[] = [
       'ac refrigerant refill',
       'car ac gas refill',
       'ac top up',
+      'air conditioner charging cost',
+      'recharging car air conditioner cost',
+      'recharging air conditioning car cost',
+      'refrigerant refill',
+      'car ac gas filling near me',
     ],
     faqs: [
       {
@@ -90,6 +101,14 @@ export const services: ACService[] = [
           'معظم السيارات تستخدم فريون R134a، بينما السيارات الحديثة (2017 وما بعد) قد تستخدم R1234yf. نحدد النوع المناسب حسب مواصفات الشركة المصنعة.',
         answerEn:
           'Most cars use R134a refrigerant, while newer models (2017 and later) may use R1234yf. We determine the correct type based on manufacturer specifications.',
+      },
+      {
+        questionAr: 'هل تعبئة فريون السيارة تحتاج فحص ليزر قبل الخدمة؟',
+        questionEn: 'Should freon recharge include leak testing first?',
+        answerAr:
+          'نعم، الأفضل في ورشة سيارات احترافية هو فحص التسريب أولاً (إلكتروني أو UV) قبل تعبئة فريون السيارة، حتى لا تتكرر المشكلة بعد أيام قليلة.',
+        answerEn:
+          'Yes. A professional workshop should perform leak checks first (electronic or UV) before recharging refrigerant to avoid recurring issues shortly after service.',
       },
     ],
   },
@@ -151,6 +170,14 @@ export const services: ACService[] = [
           'تتراوح تكلفة تغيير كمبروسر مكيف السيارة بين 800 و 3,500 ريال سعودي حسب نوع السيارة ونوع القطعة (أصلية أو بديلة).',
         answerEn:
           'AC compressor replacement costs range from 800 to 3,500 SAR depending on the vehicle type and whether OEM or aftermarket parts are used.',
+      },
+      {
+        questionAr: 'متى أحتاج تغيير كمبروسر بدل تعبئة فريون فقط؟',
+        questionEn: 'When do I need compressor replacement instead of recharge?',
+        answerAr:
+          'إذا كان ضغط النظام غير مستقر مع صوت طحن أو توقف الكلتش، فغالباً المشكلة في الكمبروسر نفسه وليس في فريون السيارة فقط. التشخيص يحدد القرار بدقة.',
+        answerEn:
+          'If system pressure is unstable with grinding noise or clutch failure, the issue is usually compressor-related rather than low refrigerant alone. Diagnosis confirms the correct action.',
       },
     ],
   },
@@ -255,6 +282,14 @@ export const services: ACService[] = [
         answerEn:
           'A refrigerant leak is checked with a pressure test, an electronic sniffer, and UV dye tracing. If cooling drops gradually and the system needs frequent recharging, a leak is very likely.',
       },
+      {
+        questionAr: 'ما الفرق بين فحص ليزر وفحص UV لتسريب الفريون؟',
+        questionEn: 'What is the difference between laser and UV leak tests?',
+        answerAr:
+          'مصطلح فحص ليزر يُستخدم شعبياً لوصف الفحص الضوئي للتسريب، بينما عملياً نعتمد على صبغة UV مع كاشف إلكتروني لتحديد مكان التسريب بدقة أعلى.',
+        answerEn:
+          'The term laser test is commonly used by customers, while practical diagnosis usually combines UV dye and an electronic detector for accurate leak pinpointing.',
+      },
     ],
   },
   {
@@ -303,6 +338,14 @@ export const services: ACService[] = [
           'يُنصح بتنظيف مكيف السيارة كل 6 أشهر أو عند ملاحظة رائحة كريهة من فتحات التهوية. التنظيف المنتظم يحسن جودة الهواء ويمنع تراكم البكتيريا.',
         answerEn:
           'It is recommended to clean your car AC every 6 months or when you notice a bad smell from the vents. Regular cleaning improves air quality and prevents bacteria buildup.',
+      },
+      {
+        questionAr: 'هل تنظيف مكيفات سيارات يحسن التبريد فعلاً؟',
+        questionEn: 'Does AC cleaning improve cooling performance?',
+        answerAr:
+          'نعم، تنظيف الثلاجة وفلتر المقصورة ومجاري الهواء يحسن تدفق الهواء داخل المقصورة، ما يعزز كفاءة تكييف سيارات خصوصاً في الحر الشديد.',
+        answerEn:
+          'Yes. Cleaning the evaporator, cabin filter, and air paths improves airflow and helps AC performance, especially in extreme heat.',
       },
     ],
   },
@@ -504,6 +547,14 @@ export const services: ACService[] = [
         answerEn:
           'Yes, accurate diagnostics save you money and time. Without proper diagnosis, non-faulty parts may be replaced, increasing costs without solving the real problem.',
       },
+      {
+        questionAr: 'هل يشمل التشخيص فحص فريون سيارة وفحص ليزر للتسريب؟',
+        questionEn: 'Does diagnostic service include refrigerant and leak checks?',
+        answerAr:
+          'التشخيص يشمل قراءة ضغط الفريون، اختبار الأداء، وفحص التسريبات بالأدوات المناسبة. عند الحاجة نضيف فحص UV لتحديد نقطة التسريب قبل الإصلاح.',
+        answerEn:
+          'Diagnostics include pressure readings, performance checks, and leak testing. UV tracing can be added when needed to confirm the exact leak point before repair.',
+      },
     ],
   },
   {
@@ -605,6 +656,14 @@ export const services: ACService[] = [
           'تحتاج السيارة لصيانة شاملة عندما تعاني من مشاكل متعددة مثل ضعف التبريد مع تسريبات وأصوات غريبة، أو عندما يكون عمر السيارة أكثر من 8-10 سنوات بدون صيانة سابقة للمكيف.',
         answerEn:
           'A car needs a full AC overhaul when experiencing multiple issues like weak cooling with leaks and strange noises, or when the vehicle is over 8-10 years old without prior AC maintenance.',
+      },
+      {
+        questionAr: 'ما الفرق بين صيانة مكيفات دورية وصيانة شاملة للنظام؟',
+        questionEn: 'What is the difference between routine and full AC service?',
+        answerAr:
+          'الصيانة الدورية تركز على الفحص والتنظيف والتعبئة عند الحاجة، بينما الصيانة الشاملة تعالج أعطال متعددة مع تبديل القطع التالفة وإعادة ضبط دورة التكييف بالكامل.',
+        answerEn:
+          'Routine service focuses on checks, cleaning, and recharge when needed, while a full overhaul addresses multiple faults with component replacement and complete system reset.',
       },
     ],
   },

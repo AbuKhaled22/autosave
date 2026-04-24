@@ -23,9 +23,26 @@ const isAr = lang === 'ar';
 
 const brandName = isAr ? brand.nameAr : brand.nameEn;
 
-const pageTitle = isAr
+const basePageTitle = isAr
   ? `إصلاح مكيف السيارة وتكييف سيارات ${brandName} | اوتو سيف`
   : `${brandName} Car AC Repair & Service in Riyadh | Auto Save`;
+
+const brandBoostsAr: Record<string, string> = {
+  bmw: 'تصليح مكيف بي ام دبليو',
+  hyundai: 'تصليح مكيف هيونداي',
+  kia: 'تصليح مكيف كيا',
+  lincoln: 'تصليح مكيف لينكولن',
+};
+
+const brandBoostsEn: Record<string, string> = {
+  bmw: `${brand.nameEn} AC repair`,
+  hyundai: `${brand.nameEn} AC repair`,
+  kia: `${brand.nameEn} AC repair`,
+  lincoln: 'Lincoln air conditioner repair',
+};
+
+const brandBoost = isAr ? brandBoostsAr[brand.slug] : brandBoostsEn[brand.slug];
+const pageTitle = brandBoost ? `${basePageTitle} | ${brandBoost}` : basePageTitle;
 
 const pageDescription = isAr
   ? `أفضل ورشة في الرياض لصيانة تكييف السيارات وإصلاح مكيف سيارات ${brandName}. تشخيص دقيق وقطع غيار أصلية وبديلة مع ضمان.`

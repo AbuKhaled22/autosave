@@ -29,10 +29,10 @@ const aggregateRating = {
 ---
 
 <PageLayout
-  title="اوتو سيف | أفضل ورشة صيانة تكييف السيارات ومكيف السيارة"
-  description="خدمات إصلاح مكيف السيارة وصيانة تكييف السيارات لجميع سيارات الأفراد والشركات في الرياض والمدن الرئيسية، مع فحص دقيق وضمان أفضل سعر."
+  title="ورشة سيارات لصيانة مكيفات وتكييف السيارات | اوتو سيف"
+  description="ورشة سيارات متخصصة في مكيفات سيارات: تصليح مكيفات، فحص ليزر، تعبئة فريون السيارة، وصيانة مكيفات مع ضمان أفضل سعر في الرياض."
   lang={lang}
-  keywords={['إصلاح مكيف السيارة', 'صيانة تكييف السيارات', 'أفضل ورشة تكييف سيارات', 'تعبئة فريون', 'كمبروسر المكيف', 'تشخيص مكيف السيارة']}
+  keywords={['ورشة سيارات', 'مكيفات سيارات', 'تكييف سيارات', 'تصليح مكيفات', 'صيانة مكيفات', 'فحص ليزر', 'تعبئة فريون السيارة', 'فريون سيارة', 'فريون مكيف', 'إصلاح مكيف السيارة']}
 >
   <HeroSection content={content.home.hero} lang={lang} />
   <section class="py-8" data-animate="fade-in-up">
@@ -43,6 +43,46 @@ const aggregateRating = {
     </div>
   </section>
   <TrustBadges items={content.home.trustBadges} />
+  <section class="bg-secondary/40 py-12 lg:py-16" data-animate="fade-in-up">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold tracking-tight font-display sm:text-3xl">خدمات مكيفات سيارات الأكثر بحثاً</h2>
+      <p class="mt-3 max-w-3xl text-muted-foreground">
+        نوفر حلول ورشة سيارات متخصصة تشمل تكييف سيارات، تصليح مكيفات، تعبئة فريون السيارة، وفحص ليزر لكشف التسريبات بدقة.
+      </p>
+      <ul class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <li>
+          <a href="/services/ac-recharge" class="block rounded-lg border border-border bg-card p-4 text-sm font-semibold text-foreground shadow-sm transition hover:border-primary/40 hover:text-primary" aria-label="تعبئة فريون السيارة وفريون مكيف">
+            تعبئة فريون السيارة وفريون مكيف
+          </a>
+        </li>
+        <li>
+          <a href="/services/leak-detection" class="block rounded-lg border border-border bg-card p-4 text-sm font-semibold text-foreground shadow-sm transition hover:border-primary/40 hover:text-primary" aria-label="فحص ليزر وكشف تسريب فريون">
+            فحص ليزر وكشف تسريب فريون
+          </a>
+        </li>
+        <li>
+          <a href="/services/ac-diagnostic" class="block rounded-lg border border-border bg-card p-4 text-sm font-semibold text-foreground shadow-sm transition hover:border-primary/40 hover:text-primary" aria-label="تصليح مكيفات سيارات بعد التشخيص">
+            تصليح مكيفات سيارات بعد التشخيص
+          </a>
+        </li>
+        <li>
+          <a href="/services/ac-cleaning" class="block rounded-lg border border-border bg-card p-4 text-sm font-semibold text-foreground shadow-sm transition hover:border-primary/40 hover:text-primary" aria-label="صيانة مكيفات وتكييف سيارات">
+            صيانة مكيفات وتكييف سيارات
+          </a>
+        </li>
+        <li>
+          <a href="/services/compressor-replacement" class="block rounded-lg border border-border bg-card p-4 text-sm font-semibold text-foreground shadow-sm transition hover:border-primary/40 hover:text-primary" aria-label="إصلاح مكيف السيارة وتغيير الكمبروسر">
+            إصلاح مكيف السيارة وتغيير الكمبروسر
+          </a>
+        </li>
+        <li>
+          <a href="/contact" class="block rounded-lg border border-border bg-card p-4 text-sm font-semibold text-foreground shadow-sm transition hover:border-primary/40 hover:text-primary" aria-label="حجز ورشة سيارات لصيانة المكيف">
+            حجز ورشة سيارات لصيانة المكيف
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
   <BenefitsSection content={content.home.benefits} />
   <HowItWorks content={content.home.howItWorks} />
   <PricingSection content={content.home.pricing} lang={lang} />
@@ -50,7 +90,7 @@ const aggregateRating = {
   <FaqSection content={content.home.faq} />
   <CtaSection content={content.home.cta} lang={lang} />
   <WebsiteSchema lang={lang} />
-  <FAQSchema />
+  <FAQSchema items={content.home.faq.items} />
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Product",

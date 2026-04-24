@@ -51,7 +51,7 @@ function absoluteLocalizedUrl(path: string, lang: Language): string {
 
 const normalizedCanonicalUrl = absoluteLocalizedUrl(pathWithoutLocale, currentLang);
 const alternateUrl = absoluteLocalizedUrl(pathWithoutLocale, alternateLang);
-const xDefaultUrl = absoluteLocalizedUrl(pathWithoutLocale, 'ar');
+const xDefaultUrl = new URL('/', site).toString();
 
 const ogLocale = currentLang === 'ar' ? 'ar_SA' : 'en_US';
 const siteName = currentLang === 'ar' ? 'اوتو سيف' : 'AUTO SAVE';

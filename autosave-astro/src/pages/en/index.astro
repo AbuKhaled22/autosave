@@ -32,7 +32,22 @@ const aggregateRating = {
   title="AUTO SAVE | Expert Car Air Conditioning Repair & Service"
   description="Professional car AC repair, compressor replacement, freon refill, and maintenance. Best price guarantee with certified service centers. Pickup service available."
   lang={lang}
-  keywords={['car AC repair', 'auto air conditioning repair', 'car AC service near me', 'AC compressor repair', 'freon refill car', 'car AC maintenance']}
+  keywords={[
+    'car AC repair',
+    'auto air conditioning repair',
+    'car AC service near me',
+    'AC compressor repair',
+    'freon refill car',
+    'car AC maintenance',
+    'car ac repair near me',
+    'car ac repair riyadh',
+    'car ac recharge',
+    'freon recharge',
+    'air conditioner charging cost',
+    'how to find a freon leak',
+    'how to check for ac leak in car',
+    'lincoln air conditioner repair',
+  ]}
 >
   <HeroSection content={content.home.hero} lang={lang} />
   <section class="py-8" data-animate="fade-in-up">
@@ -50,7 +65,7 @@ const aggregateRating = {
   <FaqSection content={content.home.faq} />
   <CtaSection content={content.home.cta} lang={lang} />
   <WebsiteSchema lang={lang} />
-  <FAQSchema />
+  <FAQSchema items={content.home.faq.items} />
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Product",

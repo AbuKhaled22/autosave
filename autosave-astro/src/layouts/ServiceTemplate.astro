@@ -17,6 +17,8 @@ import { getComponentBySlug } from '../data/components';
 import { getCityBySlug } from '../data/cities';
 import { getServiceSeoByFamily, shouldNoindexThinContent } from '../lib/seo-hardening';
 import { getGeneralContactWhatsAppUrl } from '../lib/whatsapp';
+import { blogPosts } from '../lib/blog-data';
+import { arabicBlogTranslations } from '../lib/blog-data-ar';
 
 interface Props {
   service: ACService;
@@ -101,9 +103,29 @@ const topCities = riyadh
     }]
   : [];
 
+// Add contextual blog post links for each service to improve internal linking
+const blogMap: Record<string, string[]> = {
+  'ac-recharge': ['car-ac-freon-refill-everything-you-need-to-know', 'how-to-detect-car-ac-refrigerant-leaks'],
+  'leak-detection': ['how-to-detect-car-ac-refrigerant-leaks', 'car-ac-not-cooling-causes-fixes'],
+  'ac-diagnostic': ['car-ac-not-cooling-causes-fixes', 'complete-guide-car-ac-compressor'],
+  'ac-cleaning': ['car-ac-bad-smell-causes', 'car-ac-maintenance-tips-extend-system-life'],
+  'compressor-replacement': ['complete-guide-car-ac-compressor', 'car-ac-not-cooling-causes-fixes'],
+};
+
+const relatedBlogLinks = (blogMap[service.slug] || []).map((slug) => {
+  const post = blogPosts.find((p) => p.slug === slug);
+  const ar = (arabicBlogTranslations as any)[slug];
+  return {
+    title: isAr ? (ar?.title ?? post?.title ?? slug) : post?.title ?? slug,
+    href: isAr ? `/blog/${slug}` : `/en/blog/${slug}`,
+    description: isAr ? (ar?.excerpt ?? post?.excerpt ?? '') : post?.excerpt ?? '',
+  };
+});
+
 const serviceSpecificLinks = [
   ...relatedServices.slice(0, 2),
   ...relatedParts.slice(0, 2),
+  ...relatedBlogLinks,
 ];
 const diagnosisSupportLinks = [
   ...relatedParts.slice(2),

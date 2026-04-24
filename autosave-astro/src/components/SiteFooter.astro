@@ -11,8 +11,12 @@ const { lang } = Astro.props;
 const content = getContentByLanguage(lang);
 const footer = content.footer;
 const year = new Date().getFullYear();
+const commercialRegistrationNumber = '1009058433';
+const commercialRegistrationLabel = lang === 'ar' ? 'رقم السجل التجاري' : 'Commercial Registration Number';
+const saudiLogoAlt = lang === 'ar' ? 'شعار السجل التجاري السعودي' : 'Saudi commercial registration logo';
 const aiContextTitle = lang === 'ar' ? 'سياق الذكاء الاصطناعي' : 'AI Context';
 const aiContextAriaLabel = lang === 'ar' ? 'روابط سياق الذكاء الاصطناعي' : 'AI context links';
+const paymentMethodsTitle = lang === 'ar' ? 'التقسيط المتاح' : 'Split payments available';
 const aiContextLinks = [
   { label: 'Index', href: '/llms.txt' },
   { label: 'EN', href: '/llms-en.txt' },
@@ -44,6 +48,42 @@ function resolveFooterHref(href: string): string {
         <p class="text-sm text-[#f0ebe0]/60 leading-relaxed">
           {footer.description}
         </p>
+        <div class="inline-flex w-full max-w-[17rem] flex-col items-center gap-2.5 rounded-xl border border-white/35 bg-white px-4 py-4 shadow-md shadow-black/10">
+          <img
+            src="/images/saudi-logo.png"
+            width="1524"
+            height="1536"
+            loading="lazy"
+            alt={saudiLogoAlt}
+            class="h-auto w-20 rounded-lg border border-border bg-white p-1.5"
+          />
+          <p class="text-center text-xs font-semibold leading-relaxed text-foreground">
+            {commercialRegistrationLabel}: {commercialRegistrationNumber}
+          </p>
+        </div>
+        <div class="space-y-2">
+          <p class="text-xs font-semibold uppercase tracking-wider text-primary">{paymentMethodsTitle}</p>
+          <div class="flex flex-wrap items-center gap-3">
+            <a
+              href="https://tabby.ai/ar-AE"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={lang === 'ar' ? 'الدفع عبر تابي' : 'Pay with Tabby'}
+              class="inline-flex min-h-11 items-center rounded-lg border border-white/20 bg-white px-3 py-2 transition hover:border-primary/50"
+            >
+              <img src="/images/tabby.png" alt={lang === 'ar' ? 'شعار تابي' : 'Tabby payment logo'} width="108" height="36" loading="lazy" class="h-8 w-auto object-contain" />
+            </a>
+            <a
+              href="https://tamara.co/ar-sa"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={lang === 'ar' ? 'الدفع عبر تمارا' : 'Pay with Tamara'}
+              class="inline-flex min-h-11 items-center rounded-lg border border-white/20 bg-white px-3 py-2 transition hover:border-primary/50"
+            >
+              <img src="/images/tammara.png" alt={lang === 'ar' ? 'شعار تمارا' : 'Tamara payment logo'} width="108" height="36" loading="lazy" class="h-8 w-auto object-contain" />
+            </a>
+          </div>
+        </div>
       </div>
 
       {/* Services */}

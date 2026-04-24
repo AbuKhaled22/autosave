@@ -109,6 +109,31 @@ const pricingFaqs = [
               <span class="text-sm">Free part delivery to center</span>
             </li>
           </ul>
+          <div class="mt-7 rounded-xl border border-primary/25 bg-primary/5 p-4">
+            <h4 class="text-sm font-semibold text-foreground mb-2">No upfront cost—pay in flexible installments</h4>
+            <p class="text-xs text-muted-foreground mb-3 leading-relaxed">Manage your budget: split the full repair and parts cost into interest-free monthly payments. Pay only what you need, when you need it.</p>
+            <p class="text-xs font-medium text-foreground mb-3">Zero-interest partners:</p>
+            <div class="mt-3 flex flex-wrap items-center gap-3">
+              <a
+                href="https://tabby.ai/ar-AE"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Pay with Tabby"
+                class="inline-flex min-h-11 items-center rounded-lg border border-border bg-white px-3 py-2 transition hover:border-primary/50"
+              >
+                <img src="/images/tabby.png" alt="Tabby payment logo" width="108" height="36" loading="lazy" class="h-8 w-auto object-contain" />
+              </a>
+              <a
+                href="https://tamara.co/ar-sa"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Pay with Tamara"
+                class="inline-flex min-h-11 items-center rounded-lg border border-border bg-white px-3 py-2 transition hover:border-primary/50"
+              >
+                <img src="/images/tammara.png" alt="Tamara payment logo" width="108" height="36" loading="lazy" class="h-8 w-auto object-contain" />
+              </a>
+            </div>
+          </div>
           <div class="mt-8">
             <ComingSoonLink
               href={DROP_OFF_CALENDLY_URL}
@@ -158,6 +183,31 @@ const pricingFaqs = [
               <span class="text-sm">Car delivered back to you</span>
             </li>
           </ul>
+          <div class="mt-7 rounded-xl border border-primary/25 bg-primary/5 p-4">
+            <h4 class="text-sm font-semibold text-foreground mb-2">Spread costs over time—zero interest</h4>
+            <p class="text-xs text-muted-foreground mb-3 leading-relaxed">No surprise large bills: divide your total repair and parts investment into comfortable monthly installments at zero percent interest. Approved instantly.</p>
+            <p class="text-xs font-medium text-foreground mb-3">Trusted payment plans:</p>
+            <div class="mt-3 flex flex-wrap items-center gap-3">
+              <a
+                href="https://tabby.ai/ar-AE"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Pay with Tabby"
+                class="inline-flex min-h-11 items-center rounded-lg border border-border bg-white px-3 py-2 transition hover:border-primary/50"
+              >
+                <img src="/images/tabby.png" alt="Tabby payment logo" width="108" height="36" loading="lazy" class="h-8 w-auto object-contain" />
+              </a>
+              <a
+                href="https://tamara.co/ar-sa"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Pay with Tamara"
+                class="inline-flex min-h-11 items-center rounded-lg border border-border bg-white px-3 py-2 transition hover:border-primary/50"
+              >
+                <img src="/images/tammara.png" alt="Tamara payment logo" width="108" height="36" loading="lazy" class="h-8 w-auto object-contain" />
+              </a>
+            </div>
+          </div>
           <div class="mt-8">
             <ComingSoonLink
               href={pickupBookingUrl}
@@ -383,7 +433,7 @@ const pricingFaqs = [
   </section>
 
   {/* JSON-LD */}
-  <FAQSchema />
+  <FAQSchema items={pricingFaqs} />
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Product",

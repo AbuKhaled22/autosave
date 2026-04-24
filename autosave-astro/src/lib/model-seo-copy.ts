@@ -91,9 +91,18 @@ export function getModelSeoCopy(brand: CarBrand, model: CarModel, lang: Language
       5
     );
 
+    // Brand/model-specific meta title overrides for high-impression queries
+    let finalMetaTitle = metaTitle;
+    if (brand.slug === 'bmw') {
+      finalMetaTitle = `${brand.nameAr} ${model.nameAr}: تصليح مكيف بي ام دبليو في الرياض | اوتو سيف`;
+    }
+    if (brand.slug === 'hyundai' && model.slug === 'sonata') {
+      finalMetaTitle = `${brand.nameAr} ${model.nameAr}: رقم فريون السوناتا وتعبئة الفريون | اوتو سيف`;
+    }
+
     return {
       keyword,
-      metaTitle,
+      metaTitle: finalMetaTitle,
       metaDescription,
       heroDescription,
       sectionTitle,
@@ -111,6 +120,9 @@ export function getModelSeoCopy(brand: CarBrand, model: CarModel, lang: Language
       `${brand.nameEn} ${model.nameEn} AC repair for stop-and-go traffic`,
       `${brand.nameEn} ${model.nameEn} weak AC at midday in Riyadh`,
       `${brand.nameEn} ${model.nameEn} AC diagnosis before compressor damage`,
+      `${brand.nameEn} ${model.nameEn} AC repair in Riyadh`,
+      'car ac repair near me',
+      'how to find a freon leak',
     ],
     seed
   );
@@ -166,9 +178,21 @@ export function getModelSeoCopy(brand: CarBrand, model: CarModel, lang: Language
     5
   );
 
+  // Brand/model-specific meta title overrides for high-impression queries (English)
+  let finalMetaTitle = metaTitle;
+  if (brand.slug === 'lincoln') {
+    finalMetaTitle = `${brand.nameEn} ${model.nameEn} AC Repair in Riyadh | Auto Save`;
+  }
+  if (brand.slug === 'bmw') {
+    finalMetaTitle = `${brand.nameEn} ${model.nameEn} air conditioner repair | Auto Save`;
+  }
+  if (brand.slug === 'hyundai' && model.slug === 'sonata') {
+    finalMetaTitle = `${brand.nameEn} ${model.nameEn} freon number & recharge info | Auto Save`;
+  }
+
   return {
     keyword,
-    metaTitle,
+    metaTitle: finalMetaTitle,
     metaDescription,
     heroDescription,
     sectionTitle,

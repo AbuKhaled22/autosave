@@ -36,7 +36,7 @@ const pageTitle = isAr
   : `Car AC Repair in ${cityName} | Auto Save`;
 
 const pageDescription = isAr
-  ? `أفضل ورشة في ${cityName} لصيانة تكييف السيارات وإصلاح مكيف السيارة لجميع السيارات في ${regionName}. فحص دقيق وضمان أفضل سعر.`
+  ? `ورشة سيارات في ${cityName} لخدمات مكيفات سيارات وتكييف سيارات تشمل تصليح مكيفات، فحص ليزر، وتعبئة فريون السيارة مع ضمان أفضل سعر.`
   : `Car AC repair and maintenance services in ${cityName}, ${regionName}. Freon recharge, compressor replacement, leak detection and more. Best price guarantee.`;
 
 const leakLaserKeywordsAr = [
@@ -87,6 +87,21 @@ const neighborhoodLinks = city.neighborhoods.map((n) => ({
     ? `/services/${city.slug}/${n.slug}`
     : `/en/services/${city.slug}/${n.slug}`,
 }));
+
+const neighborhoodSampleAr = city.neighborhoods.slice(0, 3).map((n) => n.nameAr).join('، ');
+const neighborhoodSampleEn = city.neighborhoods.slice(0, 3).map((n) => n.nameEn).join(', ');
+
+const cityLocalIntentParagraph = isAr
+  ? `إذا كنت تبحث عن ورشة سيارات في ${cityName} لخدمة مكيفات سيارات وتكييف سيارات، فالبداية الصحيحة تكون بفحص دقيق يحدد هل المشكلة في فريون السيارة، التسريب، أو أحد مكونات النظام.`
+  : `If you are looking for a car workshop in ${cityName} for AC repair and maintenance, the right start is an accurate inspection to confirm whether the issue is refrigerant level, leakage, or a component fault.`;
+
+const cityNeighborhoodIntentParagraph = isAr
+  ? city.neighborhoods.length > 0
+    ? `نغطي في ${cityName} عدة نطاقات خدمة مثل ${neighborhoodSampleAr}، مع نفس معايير الفحص والجودة لجميع طلبات صيانة مكيفات السيارات.`
+    : `نقدم في ${cityName} خدمات فحص وتصليح مكيفات سيارات مع متابعة الأداء بعد الخدمة لضمان ثبات التبريد في أجواء المدينة.`
+  : city.neighborhoods.length > 0
+    ? `In ${cityName}, we cover multiple service zones such as ${neighborhoodSampleEn}, with the same inspection and quality standards for every AC request.`
+    : `In ${cityName}, we provide AC inspection and repair services with post-service performance checks to ensure stable cooling in local conditions.`;
 
 const citySchema = {
   '@context': 'https://schema.org',
@@ -142,7 +157,17 @@ const noindexThinCity = shouldNoindexThinContent({
   lang={lang}
   noindex={noindexThinCity}
   keywords={isAr
-    ? [`إصلاح مكيف السيارة ${cityName}`, `صيانة تكييف السيارات ${cityName}`, `أفضل ورشة تكييف سيارات ${cityName}`, `تعبئة فريون ${cityName}`, ...leakLaserKeywordsAr]
+    ? [
+        `ورشة سيارات ${cityName}`,
+        `مكيفات سيارات ${cityName}`,
+        `تكييف سيارات ${cityName}`,
+        `تصليح مكيفات ${cityName}`,
+        `صيانة مكيفات ${cityName}`,
+        `فريون سيارة ${cityName}`,
+        `تعبئة فريون السيارة ${cityName}`,
+        `إصلاح مكيف السيارة ${cityName}`,
+        ...leakLaserKeywordsAr,
+      ]
     : [`car ac repair ${cityName}`, `ac service ${cityName}`, `freon recharge ${cityName}`, ...leakLaserKeywordsEn]
   }
 >
@@ -165,6 +190,12 @@ const noindexThinCity = shouldNoindexThinContent({
         </h2>
         <p class="mt-4 text-muted-foreground">
           {redactMoney(isAr ? city.climateNoteAr : city.climateNoteEn)}
+        </p>
+        <p class="mt-3 text-muted-foreground">
+          {cityLocalIntentParagraph}
+        </p>
+        <p class="mt-2 text-muted-foreground">
+          {cityNeighborhoodIntentParagraph}
         </p>
         <div class="mt-6 grid gap-4 sm:grid-cols-2">
           <div class="rounded-xl border border-border bg-card p-5 shadow-sm border-t-2 border-t-primary/25">

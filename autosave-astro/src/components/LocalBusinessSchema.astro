@@ -54,20 +54,32 @@ const schema = {
   ],
   'description':
     lang === 'ar'
-      ? 'خدمات احترافية لإصلاح مكيف السيارة وتغيير الكمبروسر وتعبئة الفريون والصيانة الدورية. ضمان أفضل سعر عبر مراكز خدمة معتمدة.'
+      ? 'ورشة سيارات متخصصة في مكيفات سيارات: تصليح مكيفات، فحص ليزر، تعبئة فريون السيارة، وصيانة مكيفات مع ضمان أفضل سعر عبر مراكز خدمة معتمدة.'
       : 'Professional car AC repair, compressor replacement, freon refill, and maintenance. Best price guarantee with certified service centers.',
+  'keywords': lang === 'ar'
+    ? 'ورشة سيارات, مكيفات سيارات, تكييف سيارات, تصليح مكيفات, صيانة مكيفات, فحص ليزر, تعبئة فريون السيارة, فريون سيارة'
+    : 'car ac repair, car ac maintenance, freon recharge, ac leak detection, workshop',
   'areaServed': [
     { '@type': 'City', 'name': lang === 'ar' ? 'الرياض' : 'Riyadh' },
   ],
-  'serviceType': [
-    'Car AC Repair',
-    'AC Compressor Replacement',
-    'Freon Refill',
-    'AC Leak Detection',
-    'AC Maintenance',
-    'Condenser Repair',
-    'Evaporator Service',
-  ],
+  'serviceType': lang === 'ar'
+    ? [
+        'ورشة سيارات',
+        'تصليح مكيفات سيارات',
+        'تعبئة فريون السيارة',
+        'فحص ليزر تسريب الفريون',
+        'صيانة مكيفات',
+        'تكييف سيارات',
+      ]
+    : [
+        'Car AC Repair',
+        'AC Compressor Replacement',
+        'Freon Refill',
+        'AC Leak Detection',
+        'AC Maintenance',
+        'Condenser Repair',
+        'Evaporator Service',
+      ],
   'hasOfferCatalog': {
     '@type': 'OfferCatalog',
     'name': lang === 'ar' ? 'خدمات مكيف السيارة' : 'Car AC Services',

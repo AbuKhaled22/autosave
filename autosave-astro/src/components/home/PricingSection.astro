@@ -75,6 +75,39 @@ function getPlanCtaUrl(planName: string): string {
               </li>
             ))}
           </ul>
+          <div class="mt-7 rounded-xl border border-primary/25 bg-primary/5 p-4 mb-8">
+            <h4 class="text-sm font-semibold text-foreground mb-2">
+              {lang === 'ar' ? 'بدون دفع فوري—قسّط براحتك' : 'No upfront cost—pay in flexible installments'}
+            </h4>
+            <p class="text-xs text-muted-foreground mb-3 leading-relaxed">
+              {lang === 'ar' 
+                ? 'نظّم ميزانيتك: قسّم كامل تكلفة الإصلاح والقطع على دفعات شهرية بدون فوائد. ادفع فقط ما تحتاج، عندما تحتاج.'
+                : 'Manage your budget: split the full repair and parts cost into interest-free monthly payments. Pay only what you need, when you need it.'}
+            </p>
+            <p class="text-xs font-medium text-foreground mb-3">
+              {lang === 'ar' ? 'شركاء بدون فوائد:' : 'Zero-interest partners:'}
+            </p>
+            <div class="flex flex-wrap items-center gap-2">
+              <a
+                href="https://tabby.ai/ar-AE"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={lang === 'ar' ? 'الدفع عبر تابي' : 'Pay with Tabby'}
+                class="inline-flex min-h-10 items-center rounded-lg border border-border bg-white px-2.5 py-1.5 transition hover:border-primary/50"
+              >
+                <img src="/images/tabby.png" alt={lang === 'ar' ? 'شعار تابي' : 'Tabby payment logo'} width="108" height="36" loading="lazy" class="h-6 w-auto object-contain" />
+              </a>
+              <a
+                href="https://tamara.co/ar-sa"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={lang === 'ar' ? 'الدفع عبر تمارا' : 'Pay with Tamara'}
+                class="inline-flex min-h-10 items-center rounded-lg border border-border bg-white px-2.5 py-1.5 transition hover:border-primary/50"
+              >
+                <img src="/images/tammara.png" alt={lang === 'ar' ? 'شعار تمارا' : 'Tamara payment logo'} width="108" height="36" loading="lazy" class="h-6 w-auto object-contain" />
+              </a>
+            </div>
+          </div>
           <ComingSoonLink
             href={getPlanCtaUrl(plan.name)}
             lang={lang}
