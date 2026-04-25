@@ -15,6 +15,11 @@ const aggregateRating = {
   bestRating: '5',
   worstRating: '1',
 };
+const featuredReview = {
+  author: 'AUTO SAVE customer',
+  body: 'Professional diagnostics, transparent communication, and reliable service quality.',
+  datePublished: '2026-02-14',
+};
 const carImages = Array.from({ length: 21 }, (_, index) => {
   const order = String(index + 1).padStart(2, '0');
   return {
@@ -174,6 +179,29 @@ const carImages = Array.from({ length: 21 }, (_, index) => {
       "name": "AUTO SAVE",
       "url": "https://autosaveks.com"
     },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": aggregateRating.ratingValue,
+      "reviewCount": aggregateRating.reviewCount,
+      "ratingCount": aggregateRating.ratingCount,
+      "bestRating": aggregateRating.bestRating,
+      "worstRating": aggregateRating.worstRating
+    },
+    "review": [{
+      "@type": "Review",
+      "reviewBody": featuredReview.body,
+      "datePublished": featuredReview.datePublished,
+      "author": {
+        "@type": "Person",
+        "name": featuredReview.author
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": aggregateRating.ratingValue,
+        "bestRating": aggregateRating.bestRating,
+        "worstRating": aggregateRating.worstRating
+      }
+    }],
     "offers": {
       "@type": "Offer",
       "url": pageUrl,
