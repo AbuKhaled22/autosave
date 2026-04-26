@@ -189,7 +189,7 @@ export const enContent = {
           price: "On request",
           currency: "SAR",
           description:
-            "Drive to the workshop and we handle coordination. Additional service is free of charge.",
+            "Drive to the workshop and we handle intake, service workflow, and quality control. Additional service is free of charge.",
           cta: "Book Drop-Off",
           features: [
             "Search for the best parts at the cheapest price, with a guarantee to return triple the price difference if any.",
@@ -220,7 +220,7 @@ export const enContent = {
         },
       ],
       note:
-        "* Service fees cover coordination, quality assurance, and price matching. Spare parts and repair labor are billed separately at guaranteed best prices.",
+        "* Service fees cover service workflow management, quality assurance, and price matching. Spare parts and repair labor are billed separately at guaranteed best prices.",
     },
     testimonials: {
       eyebrow: "Testimonials",
@@ -398,12 +398,12 @@ export const enContent = {
       {
         title: "2. Service Description",
         body:
-          "AUTO SAVE connects car owners with certified AC repair centers and coordinates service quality and pricing.",
+          "AUTO SAVE delivers car AC services through certified repair centers with managed quality and pricing standards.",
         bullets: [
           "Car AC diagnosis and problem assessment",
           "Multi-supplier price comparison for spare parts",
-          "Connection to certified service maintenance centers",
-          "Vehicle pickup and delivery coordination",
+          "Service execution through certified maintenance centers",
+          "Vehicle pickup and return service management",
           "Quality assurance and follow-up",
         ],
       },
@@ -425,12 +425,12 @@ export const enContent = {
       {
         title: "6. Privacy Policy",
         body:
-          "We process personal information only to deliver requested services and coordinate with assigned centers.",
+          "We process personal information only to deliver requested services and execute service orders with assigned centers.",
       },
       {
         title: "7. Limitation of Liability",
         body:
-          "AUTO SAVE acts as an intermediary but enforces quality checks and follow-up procedures.",
+          "AUTO SAVE enforces quality checks and follow-up procedures across its certified service network.",
       },
       {
         title: "8. Cancellation Policy",

@@ -15,6 +15,7 @@ const businessName = lang === 'ar' ? 'اوتو سيف - صيانة مكيف ال
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'AutoRepair',
+  'additionalType': 'https://schema.org/AutomotiveBusiness',
   '@id': `${site}/#auto-save-riyadh`,
   'name': businessName,
   'image': `${site}/og-image.jpg`,
@@ -24,6 +25,7 @@ const schema = {
   'availableLanguage': ['ar', 'en'],
   'address': {
     '@type': 'PostalAddress',
+    'streetAddress': lang === 'ar' ? 'حي الصناعية القديمة' : 'Old Industrial District',
     'addressLocality': lang === 'ar' ? 'الرياض' : 'Riyadh',
     'addressRegion': lang === 'ar' ? 'الرياض' : 'Riyadh',
     'addressCountry': 'SA',
@@ -54,8 +56,8 @@ const schema = {
   ],
   'description':
     lang === 'ar'
-      ? 'ورشة سيارات متخصصة في مكيفات سيارات: تصليح مكيفات، فحص ليزر، تعبئة فريون السيارة، وصيانة مكيفات مع ضمان أفضل سعر عبر مراكز خدمة معتمدة.'
-      : 'Professional car AC repair, compressor replacement, freon refill, and maintenance. Best price guarantee with certified service centers.',
+      ? 'ورشة متخصصة في مكيف السيارة في حي الصناعية القديمة بالرياض، مع فريق فني محترف وأسعار مناسبة وخدمات فحص وصيانة وإصلاح شاملة.'
+      : 'Specialized car AC workshop in Riyadh Old Industrial District with experienced staff, competitive pricing, and comprehensive diagnostic and repair services.',
   'keywords': lang === 'ar'
     ? 'ورشة سيارات, مكيفات سيارات, تكييف سيارات, تصليح مكيفات, صيانة مكيفات, فحص ليزر, تعبئة فريون السيارة, فريون سيارة'
     : 'car ac repair, car ac maintenance, freon recharge, ac leak detection, workshop',
@@ -92,7 +94,7 @@ const schema = {
           'description':
             lang === 'ar'
               ? 'تسليم السيارة للمركز مع ضمان السعر'
-              : 'Drop off at workshop with coordination and price guarantee',
+              : 'Drop off at workshop with managed service workflow and price guarantee',
         },
       },
       {
