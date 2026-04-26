@@ -387,7 +387,7 @@ export const enContent = {
       {
         title: "6. Privacy Policy",
         body:
-          "We process personal information only to deliver requested services and coordinate with assigned centers.",
+          "We process personal information only to deliver requested services and coordinate with our workshop.",
       },
       {
         title: "7. Limitation of Liability",
