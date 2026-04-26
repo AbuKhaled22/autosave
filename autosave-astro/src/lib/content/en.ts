@@ -402,7 +402,7 @@ export const enContent = {
         bullets: [
           "Car AC diagnosis and problem assessment",
           "Multi-supplier price comparison for spare parts",
-          "Service execution through certified maintenance centers",
+          "Service execution through our workshop",
           "Vehicle pickup and return service management",
           "Quality assurance and follow-up",
         ],
