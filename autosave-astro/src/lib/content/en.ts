@@ -89,7 +89,7 @@ export const enContent = {
   },
   home: {
     hero: {
-      badge: "Certified AC Repair Specialists",
+      badge: "Expert AC Repair Specialists",
       title: "Your Car AC Fixed Right, Guaranteed Best Price",
       accent: "Fixed Right",
       description:
@@ -124,9 +124,9 @@ export const enContent = {
             "Found a lower price? We'll refund the difference within 48 hours. You'll never overpay again.",
         },
         {
-          title: "Certified service maintenance centers",
+          title: "Trusted workshop team",
           description:
-            "Every service maintenance center in our network is vetted and certified. Your car AC repair is handled by trained professionals using proper diagnostic tools.",
+            "Every repair is handled by our workshop team with trained professionals using proper diagnostic tools.",
         },
         {
           title: "Convenient Pickup Service",
@@ -161,7 +161,7 @@ export const enContent = {
           step: "02",
           title: "Get Diagnosis & Quote",
           description:
-            "Our team matches you with the nearest certified service maintenance center. We search for the best spare parts prices and provide a transparent quote.",
+            "Our team schedules you with the nearest workshop slot. We search for the best spare parts prices and provide a transparent quote.",
         },
         {
           step: "03",
@@ -173,7 +173,7 @@ export const enContent = {
           step: "04",
           title: "AC Fixed & Guaranteed",
           description:
-            "Your car air conditioning is repaired by certified technicians using quality parts. We guarantee the work and the best price on all parts used.",
+            "Your car air conditioning is repaired by skilled technicians using quality parts. We guarantee the work and the best price on all parts used.",
         },
       ],
     },
@@ -237,13 +237,13 @@ export const enContent = {
         {
           name: "Sara M.",
           car: "Hyundai Sonata 2026",
-          text: "I was quoted much higher elsewhere. AUTO SAVE matched me with a center that fixed it with the same quality parts for less.",
+          text: "I was quoted much higher elsewhere. AUTO SAVE handled it at their workshop with the same quality parts for less.",
           rating: 5,
         },
         {
           name: "Omar R.",
           car: "Nissan Patrol 2026",
-          text: "Used the drop-off service and the process was smooth. The certified technician diagnosed and fixed it the same day.",
+          text: "Used the drop-off service and the process was smooth. The skilled technician diagnosed and fixed it the same day.",
           rating: 5,
         },
       ],
@@ -265,7 +265,7 @@ export const enContent = {
         {
           question: "How does the car repair price guarantee work?",
           answer:
-            "We search across our network of certified suppliers and service maintenance centers to find the best price for your car AC repair parts. If you find a lower price for the same quality part from a reputable supplier, we'll match it.",
+            "We search across our network of trusted suppliers and our workshop team to find the best price for your car AC repair parts. If you find a lower price for the same quality part from a reputable supplier, we'll match it.",
         },
         {
           question: "What's included in the drop-off service?",
@@ -282,7 +282,7 @@ export const enContent = {
     cta: {
       title: "Ready to Fix Your Car AC?",
       description:
-        "Don't let a broken car air conditioner ruin your drive. Get connected with a certified service maintenance center today.",
+        "Don't let a broken car air conditioner ruin your drive. Book with the Auto Save workshop today.",
       primary: "Request Service Now",
       secondary: "WhatsApp Us",
     },
@@ -292,16 +292,16 @@ export const enContent = {
     heroTitle: "Making Car AC Repair Simple & Affordable",
     heroAccent: "Simple & Affordable",
     heroDescription:
-      "We believe nobody should overpay for car air conditioning repair. AUTO SAVE was built to bring transparency, fair pricing, and certified quality to the auto AC service industry.",
+      "We believe nobody should overpay for car air conditioning repair. AUTO SAVE was built to bring transparency, fair pricing, and consistent quality to the auto AC service industry.",
     missionEyebrow: "Our Mission",
     missionTitle: "Connecting Car Owners with the Best AC Service",
     missionParagraphs: [
       "The car repair market can be confusing and expensive. Prices vary wildly between shops and part quality is inconsistent.",
-      "By building a network of certified service maintenance centers and leveraging multi-supplier price comparison, we ensure every customer gets quality repair at the best possible price.",
+      "By leveraging multi-supplier price comparison and our workshop team, we ensure every customer gets quality repair at the best possible price.",
     ],
     missionPoints: [
       "Multi-supplier search",
-      "Certified technicians",
+      "Skilled technicians",
       "Dedicated support",
     ],
     valuesEyebrow: "Our Values",
@@ -323,15 +323,15 @@ export const enContent = {
     processEyebrow: "Our Process",
     processTitle: "How We Guarantee the Best Car AC Repair Prices",
     processDescription:
-      "Our systematic approach to spare parts pricing and service maintenance center selection ensures you always get the best value.",
+      "Our systematic approach to spare parts pricing and workshop scheduling ensures you always get the best value.",
     processSteps: [
       {
         title: "Multi-Supplier Price Search",
         description:
-          "We compare multiple certified suppliers for the same quality part to secure the best market price.",
+          "We compare multiple trusted suppliers for the same quality part to secure the best market price.",
       },
       {
-        title: "workshop",
+        title: "Workshop team",
         description:
           "In the workshop we provide sloutions based on your car make, model, and issue type.",
       },
@@ -343,7 +343,7 @@ export const enContent = {
     ],
     ctaTitle: "Experience the AUTO SAVE Difference",
     ctaDescription:
-      "Whether you need a simple freon refill or compressor replacement, we connect you with the right center at the best price.",
+      "Whether you need a simple freon refill or compressor replacement, we serve you at our workshop with the best price.",
     ctaButton: "Get Started",
   },
   contact: {
@@ -367,7 +367,7 @@ export const enContent = {
     hoursWeek: "Sat - Fri: 8 AM - 8 PM",
     hoursWeekend: "Emergency support available by WhatsApp",
     pricingTitle: "Quick Pricing",
-    dropOff: "Drop-off at maintenance center",
+    dropOff: "Drop-off at the workshop",
     pickup: "Pickup from your location",
     dropOffStatus: "During booking",
     pickupStatus: "On request",
@@ -381,7 +381,7 @@ export const enContent = {
     ],
     citiesTitle: "We Serve All Major Cities",
     citiesDescription:
-      "Our certified service maintenance center network covers the following areas and expanding.",
+      "Our workshop service coverage includes the following areas and expanding.",
     cities: ["Riyadh"],
   },
   terms: {
@@ -393,12 +393,12 @@ export const enContent = {
       {
         title: "1. Introduction",
         body:
-          "Welcome to AUTO SAVE. These Terms govern your use of our website and services provided through our certified service maintenance center network.",
+          "Welcome to AUTO SAVE. These Terms govern your use of our website and services provided through our workshop service workflow.",
       },
       {
         title: "2. Service Description",
         body:
-          "AUTO SAVE delivers car AC services through certified repair centers with managed quality and pricing standards.",
+          "AUTO SAVE delivers car AC services through our workshop with managed quality and pricing standards.",
         bullets: [
           "Car AC diagnosis and problem assessment",
           "Multi-supplier price comparison for spare parts",
@@ -430,7 +430,7 @@ export const enContent = {
       {
         title: "7. Limitation of Liability",
         body:
-          "AUTO SAVE enforces quality checks and follow-up procedures across its certified service network.",
+          "AUTO SAVE enforces quality checks and follow-up procedures across its workshop operations.",
       },
       {
         title: "8. Cancellation Policy",
@@ -455,7 +455,7 @@ export const enContent = {
       heroEyebrow: "Knowledge Hub",
       heroTitle: "Car AC Repair Blog & Expert Guides",
       heroDescription:
-        "Everything you need to know about car air conditioning — troubleshooting, costs, maintenance schedules, and choosing the right service maintenance center.",
+        "Everything you need to know about car air conditioning — troubleshooting, costs, maintenance schedules, and choosing the right workshop.",
       allArticles: "All Articles",
       featured: "Featured",
       readFull: "Read Full Article",
@@ -470,7 +470,7 @@ export const enContent = {
       backToBlog: "Back to Blog",
       needRepairTitle: "Need AC Repair?",
       needRepairText:
-        "Get a diagnosis and best price guarantee from our certified service maintenance centers.",
+        "Get a diagnosis and best price guarantee from our workshop team.",
       requestService: "Request Service",
       chatWhatsApp: "Chat on WhatsApp",
       shareTitle: "Share This Article",

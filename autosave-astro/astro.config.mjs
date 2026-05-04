@@ -50,8 +50,10 @@ export default defineConfig({
   base: isGitHubPages ? '/autosave' : '/',
   trailingSlash: 'always',
   redirects: {
-    '/authorized-installment-center': '/authorized-maintenance-center',
-    '/en/authorized-installment-center': '/en/authorized-maintenance-center',
+    '/authorized-maintenance-center': '/workshop',
+    '/en/authorized-maintenance-center': '/en/workshop',
+    '/authorized-installment-center': '/workshop',
+    '/en/authorized-installment-center': '/en/workshop',
     ...cityFallbackRedirects,
   },
   i18n: {

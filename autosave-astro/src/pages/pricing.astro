@@ -34,15 +34,15 @@ const pricingFaqs = [
   },
   {
     question: 'كيف تضمنون أفضل سعر لقطع الغيار؟',
-    answer: 'نقارن أسعار قطع الغيار من عدة موردين معتمدين ونختار الأفضل سعراً مع ضمان الجودة. إذا وجدت سعراً أقل، نرد لك الفرق خلال 48 ساعة.',
+    answer: 'نقارن أسعار قطع الغيار من عدة موردين موثوقين ونختار الأفضل سعراً مع ضمان الجودة. إذا وجدت سعراً أقل، نرد لك الفرق خلال 48 ساعة.',
   },
   {
     question: 'هل يوجد ضمان على الإصلاح؟',
     answer: 'نعم، جميع أعمال الإصلاح مشمولة بضمان على الخدمة والقطع. مدة الضمان تختلف حسب نوع الإصلاح والقطعة المستخدمة.',
   },
   {
-    question: 'ما الفرق بين خدمة التسليم للمركز وخدمة الاستلام والإرجاع؟',
-    answer: 'في خدمة التسليم للمركز تقوم بإيصال سيارتك بنفسك للمركز . في خدمة الاستلام والإرجاع نستلم السيارة من موقعك ونعيدها بعد الانتهاء.',
+    question: 'ما الفرق بين خدمة التسليم للورشة وخدمة الاستلام والإرجاع؟',
+    answer: 'في خدمة التسليم للورشة تقوم بإيصال سيارتك بنفسك للورشة. في خدمة الاستلام والإرجاع نستلم السيارة من موقعك ونعيدها بعد الانتهاء.',
   },
   {
     question: 'هل الأسعار تختلف حسب نوع السيارة؟',
@@ -64,7 +64,7 @@ const pricingFaqs = [
       <div class="max-w-2xl">
         <span class="hero-animate eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-primary">الأسعار</span>
         <h1 class="hero-animate hero-animate-delay-1 mt-4 text-4xl font-bold tracking-tight font-display sm:text-5xl">أسعار صيانة مكيف السيارة</h1>
-        <p class="hero-animate hero-animate-delay-2 mt-6 text-lg text-[#f0ebe0]/65 leading-relaxed">أسعار شفافة وواضحة لجميع خدمات إصلاح وصيانة مكيف السيارة. نضمن أفضل أسعار لقطع الغيار مع مراكز خدمة معتمدة.</p>
+        <p class="hero-animate hero-animate-delay-2 mt-6 text-lg text-[#f0ebe0]/65 leading-relaxed">أسعار شفافة وواضحة لجميع خدمات إصلاح وصيانة مكيف السيارة. نضمن أفضل أسعار لقطع الغيار مع ورش خدمة موثوقة.</p>
         <p class="hero-animate hero-animate-delay-3 mt-5 text-sm text-[#f0ebe0]/80">
           تقييم العملاء {aggregateRating.ratingValue} من {aggregateRating.bestRating} بناءً على {aggregateRating.reviewCount} مراجعة.
         </p>
@@ -84,8 +84,8 @@ const pricingFaqs = [
       <div class="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
         {/* Drop-Off Plan */}
         <div class="rounded-2xl border border-border bg-card p-8 shadow-sm card-hover-lift" data-animate="fade-in-up">
-          <h3 class="text-xl font-bold font-display">خدمة التسليم للمركز</h3>
-          <p class="mt-2 text-sm text-muted-foreground">تُسلم سيارتك للمركز ونحن نتولى الصيانه والخدمات التالية.</p>
+          <h3 class="text-xl font-bold font-display">خدمة التسليم للورشة</h3>
+          <p class="mt-2 text-sm text-muted-foreground">تُسلم سيارتك للورشة ونحن نتولى الصيانة والخدمات التالية.</p>
           <p class="mt-6 text-sm font-semibold text-primary">الخدمات التالية مجانية مع الضمان لعملائنا</p>
           <ul class="mt-8 space-y-3">
             <li class="flex items-start gap-3">
@@ -106,7 +106,7 @@ const pricingFaqs = [
             </li>
             <li class="flex items-start gap-3">
               <svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-              <span class="text-sm">توصيل القطع للمركز مجانا</span>
+              <span class="text-sm">توصيل القطع للورشة مجانا</span>
             </li>
           </ul>
           <div class="mt-7 rounded-xl border border-primary/25 bg-primary/5 p-4">
@@ -176,7 +176,7 @@ const pricingFaqs = [
             </li>
             <li class="flex items-start gap-3">
               <svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-              <span class="text-sm">توصيل القطع للمركز مجانا</span>
+              <span class="text-sm">توصيل القطع للورشة مجانا</span>
             </li>
             <li class="flex items-start gap-3">
               <svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
@@ -328,7 +328,7 @@ const pricingFaqs = [
         <div data-animate="fade-in-up">
           <span class="eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-accent">ضمان السعر</span>
           <h2 class="mt-4 text-3xl font-bold tracking-tight font-display sm:text-4xl">ضمان أفضل سعر لقطع الغيار</h2>
-          <p class="mt-4 text-muted-foreground leading-relaxed">نبحث عن أفضل الأسعار من عدة موردين معتمدين لنفس القطعة. إذا وجدت سعرا أقل لنفس القطعة بنفس الجودة، نرد لك الفرق خلال 48 ساعة.</p>
+          <p class="mt-4 text-muted-foreground leading-relaxed">نبحث عن أفضل الأسعار من عدة موردين موثوقين لنفس القطعة. إذا وجدت سعرا أقل لنفس القطعة بنفس الجودة، نرد لك الفرق خلال 48 ساعة.</p>
           <div class="mt-8 grid grid-cols-2 gap-6">
             <div class="flex items-center gap-3">
               <svg class="h-5 w-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -340,7 +340,7 @@ const pricingFaqs = [
               <svg class="h-5 w-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span class="text-sm font-medium">موردون معتمدون</span>
+              <span class="text-sm font-medium">موردون موثوقون</span>
             </div>
             <div class="flex items-center gap-3">
               <svg class="h-5 w-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -363,7 +363,7 @@ const pricingFaqs = [
               <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full gold-gradient text-white text-sm font-bold font-display">1</div>
               <div>
                 <h4 class="font-semibold text-sm">نبحث ونقارن</h4>
-                <p class="mt-1 text-sm text-muted-foreground">نتواصل مع عدة موردين معتمدين لنفس القطعة ونقارن الأسعار.</p>
+                <p class="mt-1 text-sm text-muted-foreground">نتواصل مع عدة موردين موثوقين لنفس القطعة ونقارن الأسعار.</p>
               </div>
             </div>
             <div class="flex gap-4">
@@ -440,7 +440,7 @@ const pricingFaqs = [
     "@id": `${pricingPageUrl}#pricing-product`,
     "mainEntityOfPage": pricingPageUrl,
     "name": "خدمات صيانة مكيف السيارة",
-    "description": "خدمات إصلاح وصيانة مكيف السيارة في السعودية مع ضمان أفضل سعر وجودة تنفيذ عبر مراكز معتمدة.",
+    "description": "خدمات إصلاح وصيانة مكيف السيارة في السعودية مع ضمان أفضل سعر وجودة تنفيذ.",
     "url": pricingPageUrl,
     "brand": {
       "@type": "Brand",

@@ -434,8 +434,8 @@ details[data-mobile-submenu][open] .mobile-submenu-panel-inner {
 }
 
 /* ════════════════════════════════════════
-   maintenance center image screen slider
-   ════════════════════════════════════════ */
+  workshop image screen slider
+  ════════════════════════════════════════ */
 @keyframes installmentSlideFrame {
   0% {
     opacity: 0;

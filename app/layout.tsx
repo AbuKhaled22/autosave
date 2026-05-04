@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
         template: '%s | اوتو سيف',
       },
       description:
-        'خدمات احترافية لإصلاح مكيف السيارة وتغيير الكمبروسر وتعبئة الفريون والصيانة الدورية. ضمان أفضل سعر عبر مراكز خدمة معتمدة.',
+        'خدمات احترافية لإصلاح مكيف السيارة وتغيير الكمبروسر وتعبئة الفريون والصيانة الدورية. ضمان أفضل سعر.',
       keywords: [
         'إصلاح مكيف السيارة',
         'صيانة مكيف السيارة',
@@ -34,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
       openGraph: {
         title: 'اوتو سيف | إصلاح وصيانة مكيف السيارة باحتراف',
         description:
-          'خدمات إصلاح مكيف السيارة بضمان أفضل سعر مع مراكز معتمدة وقطع غيار عالية الجودة.',
+          'خدمات إصلاح مكيف السيارة بضمان أفضل سعر وقطع غيار عالية الجودة.',
         type: 'website',
         locale: 'ar_SA',
         siteName: 'اوتو سيف',
@@ -42,7 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
       twitter: {
         card: 'summary_large_image',
         title: 'اوتو سيف | إصلاح وصيانة مكيف السيارة باحتراف',
-        description: 'خدمات إصلاح مكيف السيارة بضمان أفضل سعر عبر مراكز معتمدة.',
+        description: 'خدمات إصلاح مكيف السيارة بضمان أفضل سعر لقطع غيار عالية الجودة.',
       },
       icons: {
         icon: '/logo.png',

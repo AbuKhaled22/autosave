@@ -12,11 +12,11 @@ Do not submit www URLs.
 1. https://autosaveks.com/
 2. https://autosaveks.com/en/
 3. https://autosaveks.com/about/
-4. https://autosaveks.com/authorized-maintenance-center/
+4. https://autosaveks.com/workshop/
 5. https://autosaveks.com/contact/
 6. https://autosaveks.com/pricing/
 7. https://autosaveks.com/en/about/
-8. https://autosaveks.com/en/authorized-maintenance-center/
+8. https://autosaveks.com/en/workshop/
 9. https://autosaveks.com/en/contact/
 10. https://autosaveks.com/en/pricing/
 11. https://autosaveks.com/services/riyadh/

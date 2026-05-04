@@ -67,9 +67,9 @@ export const cities: City[] = [
         questionAr: 'أين أجد أفضل ورشة مكيف سيارات في الرياض؟',
         questionEn: 'Where can I find the best car AC repair shop in Riyadh?',
         answerAr:
-          'اوتو سيف من أفضل مراكز خدمة مكيف السيارات في الرياض. نقدم خدماتنا في جميع أحياء الرياض مع ضمان على القطع والعمل.',
+          'اوتو سيف من أفضل ورش خدمة مكيف السيارات في الرياض. نقدم خدماتنا في جميع أحياء الرياض مع ضمان على القطع والعمل.',
         answerEn:
-          'Auto Save is one of the best car AC service centers in Riyadh. We offer our services across all Riyadh neighborhoods with warranty on parts and labor.',
+          'Auto Save is one of the best car AC service workshops in Riyadh. We offer our services across all Riyadh neighborhoods with warranty on parts and labor.',
       },
       {
         questionAr: 'كم تكلفة إصلاح مكيف السيارة في الرياض؟',

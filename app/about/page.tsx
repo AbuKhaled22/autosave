@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
       alternates,
       openGraph: {
         title: "من نحن | اوتو سيف",
-        description: "نربط ملاك السيارات بمراكز معتمدة ونضمن أفضل سعر لقطع غيار المكيف.",
+        description: "افضل ورشة إصلاح مكيف السيارة بضمان اقل سعر لقطع غيار عالية الجودة.",
         url: canonicalUrl,
       },
     }
