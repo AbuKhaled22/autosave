@@ -1,0 +1,218 @@
+---
+import { Image } from 'astro:assets';
+import PageLayout from '../layouts/PageLayout.astro';
+import { getGeneralContactWhatsAppUrl } from '../lib/whatsapp';
+
+const lang = 'ar' as const;
+const contactWhatsAppUrl = getGeneralContactWhatsAppUrl(lang);
+const pageUrl = 'https://autosaveks.com/authorized-maintenance-center/';
+const productImageUrl = 'https://autosaveks.com/images/blog/ac-compressor-guide.jpeg';
+const priceValidUntil = `${new Date().getFullYear() + 1}-12-31`;
+const aggregateRating = {
+  ratingValue: '4.8',
+  reviewCount: '320',
+  ratingCount: '320',
+  bestRating: '5',
+  worstRating: '1',
+};
+const carImages = Array.from({ length: 21 }, (_, index) => {
+  const order = String(index + 1).padStart(2, '0');
+  return {
+    src: `/images/car-served/car-served-${order}.jpeg`,
+    alt: `سيارة مخدومة في المركز المعتمد رقم ${index + 1}`,
+  };
+});
+---
+
+<PageLayout
+  title="أفضل ورشة في الرياض | صيانة تكييف السيارات ومكيف السيارة"
+  description="تعرف على مراكزنا المعتمدة لصيانة تكييف السيارات وإصلاح مكيف السيارة، وشاهد سيارات تم خدمتها بجودة عالية."
+  lang={lang}
+>
+  <section class="relative overflow-hidden hero-gradient text-[#f0ebe0]">
+    <div class="hero-pattern"></div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-20 lg:px-8 lg:py-28">
+      <header class="max-w-3xl">
+        <span class="hero-animate eyebrow-decorated text-sm font-semibold uppercase tracking-widest text-primary">مركز أوتو سيف المعتمد</span>
+        <h1 class="hero-animate hero-animate-delay-1 mt-4 text-4xl font-bold tracking-tight font-display sm:text-5xl">المراكز المعتمدة لدينا لخدمة السيارات</h1>
+        <p class="hero-animate hero-animate-delay-2 mt-6 text-base leading-relaxed text-[#f0ebe0]/65 sm:text-lg">
+          نوفر تجربة خدمة موثوقة تجمع بين الفحص الدقيق، أسعار مناسبة، وخيارات تقسيط واضحة داخل المركز يلتزم بمعايير الجودة والسلامة.
+        </p>
+        <p class="hero-animate hero-animate-delay-3 mt-5 text-sm text-[#f0ebe0]/80">
+          تقييم العملاء {aggregateRating.ratingValue} من {aggregateRating.bestRating} بناءً على {aggregateRating.reviewCount} مراجعة.
+        </p>
+      </header>
+    </div>
+  </section>
+
+  <section class="py-20 lg:py-28">
+    <div class="container mx-auto px-4">
+      <div class="grid gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
+        <article class="rounded-2xl border border-border bg-card p-3 shadow-sm sm:p-4" data-animate="fade-in-up">
+          <header class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <h2 class="text-2xl font-bold tracking-tight font-display sm:text-3xl">شاشة السيارات المخدومة</h2>
+            <span class="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">تتغير تلقائياً كل ثانيتين</span>
+          </header>
+          <div class="installment-slider-screen relative aspect-[16/10] overflow-hidden rounded-xl border border-border bg-secondary/40" style={`--slide-count:${carImages.length};`}>
+            {carImages.map((image, index) => (
+              <figure class="installment-slide" style={`--slide-index:${index};`}>
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={1600}
+                  height={1000}
+                  class="h-full w-full object-cover"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={index === 0 ? 'high' : 'auto'}
+                />
+              </figure>
+            ))}
+          </div>
+        </article>
+
+        <aside class="rounded-2xl border border-border bg-card p-6 shadow-sm" data-animate="fade-in-up" data-animate-delay="100">
+          <h2 class="text-2xl font-bold tracking-tight font-display">لماذا مراكز الصيانة المعتمدة لدينا</h2>
+          <ul class="mt-5 space-y-4 text-sm text-muted-foreground sm:text-base">
+            <li class="rounded-lg bg-secondary/60 p-4">فنيون معتمدون وخبرة عملية في خدمة السيارات بمختلف الفئات.</li>
+            <li class="rounded-lg bg-secondary/60 p-4"> خطوات واضحة من الاستلام حتى التسليم.</li>
+            <li class="rounded-lg bg-secondary/60 p-4">متابعة احترافية وحلول مناسبة للحفاظ على كفاءة السيارة.</li>
+          </ul>
+          <a
+            href={contactWhatsAppUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="الانتقال إلى صفحة التواصل مع أوتو سيف"
+            class="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg gold-gradient gold-shimmer px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:shadow-lg hover:shadow-primary/20"
+          >
+            احجز استشارتك الآن
+          </a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-secondary/40 py-20 lg:py-28">
+    <div class="container mx-auto px-4">
+      <header class="mb-10 text-center" data-animate="fade-in-up">
+        <h2 class="text-3xl font-bold tracking-tight font-display sm:text-4xl">معرض السيارات التي تم خدمتها</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          عرض كامل لبعض السيارات التي تمت خدمتها داخل المراكز المعتمدة.
+        </p>
+      </header>
+
+      <ul id="gallery-grid" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {carImages.map((image, index) => (
+          <li class:list={[index >= 6 && 'gallery-hidden-item hidden']} data-animate="fade-in-up" data-animate-delay={String(((index % 6) + 1) * 100)}>
+            <article class="card-hover-lift overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+              <figure>
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={800}
+                  height={600}
+                  class="h-56 w-full object-cover"
+                  loading="lazy"
+                />
+                <figcaption class="border-t border-border px-4 py-3 text-sm font-medium text-foreground">
+                  سيارة مخدومة رقم {index + 1}
+                </figcaption>
+              </figure>
+            </article>
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-10 flex justify-center">
+        <button
+          id="load-more-btn"
+          type="button"
+          aria-label="عرض المزيد من الصور"
+          class="inline-flex min-h-11 min-w-44 items-center justify-center gap-2 rounded-lg border border-primary bg-primary/10 px-8 py-3 text-sm font-semibold text-primary transition hover:bg-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          <svg id="load-more-spinner" class="hidden h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <span id="load-more-text">عرض المزيد</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const btn = document.getElementById('load-more-btn') as HTMLButtonElement | null;
+    const spinner = document.getElementById('load-more-spinner');
+    const text = document.getElementById('load-more-text');
+    const defaultLabel = '\u0639\u0631\u0636 \u0627\u0644\u0645\u0632\u064A\u062F';
+    const loadingLabel = '\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...';
+
+    btn?.addEventListener('click', () => {
+      if (btn.disabled) return;
+      btn.disabled = true;
+      spinner?.classList.remove('hidden');
+      if (text) text.textContent = loadingLabel;
+
+      setTimeout(() => {
+        document.querySelectorAll('.gallery-hidden-item').forEach((item) => {
+          item.classList.remove('hidden', 'gallery-hidden-item');
+        });
+        spinner?.classList.add('hidden');
+        if (text) text.textContent = defaultLabel;
+        btn.disabled = false;
+      }, 10000);
+    });
+  </script>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "مراكز الصيانة المعتمدة لخدمة السيارات",
+    "description": "مراكز صيانة معتمدة لخدمة السيارات مع فنيين متخصصين وجودة تنفيذ عالية.",
+    "image": [productImageUrl],
+    "url": pageUrl,
+    "brand": {
+      "@type": "Brand",
+      "name": "اوتو سيف",
+      "url": "https://autosaveks.com"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": pageUrl,
+      "price": "150",
+      "priceCurrency": "SAR",
+      "priceValidUntil": priceValidUntil,
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": "0",
+          "currency": "SAR"
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "SA"
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 1,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 1,
+            "unitCode": "DAY"
+          }
+        }
+      },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "SA",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+      },
+      "availability": "https://schema.org/InStock"
+    }
+  })} />
+</PageLayout>
